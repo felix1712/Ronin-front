@@ -1,0 +1,16 @@
+<svg width="9" height="9" xmlns="http://www.w3.org/2000/svg">
+ <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+ <title>icon-checkbox</title>
+ <desc>Created with Sketch.</desc>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g fill-rule="evenodd" fill="none" id="Page-1">
+   <polygon stroke-width="0" points="2.798018455505371,7.10099983215332 0.6646341681480408,4.302000045776367 -0.0625,5.25600004196167 2.798018455505371,9 8.9375,0.9450000524520874 8.210366249084473,0 " fill-rule="nonzero" fill="#777777" id="icon-checkbox"/>
+  </g>
+ </g>
+</svg>
