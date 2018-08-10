@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header/>
     <main class="p-prfm-wrapper">
       <router-view/>
     </main>
