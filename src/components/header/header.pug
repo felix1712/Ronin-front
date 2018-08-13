@@ -13,9 +13,9 @@ header.c-header
     
     .c-header__nav
       .c-header__nav-item(class=homeActive ? 'is-active' : '')
-        a Home
+        router-link(to="/") Home
       .c-header__nav-item(class=reviewsActive ? 'is-active' : '')
-        a Your Reviews
+        router-link(:to="{ name: 'createReview'}") Your Reviews
       .c-header__nav-item.is-disabled(class=objectivesActive ? 'is-active' : '')
         a Your Objectives
       .c-header__nav-item.is-disabled(class=meetingsActive ? 'is-active' : '')

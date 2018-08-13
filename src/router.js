@@ -17,7 +17,7 @@ export default new Router({
     },
     {
       path: '/reviews/create-review',
-      name: 'reviews',
+      name: 'createReview',
       component: createReview,
     },
     {
