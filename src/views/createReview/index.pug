@@ -1,334 +1,329 @@
-.p-prfrm-wrapper  
-  .p-prfrm-content.u-hsm-up.u-tac.u-py-90
-    h1.c-smb-18.u-mb-40 Halaman tidak tersedia dalam ukuran mobile.
-    img(src="/assets/images/pages/icon-goals.svg", alt="")
+.p-prfrm-content.u-hsm-down
+  h2.c-smb-26 Create review
+  .u-maxw-570.u-mb-40
+    p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+  
+  .p-prfrm-review
+    .p-prfrm-review__list
+      .p-prfrm-review__list-head.u-clearfix
+        .u-pull
+          h3.c-smb-21 Review Information
+          .u-maxw-570
+            p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
-  .p-prfrm-content.u-hsm-down
-    h2.c-smb-26 Create review
-    .u-maxw-570.u-mb-40
-      p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
-    
-    .p-prfrm-review
-      .p-prfrm-review__list
-        .p-prfrm-review__list-head.u-clearfix
-          .u-pull
-            h3.c-smb-21 Review Information
-            .u-maxw-570
-              p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      .p-prfrm-review__list-content.u-mt-30
+        .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet", data-pos="custom-row")
+          .c-col-6.jc-tooltip-mark
+            .c-form-group.with-count.jc-inputlimit
+              label Review title
+                .u-cl-red.u-dib *
+              span 50
+              input.c-form-control(type="text", value="", maxlength="50")
 
-        .p-prfrm-review__list-content.u-mt-30
-          .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet", data-pos="custom-row")
-            .c-col-6.jc-tooltip-mark
-              .c-form-group.with-count.jc-inputlimit
-                label Review title
-                  .u-cl-red.u-dib *
-                span 50
-                input.c-form-control(type="text", value="", maxlength="50")
+        .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet", data-pos="custom-row")
+          .c-col-6.jc-tooltip-mark
+            .c-form-group
+              label Description
+              textarea.c-form-control.c-auto-height(rows="5")
 
-          .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet", data-pos="custom-row")
-            .c-col-6.jc-tooltip-mark
+        .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet", data-pos="custom-row")
+          .c-col-6.jc-tooltip-mark
+            -
+              var revieweeList = ["All staff", "By department", "By job title", "Specific staff"];
+            .c-form-group.u-dib
+              label Staff to be reviewed
+                .u-cl-red.u-dib *
+              br
+              .u-dib.ju-toggle-l(data-triggertype="radio")
+                .c-check__group
+                  label.c-check__item
+                    span
+                      input.c-check__radio(type='radio', name='radio-reviewee', value="All staff", checked)
+                    span All staff
+                .c-check__group
+                  label.c-check__item
+                    span
+                      input.c-check__radio(type='radio', name='radio-reviewee', value="By department", data-effect="slide", data-link="byOrganization")
+                    span By department
+                .c-check__group
+                  label.c-check__item
+                    span
+                      input.c-check__radio(type='radio', name='radio-reviewee', value="By job title", data-effect="slide", data-link="byJobTitle")
+                    span By job title
+                .c-check__group
+                  label.c-check__item
+                    span
+                      input.c-check__radio(type='radio', name='radio-reviewee', value="Specific staff", data-effect="slide", data-link="byStaff")
+                    span Specific staff
+
+        .ju-togglelc-byOrganization   
+          .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", data-pos="custom-row")
+            .c-col-4.jc-tooltip-mark.u-dib
               .c-form-group
-                label Description
-                textarea.c-form-control.c-auto-height(rows="5")
-
-          .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet", data-pos="custom-row")
-            .c-col-6.jc-tooltip-mark
-              -
-                var revieweeList = ["All staff", "By department", "By job title", "Specific staff"];
-              .c-form-group.u-dib
-                label Staff to be reviewed
+                label Choose department
                   .u-cl-red.u-dib *
-                br
-                .u-dib.ju-toggle-l(data-triggertype="radio")
-                  .c-check__group
-                    label.c-check__item
-                      span
-                        input.c-check__radio(type='radio', name='radio-reviewee', value="All staff", checked)
-                      span All staff
-                  .c-check__group
-                    label.c-check__item
-                      span
-                        input.c-check__radio(type='radio', name='radio-reviewee', value="By department", data-effect="slide", data-link="byOrganization")
-                      span By department
-                  .c-check__group
-                    label.c-check__item
-                      span
-                        input.c-check__radio(type='radio', name='radio-reviewee', value="By job title", data-effect="slide", data-link="byJobTitle")
-                      span By job title
-                  .c-check__group
-                    label.c-check__item
-                      span
-                        input.c-check__radio(type='radio', name='radio-reviewee', value="Specific staff", data-effect="slide", data-link="byStaff")
-                      span Specific staff
+                .c-select.c-select--multiple
+                  .c-select__input
+                    span.c-select__arrow.fa.fa-angle-down
+                    span.c-select__placeholder Department
+                    span.c-select__value
+                    span.c-select__reset.u-dn &times;
+                  .c-select__multiple.u-w-570
+                    span.c-select__multiple-item(data-val="Engineering") Engineering
+                      span.c-select__multiple-remove &times;
+                    span.c-select__multiple-item(data-val="Sales") Sales
+                      span.c-select__multiple-remove &times;
+                  .c-select__menu.c-select__menu--multiple.c-select__menu--search
+                    .c-select__search
+                      .with-icon--left
+                        input.c-form-control(placeholder="Search department", type="text")
+                        .with-icon--reset.u-dn &#10005;
+                        span
+                          img(src="/assets/images/pages/icon-search.svg", alt="")
+                    .c-select__itemsearch.ju-scroll-focus
+                      .c-select__item.is-selected
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-departement", value="Engineering", checked) 
+                          span Engineering
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-departement", value="Marketing") 
+                          span Marketing
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-departement", value="Product") 
+                          span Product
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-departement", value="QA") 
+                          span QA
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-departement", value="Research & Development") 
+                          span Research & Development
+                      .c-select__item.is-selected
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-departement", value="Sales", checked) 
+                          span Sales
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-departement", value="Supply Chain") 
+                          span Supply Chain
+                      .c-select__item--noresult.u-dn
+                        p Search not found
 
-          .ju-togglelc-byOrganization   
-            .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", data-pos="custom-row")
-              .c-col-4.jc-tooltip-mark.u-dib
-                .c-form-group
-                  label Choose department
-                    .u-cl-red.u-dib *
-                  .c-select.c-select--multiple
-                    .c-select__input
-                      span.c-select__arrow.fa.fa-angle-down
-                      span.c-select__placeholder Department
-                      span.c-select__value
-                      span.c-select__reset.u-dn &times;
-                    .c-select__multiple.u-w-570
-                      span.c-select__multiple-item(data-val="Engineering") Engineering
-                        span.c-select__multiple-remove &times;
-                      span.c-select__multiple-item(data-val="Sales") Sales
-                        span.c-select__multiple-remove &times;
-                    .c-select__menu.c-select__menu--multiple.c-select__menu--search
-                      .c-select__search
-                        .with-icon--left
-                          input.c-form-control(placeholder="Search department", type="text")
-                          .with-icon--reset.u-dn &#10005;
-                          span
-                            img(src="/assets/images/pages/icon-search.svg", alt="")
-                      .c-select__itemsearch.ju-scroll-focus
-                        .c-select__item.is-selected
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-departement", value="Engineering", checked) 
-                            span Engineering
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-departement", value="Marketing") 
-                            span Marketing
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-departement", value="Product") 
-                            span Product
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-departement", value="QA") 
-                            span QA
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-departement", value="Research & Development") 
-                            span Research & Development
-                        .c-select__item.is-selected
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-departement", value="Sales", checked) 
-                            span Sales
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-departement", value="Supply Chain") 
-                            span Supply Chain
-                        .c-select__item--noresult.u-dn
-                          p Search not found
-
-            .c-row.u-mb-30
-              .c-col-12
-                label.c-smb-18 Engineering
-                span.u-ml-20.u-ft-reg 5
-                .c-list.c-list--staff
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-11.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Michael Scott
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-12.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Sarah Took-took
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-13.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Theobald Fairbairn
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-13.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Theobald Fairbairn
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-13.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Theobald Fairbairn
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-
-            .c-row.u-mb-30
-              .c-col-12
-                label.c-smb-18 Sales
-                span.u-ml-20.u-ft-reg 3
-                .c-list.c-list--staff
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-11.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Michael Scott
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-12.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Sarah Took-took
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-                  .c-list--staff__item
-                    .c-avatar-group
-                      figure.c-avatar.c-avatar--sm.c-avatar--circle
-                          img.c-img-fluid(src="/assets/images/avatar/user-13.png")
-                      .c-avatar-text.c-avatar-text--sm
-                        .c-smb-15 Theobald Fairbairn
-                        .c-reg-15.u-cl-slate Software Engineer
-                          .c-reg-15.u-cl-slate Engineering
-                    .c-list--staff__action
-                      a.c-btn--ghost.c-btn--xs &times;
-
-          .ju-togglelc-byJobTitle.u-dn       
-            .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", data-pos="custom-row")
-              .c-col-4.jc-tooltip-mark.u-dib
-                .c-form-group
-                  label Choose job title
-                    .u-cl-red.u-dib *
-                  .c-select.c-select--multiple
-                    .c-select__input
-                      span.c-select__arrow.fa.fa-angle-down
-                      span.c-select__placeholder Job title
-                      span.c-select__value
-                      span.c-select__reset.u-dn &times;
-                    .c-select__multiple.u-w-570
-                      span.c-select__multiple-item(data-val="Software Engineer") Software Engineer
-                        span.c-select__multiple-remove &times;
-                    .c-select__menu.c-select__menu--multiple.c-select__menu--search
-                      .c-select__search
-                        .with-icon--left
-                          input.c-form-control(placeholder="Search job title", type="text")
-                          .with-icon--reset.u-dn &#10005;
-                          span
-                            img(src="/assets/images/pages/icon-search.svg", alt="")
-                      .c-select__itemsearch.ju-scroll-focus
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Marketing") 
-                            span Marketing
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Product Designer") 
-                            span Product Designer
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="QA") 
-                            span QA
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Sales") 
-                            span Sales
-                        .c-select__item.is-selected
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Software Engineer", checked) 
-                            span Software Engineer
-                        .c-select__item
-                          label.u-pl-46
-                            input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="UX Researcher") 
-                            span UX Researcher
-                        .c-select__item--noresult.u-dn
-                          p Search not found
-
-          .ju-togglelc-byStaff.u-dn       
-            .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", data-pos="custom-row")
-              .c-col-4.jc-tooltip-mark.u-dib
-                .c-form-group
-                  label Choose staff
-                    .u-cl-red.u-dib *
-                  .c-select.c-select--multiple
-                    -
-                      var employeeList = ["Andy Bernard", "Angela Martin", "Dwight Schrute", "Jim Halpert", "Lonny Collins", "Madge Madsen"];
-                    .c-select__input
-                      span.c-select__arrow.fa.fa-angle-down
-                      span.c-select__placeholder Staff
-                      span.c-select__value
-                      span.c-select__reset.u-dn &times;
-                    .c-select__multiple.u-dn
-                    .c-select__menu.c-select__menu--multiple.c-select__menu--search
-                      .c-select__search
-                        .with-icon--left
-                          input.c-form-control(placeholder="Search staff", type="text")
-                          .with-icon--reset.u-dn &#10005;
-                          span
-                            img(src="/assets/images/pages/icon-search.svg", alt="")
-                      .c-select__itemsearch.ju-scroll-focus
-                        each i, idx in employeeList
-                          .c-select__item
-                            label
-                              input(type="checkbox", name="select-staff", value=i) 
-                              .c-select__item--pict
-                                figure.c-avatar.c-avatar--xs.c-avatar--circle
-                                  img.c-img-fluid.u-db(src="/assets/images/avatar/user-0"+(idx+1)+".png")
-                              .c-select__item--pict.c-select__item--name
-                                span=i
-                        .c-select__item--noresult.u-dn
-                          p Search not found
-
-          .c-row
+          .c-row.u-mb-30
             .c-col-12
-              .c-btn-group-wrapper.u-clearfix.u-tar.u-my-35
-                .c-btn-group--right
-                  .c-btn-group--item
-                    button.c-btn.c-btn--primary.c-btn--sm(type='submit', onClick="window.location.href='step2-questionnaire.html'; return false;") Save
-                  .c-btn-group--item
-                    button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel
-      .p-prfrm-review__list
-        .p-prfrm-review__list-head.u-clearfix
-          .u-pull
-            h3.c-smb-21 Questionnaire
-            .u-maxw-570
-              p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      .p-prfrm-review__list
-        .p-prfrm-review__list-head.u-clearfix
-          .u-pull
-            h3.c-smb-21 Schedule
-            .u-maxw-570
-              p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      .p-prfrm-review__list
-        .p-prfrm-review__list-head.u-clearfix
-          .u-pull
-            h3.c-smb-21 Reviewer
-            .u-maxw-570
-              p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      .p-prfrm-review__list
+              label.c-smb-18 Engineering
+              span.u-ml-20.u-ft-reg 5
+              .c-list.c-list--staff
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-11.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Michael Scott
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-12.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Sarah Took-took
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-13.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Theobald Fairbairn
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-13.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Theobald Fairbairn
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-13.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Theobald Fairbairn
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+
+          .c-row.u-mb-30
+            .c-col-12
+              label.c-smb-18 Sales
+              span.u-ml-20.u-ft-reg 3
+              .c-list.c-list--staff
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-11.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Michael Scott
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-12.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Sarah Took-took
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+                .c-list--staff__item
+                  .c-avatar-group
+                    figure.c-avatar.c-avatar--sm.c-avatar--circle
+                        img.c-img-fluid(src="/assets/images/avatar/user-13.png")
+                    .c-avatar-text.c-avatar-text--sm
+                      .c-smb-15 Theobald Fairbairn
+                      .c-reg-15.u-cl-slate Software Engineer
+                        .c-reg-15.u-cl-slate Engineering
+                  .c-list--staff__action
+                    a.c-btn--ghost.c-btn--xs &times;
+
+        .ju-togglelc-byJobTitle.u-dn       
+          .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", data-pos="custom-row")
+            .c-col-4.jc-tooltip-mark.u-dib
+              .c-form-group
+                label Choose job title
+                  .u-cl-red.u-dib *
+                .c-select.c-select--multiple
+                  .c-select__input
+                    span.c-select__arrow.fa.fa-angle-down
+                    span.c-select__placeholder Job title
+                    span.c-select__value
+                    span.c-select__reset.u-dn &times;
+                  .c-select__multiple.u-w-570
+                    span.c-select__multiple-item(data-val="Software Engineer") Software Engineer
+                      span.c-select__multiple-remove &times;
+                  .c-select__menu.c-select__menu--multiple.c-select__menu--search
+                    .c-select__search
+                      .with-icon--left
+                        input.c-form-control(placeholder="Search job title", type="text")
+                        .with-icon--reset.u-dn &#10005;
+                        span
+                          img(src="/assets/images/pages/icon-search.svg", alt="")
+                    .c-select__itemsearch.ju-scroll-focus
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Marketing") 
+                          span Marketing
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Product Designer") 
+                          span Product Designer
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="QA") 
+                          span QA
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Sales") 
+                          span Sales
+                      .c-select__item.is-selected
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="Software Engineer", checked) 
+                          span Software Engineer
+                      .c-select__item
+                        label.u-pl-46
+                          input.c-check__checkbox(type="checkbox", name="select-jobtitle", value="UX Researcher") 
+                          span UX Researcher
+                      .c-select__item--noresult.u-dn
+                        p Search not found
+
+        .ju-togglelc-byStaff.u-dn       
+          .c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", data-pos="custom-row")
+            .c-col-4.jc-tooltip-mark.u-dib
+              .c-form-group
+                label Choose staff
+                  .u-cl-red.u-dib *
+                .c-select.c-select--multiple
+                  -
+                    var employeeList = ["Andy Bernard", "Angela Martin", "Dwight Schrute", "Jim Halpert", "Lonny Collins", "Madge Madsen"];
+                  .c-select__input
+                    span.c-select__arrow.fa.fa-angle-down
+                    span.c-select__placeholder Staff
+                    span.c-select__value
+                    span.c-select__reset.u-dn &times;
+                  .c-select__multiple.u-dn
+                  .c-select__menu.c-select__menu--multiple.c-select__menu--search
+                    .c-select__search
+                      .with-icon--left
+                        input.c-form-control(placeholder="Search staff", type="text")
+                        .with-icon--reset.u-dn &#10005;
+                        span
+                          img(src="/assets/images/pages/icon-search.svg", alt="")
+                    .c-select__itemsearch.ju-scroll-focus
+                      each i, idx in employeeList
+                        .c-select__item
+                          label
+                            input(type="checkbox", name="select-staff", value=i) 
+                            .c-select__item--pict
+                              figure.c-avatar.c-avatar--xs.c-avatar--circle
+                                img.c-img-fluid.u-db(src="/assets/images/avatar/user-0"+(idx+1)+".png")
+                            .c-select__item--pict.c-select__item--name
+                              span=i
+                      .c-select__item--noresult.u-dn
+                        p Search not found
+
         .c-row
           .c-col-12
             .c-btn-group-wrapper.u-clearfix.u-tar.u-my-35
               .c-btn-group--right
                 .c-btn-group--item
-                  button.c-btn.c-btn--primary.c-btn--sm.is-disabled Save and Publish
+                  button.c-btn.c-btn--primary.c-btn--sm(type='submit', onClick="window.location.href='step2-questionnaire.html'; return false;") Save
                 .c-btn-group--item
                   button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel
-              .c-btn-group--left
-                .c-btn-group--item
-                  button.c-btn.c-btn--ghost.c-btn--sm.u-px-0 Save as draft
+    .p-prfrm-review__list
+      .p-prfrm-review__list-head.u-clearfix
+        .u-pull
+          h3.c-smb-21 Questionnaire
+          .u-maxw-570
+            p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    .p-prfrm-review__list
+      .p-prfrm-review__list-head.u-clearfix
+        .u-pull
+          h3.c-smb-21 Schedule
+          .u-maxw-570
+            p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    .p-prfrm-review__list
+      .p-prfrm-review__list-head.u-clearfix
+        .u-pull
+          h3.c-smb-21 Reviewer
+          .u-maxw-570
+            p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    .p-prfrm-review__list
+      .c-row
+        .c-col-12
+          .c-btn-group-wrapper.u-clearfix.u-tar.u-my-35
+            .c-btn-group--right
+              .c-btn-group--item
+                button.c-btn.c-btn--primary.c-btn--sm.is-disabled Save and Publish
+              .c-btn-group--item
+                button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel
+            .c-btn-group--left
+              .c-btn-group--item
+                button.c-btn.c-btn--ghost.c-btn--sm.u-px-0 Save as draft
