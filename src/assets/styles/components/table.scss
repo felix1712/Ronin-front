@@ -1,0 +1,127 @@
+//style for list or table
+.c-list {
+  width: 100%;
+  &__item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $v-ui-border;
+    padding: 20px 0 10px;
+    > * {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+  &__detail {
+    width: calc(100% - 140px);
+  }
+  &__action {
+    @include actionButtonWrapper;
+    .c-btn--sm { min-width: 140px; }
+  }
+  &__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 -10px;
+    > * {
+      padding: 0 10px;
+    }
+  }
+
+  &--review {
+    .c-list {
+      &__item {
+        cursor: pointer;
+        &:hover {
+          .c-list__action.is-showonhover {
+            opacity: 1;
+          }
+        }
+      }
+      &__detail {
+        width: calc(100% - 140px);
+      }
+      &__action {
+        width: 140px;
+        .c-btn--ghost {
+          padding: 0;
+          min-width: 0;
+        }
+        &.is-showonhover {
+          align-self: start;
+          opacity: 0;
+          transition: all .3s linear;
+        }
+      }
+    }
+    &__reviewee {
+      width: 20%;
+    }
+    &__reviewer {
+      width: 20%;
+    }
+    &__schedule {
+      width: 35%;
+    }
+    &__status {
+      width: 25%;
+      margin-left: auto;
+    }
+  }
+
+  &--reviewdetail {
+    padding-bottom: 40px;
+    .c-list {
+      &__item {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        &.is-noaction {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+      }
+      &__row {
+        justify-content: space-around;
+      }
+      &__avatar {
+        width: calc(100% / 3);
+        max-width: 320px;
+      }
+      &__detail {
+        width: calc(100% - 300px - 140px);
+      }
+    }
+    &__reviewer {
+      width: 30%;
+    }
+    &__status {
+      width: 40%;
+    }
+  }
+
+  &--staff {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+    &__item {
+      position: relative;
+      margin: 20px;
+      width: calc((100% - 120px) / 3);
+      &:hover {
+        .c-list--staff__action {
+          opacity: 1;
+        }
+      }
+    }
+    &__action {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      a {
+        font-size: 20px;
+      }
+    }
+  }
+}

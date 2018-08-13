@@ -16,4 +16,4 @@
 	};
 </script>
 
-<style src="@/assets/styles/main.min.css"></style>
+<style src="@/assets/styles/main.scss"></style>

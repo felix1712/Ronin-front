@@ -1,0 +1,64 @@
+// Style component Tabbing
+// Use BLock Element Modifier (https://github.com/dropbox/css-style-guide)
+// tabbing style
+
+.c-tabbing {
+  position: relative;
+
+  &__head {
+    border-bottom: 1px solid $v-ui-border;
+    list-style: none;
+    padding: 0 30px;
+    margin: 0 -30px;
+    li {
+      display: inline-block;
+      cursor: pointer;
+      margin-right: 10px;
+      color: $v-slate ;
+      border-bottom: 5px solid transparent;
+      line-height: 16px;
+      margin-bottom: -2px;
+      a {
+        color: $v-black;
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 30px;
+        span {
+          vertical-align: bottom;
+        }
+      }
+      &:hover:not(.is-disabled) {
+        a {
+          text-shadow: 0.1px 0.1px $v-black;
+        }
+      }
+      &.active {
+        color: $v-black;
+        border-bottom: 3px solid $v-green;
+        > a {
+          color: $v-green;
+          text-shadow: 0.1px 0.1px $v-green;
+        }
+      }
+      &.is-disabled {
+        color: $v-slate;
+        > a {
+          cursor: not-allowed;
+          color: $v-slate;
+        }
+      }
+    }
+  }
+  &__konten{
+    margin-top: 35px;
+    width: 100%;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.c-tabbing[tab-type="single-column"] {
+  li { position: relative; }
+}

@@ -1,0 +1,166 @@
+// Style component popover
+// Use BLock Element Modifier (https://github.com/dropbox/css-style-guide)
+// Direction arrow
+@mixin popoverArrow {
+  content: '';
+  position: absolute;
+  left: 50%;
+  @include transform(translateX(-50%));
+  display: inline-block;
+}
+
+%arrow-top {
+  &:before {
+    @include popoverArrow();
+    top: -12px;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid $v-black;
+    border-left: 11px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+  }
+  &:after {
+    @include popoverArrow();
+    top: -11px;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid $v-black;
+    border-left: 11px solid transparent;
+  }
+}
+
+%arrow-bottom {
+  &:before {
+    @include popoverArrow();
+    bottom: -12px;
+    border-right: 11px solid transparent;
+    border-top: 11px solid $v-smoke;
+    border-left: 11px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.2);
+  }
+  &:after {
+    @include popoverArrow();
+    position: absolute;
+    bottom: -11px;
+    border-right: 11px solid transparent;
+    border-top: 11px solid $v-black;
+    border-left: 11px solid transparent;
+  }
+}
+
+// Popover
+.c-popover {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  max-width: 100%;
+  z-index: 110;
+  width: 270px;
+  border: 1px solid $v-black;
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.25);
+  display: block;
+  background-color: $v-black;
+  color: $v-white;
+  border-radius: 6px;
+  padding: 14px;
+  @extend .c-reg-15;
+  textarea {
+    background-color: $v-black;
+    resize: none;
+    border: none;
+    color: $v-white;
+    @include scrollbar($v-black, 5px, transparent, 2.5px, $v-slate);
+  }
+  .c-btn--ghost {
+    color: $v-white;
+  }
+  &--top { @extend %arrow-top ; }
+  &--bottom { @extend %arrow-bottom ; }
+  &--mobile {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+  }
+  &--list {
+    @extend .c-popover ;
+    padding: 12px 0 12px 20px;
+    .c-popover-body {
+      width: calc(100% - 12px);
+      max-height: 140px;
+      overflow: auto;
+      @include scrollbar($v-black, 5px, transparent, 2.5px, $v-slate);
+      .c-list {
+        @extend .c-row-no-gutter ;
+        padding: 0 10px 10px;
+        &>div {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          &:last-child {
+            @extend .u-pl-10 ;
+          }
+        }
+        &:last-child { padding-bottom: 0 }
+      }
+    }
+  }
+  .c-form-control {
+    &:hover, &:active, &:focus {
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+}
+
+.c-dropdown {
+  position: absolute;
+  right: 14px;
+  top: calc(100% - 14px);
+  width: 270px;
+  background-color: $v-black;
+  color: $v-white;
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.25);
+  @include border-radius(6px);
+  padding: 0;
+  @extend .c-reg-15;
+  .c-item {
+    display: flex;
+    color: $v-white;
+    padding: 10px 20px;
+    &__img {
+      width: 28px;
+      margin-right: 10px;
+    }
+    &__content {
+      .c-check__item {
+        padding: 8px 0;
+      }
+    }
+  }
+  a.c-item {
+    @include buttonDecoration(none);
+    &:hover, &:focus {
+      background-color: $v-black-darker;
+      border-radius: 0;
+      &:first-child {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+      }
+      &:last-child {
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+    }
+  }
+  &--list {
+    &__body {
+      .c-item {
+        padding-right: 10px;
+        &__content {
+          max-height: 140px;
+          overflow: auto;
+          @include scrollbar($v-black, 5px, transparent, 2.5px, $v-slate);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,172 @@
+.c-calendar {
+	position: relative;
+	&--multiple{
+		&-value{
+			span{
+				background-color: #ccebf3;
+				padding: 5px;
+				margin-right: 3px;
+				border-radius: 3px;
+				position: relative;
+				top: -1px;
+				cursor: default;
+				margin-bottom: 3px;
+				display: inline-block !important;
+				font-size: 15px;
+			}
+		}
+		&-wrapper{
+			.c-form-group{ margin-bottom: 10px!important; }
+		}
+		.datepicker{
+			padding: 4px;
+			z-index: 1000;
+			margin: 11px 1px!important;
+			position: absolute;
+			@include border-radius(4px);
+			border-color: $v-ui-border;
+			-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+			-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+			background-color: $v-white;
+
+			thead {
+				tr {
+					th {
+						padding: 7px; font-size: 1.4rem;
+						line-height: 20px;
+						border: 1px solid $v-white;
+						vertical-align: top;
+						text-shadow: none !important;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					td {
+						text-shadow: none !important;
+						padding: 3px 7px; font-size: 1.4rem;
+						line-height: 20px;
+						@include border-radius(0px);
+						border: 1px solid $v-white!important;
+						&.active {
+							background: $v-blue!important;
+							color: $v-white;
+						}
+						&.today {
+							background: #fefbd2!important;
+							color: $v-black;
+							&::before { display: none }
+						}
+						span {
+							&.day, &.month, &.year {
+								&.active {
+									background: $v-blue!important;
+									color: $v-white;
+								}
+							}
+						}
+					}
+				}
+	    }
+		}
+	}
+
+	&--text {
+		input {
+			cursor: pointer;
+			outline: none;
+			border: none;
+			color: $v-blue;
+			background-color: transparent;
+			width: 100px;
+
+			&::placeholder { color: $v-blue; }
+		}
+	}
+
+	.bootstrap-datetimepicker-widget {
+		position: absolute;
+		z-index: 1000;
+		margin: 11px 1px!important;
+    background-color: $v-black;
+    color: $v-white;
+		width: 19em!important;
+		@include border-radius(6px);
+		border-color: $v-black;
+		-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+		-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+		box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+
+		&.dropdown-menu.bottom {
+			&:before { left: 14px; border-bottom-color: $v-black; }
+			&:after { left: 15px; border-bottom-color: $v-black;}
+		}
+
+		&.dropdown-menu.top {
+			&:before, &:after { border-top-color: $v-black; }
+		}
+
+		ul {
+			list-style: none;
+
+			.table-condensed {
+				text-shadow: none;
+
+				thead {
+					tr {
+						th {
+							padding: 7px; font-size: 1.4rem;
+							border: 1px solid $v-black;
+							vertical-align: top;
+							text-shadow: none !important;
+              &:hover, &:active, &:focus {
+                background-color: $v-black-darker;
+                color: $v-white;
+              }
+							&.picker-switch { padding-top: 8px; }
+
+							&[title="Select Decade"] {
+								pointer-events: none;
+							}
+						}
+					}
+				}
+
+				tbody {
+					tr {
+						td {
+							text-shadow: none !important;
+							padding: 3px 7px; font-size: 1.4rem;
+							@include border-radius(6px);
+							border: 1px solid $v-black;
+              &.day {
+                &.active, &:hover, &:active, &:focus {
+                  background-color: $v-black-darker;
+                  border-color: $v-black-darker;
+                  color: $v-white;
+                }
+              }
+							&.today {
+                background-color: #fefbd2;
+                color: $v-black;
+                border-color: transparent;
+								&::before { display: none }
+							}
+							span {
+								&.month, &.year {
+									&.active, &:hover, &:active, &:focus {
+										background-color: $v-black-darker;
+										color: $v-white;
+                    border-color: $v-black-darker;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

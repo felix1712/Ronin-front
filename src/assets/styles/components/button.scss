@@ -1,0 +1,296 @@
+// Style component button
+// Use BLock Element Modifier (https://github.com/dropbox/css-style-guide)
+
+// variable button
+// general variable
+$btn-prefix                   : '.c-btn';
+$btn-border-radius            : 6px;
+$btn-lighten-slate            : lighten($v-slate, 25%);
+// compact variable
+$btn-width-compact            : 150px;
+$btn-font-size-compact        : 15px;
+$btn-line-height-compact      : 15px;
+$btn-spaced-compact           : 10px 20px;
+$btn-spaced-xs-compact        : 4px 10px;
+
+// button style
+@mixin button() {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  font-size: $btn-font-size-compact;
+  line-height: $btn-line-height-compact;
+  min-width: $btn-width-compact;
+  padding: $btn-spaced-compact;
+  font-weight: 400;
+  min-height: 40px;
+  &--xs { padding: $btn-spaced-xs-compact; }
+  &.is-loading {
+    &:before {
+      width: 11px;
+      height: 11px;
+      margin-right: 10px !important;
+    }
+  }
+  @include buttonDecoration(none);
+}
+
+@mixin buttonDecoration($value) {
+  @include border-radius($btn-border-radius);
+  @include transition(all .3s);
+  @if($value == none) {
+    &:hover, &:focus, &:active {
+      cursor: pointer;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+}
+
+@mixin buttonType($type) {
+  @if($type == primary) {
+    background-color: $v-green;
+    color: $v-white;
+    border: 1px solid $v-green;
+    &:hover {
+      background-color: $v-green-dark;
+      border: 1px solid $v-green-dark;
+    }
+    a {
+      color: $v-white;
+      &:hover { text-decoration: none; }
+    }
+  }@else if($type == ghost) {
+    color: $v-slate;
+    background-color: transparent;
+    border: none;
+    &:hover, &:active, &:focus {
+      text-decoration: underline;
+    }
+    &.c-btn--edit {     
+      &:hover, &:active, &:focus {
+        text-decoration: none;
+        span { text-decoration: underline; }
+      } 
+    }
+  }@else if($type == delete) {
+    color: $v-white;
+    background-color: $v-red;
+    border: 1px solid $v-red;
+    &:hover, &:active, &:focus {
+      background-color: $v-red-dark;
+      border: 1px solid $v-red-dark;
+    }
+  }@else{
+    background-color: $v-white;
+    color: $v-black;
+    border: 1px solid $v-smoke;
+    &:hover, &:active, &:focus {
+      background-color: $v-ui-background;
+      color: $v-slate;
+    }
+  }
+}
+
+@mixin buttonStatus($status) {
+  @if($status == loading) {
+    &:before {
+      border: 1px solid $v-slate;
+      border-top-color: transparent;
+      animation: rotating 1s infinite;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }@else if($status == disabled){
+    background-color: $v-smoke;
+    border: 1px solid $v-smoke;
+    color: $v-white !important;
+    box-shadow: none;
+    &:hover, &:active, &:focus {
+      background-color: $v-smoke;
+      border-color: $v-smoke;
+      cursor: not-allowed;
+    }
+    &.c-btn--ghost {
+      background-color: transparent;
+      border: none;
+    }
+    &.c-btn--default {
+      background-color: $v-white;
+      color: $v-smoke!important;
+    }
+  }
+}
+
+@mixin buttonWhiteLoading {
+  &.is-loading:before {
+    border: 1px solid $v-white;
+    border-top-color: transparent;
+  }
+}
+
+#{$btn-prefix} {
+  @include button();
+  // when state loading
+  &.is-loading { @include buttonStatus(loading) }
+  // when state disabled
+  &.is-disabled { @include buttonStatus(disabled) }
+  // create loader
+  &:before {
+    content: "";
+    @extend .u-dib, .u-mr-0 ;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 0;
+    @include border-radius(50%);
+    @include transition(all .5s);
+  }
+  // varian default
+  &--default { @include buttonType(default) }
+  // varian ghost
+  &--ghost { @include buttonType(ghost) }
+  // varian delete
+  &--delete { @include buttonType(delete) }
+  // varian primary
+  &--primary {
+    @include buttonType(primary) ;
+    @include buttonWhiteLoading ;
+  }
+  // square button
+  &--square {
+    min-width: 32px;
+    padding: 7px;
+  }
+  // make all varian button block
+  &--block { width: 100%; @extend .u-db ; }
+  // make all varian button small
+  &--sm {
+    min-width: 90px;
+    padding: 8px 14px;
+    height: 36px;
+  }
+  // make all varian button extrasmall
+  &--xs {
+    font-size: $btn-font-size-compact;
+    line-height: $btn-line-height-compact;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
+#{$btn-prefix} {
+  &--more {
+    padding: 7px 0;
+    line-height: 20px;
+    width: 40px;
+    height: 40px;
+    min-width: 0;
+    border-radius: 50%;
+    border: 1px solid $v-slate;
+    background-color: $v-white;
+    transition: background .3s linear;
+    &-dots {
+      width: 4px;
+      height: 4px;
+      margin: 0 3px;
+      background-color: $v-slate;
+      @include border-radius(50%);
+      @include transition(all .3s);
+    }
+    &:hover, &:focus, &:active {
+      background-color: $v-slate;
+      .c-btn--more-dots { background-color: $v-white; }
+    }
+  }
+}
+
+// button group, actually this element for action group
+.c-btn-group {
+  position: relative;
+  // for position right
+  &--right {
+    .c-btn-group--item { float: right; }
+    @include mobile {
+      .c-btn-group--item { float: none; }
+    }
+  }
+  &--center {
+    .c-btn-group--item { float: none; }
+    @include mobile {
+      .c-btn-group--item { float: none; }
+    }
+  }
+  &--left {
+    .c-btn-group--item { float: left; }
+    @include mobile {
+      .c-btn-group--item { float: none; }
+    }
+  }
+  // item
+  &--item {
+    display: inline-block;
+    @include mobile {
+      display: block;
+      .c-btn {
+        width: 100%;
+        margin: 5px 0;
+      }
+    }
+  }
+}
+
+// Transition loader
+@keyframes rotating {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.c-toggle-switch {
+  display: inline-block;
+  width: 224px;
+  height: 28px;
+
+  input {
+    display: none;
+
+    &:checked + .c-toggle-switch--slider {
+      span {
+        &:first-child {
+          color: $v-slate;
+          background-color: #E6E9EB;
+        }
+        &:last-child {
+          color: $v-white;
+          background-color: $v-green;
+        }
+      }
+    }
+  }
+
+  &--slider {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background-color: #E6E9EB;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 6px;
+    margin-bottom: 0;
+    span {
+      padding: 6px 20px;
+      transition: background .5s linear;
+      &:first-child {
+        border-radius: 6px 0 0 6px;
+        color: $v-white;
+        background-color: $v-green;
+      }
+      &:last-child {
+        border-radius: 0 6px 6px 0;
+        color: $v-slate;
+        background-color: #E6E9EB;
+      }
+    }
+  }
+}
