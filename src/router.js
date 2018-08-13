@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/home/home.vue';
 import auth from './views/auth/auth.vue';
+import createReview from './views/createReview/createReview.vue';
 
 Vue.use(Router);
 
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/reviews/create-review',
+      name: 'reviews',
+      component: createReview,
     },
     {
       path: '/about',
