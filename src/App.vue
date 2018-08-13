@@ -1,21 +1,19 @@
 <template>
-  <div id="app">
-    <Header/>
-    <main class="p-prfm-wrapper">
-      <router-view/>
-    </main>
-  </div>
+	<div id="app">
+		<Header/>
+		<router-view/>
+	</div>
 </template>
 
 <script>
-  import Header from '@/components/header/header.vue';
+	import Header from '@/components/header/header.vue';
 
-  export default {
-    name: 'App',
-    components: {
-      Header,
-    }
-  };
+	export default {
+		name: 'App',
+		components: {
+			Header,
+		}
+	};
 </script>
 
 <style src="@/assets/styles/main.min.css"></style>
