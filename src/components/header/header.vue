@@ -1,4 +1,4 @@
-<template src="./header.html"></template>
+<template lag="pug" src="./header.pug"></template>
 
 <script>
 	export default{
