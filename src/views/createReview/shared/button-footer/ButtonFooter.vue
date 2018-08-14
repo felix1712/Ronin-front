@@ -2,24 +2,19 @@
 
 <script>
 export default {
-  name: 'ButtonFooter',
- 	data(){
+	name: 'ButtonFooter',
+	data(){
 		return {
-			reviewStep: 1
 		}
 	},
-  methods: {
-  	prevReviewStep() {
-
-      // this.reviewStep--;
-    },
+	methods: {
     nextReviewStep() {
-      // this.reviewStep++;
-      debugger
+      this.$parent.reviewStep++;
+      this.$parent.editReview++;
     },
     submit() {
       // alert('Submit to blah and show blah and etc.');
     }
-	  },
+	},
 };
 </script>
