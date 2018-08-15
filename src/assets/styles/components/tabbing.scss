@@ -17,14 +17,25 @@
       color: $v-slate ;
       border-bottom: 5px solid transparent;
       line-height: 16px;
-      margin-bottom: -2px;
+      margin-bottom: -4px;
       a {
         color: $v-black;
         text-decoration: none;
         display: inline-block;
         padding: 10px 30px;
+        min-height: 40px;
         span {
           vertical-align: bottom;
+        }
+        .c-pill {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          padding: 0;
+          line-height: 20px;
+          text-align: center;
+          border-radius: 50%;
+          margin-left: 4px;
         }
       }
       &:hover:not(.is-disabled) {
@@ -37,7 +48,7 @@
         border-bottom: 3px solid $v-green;
         > a {
           color: $v-green;
-          text-shadow: 0.1px 0.1px $v-green;
+          font-family: "Avenir Next Medium";
         }
       }
       &.is-disabled {

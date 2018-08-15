@@ -24,7 +24,7 @@
 	// Class for each checkbox / radio
 	&__item {
 		cursor: pointer;
-		font-weight: 400;
+		font-family: "Avenir Next Regular";
 		margin-bottom: 0;
     span:nth-child(2) {
       width: calc(100% - 25px);
@@ -172,7 +172,7 @@
 
 				~.c-btn {
 					width: 100%;
-					font-weight: 400;
+					font-family: "Avenir Next Regular";
 					margin-bottom: 0;
 				}
 

@@ -81,7 +81,7 @@
     float: left;
     position: relative;
     text-align: center;
-    font-weight: 600;
+    font-family: "Avenir Next Medium";
     color: $v-slate;
 
     &:before {
@@ -92,7 +92,7 @@
       line-height: 36px;
       display: block;
       font-size: 14px;
-      font-weight: 700;
+      font-family: "Avenir Next Demi";
       color: $v-slate;
       background-color: #f9f9f9;
       border: 2px solid $v-smoke;
@@ -152,7 +152,7 @@
   li {
     list-style-type: none;
     float: left;
-    font-weight: 600;
+    font-family: "Avenir Next Medium";
     color: $v-slate;
     border-bottom: 5px solid $v-ui-border;
     font-size: 14px;

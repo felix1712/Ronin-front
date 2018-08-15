@@ -16,18 +16,16 @@ $font-type: Light, Regular, Semibold, Bold;
 }
 
 // Sleekr Performance Fontfamily
-$font-family: "Avenir Next";
-$font-weight: 400, 600, 700;
-$font-type: Regular, Medium, Bold;
+$font-family: "Avenir Next Regular", "Avenir Next Medium", "Avenir Next Demi";
+$font-type: Regular, Medium, Demi;
 
 @for $i from 1 through length($font-type) {
   $src: #{"../fonts/avenirnext/AvenirNextLTPro-"}#{nth($font-type, $i)};
   @font-face {
-    font-family : $font-family;
-    src         : local($font-family);
+    font-family : nth($font-family, $i);
     src         : url('#{$src}.ttf');
     src         : url('#{$src}.ttf') format('truetype'), url('#{$src}.woff') format('woff'), url('#{$src}.svg#svgFontName') format('svg') format('truetype'), url('#{$src}.svg#svgFontName') format('svg');
     font-style  : normal;
-    font-weight : nth($font-weight, $i);
+    font-weight : normal;
   }
 }

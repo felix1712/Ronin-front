@@ -32,11 +32,11 @@ $d-code : underline, overline, line-through, none;
 }
 
 // Font Weight [.u-ft-($w-code)]
-$w-code : lig, reg, smb, str;
-$weight : 300, 400, 600, 700;
+$w-code : reg, smb, str;
+$font-family: "Avenir Next Regular", "Avenir Next Medium", "Avenir Next Demi";
 @for $w from 1 through length($w-code) {
   .u-ft-#{nth($w-code, $w)} {
-    font-weight: #{nth($weight, $w)} !important;
+    font-family: #{nth($font-family, $w)} !important;
   }
 }
 
@@ -80,7 +80,7 @@ $color-code : $v-green, $v-green-light, $v-green-dark, $v-purple, $v-purple-ligh
 }
 
 // Margin, Padding, Width and Height [.u-(margin/padding/width/height)-($val)]
-$val  : -2 -5 0 4 8 10 12 14 16 18 20 24 30 40 46 50 60 90 100 120 140 170 180 200 270 320 400 570;
+$val  : -2 -5 0 4 6 8 10 12 14 16 18 20 24 30 40 46 50 60 90 100 120 140 170 180 200 270 320 400 570;
 @mixin margin-padding {
   @each $n in $val {
 

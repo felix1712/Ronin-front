@@ -10,7 +10,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: none;
   font-size: 1.5rem;
-  font-weight: 400;
   color: $v-black;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
@@ -63,7 +62,7 @@ hr{
 label {
   display: inline-block;
   margin-bottom: 10px;
-  font-weight: 600;
+  font-family: "Avenir Next Medium";
   font-size: 1.5rem;
 }
 
@@ -81,7 +80,7 @@ input, textarea {
 @mixin actionButtonWrapper {
   text-align: right;
   padding-left: 10px;
-  width: 140px;
+  width: 170px;
 }
 
 .c-announcement {
@@ -96,7 +95,7 @@ input, textarea {
     position: absolute;
   }
   &__detail {
-    width: calc(100% - 130px - 140px);
+    width: calc(100% - 130px - 170px);
     margin-left: 130px;
   }
   &__action {

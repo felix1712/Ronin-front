@@ -44,17 +44,18 @@
       display: inline-block;
       border: 3px solid transparent;
       a {
-        padding: 19px 10px;
+        padding: 20px 10px;
         color: $v-black;
         &:hover, &:focus, &:active {
-          text-shadow: 0.1px 0.1px $v-black;
           text-decoration: none;
+          text-shadow: 0.1px 0.1px $v-black;
         }
       }
       &.is-active {
         a {
           border-bottom: 3px solid $v-green;
           color: $v-green;
+          font-family: "Avenir Next Medium";
           &:hover, &:focus, &:active {
             text-shadow: none;
           }

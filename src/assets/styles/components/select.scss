@@ -14,7 +14,7 @@
   span {
     &.is-message {
       color: $v-red;
-      font-weight: 600;
+      font-family: "Avenir Next Medium";
     }
   }
 
@@ -173,7 +173,6 @@
     font-size: 1.5rem;
     min-height: 32px;
     span {
-      font-weight: 400;
       line-height: 15px;
     }
     @include max-query-media(md){ padding: 7px; }
@@ -336,7 +335,7 @@
       max-width: 400px;
       cursor: pointer;
       margin-bottom: 0;
-      font-weight: 400;
+      font-family: "Avenir Next Regular";
       font-size: 1.5rem;
       padding: 10px 15px;
       line-height: 16px;

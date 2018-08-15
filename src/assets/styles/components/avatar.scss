@@ -2,9 +2,9 @@
 // Use BLock Element Modifier (https://github.com/dropbox/css-style-guide)
 
 // Variable
-$img-type : xs, sm, md, lg;
-$img-size : 30, 50, 60, 170;
-$img-font : 12, 22, 28, 56;
+$img-type : xxs, xs, sm, md, lg;
+$img-size : 20, 30, 50, 60, 80;
+$img-font : 12, 12, 22, 28, 56;
 $img-bg : lighten($v-green, 4%);
 $img-more : #3E83FF;
 
@@ -33,7 +33,7 @@ figure, img {
         display: block;
         text-align: center;
         color: $v-white;
-        font-weight: 700;
+        font-family: "Avenir Next Demi";
         border-radius: 6px;
       }
     }
@@ -78,6 +78,11 @@ figure, img {
         padding-left: 10px;
         padding-right: 10px;
       }
+      &--xs {
+        width: calc(100% - 35px);
+        padding-left: 10px;
+        padding-right: 10px;
+      }
     }
     figure, .c-avatar-text { @extend .u-vat }
 
@@ -85,6 +90,9 @@ figure, img {
       figure {
         margin-right: -14px;
         border: 1px solid $v-white;
+
+        &:first-child { z-index: 3; }
+        &:nth-child(2) { z-index: 2; }
       }
       .c-avatar--more {
         margin-left: 20px;

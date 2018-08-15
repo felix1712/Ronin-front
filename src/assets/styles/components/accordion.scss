@@ -50,11 +50,15 @@
           &::after { display: none; }
           .c-accordion__icon {
             @include transition(all .4s);
-            @include transform(rotate(45deg));
+            // @include transform(rotate(45deg));
+            transform: rotate(0) !important;
+            &::after{
+              content: '\2212';
+            }
           }
         }
         &>.c-accordion__body {
-          padding-bottom: 20px;
+          // padding-bottom: 20px;
           max-height: 9999px;
           overflow: visible;
           .c-accordion__section { opacity: 1 }
@@ -92,26 +96,43 @@
     &__section {
       @include transition(all .4s);
       opacity: 0;
+      ol{
+        padding: 0;
+        list-style-position:outside; 
+        li{
+          padding: 0 20px;
+          margin-left: 0;
+          margin-bottom: 60px;
+          &:last-child{
+            margin-bottom: 0;
+          }
+        }
+      }
     }
     &__title {
       font-size: 16px;
       line-height: 24px;
-      font-weight: 600;
-      color: $v-purple;
+      font-family: "Avenir Next Medium";
+      color: $v-black;
       padding-right: 40px;
       &-bulk, .c-check__checkbox { display: none; }
     }
     &__icon {
-      border: solid $v-purple;
-      border-width: 0 1px 1px 0;
       display: inline-block;
-      padding: 3px;
-      @include transform(rotate(-45deg));
+      @include transition(all .4s);
       position: absolute;
       right: 0;
-      top: calc(50%  - 3px);
-      @include transition(all .4s);
+      top: calc(50%  - 25px);
       cursor: pointer;
+      border: 2px solid #9a9c9d;
+      border-radius: 50%;
+      padding: 5px 9px;
+      transform: rotate(0);
+      color: #9a9c9d;
+      font-weight: 700;
+      &::after{
+        content: '\002B';
+      }
     }
     &--changelog {
       max-width: 1170px;

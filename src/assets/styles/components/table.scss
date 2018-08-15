@@ -12,11 +12,12 @@
     }
   }
   &__detail {
-    width: calc(100% - 140px);
+    width: calc(100% - 170px);
   }
   &__action {
     @include actionButtonWrapper;
     .c-btn--sm { min-width: 140px; }
+    margin-bottom: 10px;
   }
   &__row {
     width: 100%;
@@ -32,25 +33,33 @@
     .c-list {
       &__item {
         cursor: pointer;
-        &:hover {
-          .c-list__action.is-showonhover {
-            opacity: 1;
+        &.is-showonhover {
+          &:hover {
+            .c-list__action {
+              opacity: 1;
+            }
+          }
+          .c-list {
+            &__detail {
+              width: calc(100% - 80px);
+            }
+            &__action {
+              align-self: start;
+              opacity: 0;
+              transition: all .3s linear;
+              width: 80px;
+            }
           }
         }
       }
       &__detail {
-        width: calc(100% - 140px);
+        width: calc(100% - 170px);
       }
       &__action {
-        width: 140px;
+        width: 170px;
         .c-btn--ghost {
           padding: 0;
           min-width: 0;
-        }
-        &.is-showonhover {
-          align-self: start;
-          opacity: 0;
-          transition: all .3s linear;
         }
       }
     }
@@ -66,6 +75,7 @@
     &__status {
       width: 25%;
       margin-left: auto;
+      margin-right: auto;
     }
   }
 
@@ -82,14 +92,14 @@
         }
       }
       &__row {
-        justify-content: space-around;
+        justify-content: space-between;
       }
       &__avatar {
         width: calc(100% / 3);
         max-width: 320px;
       }
       &__detail {
-        width: calc(100% - 300px - 140px);
+        width: calc(100% - 300px - 170px);
       }
     }
     &__reviewer {
@@ -104,23 +114,128 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 -20px;
+    width: calc(100% + 30px);
     &__item {
-      position: relative;
-      margin: 20px;
-      width: calc((100% - 120px) / 3);
+      padding: 20px;
+      width: calc(100% / 3);
+      border-right: 1px solid $v-ui-border;
+      &:nth-child(3n){
+        border-right: none;
+      }
+
+      .c-avatar-group {
+        width: calc(100% - 25px);
+        display: inline-block;
+      }
+
+      &.is-unselected {
+        color: $v-slate;
+        .c-avatar-group {
+          figure {
+            img {
+              -webkit-filter: grayscale(100%);
+              filter: grayscale(100%);
+            }
+            span {
+              background-color: $v-slate;
+            }
+          }
+        }
+      }
+    }
+    &__action {
+      display: inline-block;
+      width: 20px;
+      text-align: right;
+      input[type="checkbox"] {
+        margin: 0;
+      }
+    }
+  }
+
+  &--reviewer {
+    &__item {
+      display: flex;
+      align-items: center;
+      &:not(.is-label){
+        padding-bottom: 30px;
+      }
+      > * {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
       &:hover {
-        .c-list--staff__action {
+        .c-list--reviewer__action {
           opacity: 1;
+        }
+      }
+      &-select {
+        display: block;
+        margin-bottom: 30px;
+        > * {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+      }
+    }
+    &__name {
+      width: calc(100% - 190px - 100px);
+    }
+    &__weight {
+      width: 190px;
+      .c-form-group {
+        width: 86px;
+        margin-bottom: 0;
+        .with-icon--right {
+          span {
+            top: 10px;
+            right: 4px;
+            color: $v-smoke;
+            border-left: 2px solid $v-smoke;
+            padding: 0 7.5px;
+          }
         }
       }
     }
     &__action {
       opacity: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
+      width: 100px;
       a {
         font-size: 20px;
+      }
+    }
+
+    &.is-sequential {
+      .c-list--reviewer {
+        &__item {
+          &:not(.is-label){
+            padding-left: 30px;
+            position: relative;
+            &::before {
+              content: '';
+              position: absolute;
+              height: 9px;
+              width: 9px;
+              background-color: $v-purple;
+              border-radius: 50%;         
+              left: 10px;
+              top: 10px;
+            }
+            &::after {
+              content: url(../images/pages/icon-sequential.gif);
+              position: absolute;
+              height: calc(100% - 20px);
+              width: 15px;
+              left: 7px;
+              top: calc(50% + 13px);
+              transform: translateY(-50%);
+              overflow: hidden;
+            }
+          }
+          &:nth-last-child(2) {
+            &::after { content: none; }
+          }
+        }
       }
     }
   }

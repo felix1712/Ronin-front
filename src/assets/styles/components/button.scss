@@ -22,7 +22,7 @@ $btn-spaced-xs-compact        : 4px 10px;
   line-height: $btn-line-height-compact;
   min-width: $btn-width-compact;
   padding: $btn-spaced-compact;
-  font-weight: 400;
+  font-family: "Avenir Next Regular";
   min-height: 40px;
   &--xs { padding: $btn-spaced-xs-compact; }
   &.is-loading {

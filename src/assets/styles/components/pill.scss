@@ -2,16 +2,13 @@
 // Use BLock Element Modifier (https://github.com/dropbox/css-style-guide)
 
 .c-pill{
-  border-radius: 16px;
+  border-radius: 17px;
   color: $v-white;
-  padding: 3px 10px;
-  margin-left: 10px;
-  line-height: 16px;
+  padding: 0 20px;
+  font-size: 13px;
+  font-family: "Avenir Next Demi";
 
-  &--pink { background-color: #EF4D5E; }
-  &--blue { background-color: $v-blue; }
-  &--grey { background-color: $v-slate; }
-  &--dark { background-color: $v-slate; }
+  &--pink { background-color: $v-red; }
   &--green { background-color: $v-green; }
 	
 	&--more { padding: 3px; }
@@ -29,7 +26,7 @@
   color: $v-white;
   font-size: 12px;
   line-height: 14px;
-  font-weight: 600;
+  font-family: "Avenir Next Medium";
   border-radius: 4px;
   padding: 6px 10px;
   margin-left: 20px;

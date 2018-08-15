@@ -2,40 +2,32 @@
 // Use BLock Element Modifier (https://github.com/dropbox/css-style-guide)
 
 // default heading
-h1, h2, h3, h4, h5, h6 { margin-bottom: 10px; }
+h1, h2, h3, h4, h5, h6 { margin-bottom: 10px; font-weight: normal; }
 
 // mixin typography
 // for font-weight & text-transform see mixins (utilities)
 $size: 12 13 15 16 18 20 21 22 24 26 32 34 36 40;
 @mixin typography {
   @each $n in $size {
-
-    // when fontweigt light
-    .c-lig-#{$n} {
-      font-size: #{$n/10}rem;
-      line-height: #{$n + 8}px;
-      font-weight: 300;
-    }
-
     // when fontweigt regular
     .c-reg-#{$n} {
+      font-family: "Avenir Next Regular";
       font-size: #{$n/10}rem;
       line-height: #{$n + 8}px;
-      font-weight: 400;
     }
 
     // when fontweigt semibold
     .c-smb-#{$n} {
+      font-family: "Avenir Next Medium";
       font-size: #{$n/10}rem;
       line-height: #{$n + 8}px;
-      font-weight: 600;
     }
 
     // when fontweigt bold
     .c-str-#{$n} {
+      font-family: "Avenir Next Demi";
       font-size: #{$n/10}rem;
       line-height: #{$n + 8}px;
-      font-weight: 700;
     }
 
     // without font-weight

@@ -13,7 +13,7 @@
   box-sizing: border-box;
   outline: 0;
   @include border-radius(4px);
-  font-weight: 400;
+  font-family: "Avenir Next Regular";
   color: $v-black;
   @include transition(all .5s);
   &:hover, &:active, &:focus {
@@ -55,7 +55,7 @@ textarea.c-auto-height {
     span, div {
       &.is-message {
         color: $v-red;
-        font-weight: 600;
+        font-family: "Avenir Next Medium";
         margin-top: 5px;
         margin-bottom: 5px;
       }
@@ -128,10 +128,6 @@ textarea.c-auto-height {
         font-size: 1.2rem;
       }
       input { padding: 7px 40px 7px 15px; }
-      @include max-query-media(md){
-        span { right: 7px; }
-        input { padding: 7px 25px 7px 7px; }
-      }
     }
 
     // on input calendar
@@ -314,7 +310,7 @@ textarea.c-auto-height {
     right: 15px;
     font-size: 2rem;
     cursor: pointer;
-    font-weight: 600;
+    font-family: "Avenir Next Medium";
   }
 }
 
@@ -328,5 +324,28 @@ textarea.c-auto-height {
 
 .c-rest-val { 
   font-size: 2.2rem; 
-  font-weight: 600;
+  font-family: "Avenir Next Medium";
+}
+
+.mce-tinymce.mce-container {
+  box-shadow: none;
+  border: none;
+  font-family: "Avenir Next Regular"!important;
+  max-width: 570px;
+  .mce-top-part {
+    border: none;
+    box-shadow: none;
+    &::before {
+      content: none;
+    }
+  }
+  .mce-edit-area {
+    border: none;
+    iframe {
+      border: 1px solid $v-ui-border;
+      border-radius: 6px;
+      padding: 0 10px;
+      width: calc(100% - 20px)!important;
+    }
+  }
 }

@@ -1,136 +1,29 @@
-.p-prfm {
-  &__total {
-    border: 2px solid $v-purple;
-    text-align: center;
-    min-width: 140px;
-    padding: 14px 0;
-    h1 {
-      font-size: 4rem;
-      margin-top: 4px;
-    }
-    @include mobile {
-      float: none !important;
-      margin: 14px 0;
-    }
-  }
-}
-.p-prfm-radio {
-  margin-top: 10px;
-  &__btn {
-    padding: 15px;
-    &--dash { border: 1px dashed $v-ui-border; }
-  }
-}
-.p-radio-prfm {
-  &:checked {
-    ~.c-btn {
-      background-color: $v-white !important;
-      color: $v-black !important;
-      border-color: $v-blue !important;
-    }
-  }
-}
-
-.p-prfm-preview {
-  background-color: $v-orange;
-  padding: 8px;
-  min-height: 100vh;
-  position: relative;
-  &__pill {
-    background-color: $v-orange;
-    padding: 10px 48px;
-    color: $v-white;
-    border-radius: 16px;
+.p-prfm-rating {
+  &__item {
+    margin: 0 30px;
     display: inline-block;
-    margin-top: -20px;
-    padding-bottom: 6px;
-    a {
-      &:hover { text-decoration: none; }
-    }
-  }
-  &__content {
-    background-color: $v-white;
-    min-height: calc(100vh - 16px);
-    padding: 0 16px;
-  }
-}
+    &:first-child { margin-left: 0; }
+    &:last-child { margin-right: 0; }
+    
+    input {
+      display: none;
 
-.p-prfm-preview-radio {
-  padding-top: 10px;
-  margin-bottom: 30px;
-  .c-progress {
-    // if progress contain > 3 step, add class here
-    &--5 { li { width: calc(100% / 5); } }
-    li {
-      font-weight: 400;
-      &:before {
-        display: none;
-      }
-      &:after {
-        display: none;
+      &:checked ~ label {
+        background-color: $v-blue;
+        color: $v-white;
       }
     }
-    &__dots {
-      background-color: $v-smoke;
-      width: 40px;
-      line-height: 36px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 700;
-      color: $v-slate;
-      border: 2px solid $v-smoke;
-      margin: 0 auto 10px auto;
-      text-align: center;
-      position: relative;
-      z-index: 1;;
+    label {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
       border-radius: 50%;
-      display: block;
-    }
-    &__items {
+      background-color: $v-smoke;
+      text-align: center;
+      vertical-align: middle;
       cursor: pointer;
+      transition: background .3s linear;
     }
-  }
-}
-
-.p-prfm-preview-radio-button {
-  label {
-    font-size: 14px !important;
-    min-width: 64px;
-  }
-}
-.p-prfm-tree {
-  position: relative;
-  margin-bottom: 20px;
-  padding-left: 30px;
-  &:first-child {
-    &::before, &::after { display: none; }
-  }
-  &__number {
-    position: absolute;
-    left: 0;
-    border: 1px solid $v-slate;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 20px;
-    margin-top: 2px;
-  }
-  &::before {
-    position: absolute;
-    content: "";
-    width: 1px;
-    height: 30px;
-    border-left: 1px dashed $v-slate;
-    left: 10px;
-    top: -40px;
-  }
-  &:after {
-    position: absolute;
-    content: 'v';
-    left: 7px;
-    top: -26px;
-    color: $v-slate;
   }
 }
 
