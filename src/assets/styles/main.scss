@@ -35,3 +35,13 @@
 
 //fonts
 @import "./fonts.scss";
+
+.vdp-datepicker{
+	input{
+		padding: 0 !important;
+		border: none;
+		font-family:"Avenir Next Regular";
+		color: #424649;
+		font-size: 1.5rem;
+	}
+}
