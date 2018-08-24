@@ -11,6 +11,7 @@
   "dependencies": {
     "@deveodk/vue-toastr": "^1.0.4",
     "axios": "^0.18.0",
+    "buefy": "^0.6.6",
     "font-awesome": "^4.7.0",
     "vee-validate": "^2.1.0-beta.8",
     "vue": "^2.5.17",
