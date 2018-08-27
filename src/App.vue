@@ -18,9 +18,6 @@
 </template>
 
 <script>
-	// design JS include
-	var designJs = require('@/assets/scripts/main.js');
-	// end design Js
 	import Header from '@/components/header/header.vue';
 
 	export default {
