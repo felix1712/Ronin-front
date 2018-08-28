@@ -1,12 +1,56 @@
+.c-tabbing{
+	border-bottom: 1px solid $v-smoke;
+  list-style: none;
+  padding: 0 30px;
+  margin: 0 -30px;
+}
 .tabs{
 	&.is-medium{
 		font-size: 1.5rem;
 	}
-	li{
-		&.is-active{
+	ul{
+		border-bottom: none;
+		li{
+	    display: inline-block;
+	    cursor: pointer;
+	    margin-right: 10px;
+	    color: #8A8E91;
+	    border-bottom: 5px solid transparent;
+	    margin-bottom: -1px;
 			a{
+				border-bottom: none;
+				padding: 10px 30px;
+				min-height: 40px;
+				color: $v-black;
+				text-decoration: none;
+			}
+			&:hover{
+				border-bottom-color: transparent;
+				color: inherit;
+				text-decoration: none;
+				text-shadow: 0.1px 0.1px $v-black;
+				color: $v-black;
+			}
+			&.is-active{
 				border-bottom: 3px solid $v-green;
-				color: $v-green;
+				a{
+					color: $v-green;
+					font-family: "Avenir Next Medium";
+					&:hover{
+						text-shadow: none;
+					}
+				}
+			}
+			&.is-disabled{
+				a{
+					cursor: not-allowed;
+					color: $v-slate;
+					font-family: "Avenir Next Regular";
+					&:hover{
+						color: $v-slate;
+						text-shadow: none;
+					}
+				}
 			}
 		}
 	}

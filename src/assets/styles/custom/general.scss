@@ -33,6 +33,7 @@ a {
   &:hover, &:focus, &:active {
     outline: none;
     text-decoration: underline;
+    color: inherit;
   }
 }
 
@@ -129,12 +130,16 @@ $img-more : #3E83FF;
     @include border-radius(50%);
     overflow: hidden;
   }
+  &--more{
+    span{
+      background-color: $v-blue;
+    }
+  }
   &-group {
     position: relative;
     figure {
       position: relative;
       margin-right: -5px;
-      span { margin-top: -3px; }
     }
 
     &.is-text {
@@ -271,6 +276,43 @@ $img-more : #3E83FF;
 				}
 			}
 		}
+    .c-list{
+      &__item{
+        &.is-showonhover {
+          &:hover {
+            .c-list__action {
+              opacity: 1;
+            }
+          }
+          .c-list {
+            &__detail {
+              width: calc(100% - 80px);
+            }
+            &__action {
+              align-self: start;
+              opacity: 0;
+              transition: all .3s linear;
+              width: 80px;
+            }
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    &__reviewee{
+      width: 20%;
+    }
+    &__reviewer{
+      width: 20%;
+    }
+    &__schedule{
+      width: 35%;
+    }
+    &__status{
+      width: 25%;
+    }
 	}
 	&__item{
 		display: flex;
@@ -287,6 +329,15 @@ $img-more : #3E83FF;
     width: 170px;
     margin-bottom: 10px;
 	}
+  &__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 -10px;
+    > * {
+      padding: 0 10px;
+    }
+  }
 }
 
 .u-w-100-full{
