@@ -145,32 +145,6 @@
         button {
           padding: 0;
         }
-        .dropdown{
-          &-menu{
-            position: absolute;
-            z-index: 3;
-            background: #424649;
-            color: #fff;
-            width: 300px;
-            text-align: center;
-            top: 20px;
-            border-radius: 6px;
-            left: 30%;
-            padding-top: 0;
-            cursor: default;
-            .dropdown-content{
-              background-color: transparent;
-              .dropdown-item{
-                color: $v-white;
-                text-decoration: none;
-                padding: 14px;
-                &:hover{
-                  background-color: transparent;
-                }
-              }
-            }
-          }
-        }
       }
 
       &.is-new {

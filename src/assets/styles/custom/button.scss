@@ -15,11 +15,26 @@ a{
 }
 
 .button{
+	font-size: 1.5rem;
+	text-decoration: none;
+	&:hover{
+		text-decoration: none;
+		background: $v-ui-background;
+	}
 	&.is-primary{
 		background-color: $v-green;
 		&:hover{
 			background-color: $v-green-dark;
 			text-decoration: none;
 		}
+	}
+	&.is-light{
+		background-color: $v-smoke;
+	}
+	&.is-disabled{
+		background-color: $v-smoke;
+    border: 1px solid $v-smoke;
+    color: #FFF!important;
+    pointer-events: none;
 	}
 }
