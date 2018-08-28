@@ -21,7 +21,7 @@ header.c-header
       .c-header__nav-item.is-disabled(class=meetingsActive ? 'is-active' : '')
         a Your 1:1 Meetings
       .c-header__nav-item(class=companyActive ? 'is-active' : companyDisabled ? 'is-disabled' : '')
-        a Company
+        router-link(:to="{ name: 'Company'}") Company
       .c-header__nav-item(class=settingsActive ? 'is-active' : '')
         a Settings
 

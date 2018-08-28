@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import Home from './views/home/home.vue';
 import auth from './views/auth/auth.vue';
 import createReview from './views/createReview/createReview.vue';
+import Company from './views/company/Company.vue';
+
 
 Vue.use(Router);
 
@@ -19,6 +21,11 @@ export default new Router({
       path: '/reviews/create-review',
       name: 'createReview',
       component: createReview,
+    },
+    {
+      path: '/company',
+      name: 'Company',
+      component: Company,
     },
     {
       path: '/about',
