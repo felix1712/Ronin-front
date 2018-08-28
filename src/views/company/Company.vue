@@ -3,7 +3,7 @@
 <script>
 
   export default{
-    name:'Home',
+    name:'Company',
     data(){
       return {
         posts: [] 
