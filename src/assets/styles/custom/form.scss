@@ -1,0 +1,30 @@
+.control{
+	input{
+		border: 1px solid $v-ui-border;
+	  outline: 0;
+	  background-color: transparent;
+	  font-size: 1.5rem;
+	  @include transition(all .5s);
+		&:hover, &:active, &:focus {
+	    border-color: $v-blue-border;
+	    box-shadow: 0 0 4px 1px rgba(131,202,252,0.5);
+	  }
+	}
+	textarea{
+		font-size: 1.5rem;
+		&.c-auto-height{
+			resize: none;
+    	overflow: hidden;
+		}
+	}
+	&.has-icons-left{
+		.icon{
+			font-size: 1.5rem;
+		}
+	}
+	&.has-icons-right{
+		.icon{
+			font-size: 1.5rem;
+		}
+	}
+}

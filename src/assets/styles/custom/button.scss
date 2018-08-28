@@ -1,0 +1,25 @@
+a{
+	&.button{
+		font-size: 1.5rem;
+	}
+}
+
+.c-btn{
+	&--ghost{
+		color: $v-slate;
+		&:hover, &:active, &:focus {
+      text-decoration: underline;
+      color: $v-slate;
+    }
+	}
+}
+
+.button{
+	&.is-primary{
+		background-color: $v-green;
+		&:hover{
+			background-color: $v-green-dark;
+			text-decoration: none;
+		}
+	}
+}

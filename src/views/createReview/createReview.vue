@@ -10,6 +10,8 @@
     data(){
       return {
         reviewStep: 1,
+        reviewedMethod:null,
+        reviewerMethod: [],
         editReview: 0,
         selectedOrganiztionMethod:null,
         selectedOrganiztionChecked:null,
@@ -23,6 +25,7 @@
         user_ids:null,
         getReviewerMember:{},
         selectedMembers: [],
+        direct: null,
         dataReview: {
           name: null,
           description: null,
@@ -186,27 +189,27 @@
             {user_id: 70339, reviewers: [70337], is_self_review: 0, is_sequent: 0 }
           ]
         }
-        service.post('createreview',{
-          name              : this.dataReview.name,
-          description       : this.dataReview.description,
-          is_repeat         : this.dataReview.is_repeat,
-          repeat_every      : this.dataReview.repeat_every,
-          review_start_date : this.dataReview.review_start_date,
-          review_end_date   : this.dataReview.review_end_date,
-          review_method     : this.dataReview.review_method,
-          members           : dataMember.members,
-          template          : templateReview,
-        })
-        .then(response => {
-          console.log(response.data);
-          debugger
-          this.$toastr('success', 'Review has been created');
-          this.$router.push('/')
-        })
-        .catch(e => {
-          console.log(e);
-          // this.errors.push(e)
-        }) 
+        // service.post('createreview',{
+        //   name              : this.dataReview.name,
+        //   description       : this.dataReview.description,
+        //   is_repeat         : this.dataReview.is_repeat,
+        //   repeat_every      : this.dataReview.repeat_every,
+        //   review_start_date : this.dataReview.review_start_date,
+        //   review_end_date   : this.dataReview.review_end_date,
+        //   review_method     : this.dataReview.review_method,
+        //   members           : dataMember.members,
+        //   template          : templateReview,
+        // })
+        // .then(response => {
+        //   console.log(response.data);
+        //   debugger
+        //   this.$toastr('success', 'Review has been created');
+        //   this.$router.push('/')
+        // })
+        // .catch(e => {
+        //   console.log(e);
+        //   // this.errors.push(e)
+        // }) 
       }
     },
     components: {

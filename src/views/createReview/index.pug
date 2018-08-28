@@ -1,8 +1,8 @@
 #createReview
 	.p-prfrm-content.u-hsm-down
-		h2.c-smb-26 Create review
+		h2.c-str-26 Create review
 		.u-maxw-570.u-mb-40
-			p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+			p.c-reg-15 This is a menu where the admin can create performance review cycles by setting up reviewee that are reviewed, review schedules, and reviewers who join the collaboration to do employee reviews.
 
 		.p-prfrm-create
 			.p-prfrm-create__list
@@ -13,208 +13,407 @@
 							p.c-reg-15 This is first step create review for naming review cycle and setup selected reviewee to review.
 
 					.u-push(v-if="editReview >= 1")
-						button.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep1()")
+						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep1()")
 							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 1 (review information form)
 				.p-prfrm-create__list-content.u-mt-30(v-show="reviewStep === 1")
 					form(@submit.prevent="validateBeforeSubmit")
 						.c-row.u-cpointer.jc-tooltip(data-content="Input Review Title field with maximum of 50 characters.", data-pos="custom-row")
-							.c-col-6.jc-tooltip-mark
+							.c-col-6.jc-tooltip-mark.u-mb-20
 								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('Title') }")
-									label Review title
-										.u-cl-red.u-dib *
-									span 50
-									input.c-form-control(type="text", name="Title", v-model="dataReview.name", maxlength="50", v-validate="'required'")
-									span.is-message(v-show="errors.has('Title')") {{ errors.first('Title') }}
+									.field
+										label.label Review title
+										.control
+											input.input(type="text" , name="Title", maxlength="50")
 
 						.c-row.u-cpointer.jc-tooltip(data-content="Input description about this performance review cycle.", data-pos="custom-row")
-							.c-col-6.jc-tooltip-mark
+							.c-col-6.jc-tooltip-mark.u-mb-20
 								.c-form-group
-									label Description
-									textarea.c-form-control.c-auto-height(rows="5", v-model="dataReview.description")
+									.field(label="Description")
+										label.label Description
+										.control
+											textarea.textarea.is-normal(type="text")
 
 						.c-row.u-cpointer.jc-tooltip(data-content="Filtering staff to be reviewed.", data-pos="custom-row")
-							.c-col-6.jc-tooltip-mark
-								.c-form-group.u-dib
-									label Staff to be reviewed
+							.c-col-6.jc-tooltip-mark.u-mb-20
+								.field
+									label Staff to be reviewed 
 										.u-cl-red.u-dib *
-									br
-									.u-dib.ju-toggle-l(data-triggertype="radio")
-										.c-check__group
-											label.c-check__item
-												span
-													input.c-check__radio(type='radio', name='radio-reviewee', value="All staff", @change="changeMemberSelectedType", checked)
-												span All staff
-										.c-check__group
-											label.c-check__item
-												span
-													input.c-check__radio(type='radio', name='radio-reviewee', value="By department", data-effect="slide", data-link="byOrganization", @change="changeMemberSelectedType")
-												span By department
-										.c-check__group
-											label.c-check__item
-												span
-													input.c-check__radio(type='radio', name='radio-reviewee', value="By job title", data-effect="slide", data-link="byJobTitle", @change="changeMemberSelectedType")
-												span By job title
-										.c-check__group
-											label.c-check__item
-												span
-													input.c-check__radio(type='radio', name='radio-reviewee', value="Specific staff", data-effect="slide", data-link="byStaff", @change="changeMemberSelectedType")
-												span Specific staff
+								.block.u-mb-10
+									b-radio(name="radio-reviewee"
+													native-value="1"
+													v-model="reviewedMethod"
+									)
+										| All staff
+								.block.u-mb-10
+									b-radio(name="radio-reviewee"
+													native-value="2"
+													v-model="reviewedMethod"
+									)
+										| By departement
+								.block.u-mb-10
+									b-radio(name="radio-reviewee"
+													native-value="3"
+													v-model="reviewedMethod"
+									)
+										| By job title
+								.block.u-mb-10
+									b-radio(name="radio-reviewee"
+													native-value="4"
+													v-model="reviewedMethod"
+									)
+										| Specific staff
 
-						.ju-togglelc-byOrganization.u-dn
-							.c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose Department or Organization Structure.", data-pos="custom-row")
-								.c-col-4.jc-tooltip-mark.u-dib
-									.c-form-group
-										label Choose department
-											.u-cl-red.u-dib *
-										.c-select.c-select--multiple
-											.c-select__input
-												span.c-select__arrow.fa.fa-angle-down
-												span.c-select__placeholder Department
-												span.c-select__value
-												span.c-select__reset.u-dn &times;
-											.c-select__multiple.u-w-570
-												template(v-for="organization in selectedOrganization")
-													span.c-select__multiple-item(:data-val="organization.name" v-if="checkboxOrganization == organization.id") {{organization.name}}
-														span.c-select__multiple-remove &times;
-											.c-select__menu.c-select__menu--multiple.c-select__menu--search
-												.c-select__search
-													.with-icon--left
-														input.c-form-control(placeholder="Search department", type="text")
-														.with-icon--reset.u-dn &#10005;
-														span
-															img(src="@/assets/images/pages/icon-search.svg", alt="")
-												.c-select__itemsearch.ju-scroll-focus
-													.c-select__item(v-for="organization in selectedOrganization")
-														label.u-pl-46
-															input.c-check__checkbox(type="checkbox" :value="organization.id" v-model="checkboxOrganization" :id="organization.id") 
-															span {{organization.name}}
-													.c-select__item--noresult.u-dn
-														p Search not found
-							.c-row.u-mb-20.u-mt-10(v-for="organization in selectedOrganization")
-								template(v-for="checkedOrganization in checkboxOrganization" v-if="checkedOrganization == organization.id")
-									.c-col-12.u-clearfix
-									.u-pull
-										label.c-smb-18 {{organization.name}}
-										span.u-ml-20.u-ft-reg 5
-									.u-push
-										button.c-btn.c-btn--ghost.c-btn--xs Select all
-										button.c-btn.c-btn--ghost.c-btn--xs Unselect all
-									.c-list.c-list--staff
-										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organization.id")
-											.c-avatar-group
-												figure.c-avatar.c-avatar--sm.c-avatar--circle
-														img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-												.c-avatar-text.c-avatar-text--sm
-													.c-smb-15 {{employeeList.user.name}}
-													.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-														.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+						.ju-toggle-review.review-byOrganization(:class="reviewedMethod != 2 ? 'u-dn': '' ")
+							.c-row.u-mb-10.u-mx-0
+								b-field
+									b-select.u-w-300(placeholder="Department")
+										option Management
+										option Accounting
+										option Sales
+										option Receptionist
+							.c-row.u-mx-0.u-mb-20
+								span.tag.is-blue.is-small.u-mr-3.u-cl-white
+									| Sales
+									button.delete.is-small
+								span.tag.is-blue.is-small.u-mr-3.u-cl-white
+									| Engineering
+									button.delete.is-small
+								span.tag.is-blue.is-small.u-mr-3.u-cl-white
+									| HRD
+									button.delete.is-small
+							.c-row.u-mx-0
+								nav.level.u-w-100-full
+									.level-left
+										.level-item
+											label.c-smb-18 Sales
+											span.u-ml-20.u-ft-reg 3
+									.level-right
+										.level-item
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+												| Select everyone
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+												| Select no one
+								.c-list.c-list--staff.u-mt-10
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Andy Bernard
+												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+												p.c-reg-15.u-cl-slate Sales
 											.c-list--staff__action
-												input.c-check__checkbox(type="checkbox" :value="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
-
-						.ju-togglelc-byJobTitle.u-dn
-							.c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose Job Title.", data-pos="custom-row")
-								.c-col-4.jc-tooltip-mark.u-dib
-									.c-form-group
-										label Choose job title
-											.u-cl-red.u-dib *
-										.c-select.c-select--multiple
-											.c-select__input
-												span.c-select__arrow.fa.fa-angle-down
-												span.c-select__placeholder Job title
-												span.c-select__value
-												span.c-select__reset.u-dn &times;
-											.c-select__multiple.u-w-570
-												template(v-for="jobTitle in selectedJobTitle")
-													span.c-select__multiple-item(:data-val="jobTitle.name" v-if="checkboxJobTitle == jobTitle.id") {{jobTitle.title}} 
-														span.c-select__multiple-remove &times;
-											.c-select__menu.c-select__menu--multiple.c-select__menu--search
-												.c-select__search
-													.with-icon--left
-														input.c-form-control(placeholder="Search job title", type="text")
-														.with-icon--reset.u-dn &#10005;
-														span
-															img(src="@/assets/images/pages/icon-search.svg", alt="")
-												.c-select__itemsearch.ju-scroll-focus
-													.c-select__item(v-for="jobTitle in selectedJobTitle")
-														label.u-pl-46
-															input.c-check__checkbox(type="checkbox" :value="jobTitle.id" :id="jobTitle.id" v-model="checkboxJobTitle") 
-															span {{jobTitle.title}}
-													.c-select__item--noresult.u-dn
-														p Search not found
-
-							.c-row.u-mb-20.u-mt-10(v-for="jobTitle in selectedJobTitle")
-								template(v-for="checkedJobTitle in checkboxJobTitle" v-if="checkedJobTitle == jobTitle.id")
-									.c-col-12.u-clearfix
-									.u-pull
-										label.c-smb-18 {{jobTitle.title}}
-										span.u-ml-20.u-ft-reg 5
-									.u-push
-										button.c-btn.c-btn--ghost.c-btn--xs Select all
-										button.c-btn.c-btn--ghost.c-btn--xs Unselect all
-									.c-list.c-list--staff
-										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitle.id")
-											.c-avatar-group
-												figure.c-avatar.c-avatar--sm.c-avatar--circle
-														img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-												.c-avatar-text.c-avatar-text--sm
-													.c-smb-15 {{employeeList.user.name}}
-													.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-														.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Phyllis Lapin
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
 											.c-list--staff__action
-												input.c-check__checkbox(type="checkbox" :value="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
-
-						.ju-togglelc-byStaff.u-dn
-							.c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose specific staff.", data-pos="custom-row")
-								.c-col-4.jc-tooltip-mark.u-dib
-									.c-form-group
-										label Choose staff
-											.u-cl-red.u-dib *
-										.c-select.c-select--multiple
-											.c-select__input
-												span.c-select__arrow.fa.fa-angle-down
-												span.c-select__placeholder Staff
-												span.c-select__value
-												span.c-select__reset.u-dn &times;
-											.c-select__multiple.u-dn
-											.c-select__menu.c-select__menu--multiple.c-select__menu--search
-												.c-select__search
-													.with-icon--left
-														input.c-form-control(placeholder="Search staff", type="text")
-														.with-icon--reset.u-dn &#10005;
-														span
-															img(src="@/assets/images/pages/icon-search.svg", alt="")
-												.c-select__itemsearch.ju-scroll-focus
-													.c-select__item(v-for="employeeList in employeeMember")
-														label
-															input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
-															.c-select__item--pict
-																figure.c-avatar.c-avatar--xs.c-avatar--circle
-																	img.c-img-fluid.u-db(src="@/assets/images/avatar/user-11.png")
-															.c-select__item--pict.c-select__item--name
-																span {{employeeList.user.name}}
-													.c-select__item--noresult.u-dn
-														p Search not found
-
-							.c-row.u-mb-30.u-mt-10
-								.c-col-12
-									.c-list.c-list--staff
-										.c-list--staff__item(v-for="employeeList in employeeMember")
-											.c-avatar-group
-												figure.c-avatar.c-avatar--sm.c-avatar--circle
-														img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-												.c-avatar-text.c-avatar-text--sm
-													.c-smb-15 {{employeeList.user.name}}
-													.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-														.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Stanley Hudson
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
 											.c-list--staff__action
-												input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Andy Bernard
+												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Phyllis Lapin
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Stanley Hudson
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose Department or Organization Structure.", data-pos="custom-row")
+							//- 	.c-col-4.jc-tooltip-mark.u-dib
+							//- 		.c-form-group
+							//- 			label Choose department
+							//- 				.u-cl-red.u-dib *
+							//- 			.c-select.c-select--multiple
+							//- 				.c-select__input
+							//- 					span.c-select__arrow.fa.fa-angle-down
+							//- 					span.c-select__placeholder Department
+							//- 					span.c-select__value
+							//- 					span.c-select__reset.u-dn &times;
+							//- 				.c-select__multiple.u-w-570
+							//- 					template(v-for="organization in selectedOrganization")
+							//- 						span.c-select__multiple-item(:data-val="organization.name" v-if="checkboxOrganization == organization.id") {{organization.name}}
+							//- 							span.c-select__multiple-remove &times;
+							//- 				.c-select__menu.c-select__menu--multiple.c-select__menu--search
+							//- 					.c-select__search
+							//- 						.with-icon--left
+							//- 							input.c-form-control(placeholder="Search department", type="text")
+							//- 							.with-icon--reset.u-dn &#10005;
+							//- 							span
+							//- 								img(src="@/assets/images/pages/icon-search.svg", alt="")
+							//- 					.c-select__itemsearch.ju-scroll-focus
+							//- 						.c-select__item(v-for="organization in selectedOrganization")
+							//- 							label.u-pl-46
+							//- 								input.c-check__checkbox(type="checkbox" :value="organization.id" v-model="checkboxOrganization" :id="organization.id") 
+							//- 								span {{organization.name}}
+							//- 						.c-select__item--noresult.u-dn
+							//- 							p Search not found
+							//- .c-row.u-mb-20.u-mt-10(v-for="organization in selectedOrganization")
+							//- 	template(v-for="checkedOrganization in checkboxOrganization" v-if="checkedOrganization == organization.id")
+							//- 		.c-col-12.u-clearfix
+							//- 		.u-pull
+							//- 			label.c-smb-18 {{organization.name}}
+							//- 			span.u-ml-20.u-ft-reg 5
+							//- 		.u-push
+							//- 			button.c-btn.c-btn--ghost.c-btn--xs Select all
+							//- 			button.c-btn.c-btn--ghost.c-btn--xs Unselect all
+							//- 		.c-list.c-list--staff
+							//- 			.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organization.id")
+							//- 				.c-avatar-group
+							//- 					figure.c-avatar.c-avatar--sm.c-avatar--circle
+							//- 							img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
+							//- 					.c-avatar-text.c-avatar-text--sm
+							//- 						.c-smb-15 {{employeeList.user.name}}
+							//- 						.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+							//- 							.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+							//- 				.c-list--staff__action
+							//- 					input.c-check__checkbox(type="checkbox" :value="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
+
+						.ju-toggle-review.review-byJobTitle(:class="reviewedMethod != 3 ? 'u-dn': '' ")
+							.c-row.u-mb-10.u-mx-0
+								b-field
+									b-select.u-w-300(placeholder="Job title")
+										option Accountant
+										option Assitant of Regional Manager
+										option Senior Acountant
+										option Sales Representative
+							.c-row.u-mx-0.u-mb-20
+								span.tag.is-blue.is-small.u-mr-3.u-cl-white
+									| Sales Representative
+									button.delete.is-small
+							.c-row.u-mx-0
+								nav.level.u-w-100-full
+									.level-left
+										.level-item
+											label.c-smb-18 Sales Representative
+											span.u-ml-20.u-ft-reg 3
+									.level-right
+										.level-item
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+												| Select everyone
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+												| Select no one
+								.c-list.c-list--staff.u-mt-10
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Andy Bernard
+												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Phyllis Lapin
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Stanley Hudson
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose Job Title.", data-pos="custom-row")
+							//- 	.c-col-4.jc-tooltip-mark.u-dib
+							//- 		.c-form-group
+							//- 			label Choose job title
+							//- 				.u-cl-red.u-dib *
+							//- 			.c-select.c-select--multiple
+							//- 				.c-select__input
+							//- 					span.c-select__arrow.fa.fa-angle-down
+							//- 					span.c-select__placeholder Job title
+							//- 					span.c-select__value
+							//- 					span.c-select__reset.u-dn &times;
+							//- 				.c-select__multiple.u-w-570
+							//- 					template(v-for="jobTitle in selectedJobTitle")
+							//- 						span.c-select__multiple-item(:data-val="jobTitle.name" v-if="checkboxJobTitle == jobTitle.id") {{jobTitle.title}} 
+							//- 							span.c-select__multiple-remove &times;
+							//- 				.c-select__menu.c-select__menu--multiple.c-select__menu--search
+							//- 					.c-select__search
+							//- 						.with-icon--left
+							//- 							input.c-form-control(placeholder="Search job title", type="text")
+							//- 							.with-icon--reset.u-dn &#10005;
+							//- 							span
+							//- 								img(src="@/assets/images/pages/icon-search.svg", alt="")
+							//- 					.c-select__itemsearch.ju-scroll-focus
+							//- 						.c-select__item(v-for="jobTitle in selectedJobTitle")
+							//- 							label.u-pl-46
+							//- 								input.c-check__checkbox(type="checkbox" :value="jobTitle.id" :id="jobTitle.id" v-model="checkboxJobTitle") 
+							//- 								span {{jobTitle.title}}
+							//- 						.c-select__item--noresult.u-dn
+							//- 							p Search not found
+
+							//- .c-row.u-mb-20.u-mt-10(v-for="jobTitle in selectedJobTitle")
+							//- 	template(v-for="checkedJobTitle in checkboxJobTitle" v-if="checkedJobTitle == jobTitle.id")
+							//- 		.c-col-12.u-clearfix
+							//- 		.u-pull
+							//- 			label.c-smb-18 {{jobTitle.title}}
+							//- 			span.u-ml-20.u-ft-reg 5
+							//- 		.u-push
+							//- 			button.c-btn.c-btn--ghost.c-btn--xs Select all
+							//- 			button.c-btn.c-btn--ghost.c-btn--xs Unselect all
+							//- 		.c-list.c-list--staff
+							//- 			.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitle.id")
+							//- 				.c-avatar-group
+							//- 					figure.c-avatar.c-avatar--sm.c-avatar--circle
+							//- 							img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
+							//- 					.c-avatar-text.c-avatar-text--sm
+							//- 						.c-smb-15 {{employeeList.user.name}}
+							//- 						.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+							//- 							.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+							//- 				.c-list--staff__action
+							//- 					input.c-check__checkbox(type="checkbox" :value="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
+
+						.ju-toggle-review.review-byStaff(:class="reviewedMethod != 4 ? 'u-dn': '' ")
+							.c-row.u-mx-0
+								nav.level.u-w-100-full
+									.level-left
+										.level-item
+											b-field
+												b-select.u-w-300(placeholder="Staff")
+													option Michael Scott
+													option Dwight Schrute
+													option Jim Halpert
+													option Pam Beesly
+													option Angela Martin
+													option Kevin Malone
+													option Oscar Martinez
+													option Andy Bernard
+													option Phyllis Lapin
+													option Stanley Hudson
+									.level-right
+										.level-item
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+												| Select everyone
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+												| Select no one
+								.c-list.c-list--staff.u-mt-10
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Andy Bernard
+												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Phyllis Lapin
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+									.c-list--staff__item
+										.c-avatar-group
+											figure.c-avatar.c-avatar--sm.c-avatar--circle
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
+											.c-avatar-text.c-avatar-text--sm
+												p.c-smb-15 Stanley Hudson
+												p.c-reg-15.u-cl-slate Sales Representative
+												p.c-reg-15.u-cl-slate Sales
+											.c-list--staff__action
+												b-checkbox(type="checkbox")
+							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose specific staff.", data-pos="custom-row")
+							//- 	.c-col-4.jc-tooltip-mark.u-dib
+							//- 		.c-form-group
+							//- 			label Choose staff
+							//- 				.u-cl-red.u-dib *
+							//- 			.c-select.c-select--multiple
+							//- 				.c-select__input
+							//- 					span.c-select__arrow.fa.fa-angle-down
+							//- 					span.c-select__placeholder Staff
+							//- 					span.c-select__value
+							//- 					span.c-select__reset.u-dn &times;
+							//- 				.c-select__multiple.u-dn
+							//- 				.c-select__menu.c-select__menu--multiple.c-select__menu--search
+							//- 					.c-select__search
+							//- 						.with-icon--left
+							//- 							input.c-form-control(placeholder="Search staff", type="text")
+							//- 							.with-icon--reset.u-dn &#10005;
+							//- 							span
+							//- 								img(src="@/assets/images/pages/icon-search.svg", alt="")
+							//- 					.c-select__itemsearch.ju-scroll-focus
+							//- 						.c-select__item(v-for="employeeList in employeeMember")
+							//- 							label
+							//- 								input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
+							//- 								.c-select__item--pict
+							//- 									figure.c-avatar.c-avatar--xs.c-avatar--circle
+							//- 										img.c-img-fluid.u-db(src="@/assets/images/avatar/user-11.png")
+							//- 								.c-select__item--pict.c-select__item--name
+							//- 									span {{employeeList.user.name}}
+							//- 						.c-select__item--noresult.u-dn
+							//- 							p Search not found
+
+							//- .c-row.u-mb-30.u-mt-10
+							//- 	.c-col-12
+							//- 		.c-list.c-list--staff
+							//- 			.c-list--staff__item(v-for="employeeList in employeeMember")
+							//- 				.c-avatar-group
+							//- 					figure.c-avatar.c-avatar--sm.c-avatar--circle
+							//- 							img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
+							//- 					.c-avatar-text.c-avatar-text--sm
+							//- 						.c-smb-15 {{employeeList.user.name}}
+							//- 						.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+							//- 							.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+							//- 				.c-list--staff__action
+							//- 					input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
 
 						ButtonFooter
 				//- end step 1 (review information form)
 			
-
 			.p-prfrm-create__list
 				.p-prfrm-create__list-head.u-clearfix
 					.u-pull
@@ -223,10 +422,11 @@
 							p.c-reg-15 This is second step create review for choose and setup questionarre template to be use.
 
 					.u-push(v-if="editReview >= 2")
-						button.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep2()")
+						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep2()")
 							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
-				.p-prfrm-create__list-content.u-mt-30(v-show="reviewStep === 2")
+				.p-prfrm-create__list-content.u-mt-30
+					//- (v-show="reviewStep === 2")
 					.c-row.u-cpointer.jc-tooltip(data-content="Choose a exsiting template or create a new template questionnare for reviewing staff.", data-pos="custom-row")
 						.c-col-6.jc-tooltip-mark
 							.c-form-group.u-dib.u-mb-0
@@ -242,77 +442,173 @@
 											img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
 											span.u-ml-24 New template
 									.p-prfrm-templatelist__item-wrapper
-										input#template-1(name="select-template", type="radio")
-										label.p-prfrm-templatelist__item(for="template-1")
-											.p-prfrm-templatelist__item-name Staff review
-											.c-reg-13 4 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												.u-pull
-													a(href="")
-														img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-													a.u-ml-20(href="")
-														img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+										b-radio(name="radio-review-template"
+														native-value="1"
+										)
+											.p-prfrm-templatelist__item(for="template-1")
+												.p-prfrm-templatelist__item-name Staff review
+												h5.c-reg-13.u-mb-60 4 review(s) using this template
+												.p-prfrm-templatelist__item-action
+													.u-pull
+														a(href="")
+															img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+														a.u-ml-20(href="")
+															img(src="@/assets/images/pages/icon-pencil.svg", alt="")
 									.p-prfrm-templatelist__item-wrapper
-										input#template-2(name="select-template", type="radio", checked)
-										label.p-prfrm-templatelist__item(for="template-2")
-											.p-prfrm-templatelist__item-name Manager review
-											.c-reg-13 0 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												.u-pull
-													a(href="")
-														img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-													a.u-ml-20(href="")
-														img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-												.u-push
-													button.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
-														img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+										b-radio(name="radio-review-template"
+														native-value="1"
+										)
+											.p-prfrm-templatelist__item(for="template-1")
+												.p-prfrm-templatelist__item-name Staff review 2
+												h5.c-reg-13.u-mb-60 4 review(s) using this template
+												.p-prfrm-templatelist__item-action
+													nav.level
+														.level-left
+															.level-item
+																a(href="")
+																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+																a.u-ml-20(href="")
+																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+														.level-right
+															.level-item
+																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete
+																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 									.p-prfrm-templatelist__item-wrapper
-										input#template-3(name="select-template", type="radio")
-										label.p-prfrm-templatelist__item(for="template-3")
-											.p-prfrm-templatelist__item-name Peer to peer review
-											.c-reg-13 4 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												.u-pull
-													a(href="")
-														img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-													a.u-ml-20(href="")
-														img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+										b-radio(name="radio-review-template"
+														native-value="1"
+										)
+											.p-prfrm-templatelist__item(for="template-1")
+												.p-prfrm-templatelist__item-name Staff review 2
+												h5.c-reg-13.u-mb-60 4 review(s) using this template
+												.p-prfrm-templatelist__item-action
+													nav.level
+														.level-left
+															.level-item
+																a(href="")
+																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+																a.u-ml-20(href="")
+																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+														.level-right
+															.level-item
+																b-dropdown
+																	a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger")
+																		img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+																	b-dropdown-item
+																		h3.c-smb-15.u-mb-20 Delete confirmation
+																		p.c-smb-15 Are you sure to delete this template?
+																		.u-mt-40
+																			a.button.c-btn--ghost.u-br-none.u-mx-5 No
+																			a.button.is-danger.u-mx-5(type='submit') Yes
 									.p-prfrm-templatelist__item-wrapper
-										input#template-4(name="select-template", type="radio")
-										label.p-prfrm-templatelist__item(for="template-4")
-											.p-prfrm-templatelist__item-name Company Evaluation Q1
-											.c-reg-13 3 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												.u-pull
-													a(href="")
-														img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-													a.u-ml-20(href="")
-														img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+										b-radio(name="radio-review-template"
+														native-value="1"
+										)
+											.p-prfrm-templatelist__item(for="template-1")
+												.p-prfrm-templatelist__item-name Staff review 2
+												h5.c-reg-13.u-mb-60 4 review(s) using this template
+												.p-prfrm-templatelist__item-action
+													nav.level
+														.level-left
+															.level-item
+																a(href="")
+																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+																a.u-ml-20(href="")
+																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+														.level-right
+															.level-item
+																a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
+																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 									.p-prfrm-templatelist__item-wrapper
-										input#template-5(name="select-template", type="radio")
-										label.p-prfrm-templatelist__item(for="template-5")
-											.p-prfrm-templatelist__item-name Engineer review
-											.c-reg-13 9 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												.u-pull
-													a(href="")
-														img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-													a.u-ml-20(href="")
-														img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									.p-prfrm-templatelist__item-wrapper
-										input#template-6(name="select-template", type="radio")
-										label.p-prfrm-templatelist__item(for="template-6")
-											.p-prfrm-templatelist__item-name Sales review
-											.c-reg-13 0 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												.u-pull
-													a(href="")
-														img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-													a.u-ml-20(href="")
-														img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-												.u-push
-													button.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
-														img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+										b-radio(name="radio-review-template"
+														native-value="1"
+										)
+											.p-prfrm-templatelist__item(for="template-1")
+												.p-prfrm-templatelist__item-name Staff review 2
+												h5.c-reg-13.u-mb-60 4 review(s) using this template
+												.p-prfrm-templatelist__item-action
+													nav.level
+														.level-left
+															.level-item
+																a(href="")
+																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+																a.u-ml-20(href="")
+																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+														.level-right
+															.level-item
+																a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
+																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+
+										//- input#template-1(name="select-template", type="radio")
+										//- .p-prfrm-templatelist__item(for="template-1")
+										//- 	.p-prfrm-templatelist__item-name Staff review
+										//- 	h5.c-reg-13.u-mb-60 4 review(s) using this template
+										//- 	.p-prfrm-templatelist__item-action
+										//- 		.u-pull
+										//- 			a(href="")
+										//- 				img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+										//- 			a.u-ml-20(href="")
+										//- 				img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+									//- .p-prfrm-templatelist__item-wrapper
+									//- 	input#template-2(name="select-template", type="radio", checked)
+									//- 	.p-prfrm-templatelist__item(for="template-2")
+									//- 		.p-prfrm-templatelist__item-name Manager review
+									//- 		h5.c-reg-13.u-mb-60 0 review(s) using this template
+									//- 		.p-prfrm-templatelist__item-action
+									//- 			.u-pull
+									//- 				a(href="")
+									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+									//- 				a.u-ml-20(href="")
+									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+									//- 			.u-push
+									//- 				a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
+									//- 					img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+									//- .p-prfrm-templatelist__item-wrapper
+									//- 	input#template-3(name="select-template", type="radio")
+									//- 	.p-prfrm-templatelist__item(for="template-3")
+									//- 		.p-prfrm-templatelist__item-name Peer to peer review
+									//- 		h5.c-reg-13.u-mb-60 4 review(s) using this template
+									//- 		.p-prfrm-templatelist__item-action
+									//- 			.u-pull
+									//- 				a(href="")
+									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+									//- 				a.u-ml-20(href="")
+									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+									//- .p-prfrm-templatelist__item-wrapper
+									//- 	input#template-4(name="select-template", type="radio")
+									//- 	.p-prfrm-templatelist__item(for="template-4")
+									//- 		.p-prfrm-templatelist__item-name Company Evaluation Q1
+									//- 		h5.c-reg-13.u-mb-60 3 review(s) using this template
+									//- 		.p-prfrm-templatelist__item-action
+									//- 			.u-pull
+									//- 				a(href="")
+									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+									//- 				a.u-ml-20(href="")
+									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+									//- .p-prfrm-templatelist__item-wrapper
+									//- 	input#template-5(name="select-template", type="radio")
+									//- 	.p-prfrm-templatelist__item(for="template-5")
+									//- 		.p-prfrm-templatelist__item-name Engineer review
+									//- 		h5.c-reg-13.u-mb-60 9 review(s) using this template
+									//- 		.p-prfrm-templatelist__item-action
+									//- 			.u-pull
+									//- 				a(href="")
+									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+									//- 				a.u-ml-20(href="")
+									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+									//- .p-prfrm-templatelist__item-wrapper
+									//- 	input#template-6(name="select-template", type="radio")
+									//- 	.p-prfrm-templatelist__item(for="template-6")
+									//- 		.p-prfrm-templatelist__item-name Sales review
+									//- 		h5.c-reg-13.u-mb-60 0 review(s) using this template
+									//- 		.p-prfrm-templatelist__item-action
+									//- 			.u-pull
+									//- 				a(href="")
+									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+									//- 				a.u-ml-20(href="")
+									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+									//- 			.u-push
+									//- 				a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
+									//- 					img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 
 						//- end step 2 ( Questionare form )
 						//- button save
@@ -326,68 +622,88 @@
 							p.c-reg-15 This is third step create review for setting up timeline schedule review.
 
 					.u-push(v-if="editReview >= 3")
-						button.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep3()")
+						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep3()")
 							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 3 (Schedule Form)`
-				form(@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 3")
+				form
+					//- (@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 3")
 					.p-prfrm-create__list-content.u-mt-30
 					.c-row.u-cpointer.jc-tooltip(data-content="Select an option, how the review cycle is run.", data-pos="custom-row")
 						.c-col-6.jc-tooltip-mark
-							.c-form-group.u-dib
-								label How often will the review run?
+							.c-form-group
+								.field
+									label How often will the review run? 
 									.u-cl-red.u-dib *
-								br
-								.u-dib.ju-toggle-l(data-triggertype="radio")
+								.ju-toggle-l(data-triggertype="radio")
 									.c-check__group
-										label.c-check__item
-											span
-												input.c-check__radio(type='radio', name='radio-schedule', value="0", v-model="dataReview.is_repeat", checked)
-											span Once
-									.c-check__group
-										label.c-check__item
-											span
-												input.c-check__radio(type='radio', name='radio-schedule', value="1", v-model="dataReview.is_repeat", data-effect="slide", data-link="scheduleRepeat")
-											span Repeat
-				
-					.ju-togglelc-scheduleRepeat.u-dn
-						.c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", data-pos="custom-row")
-							.c-col-12.jc-tooltip-mark
-								label Repeat every
-									.u-dib.u-cl-red *
-								.c-row
-									.c-col-4
-										.c-form-group.u-dib
-											span.u-maxw-170
-												input.c-only-number.c-form-control(type="text", name="repeat every" maxlength="2", v-validate="'between:0,30'", v-model="dataReview.repeat_every") 
-												span.is-message.c-reg-14.u-cl-red(v-show="errors.has('repeat every')") {{ errors.first('repeat every') }}
-											span.u-ml-10 Month(s)
-				
-					.c-row.u-cpointer.jc-tooltip(data-content="Select date to start review cycle.", data-pos="custom-row")
-						.c-col-12.jc-tooltip-mark
-							label Start date
-								.u-dib.u-cl-red *
-							.c-row
-								.c-col-4
-									.c-form-group.u-dib
-										.u-maxw-170
-											.with-icon--calendar.c-calendar
-												datepicker.c-form-control.c-calendar--value(v-model="dataReview.review_start_date" @selected="changeStartDate")
-												img.c-calendar__icon(src="@/assets/images/pages/icon-calendar.svg", alt="icon-calendar")
+										.block.u-mb-10
+											b-radio(name="radio-review-schedule"
+															value="0"
+											)
+												| Once
+										.block.u-mb-10
+											b-radio(name="radio-reviewee-schedule"
+															value="1"
+											)
+												| Repeat
 
-					.c-row.u-cpointer.jc-tooltip(data-content="Input the number days of review period to determine the end date of the review.", data-pos="custom-row")
-						.c-col-12.jc-tooltip-mark
-							label Review due
-								.u-dib.u-cl-red *
-							.c-row
-								.c-col-6
-									.c-form-group.u-dib
+									//- 	label.c-check__item
+									//- 		span
+									//- 			input.c-check__radio(type='radio', name='radio-schedule', value="0", v-model="dataReview.is_repeat", checked)
+									//- 		span Once
+									//- .c-check__group
+									//- 	label.c-check__item
+									//- 		span
+									//- 			input.c-check__radio(type='radio', name='radio-schedule', value="1", v-model="dataReview.is_repeat", data-effect="slide", data-link="scheduleRepeat")
+									//- 		span Repeat
+				
+					.ju-togglelc-scheduleRepeat.u-mt-10
+						.c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", data-pos="custom-row")
+							.jc-tooltip-mark.u-mb-20.c-col-4
+								.field
+									label.label.u-db Repeat every 
+										span.u-cl-red *
+									.control.u-dib
 										span.u-maxw-170
-											input.c-only-number.c-form-control(type="text", name="review due", v-validate="'between:1,30'", maxlength="2", v-model="review.deadline" @change="changeReviewDue") 
-											span.is-message.c-reg-14.u-cl-red(v-show="errors.has('review due')") {{ errors.first('review due') }}
-										span.u-ml-10 
+											input.input(type="text" , name="")
+										span.u-ml-10.c-reg-15
+											| Month
+										//- .c-form-group.u-dib
+										//- 	span.u-maxw-170
+										//- 		input.c-only-number.c-form-control(type="text", name="repeat every" maxlength="2", v-validate="'between:0,30'", v-model="dataReview.repeat_every") 
+										//- 		span.is-message.c-reg-14.u-cl-red(v-show="errors.has('repeat every')") {{ errors.first('repeat every') }}
+										//- 	span.u-ml-10 Month(s)
+				
+						.c-row.u-cpointer.jc-tooltip(data-content="Select date to start review cycle.", data-pos="custom-row")
+							.jc-tooltip-mark.u-mb-20.c-col-5
+								.field
+									label.label Start date
+										span.u-cl-red *
+									.control.u-maxw-170.has-icons-right
+										b-datepicker(placeholder="Choose date")
+										span.icon.is-small.is-right
+											i.icon-calendar
+												img.c-calendar__icon.u-mt-5(src="@/assets/images/pages/icon-calendar.svg", alt="icon-calendar")
+											//- .u-maxw-170
+											//- 	.with-icon--calendar.c-calendar
+											//- 		datepicker.c-form-control.c-calendar--value(v-model="dataReview.review_start_date" @selected="changeStartDate")
+													//- img.c-calendar__icon(src="@/assets/images/pages/icon-calendar.svg", alt="icon-calendar")
+
+						.c-row.u-cpointer.jc-tooltip(data-content="Input the number days of review period to determine the end date of the review.", data-pos="custom-row")
+							.jc-tooltip-mark.c-col-4
+								.field
+									label.label.u-db Review due 
+										span.u-cl-red *
+									.control.u-dib
+										span.u-maxw-170
+											input.input(type="text")
+											//- span.u-maxw-170
+											//- 	input.c-only-number.c-form-control(type="text", name="review due", v-validate="'between:1,30'", maxlength="2", v-model="review.deadline" @change="changeReviewDue") 
+											//- 	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('review due')") {{ errors.first('review due') }}
+										span.c-reg-15.u-ml-10.c-wrapper-text-left
 											| Days after review start
-											p.u-ft-smb.u-mt-5 {{dataReview.review_end_date | moment("DD MMM YYYY")}}
+											p.u-ft-smb.c-reg-15 {{dataReview.review_end_date | moment("DD MMM YYYY")}}
 					ButtonFooter
 				//- end step 3 (Schedule Form)  
 
@@ -399,110 +715,756 @@
 							p.c-reg-15 This is final step create review for setting up review method and choose reviewer that collaborate doing review.
 
 				//- step 4 ( Reviewer form )
-				form(@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 4")
-					span {{dataReview.members}}
+				form
+					//- (@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 4")
 					.p-prfrm-create__list-content.u-mt-30
 						.c-row
 							.c-col-6
 								.c-form-group.u-dib
-									span {{dataReview.review_method}}
-									label Who will conduct the review?
-										.u-cl-red.u-dib *
-									br
+									.field
+										label Who will conduct the review? 
+											.u-cl-red.u-dib *
 									.u-dib.ju-toggle-l(data-triggertype="radio")
 										.c-check__group
-											label.c-check__item
-												span
-													input.c-check__radio(type='radio', name='radio-method', value="direct-report", data-effect="slide", data-link="directReview",v-model="dataReview.review_method",@change="changeReviewMehtod($event)", checked)
-												span Direct report
-										.c-check__group
-											label.c-check__item
-												span
-													input.c-check__radio(type='radio', name='radio-method', value="manager-review", data-effect="slide", data-link="managerReview",v-model="dataReview.review_method",@change="changeReviewMehtod($event)" )
-												span Employee's manager
-										.c-check__group
-											label.c-check__item
-												span
-													input.c-check__radio(type='radio', name='radio-method', value="360", data-effect="slide", data-link="360Review",v-model="dataReview.review_method",@change="changeReviewMehtod($event)" )
-												span 360 peer review
+											.block.u-mb-10
+												b-radio(name="radio-reviewer"
+																native-value="direct-review"
+																v-model="reviewerMethod"
+												)
+													| Direct report
+											.block.u-mb-10
+												b-radio(name="radio-reviewer"
+																native-value="manager-review"
+																v-model="reviewerMethod"
+												)
+													| Employee's manager
+											.block.u-mb-10
+												b-radio(name="radio-reviewer"
+																native-value="360-review"
+																v-model="reviewerMethod"
+												)
+													| 360 peer review
+										//- 	label.c-check__item
+										//- 		span
+										//- 			input.c-check__radio(type='radio', name='radio-method', value="direct-report", data-effect="slide", data-link="directReview",v-model="dataReview.review_method",@change="changeReviewMehtod($event)", checked)
+										//- 		span Direct report
+										//- .c-check__group
+										//- 	label.c-check__item
+										//- 		span
+										//- 			input.c-check__radio(type='radio', name='radio-method', value="manager-review", data-effect="slide", data-link="managerReview",v-model="dataReview.review_method",@change="changeReviewMehtod($event)" )
+										//- 		span Employee's manager
+										//- .c-check__group
+										//- 	label.c-check__item
+										//- 		span
+										//- 			input.c-check__radio(type='radio', name='radio-method', value="360", data-effect="slide", data-link="360Review",v-model="dataReview.review_method",@change="changeReviewMehtod($event)" )
+										//- 		span 360 peer review
 					
-						.ju-togglelc-directReview.u-mt-40
+						.ju-toggle-directReview.u-mt-40.c-list--review(:class="reviewerMethod != 'direct-review' ? 'u-dn': '' ")
 							.c-row
 								.c-col-12
 									.c-row
-										template(v-for="dataMember in dataReview.members")
+										template
 											.c-col-4.c-col-md-4
-												label Reviewee
-												template(v-for="member in employeeMember" v-if="member.id == dataMember.user_id")
+												p.u-ft-smb.u-mb-10 Reviewee
+												template
 													.c-avatar-group
 														figure.c-avatar.c-avatar--xs.c-avatar--circle
-															img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-													.c-avatar-text.c-avatar-text--xs
-														.c-smb-15 {{member.user.name}}
-														.c-reg-15.u-cl-slate {{member.job_position.title}}
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+														.c-avatar-text.c-avatar-text--xs
+															.c-smb-15 Andy Bernard
+															.c-reg-15.u-cl-slate Regional Director in Charge of Sales
 											.c-col-8.c-col-md-8
 												.c-list.c-list--reviewer
 												.c-list--reviewer__item.is-label
 													.c-list--reviewer__name
-														label Reviewer
+														label.u-ft-smb Reviewer
 													.c-list--reviewer__weight
-														label Weight remain: 100%
+														label.u-ft-smb Weight remain: 100%
 													.c-list--reviewer__action
-												.c-list--reviewer__item.ju-togglelc-JimHalpert(v-for="dataReviewer in dataMember.reviewer")
+												.c-list--reviewer__item
 													.c-list--reviewer__name
 														.c-avatar-group
 															figure.c-avatar.c-avatar--xs.c-avatar--circle
-																	img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
+																	img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
 															.c-avatar-text.c-avatar-text--xs
-																.c-smb-15 {{dataReviewer.user.name}}
-																.c-reg-15.u-cl-slate {{dataReviewer.job_position.title}}
+																.c-smb-15 Jim Halpert
+																.c-reg-15.u-cl-slate Assistant Regional Manager
 													.c-list--reviewer__weight
-														.c-form-group
-															.with-icon--right
-																input.c-form-control.c-only-number(type="text", value="100", maxlength="3")
-																span %
+														.field.u-w-80
+															p.control.has-icons-right
+																input.input(type="text", maxlength="3", value="")
+																span.icon.is-small.is-right
+																	i.icon-percent
+																		| &#37;
+													.c-list--reviewer__action
+														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+												.c-list--reviewer__item
+													.c-list--reviewer__name
+														.c-avatar-group
+															figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+															.c-avatar-text.c-avatar-text--xs
+																.c-smb-15 Dwight Schrute
+																.c-reg-15.u-cl-slate Assistant Regional Manager
+													.c-list--reviewer__weight
+														.field.u-w-80
+															p.control.has-icons-right
+																input.input(type="text", maxlength="3", value="")
+																span.icon.is-small.is-right
+																	i.icon-percent
+																		| &#37;
 													.c-list--reviewer__action
 														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
 												.c-list--reviewer__item-select
-													.c-form-group.u-w-270
-														.c-select.c-select--multiple.is-autoclose
-															.c-select__input
-																span.c-select__arrow.fa.fa-angle-down
-																span.c-select__placeholder Add more reviewer
-																span.c-select__value
-																span.c-select__reset.u-dn &times;
-															.c-select__multiple.u-dn
-															.c-select__menu.c-select__menu--multiple.c-select__menu--search
-																.c-select__search
-																	.with-icon--left
-																		input.c-form-control(placeholder="Search staff", type="text")
-																		.with-icon--reset.u-dn &#10005;
-																		span
-																			img(src="/assets/images/pages/icon-search.svg", alt="")
-																.c-select__itemsearch.ju-scroll-focus.ju-wrapper-sequential-animation
-																		.c-select__item(class="ju-togglelc-")
-																			label
-																				input.ju-toggle-l(type="checkbox", name="select-staff", value="data", data-link="data", data-triggertype="checkbox") 
-																				.c-select__item--pict
-																					figure.c-avatar.c-avatar--xs.c-avatar--circle
-																						img.c-img-fluid.u-db(src="/assets/images/avatar/")
-																				.c-select__item--pict.c-select__item--name
-																					span Suwandi
-													.c-form-group
-														label.c-check__item
-															span
-																input.c-check__checkbox.sequentialReviewDirect(type="checkbox") 
-															span
-																span Self review
-																img.u-ml-10.jc-tooltip(src="/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
-													.c-form-group.u-dn.ju-togglelc-sequentialReviewDirect
-														label.c-check__item
-															span
-																input.c-check__checkbox.checkboxSequentialReviewDirect(type="checkbox") 
-															span
-																span Sequential reviews
-																img.u-ml-10.jc-tooltip(src="/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+													.u-w-270
+														b-field.u-mb-20.u-w-100-full
+															b-select.u-w-100-full(placeholder="Add more reviewer")
+																option Michael Scott
+																option Dwight Schrute
+																option Jim Halpert
+																option Pam Beesly
+																option Angela Martin
+																option Kevin Malone
+																option Oscar Martinez
+																option Andy Bernard
+																option Phyllis Lapin
+																option Stanley Hudson
+														.field
+															b-checkbox(type="checkbox")
+																| Self review
+																b-tooltip(label="Lorem ipsum"
+																					type="is-dark"
+																					position="is-top"
+																)
+																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+														.field
+															b-checkbox(type="checkbox")
+																| Sequential review
+																b-tooltip(label="Lorem ipsum"
+																					type="is-dark"
+																					position="is-top"
+																)
+																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+								.c-col-12
+									.c-row
+										template
+											.c-col-4.c-col-md-4
+												p.u-ft-smb.u-mb-10 Reviewee
+												template
+													.c-avatar-group
+														figure.c-avatar.c-avatar--xs.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
+														.c-avatar-text.c-avatar-text--xs
+															.c-smb-15 Phyllis Lapin
+															.c-reg-15.u-cl-slate Sales Representative
+											.c-col-8.c-col-md-8
+												.c-list.c-list--reviewer
+												.c-list--reviewer__item.is-label
+													.c-list--reviewer__name
+														label.u-ft-smb Reviewer
+													.c-list--reviewer__weight
+														label.u-ft-smb Weight remain: 100%
+													.c-list--reviewer__action
+												.c-list--reviewer__item
+													.c-list--reviewer__name
+														.c-avatar-group
+															figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+															.c-avatar-text.c-avatar-text--xs
+																.c-smb-15 Andy Bernard
+																.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+													.c-list--reviewer__weight
+														.field.u-w-80
+															p.control.has-icons-right
+																input.input(type="text", maxlength="3", value="")
+																span.icon.is-small.is-right
+																	i.icon-percent
+																		| &#37;
+													.c-list--reviewer__action
+														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+												.c-list--reviewer__item-select
+													.u-w-270
+														b-field.u-mb-20.u-w-100-full
+															b-select.u-w-100-full(placeholder="Add more reviewer")
+																option Michael Scott
+																option Dwight Schrute
+																option Jim Halpert
+																option Pam Beesly
+																option Angela Martin
+																option Kevin Malone
+																option Oscar Martinez
+																option Andy Bernard
+																option Phyllis Lapin
+																option Stanley Hudson
+														.field
+															b-checkbox(type="checkbox")
+																| Self review
+																b-tooltip(label="Lorem ipsum"
+																					type="is-dark"
+																					position="is-top"
+																)
+																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+														.field
+															b-checkbox(type="checkbox")
+																| Sequential review
+																b-tooltip(label="Lorem ipsum"
+																					type="is-dark"
+																					position="is-top"
+																)
+																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+								.c-col-12
+									.c-row
+										template
+											.c-col-4.c-col-md-4
+												p.u-ft-smb.u-mb-10 Reviewee
+												template
+													.c-avatar-group
+														figure.c-avatar.c-avatar--xs.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
+														.c-avatar-text.c-avatar-text--xs
+															.c-smb-15 Stanley Hudson
+															.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+											.c-col-8.c-col-md-8
+												.c-list.c-list--reviewer
+												.c-list--reviewer__item.is-label
+													.c-list--reviewer__name
+														label.u-ft-smb Reviewer
+													.c-list--reviewer__weight
+														label.u-ft-smb Weight remain: 100%
+													.c-list--reviewer__action
+												.c-list--reviewer__item
+													.c-list--reviewer__name
+														.c-avatar-group
+															figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+															.c-avatar-text.c-avatar-text--xs
+																.c-smb-15 Andy Bernard
+																.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+													.c-list--reviewer__weight
+														.field.u-w-80
+															p.control.has-icons-right
+																input.input(type="text", maxlength="3", value="")
+																span.icon.is-small.is-right
+																	i.icon-percent
+																		| &#37;
+													.c-list--reviewer__action
+														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+												.c-list--reviewer__item-select
+													.u-w-270
+														b-field.u-mb-20.u-w-100-full
+															b-select.u-w-100-full(placeholder="Add more reviewer")
+																option Michael Scott
+																option Dwight Schrute
+																option Jim Halpert
+																option Pam Beesly
+																option Angela Martin
+																option Kevin Malone
+																option Oscar Martinez
+																option Andy Bernard
+																option Phyllis Lapin
+																option Stanley Hudson
+														.field
+															b-checkbox(type="checkbox")
+																| Self review
+																b-tooltip(label="Lorem ipsum"
+																					type="is-dark"
+																					position="is-top"
+																)
+																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+														.field
+															b-checkbox(type="checkbox")
+																| Sequential review
+																b-tooltip(label="Lorem ipsum"
+																					type="is-dark"
+																					position="is-top"
+																)
+																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 
+						.ju-toggle-managerReview.u-mt-40.c-list--review(:class="reviewerMethod != 'manager-review' ? 'u-dn': '' ")
+							.c-row
+								.c-col-12
+									.c-row
+										template
+											.c-col-4.c-col-md-4
+												p.u-ft-smb.u-mb-10 Reviewee
+												template
+													.c-avatar-group
+														figure.c-avatar.c-avatar--xs.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+														.c-avatar-text.c-avatar-text--xs
+															.c-smb-15 Andy Bernard
+															.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+											.c-col-8.c-col-md-8
+												.c-list.c-list--reviewer.is-sequential
+													.c-list--reviewer__item.is-label
+														.c-list--reviewer__name
+															label.u-ft-smb Reviewer
+														.c-list--reviewer__weight
+															label.u-ft-smb Weight remain: 100%
+														.c-list--reviewer__action
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Michael Scott
+																	.c-reg-15.u-cl-slate Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Dwight Schrute
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Jim Halpert
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item-select
+														.u-w-270
+															b-field.u-mb-20.u-w-100-full
+																b-select.u-w-100-full(placeholder="Add more reviewer")
+																	option Michael Scott
+																	option Dwight Schrute
+																	option Jim Halpert
+																	option Pam Beesly
+																	option Angela Martin
+																	option Kevin Malone
+																	option Oscar Martinez
+																	option Andy Bernard
+																	option Phyllis Lapin
+																	option Stanley Hudson
+															.field
+																b-checkbox(type="checkbox")
+																	| Self review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+															.field
+																b-checkbox(type="checkbox")
+																	| Sequential review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+								.c-col-12
+									.c-row
+										template
+											.c-col-4.c-col-md-4
+												p.u-ft-smb.u-mb-10 Reviewee
+												template
+													.c-avatar-group
+														figure.c-avatar.c-avatar--xs.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
+														.c-avatar-text.c-avatar-text--xs
+															.c-smb-15 Phyllis Lapin
+															.c-reg-15.u-cl-slate Sales Representative
+											.c-col-8.c-col-md-8
+												.c-list.c-list--reviewer.is-sequential
+													.c-list--reviewer__item.is-label
+														.c-list--reviewer__name
+															label.u-ft-smb Reviewer
+														.c-list--reviewer__weight
+															label.u-ft-smb Weight remain: 100%
+														.c-list--reviewer__action
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Michael Scott
+																	.c-reg-15.u-cl-slate Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Jim Halpert
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Andy Bernard
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item-select
+														.u-w-270
+															b-field.u-mb-20.u-w-100-full
+																b-select.u-w-100-full(placeholder="Add more reviewer")
+																	option Michael Scott
+																	option Dwight Schrute
+																	option Jim Halpert
+																	option Pam Beesly
+																	option Angela Martin
+																	option Kevin Malone
+																	option Oscar Martinez
+																	option Andy Bernard
+																	option Phyllis Lapin
+																	option Stanley Hudson
+															.field
+																b-checkbox(type="checkbox")
+																	| Self review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+															.field
+																b-checkbox(type="checkbox")
+																	| Sequential review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+
+						.ju-toggle-360Review.u-mt-40.c-list--review(:class="reviewerMethod != '360-review' ? 'u-dn': '' ")
+							.c-row
+								.c-col-12
+									.c-row
+										template
+											.c-col-4.c-col-md-4
+												p.u-ft-smb.u-mb-10 Reviewee
+												template
+													.c-avatar-group
+														figure.c-avatar.c-avatar--xs.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+														.c-avatar-text.c-avatar-text--xs
+															.c-smb-15 Andy Bernard
+															.c-reg-15.u-cl-slate Regional Director in Charge of Sales
+											.c-col-8.c-col-md-8
+												.c-list.c-list--reviewer.is-sequential
+													.c-list--reviewer__item.is-label
+														.c-list--reviewer__name
+															label.u-ft-smb Reviewer
+														.c-list--reviewer__weight
+															label.u-ft-smb Weight remain: 100%
+														.c-list--reviewer__action
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Michael Scott
+																	.c-reg-15.u-cl-slate Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Dwight Schrute
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Jim Halpert
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item-select
+														.u-w-270
+															b-field.u-mb-20.u-w-100-full
+																b-select.u-w-100-full(placeholder="Add more reviewer")
+																	option Michael Scott
+																	option Dwight Schrute
+																	option Jim Halpert
+																	option Pam Beesly
+																	option Angela Martin
+																	option Kevin Malone
+																	option Oscar Martinez
+																	option Andy Bernard
+																	option Phyllis Lapin
+																	option Stanley Hudson
+															.field
+																b-checkbox(type="checkbox")
+																	| Self review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+															.field
+																b-checkbox(type="checkbox")
+																	| Sequential review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+								.c-col-12
+									.c-row
+										template
+											.c-col-4.c-col-md-4
+												p.u-ft-smb.u-mb-10 Reviewee
+												template
+													.c-avatar-group
+														figure.c-avatar.c-avatar--xs.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
+														.c-avatar-text.c-avatar-text--xs
+															.c-smb-15 Phyllis Lapin
+															.c-reg-15.u-cl-slate Sales Representative
+											.c-col-8.c-col-md-8
+												.c-list.c-list--reviewer.is-sequential
+													.c-list--reviewer__item.is-label
+														.c-list--reviewer__name
+															label.u-ft-smb Reviewer
+														.c-list--reviewer__weight
+															label.u-ft-smb Weight remain: 100%
+														.c-list--reviewer__action
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Michael Scott
+																	.c-reg-15.u-cl-slate Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Jim Halpert
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item
+														.c-list--reviewer__name
+															.c-avatar-group
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																		img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+																.c-avatar-text.c-avatar-text--xs
+																	.c-smb-15 Andy Bernard
+																	.c-reg-15.u-cl-slate Assistant Regional Manager
+														.c-list--reviewer__weight
+															.field.u-w-80
+																p.control.has-icons-right
+																	input.input(type="text", maxlength="3", value="")
+																	span.icon.is-small.is-right
+																		i.icon-percent
+																			| &#37;
+														.c-list--reviewer__action
+															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+													.c-list--reviewer__item-select
+														.u-w-270
+															b-field.u-mb-20.u-w-100-full
+																b-select.u-w-100-full(placeholder="Add more reviewer")
+																	option Michael Scott
+																	option Dwight Schrute
+																	option Jim Halpert
+																	option Pam Beesly
+																	option Angela Martin
+																	option Kevin Malone
+																	option Oscar Martinez
+																	option Andy Bernard
+																	option Phyllis Lapin
+																	option Stanley Hudson
+															.field
+																b-checkbox(type="checkbox")
+																	| Self review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+															.field
+																b-checkbox(type="checkbox")
+																	| Sequential review
+																	b-tooltip(label="Lorem ipsum"
+																						type="is-dark"
+																						position="is-top"
+																	)
+																		img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+
+							//- .c-row
+							//- 	.c-col-12
+							//- 		.c-row
+							//- 			template(v-for="dataMember in dataReview.members")
+							//- 				.c-col-4.c-col-md-4
+							//- 					label Reviewee
+							//- 					template(v-for="member in employeeMember" v-if="member.id == dataMember.user_id")
+							//- 						.c-avatar-group
+							//- 							figure.c-avatar.c-avatar--xs.c-avatar--circle
+							//- 								img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
+							//- 						.c-avatar-text.c-avatar-text--xs
+							//- 							.c-smb-15 {{member.user.name}}
+							//- 							.c-reg-15.u-cl-slate {{member.job_position.title}}
+							//- 				.c-col-8.c-col-md-8
+							//- 					.c-list.c-list--reviewer
+							//- 					.c-list--reviewer__item.is-label
+							//- 						.c-list--reviewer__name
+							//- 							label Reviewer
+							//- 						.c-list--reviewer__weight
+							//- 							label Weight remain: 100%
+							//- 						.c-list--reviewer__action
+							//- 					.c-list--reviewer__item.ju-togglelc-JimHalpert(v-for="dataReviewer in dataMember.reviewer")
+							//- 						.c-list--reviewer__name
+							//- 							.c-avatar-group
+							//- 								figure.c-avatar.c-avatar--xs.c-avatar--circle
+							//- 										img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
+							//- 								.c-avatar-text.c-avatar-text--xs
+							//- 									.c-smb-15 {{dataReviewer.user.name}}
+							//- 									.c-reg-15.u-cl-slate {{dataReviewer.job_position.title}}
+							//- 						.c-list--reviewer__weight
+							//- 							.c-form-group
+							//- 								.with-icon--right
+							//- 									input.c-form-control.c-only-number(type="text", value="100", maxlength="3")
+							//- 									span %
+							//- 						.c-list--reviewer__action
+							//- 							a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+							//- 					.c-list--reviewer__item-select
+							//- 						.c-form-group.u-w-270
+							//- 							.c-select.c-select--multiple.is-autoclose
+							//- 								.c-select__input
+							//- 									span.c-select__arrow.fa.fa-angle-down
+							//- 									span.c-select__placeholder Add more reviewer
+							//- 									span.c-select__value
+							//- 									span.c-select__reset.u-dn &times;
+							//- 								.c-select__multiple.u-dn
+							//- 								.c-select__menu.c-select__menu--multiple.c-select__menu--search
+							//- 									.c-select__search
+							//- 										.with-icon--left
+							//- 											input.c-form-control(placeholder="Search staff", type="text")
+							//- 											.with-icon--reset.u-dn &#10005;
+							//- 											span
+							//- 												img(src="/assets/images/pages/icon-search.svg", alt="")
+							//- 									.c-select__itemsearch.ju-scroll-focus.ju-wrapper-sequential-animation
+							//- 											.c-select__item(class="ju-togglelc-")
+							//- 												label
+							//- 													input.ju-toggle-l(type="checkbox", name="select-staff", value="data", data-link="data", data-triggertype="checkbox") 
+							//- 													.c-select__item--pict
+							//- 														figure.c-avatar.c-avatar--xs.c-avatar--circle
+							//- 															img.c-img-fluid.u-db(src="/assets/images/avatar/")
+							//- 													.c-select__item--pict.c-select__item--name
+							//- 														span Suwandi
+							//- 						.c-form-group
+							//- 							label.c-check__item
+							//- 								span
+							//- 									input.c-check__checkbox.sequentialReviewDirect(type="checkbox") 
+							//- 								span
+							//- 									span Self review
+							//- 									img.u-ml-10.jc-tooltip(src="/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+							//- 						.c-form-group.u-dn.ju-togglelc-sequentialReviewDirect
+							//- 							label.c-check__item
+							//- 								span
+							//- 									input.c-check__checkbox.checkboxSequentialReviewDirect(type="checkbox") 
+							//- 								span
+							//- 									span Sequential reviews
+							//- 									img.u-ml-10.jc-tooltip(src="/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 					
 
 				//- end step 4 ( Reviewer form )
@@ -512,9 +1474,11 @@
 						.c-btn-group-wrapper.u-clearfix.u-tar.u-my-35
 							.c-btn-group--right
 								.c-btn-group--item
-									button.c-btn.c-btn--primary.c-btn--sm(:class="reviewStep != 4 ? 'is-disabled':''" @click="submitFormReview") Save and Publish
-								.c-btn-group--item
-									button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel
-							.c-btn-group--left
-								.c-btn-group--item
-									button.c-btn.c-btn--ghost.c-btn--sm.u-px-0 Save as draft
+									nav.level
+										.level-left
+											.level-item
+												a.c-btn.c-btn--ghost.c-btn--sm.u-px-0 Save as draft
+										.level-right
+											.level-item
+												a.c-btn.c-btn--ghost.c-btn--sm.u-px-30(data-type="confirmation") Cancel
+												a.button.is-primary(:class="reviewStep != 4 ? 'is-disabled':''" @click="submitFormReview") Save and Publish

@@ -58,23 +58,10 @@ hr{
 // pointer
 .u-cpointer { cursor: pointer; }
 
-// default label
-label {
-  display: inline-block;
-  margin-bottom: 10px;
-  font-family: "Avenir Next Medium";
-  font-size: 1.5rem;
-}
-
 // default span
 span {
   display: inline-block;
   vertical-align: middle;
-}
-
-input, textarea {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
 }
 
 @mixin actionButtonWrapper {

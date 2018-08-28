@@ -1,0 +1,28 @@
+.select{
+	select{
+		font-size: 1.5rem;
+		&:hover, &:active, &:focus {
+      border-color: $v-blue-border;
+      box-shadow: 0 0 4px 1px rgba(131,202,252,0.5);
+    }
+		&.is-hovered{
+			border-color: $v-blue-border;
+      box-shadow: 0 0 4px 1px rgba(131,202,252,0.5);
+		}
+	}
+	&:not(.is-multiple){
+		height: 100%;
+		&:not(.is-loading){
+			&::after{
+				font-size: 1.5rem;
+				border-color: $v-black;
+			}
+		}
+	}
+}
+
+.navbar-link{
+	&::after{
+		font-size: 1.5rem;
+	}
+}
