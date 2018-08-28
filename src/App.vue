@@ -6,6 +6,7 @@
 				h1.c-smb-18.u-mb-40 Halaman tidak tersedia dalam ukuran mobile.
 				<!-- img(src="/assets/images/pages/icon-goals.svg", alt="") -->
 			router-view
+		Footer
 
 		<!-- Modal Section -->
 		.c-popover.jc-povc-confirmation.u-w-400.u-dn
@@ -18,12 +19,14 @@
 </template>
 
 <script>
-	import Header from '@/components/header/header.vue';
+	import Header from '@/components/header/Header.vue';
+	import Footer from '@/components/footer/Footer.vue';
 
 	export default {
 		name: 'App',
 		components: {
 			Header,
+			Footer,
 		},
 		mounted() {
 		}
