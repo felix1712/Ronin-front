@@ -201,15 +201,16 @@
 								.c-col-12
 									.c-list.c-list--staff
 										.c-list--staff__item(v-for="employeeList in employeeMember")
-											.c-avatar-group
-												figure.c-avatar.c-avatar--sm.c-avatar--circle
-														img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-												.c-avatar-text.c-avatar-text--sm
-													.c-smb-15 {{employeeList.user.name}}
-													.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-														.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-											.c-list--staff__action
-												input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
+											label.width-100(:for="employeeList.id")
+												.c-avatar-group
+													figure.c-avatar.c-avatar--sm.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
+													.c-avatar-text.c-avatar-text--sm
+														.c-smb-15 {{employeeList.user.name}}
+														.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+															.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+												.c-list--staff__action
+													input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
 
 						ButtonFooter
 				//- end step 1 (review information form)
@@ -400,7 +401,6 @@
 
 				//- step 4 ( Reviewer form )
 				form(@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 4")
-					span {{dataReview.members}}
 					.p-prfrm-create__list-content.u-mt-30
 						.c-row
 							.c-col-6
