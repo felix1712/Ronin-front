@@ -4,6 +4,8 @@ import Home from './views/home/home.vue';
 import auth from './views/auth/auth.vue';
 import createReview from './views/createReview/createReview.vue';
 import Company from './views/company/Company.vue';
+import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
+import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
 
 
 Vue.use(Router);
@@ -39,6 +41,16 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: auth,
+    },
+    {
+      path: '/company-review-detail',
+      name: 'CompanyReviewDetail',
+      component: CompanyReviewDetail,
+    },
+    {
+      path: '/company-review-summary',
+      name: 'CompanyReviewSummary',
+      component: CompanyReviewSummary,
     },
   ],
 });
