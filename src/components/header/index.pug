@@ -1,43 +1,44 @@
-header.c-header
-  .c-header__menu-left
-    //- menu for mobile
-    .c-header__xs
-      .c-header__xs-menu
-        span
-        span
-        span
-      .c-header__xs-info
-        span.c-str-16 Sleekr
-    
-    img(src="/assets/images/pages/logo-sleekr.svg", alt="")
-    
-    .c-header__nav
-      .c-header__nav-item(class=homeActive ? 'is-active' : '')
-        router-link(to="/") Home
-      .c-header__nav-item(class=reviewsActive ? 'is-active' : '')
-        router-link(:to="{ name: 'createReview'}") Your Reviews
-      .c-header__nav-item.is-disabled(class=objectivesActive ? 'is-active' : '')
-        a Your Objectives
-      .c-header__nav-item.is-disabled(class=meetingsActive ? 'is-active' : '')
-        a Your 1:1 Meetings
-      .c-header__nav-item(class=companyActive ? 'is-active' : companyDisabled ? 'is-disabled' : '')
-        router-link(:to="{ name: 'Company'}") Company
-      .c-header__nav-item(class=settingsActive ? 'is-active' : '')
-        a Settings
+.p-prfrm-wrapper
+	header.c-header
+		.c-header__menu-left
+			//- menu for mobile
+			.c-header__xs
+				.c-header__xs-menu
+					span
+					span
+					span
+				.c-header__xs-info
+					span.c-str-16 Sleekr
+			
+			img(src="@/assets/images/pages/logo-sleekr.svg", alt="")
+			
+			.c-header__nav
+				.c-header__nav-item.is-active(class=homeActive ? 'is-active' : '')
+					router-link(to="/") Home
+				.c-header__nav-item(class=reviewsActive ? 'is-active' : '')
+					router-link(:to="{ name: 'createReview'}") Your Reviews
+				.c-header__nav-item.is-disabled(class=objectivesActive ? 'is-active' : '')
+					a Your Objectives
+				.c-header__nav-item.is-disabled(class=meetingsActive ? 'is-active' : '')
+					a Your 1:1 Meetings
+				.c-header__nav-item(class=companyActive ? 'is-active' : companyDisabled ? 'is-disabled' : '')
+					router-link(:to="{ name: 'Company'}") Company
+				.c-header__nav-item(class=settingsActive ? 'is-active' : '')
+					a Settings
 
-        
-  .c-header__menu-right
-    
-    //- account
-    a
-      if avatar == false
-        figure.c-avatar.c-avatar--xs.c-avatar--circle
-          span TF
-      else
-        figure.c-avatar.c-avatar--xs.c-avatar--circle
-          if sarah
-            img.c-img-fluid.u-db(src="/assets/images/avatar/user-12.png")
-          else if theo
-            img.c-img-fluid.u-db(src="/assets/images/avatar/user-14.png")
-          else
-            img.c-img-fluid.u-db(src="/assets/images/avatar/user-11.png")
+					
+		.c-header__menu-right
+			
+			//- account
+			a
+				if avatar == false
+					figure.c-avatar.c-avatar--xs.c-avatar--circle
+						span TF
+				else
+					figure.c-avatar.c-avatar--xs.c-avatar--circle
+						if sarah
+							img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+						else if theo
+							img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+						else
+							img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Michael-Scott.png")
