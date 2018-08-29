@@ -625,7 +625,7 @@
 							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 3 (Schedule Form)`
-				form
+				form(@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 3")
 					//- (@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 3")
 					.p-prfrm-create__list-content.u-mt-30
 					.c-row.u-cpointer.jc-tooltip(data-content="Select an option, how the review cycle is run.", data-pos="custom-row")
@@ -714,7 +714,7 @@
 							p.c-reg-15 This is final step create review for setting up review method and choose reviewer that collaborate doing review.
 
 				//- step 4 ( Reviewer form )
-				form
+				form(@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 4")
 					//- (@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 4")
 					.p-prfrm-create__list-content.u-mt-30
 						.c-row
@@ -796,7 +796,12 @@
 																	i.icon-percent
 																		| &#37;
 													.c-list--reviewer__action
-														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+														a.c-btn--ghost.c-btn--xs
+															b-tooltip(label="Remove"
+																				position="is-top"
+																				type="is-dark"
+															)
+																| &times;
 												.c-list--reviewer__item
 													.c-list--reviewer__name
 														.c-avatar-group
@@ -813,7 +818,12 @@
 																	i.icon-percent
 																		| &#37;
 													.c-list--reviewer__action
-														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+														a.c-btn--ghost.c-btn--xs
+															b-tooltip(label="Remove"
+																				position="is-top"
+																				type="is-dark"
+															)
+																| &times;
 												.c-list--reviewer__item-select
 													.u-w-270
 														b-field.u-mb-20.u-w-100-full
@@ -880,7 +890,12 @@
 																	i.icon-percent
 																		| &#37;
 													.c-list--reviewer__action
-														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+														a.c-btn--ghost.c-btn--xs
+															b-tooltip(label="Remove"
+																				position="is-top"
+																				type="is-dark"
+															)
+																| &times;
 												.c-list--reviewer__item-select
 													.u-w-270
 														b-field.u-mb-20.u-w-100-full
@@ -947,7 +962,12 @@
 																	i.icon-percent
 																		| &#37;
 													.c-list--reviewer__action
-														a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+														a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 												.c-list--reviewer__item-select
 													.u-w-270
 														b-field.u-mb-20.u-w-100-full
@@ -1017,7 +1037,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1034,7 +1059,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1051,7 +1081,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item-select
 														.u-w-270
 															b-field.u-mb-20.u-w-100-full
@@ -1118,7 +1153,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1135,7 +1175,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1152,7 +1197,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item-select
 														.u-w-270
 															b-field.u-mb-20.u-w-100-full
@@ -1222,7 +1272,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1239,7 +1294,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1256,7 +1316,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item-select
 														.u-w-270
 															b-field.u-mb-20.u-w-100-full
@@ -1323,7 +1388,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1340,7 +1410,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item
 														.c-list--reviewer__name
 															.c-avatar-group
@@ -1357,7 +1432,12 @@
 																		i.icon-percent
 																			| &#37;
 														.c-list--reviewer__action
-															a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+															a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 													.c-list--reviewer__item-select
 														.u-w-270
 															b-field.u-mb-20.u-w-100-full
@@ -1424,7 +1504,12 @@
 							//- 									input.c-form-control.c-only-number(type="text", value="100", maxlength="3")
 							//- 									span %
 							//- 						.c-list--reviewer__action
-							//- 							a.c-btn--ghost.c-btn--xs.jc-tooltip(data-content="Lorem ipsum") &times;
+							//- 							a.c-btn--ghost.c-btn--xs
+																b-tooltip(label="Remove"
+																					position="is-top"
+																					type="is-dark"
+																)
+																	| &times;
 							//- 					.c-list--reviewer__item-select
 							//- 						.c-form-group.u-w-270
 							//- 							.c-select.c-select--multiple.is-autoclose
