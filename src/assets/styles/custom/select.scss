@@ -1,3 +1,87 @@
+.c-select{
+	position: relative;
+	text-align: left;
+	&--multiple{
+		.multiselect{
+			font-size: 1.5rem;
+			font-family: "Avenir Next Regular";
+			text-transform: initial;
+			border-radius: 5px;
+			border: 1px solid $v-ui-border;
+			cursor: pointer;
+			&:hover{
+				border-color: $v-blue-border;
+      	box-shadow: 0 0 4px 1px rgba(131,202,252,0.5);
+			}
+			.multiselect{
+				&__tags{
+					border: none;
+					span{
+						&.multiselect__single{
+							margin-bottom: 0;
+						}
+					}
+				}
+			}
+			&__select{
+				&:before{
+					right: 15px;
+					border: 3px solid $v-black;
+			    border-radius: 2px;
+			    border-right: 0;
+			    border-top: 0;
+			    content: " ";
+			    display: block;
+			    height: .625em;
+			    margin-top: -.4375em;
+			    pointer-events: none;
+			    position: absolute;
+			    top: 50%;
+			    transform: rotate(-45deg);
+			    transform-origin: center;
+			    width: .625em;
+				}
+			}
+			&__tags{
+				&-wrap{
+					// display: none;
+				}
+			}
+			&__element{
+				span{
+					text-transform: capitalize;
+					font-weight: normal;
+				}
+			}
+			&__content{
+				&-wrapper{
+					background-color: $v-black;
+					color: $v-white;
+				}
+			}
+			&__option{
+				padding: 10px 15px;
+				&--highlight{
+					background: $v-black-darker;
+					&:after{
+						display: none;
+					}
+				}
+				&--selected{
+					background: $v-black-darker;
+					color: $v-white;
+					&:after{
+						display: none;
+					}
+					&.multiselect__option--highlight{
+						background: $v-black-darker;
+					}
+				}
+			}
+		}
+	}
+}
+
 .select{
 	select{
 		font-size: 1.5rem;

@@ -30,12 +30,12 @@
 		},
 
 		methods: {
-			checkAuth() {
-				const tokenCookies = this.$cookie.get('Auth');
-				if(!tokenCookies || tokenCookies == null){
-					this.$router.replace({ name: "login" });
-				}
-			}
+			// checkAuth() {
+			// 	const tokenCookies = this.$cookie.get('Auth');
+			// 	if(!tokenCookies || tokenCookies == null){
+			// 		this.$router.replace({ name: "login" });
+			// 	}
+			// }
 		},
 
 		mounted() {

@@ -67,22 +67,23 @@
 
 						.ju-toggle-review.review-byOrganization(:class="reviewedMethod != 2 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
-								multiselect(
-							    v-model="selectedOrganiztionChecked" 
-							    :options="selectedOrganization"
-							    :multiple="true"
-							    track-by="id"
-							    label="name"
-							  )
-								//- b-field
-									b-select.u-w-300(placeholder="Department" v-model="selectedMembers")
-										option Management
-										option Accounting
-										option Sales
-										option Receptionist
-							.c-row.u-mx-0.u-mb-20
-								span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") {{selectedOrganiztion.name}}
-									button.delete.is-small
+								.c-col-4.u-pl-0
+									.c-select.c-select--multiple
+										multiselect(
+											v-model="selectedOrganiztionChecked" 
+											:options="selectedOrganization"
+											:multiple="true"
+											track-by="id"
+											label="name"
+											:taggable="true",
+											tag-placeholder="Department"
+										)
+										.c-select__multiple.u-mt-10
+											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") {{selectedOrganiztion.name}}
+												button.delete.is-small
+							//- .c-row.u-mx-0.u-mb-20
+							//- 	span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") {{selectedOrganiztion.name}}
+							//- 		button.delete.is-small
 							.c-row.u-mx-0
 								nav.level.u-w-100-full
 									.level-left
