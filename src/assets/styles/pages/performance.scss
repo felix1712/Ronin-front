@@ -1,3 +1,25 @@
+.p-prfrm-comment {
+  width: 520px;
+  max-width: 100%;
+  &.is-button {
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed $v-ui-border;
+    border-radius: 6px;
+    color: $v-slate;
+    cursor: pointer;
+    &.is-disabled {
+      cursor: not-allowed;
+    }
+  }
+  &.is-filled {
+    padding: 20px 20px 30px;
+    background-color: $v-snow;
+    border: 1px solid $v-ui-border;
+    border-radius: 6px;
+  }
+}
+
 .p-prfm-rating {
   &__item {
     margin: 0 30px;

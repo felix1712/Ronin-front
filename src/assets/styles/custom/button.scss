@@ -5,6 +5,7 @@ a{
 }
 
 .c-btn{
+	text-align: center;
 	&--ghost{
 		color: $v-slate;
 		&:hover, &:active, &:focus {
@@ -12,6 +13,29 @@ a{
       color: $v-slate;
     }
 	}
+	&--more {
+    padding: 7px 0;
+    line-height: 20px;
+    width: 40px;
+    height: 40px;
+    min-width: 0;
+    border-radius: 50%;
+    border: 1px solid $v-slate;
+    background-color: $v-white;
+    transition: background .3s linear;
+    &-dots {
+      width: 4px;
+      height: 4px;
+      margin: 0 3px;
+      background-color: $v-slate;
+      @include border-radius(50%);
+      @include transition(all .3s);
+    }
+    &:hover, &:focus, &:active {
+      background-color: $v-slate;
+      .c-btn--more-dots { background-color: $v-white; }
+    }
+  }
 }
 
 .button{
