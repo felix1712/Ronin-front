@@ -51,6 +51,12 @@
 		},
 
 		methods: {
+      check(e){
+        // debugger
+        e.target.offsetParent.lastChild.style.position="absolute"
+        e.target.offsetParent.lastChild.style.left=-e.clientY/3+'px'
+      },
+
 			editReviewStep1() {
 				this.reviewStep = 1;
 			},

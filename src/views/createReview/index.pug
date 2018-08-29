@@ -470,8 +470,15 @@
 																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
 														.level-right
 															.level-item
-																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete
-																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+																b-dropdown.custom-popover(position="is-top-left")
+																	a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="check($event)")
+																		img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+																	b-dropdown-item
+																		h3.c-smb-15.u-mb-20 Delete confirmation
+																		p.c-smb-15 Are you sure to delete this template?
+																		.u-mt-40
+																			a.button.c-btn--ghost.u-br-none.u-mx-5 No
+																			a.button.is-danger.u-mx-5(type='submit') Yes
 									.p-prfrm-templatelist__item-wrapper
 										b-radio(name="radio-review-template"
 														native-value="1"
@@ -489,8 +496,8 @@
 																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
 														.level-right
 															.level-item
-																b-dropdown.custom-popover
-																	a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger")
+																b-dropdown.custom-popover(position="is-top-left")
+																	a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="check($event)")
 																		img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																	b-dropdown-item
 																		h3.c-smb-15.u-mb-20 Delete confirmation
