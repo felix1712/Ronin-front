@@ -11,12 +11,16 @@
 			return {
 				reviewStep: 1,
 				editReview: 0,
-        reviewedMethod:null,
+        reviewedMethod: null,
+        reviewerMethod: null,
 				selectedOrganiztionMethod: null,
 				selectedOrganiztionChecked: null,
 				selectedOrganization:[],
+        selectedOrganizationMember: null,
 				employeeMember: null,
-				selectedJobTitle: null,
+				selectedJobTitle: [],
+        selectedJobTitleMember: null,
+        selectedJobTitleChecked: null,
 				memberJobTitle: null,
 				getReviewerData: null,
 				checkboxOrganization: [],
@@ -125,7 +129,7 @@
 
 			checkboxMember(e) {
 				if (e.target.checked === true) {
-					this.addMember();
+          this.addMember();
 				} else {
 					 this.removeMember(e.target.value);
 				}
@@ -226,7 +230,8 @@
             id: test.id,
             name: test.name
           }
-        })
+        });
+        this.selectedOrganizationMember = response.data.contents.organizations;
 				// console.log(this.selectedOrganization)
 			})
 			.catch(e => {
@@ -244,7 +249,14 @@
 
 			service.get('jobposition')
 			.then(response => {
-				this.selectedJobTitle = response.data.contents.job_positions;
+        this.selectedJobTitle = response.data.contents.job_positions.map(function(test){
+          return{
+            id: test.id,
+            name: test.title
+          }
+        });
+
+				this.selectedJobTitleMember = response.data.contents.job_positions;
 				// console.log(response.data);
 			})
 			.catch(e => {
