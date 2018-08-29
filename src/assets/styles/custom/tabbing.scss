@@ -1,0 +1,13 @@
+.tabs{
+	&.is-medium{
+		font-size: 1.5rem;
+	}
+	li{
+		&.is-active{
+			a{
+				border-bottom: 3px solid $v-green;
+				color: $v-green;
+			}
+		}
+	}
+}

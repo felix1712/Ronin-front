@@ -1,0 +1,63 @@
+.b-radio{
+	input{
+		box-shadow: none;
+	}
+	&.radio{
+		input[type=radio]{
+			~ .check{
+				border-color: $v-ui-border;
+				margin-bottom: 0;
+				border: 1px solid $v-smoke;
+				&:before{
+					background-color: $v-white;
+				}
+			}
+			&:checked{
+		    ~ .check{
+					border-color: $v-blue;
+			    background-color: $v-blue;
+			    outline: 0;
+				}
+			}
+		}
+		&:hover{
+			input[type=radio]{
+				~ .check{
+					border-color: $v-ui-border;
+					margin-bottom: 0;
+					border: 1px solid $v-smoke;
+				}
+			}
+		}
+	}
+}
+
+.b-checkbox{
+	input{
+		box-shadow: none;
+	}
+	&.checkbox{
+		input[type=checkbox]{
+			~ .check{
+				border: 1px solid $v-smoke;
+			}
+			&:checked{
+				~ .check{
+					background: $v-blue url(../images/component/icon-checkbox-white-thick.svg) no-repeat center center;
+					border-color: $v-blue;
+				}
+			}
+		}
+		&:hover{
+			input[type=checkbox]{
+				~ .check{
+					border-color: $v-smoke;
+				}
+			}
+		}
+		.control-label{
+			font-weight: normal;
+			font-family: "Avenir Next Regular";
+		}
+	}
+}

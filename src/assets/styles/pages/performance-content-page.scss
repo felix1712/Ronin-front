@@ -94,12 +94,49 @@
       cursor: pointer;
 
       &:hover { border-color: $v-slate; }
+
+      &-name{
+        font-family: "Avenir Next Medium";
+        font-size: 1.5rem;
+        line-height: 23px;
+      }
       
       &-wrapper {
         width: calc(100% / 3);
         padding: 10px;
+        // custom radio button template review
+        .b-radio{
+          &.radio{
+            input[type=radio]{
+              ~ .check{
+                display: none;
+              }
+              &:checked{
+                ~ .check{
+                  display: none;
+                }
+                ~ .control-label{
+                  padding-left: 0;
+                  border-color: $v-blue;
+                  background-color: rgba(66,152,252,.05);
+                  .p-prfrm-templatelist__item{
+                    border-color: $v-blue;
+                    &-name{
+                      color: $v-blue;
+                    }
+                  }
+                }
+              }
+            }
+            .control-label{
+              width: 100%;
+              padding-left: 0;
+            }
+            width: 100%;
+          }
+        }
       }
-      &-name { @extend .c-smb-15; }
+      // &-name { @extend .c-smb-15; }
       &-action {
         @extend .u-clearfix;
         margin-top: 20px;
@@ -120,13 +157,14 @@
     input[type="radio"] {
       display: none;
       &:checked {
-        ~ label {
-          &.p-prfrm-templatelist__item {
+        //~ label {
+          ~ .p-prfrm-templatelist__item {
             border-color: $v-blue;
+            background-color: rgba(66,152,252,.05);
 
             .p-prfrm-templatelist__item-name { color: $v-blue; }
           }
-        }
+        //}
       }
     }
   }

@@ -11,4 +11,4 @@ export const newService = axios.create({
 	baseURL: process.env.VUE_APP_API + '/v1',
 	headers: {
 	},
-});
+})

@@ -1,0 +1,300 @@
+// Style general
+// Default viewport fontsize for rem
+html { font-size: 62.5%; }
+
+// Default body
+body {
+  margin: 0;
+  font-family: $v-avenir;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  font-size: 1.5rem;
+  color: $v-black;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+// Default box viewport
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+// Default hyperlink with blue sleekr
+a {
+  color: $v-blue;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  &:hover, &:focus, &:active {
+    outline: none;
+    text-decoration: underline;
+  }
+}
+
+// image fluid
+.c-img-fluid {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+
+  @include mobilexs {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// hr style
+hr{
+  border: 0;
+  border-bottom: 1px solid $v-smoke;
+  margin: 30px 0;
+}
+
+// pointer
+.u-cpointer { cursor: pointer; }
+
+// default label
+.field{
+	&:not(:last-child){
+		margin-bottom: 0;
+	}
+	label {
+	  display: inline-block;
+	  margin-bottom: 10px;
+	  font-family: "Avenir Next Medium";
+	  font-size: 1.5rem;
+	  font-weight: normal;
+	}
+	.control{
+		.select{
+			width: 100%;
+			select{
+				width: 100%;
+			}
+		}
+	}
+}
+
+// default span
+span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input, textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+//variable
+$img-type : xs, sm, md, lg;
+$img-size : 30, 50, 60, 170;
+$img-font : 12, 20, 28, 56;
+$img-bg : #12bf92;
+$img-more : #3E83FF;
+
+.tag{
+	&:not(body){
+		font-size: 1.5rem;
+	}
+	&.is-blue{
+		background-color: $v-blue;
+	}
+}
+
+.c-avatar{
+	@for $i from 1 through length($img-type) {
+		&--#{nth($img-type, $i)} {
+	    display: inline-block;
+	    width: #{nth($img-size, $i)}px;
+	    height: #{nth($img-size, $i)}px;
+	    span {
+	      font-size: #{nth($img-font, $i)}px;
+	      line-height: #{nth($img-size, $i)}px;
+	      background-color: $img-bg;
+	      text-transform: uppercase;
+	      display: block;
+	      text-align: center;
+	      color: $v-white;
+	      font-weight: 700;
+	    }
+	  }
+	}
+	&--circle {
+    @include border-radius(50%);
+    overflow: hidden;
+  }
+  &-group {
+    position: relative;
+    figure {
+      position: relative;
+      margin-right: -5px;
+      span { margin-top: -3px; }
+    }
+
+    &.is-text {
+      @include mobile { padding-left: 0!important; }
+      figure { border: none; }
+    }
+
+    .c-avatar-text{
+      > div:first-child {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      @extend .u-dib ;
+      &--md {
+        width: calc(100% - 65px);
+        padding-left: 10px;
+        padding-left: 10px;
+      }
+      &--sm {
+        width: calc(100% - 55px);
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      &--xs {
+        width: calc(100% - 35px);
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+    figure, .c-avatar-text { @extend .u-vat }
+  }
+}
+
+.c-list{
+	width: 100%;
+	&--staff{
+		display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+    width: calc(100% + 30px);
+		&__item{
+			padding: 20px;
+	    width: calc(100% / 3);
+	    border-right: 1px solid $v-ui-border;
+	    &:nth-child(3n){
+	    	border-right: none;
+	    }
+		}
+		&__action{
+	    text-align: right;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+		}
+	}
+	&--reviewer{
+		&__item{
+			display: flex;
+      align-items: center;
+      padding-bottom: 10px;
+      &:not(.is-label){
+      	padding-bottom: 30px;
+      }
+		}
+		&__name{
+			width: calc(100% - 190px - 100px);
+		}
+		&__weight{
+			width: 190px;
+      .c-form-group {
+        width: 86px;
+        margin-bottom: 0;
+        .with-icon--right {
+          span {
+            top: 10px;
+            right: 4px;
+            color: $v-smoke;
+            padding: 0 7.5px;
+            color: $v-black;
+          }
+        }
+      }
+		}
+		&__action{
+			width: 20px;
+      text-align: right;
+      position: absolute;
+      right: 0;
+      top: 0;
+      opacity: 0;
+		}
+		&.is-sequential {
+      .c-list--reviewer {
+        &__item {
+          &:not(.is-label){
+            padding-left: 30px;
+            position: relative;
+            padding-bottom: 30px;
+            &::before {
+              content: '';
+              position: absolute;
+              height: 9px;
+              width: 9px;
+              background-color: $v-purple;
+              border-radius: 50%;         
+              left: 10px;
+              top: 10px;
+            }
+            &::after {
+              content: url(../images/pages/icon-sequential.gif);
+              position: absolute;
+              height: calc(100% - 20px);
+              width: 15px;
+              left: 7px;
+              top: calc(50% + 13px);
+              transform: translateY(-50%);
+              overflow: hidden;
+            }
+          }
+          &:nth-last-child(2) {
+            &::after { content: none; }
+          }
+        }
+      }
+    }
+	}
+	&--review{
+		.c-row{
+			.c-col-12{
+				margin-bottom: 60px;
+				&:last-child{
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	&__item{
+		display: flex;
+    align-items: center;
+    border-bottom: 1px solid #DADEE1;
+    padding: 20px 0 10px;
+	}
+	&__detail{
+		width: calc(100% - 170px);
+	}
+	&__action{
+    text-align: right;
+    padding-left: 10px;
+    width: 170px;
+    margin-bottom: 10px;
+	}
+}
+
+.u-w-100-full{
+	width: 100%;
+}
+
+.c-wrapper-text-left{
+	line-height: 15px;
+	width: 100%;
+	position: absolute;
+}

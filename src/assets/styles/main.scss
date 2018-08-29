@@ -1,28 +1,13 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
 // Core sleekr style
 @import "bases/variables.scss";
 @import "bases/mixins.scss";
-
-// Core designs sleekr style
-@import "components/general.scss";
-@import "components/typography.scss";
-@import "components/grid.scss";
-
-// Core components sleekr style
-@import "components/avatar.scss";
-@import "components/button.scss";
-@import "components/pagination.scss";
-@import "components/checkbox-radio.scss";
-@import "components/form.scss";
-@import "components/alert.scss";
-@import "components/select.scss";
-@import "components/popover.scss";
-@import "components/table.scss";
-@import "components/tabbing.scss";
-@import "components/calendar.scss";
-@import "components/accordion.scss";
-@import "components/tooltip.scss";
-@import "components/pill.scss";
-@import "components/progress.scss";
 
 // pages
 @import "pages/performance-header.scss";
@@ -35,6 +20,20 @@
 
 //fonts
 @import "./fonts.scss";
+
+//custom component
+@import "custom/button.scss";
+@import "custom/typography.scss";
+@import "custom/grid.scss";
+@import "custom/checkbox-radio.scss";
+@import "custom/form.scss";
+@import "custom/general.scss";
+@import "custom/select.scss";
+@import "custom/tooltip.scss";
+@import "custom/popover.scss";
+@import "custom/tabbing.scss";
+@import "custom/animation.scss";
+
 
 .vdp-datepicker{
 	input{
@@ -53,4 +52,7 @@
 
 .width-100{
 	width:100%;
+}
+html { 
+	font-size: 62.5%;
 }
