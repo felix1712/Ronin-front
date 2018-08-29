@@ -67,9 +67,9 @@
 
 						.ju-toggle-review.review-byOrganization(:class="reviewedMethod != 2 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
-								.c-col-4.u-pl-0
+								.c-col-10.u-pl-0
 									.c-select.c-select--multiple
-										multiselect(
+										multiselect.u-w-300(
 											v-model="selectedOrganiztionChecked" 
 											:options="selectedOrganization"
 											:multiple="true"
@@ -81,237 +81,67 @@
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") {{selectedOrganiztion.name}}
 												button.delete.is-small
-							//- .c-row.u-mx-0.u-mb-20
-							//- 	span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") {{selectedOrganiztion.name}}
-							//- 		button.delete.is-small
-							.c-row.u-mx-0
-								nav.level.u-w-100-full
-									.level-left
-										.level-item
-											label.c-smb-18 Sales
-											span.u-ml-20.u-ft-reg 3
-									.level-right
-										.level-item
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
-												| Select everyone
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
-												| Select no one
-								.c-list.c-list--staff.u-mt-10
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Andy Bernard
-												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Phyllis Lapin
-												p.c-reg-15.u-cl-slate Sales Representative
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Stanley Hudson
-												p.c-reg-15.u-cl-slate Sales Representative
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Andy Bernard
-												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Phyllis Lapin
-												p.c-reg-15.u-cl-slate Sales Representative
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Stanley Hudson
-												p.c-reg-15.u-cl-slate Sales Representative
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose Department or Organization Structure.", data-pos="custom-row")
-							//- 	.c-col-4.jc-tooltip-mark.u-dib
-							//- 		.c-form-group
-							//- 			label Choose department
-							//- 				.u-cl-red.u-dib *
-							//- 			.c-select.c-select--multiple
-							//- 				.c-select__input
-							//- 					span.c-select__arrow.fa.fa-angle-down
-							//- 					span.c-select__placeholder Department
-							//- 					span.c-select__value
-							//- 					span.c-select__reset.u-dn &times;
-							//- 				.c-select__multiple.u-w-570
-							//- 					template(v-for="organization in selectedOrganization")
-							//- 						span.c-select__multiple-item(:data-val="organization.name" v-if="checkboxOrganization == organization.id") {{organization.name}}
-							//- 							span.c-select__multiple-remove &times;
-							//- 				.c-select__menu.c-select__menu--multiple.c-select__menu--search
-							//- 					.c-select__search
-							//- 						.with-icon--left
-							//- 							input.c-form-control(placeholder="Search department", type="text")
-							//- 							.with-icon--reset.u-dn &#10005;
-							//- 							span
-							//- 								img(src="@/assets/images/pages/icon-search.svg", alt="")
-							//- 					.c-select__itemsearch.ju-scroll-focus
-							//- 						.c-select__item(v-for="organization in selectedOrganization")
-							//- 							label.u-pl-46
-							//- 								input.c-check__checkbox(type="checkbox" :value="organization.id" v-model="checkboxOrganization" :id="organization.id") 
-							//- 								span {{organization.name}}
-							//- 						.c-select__item--noresult.u-dn
-							//- 							p Search not found
-							//- .c-row.u-mb-20.u-mt-10(v-for="organization in selectedOrganization")
-							//- 	template(v-for="checkedOrganization in checkboxOrganization" v-if="checkedOrganization == organization.id")
-							//- 		.c-col-12.u-clearfix
-							//- 		.u-pull
-							//- 			label.c-smb-18 {{organization.name}}
-							//- 			span.u-ml-20.u-ft-reg 5
-							//- 		.u-push
-							//- 			button.c-btn.c-btn--ghost.c-btn--xs Select all
-							//- 			button.c-btn.c-btn--ghost.c-btn--xs Unselect all
-							//- 		.c-list.c-list--staff
-							//- 			.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organization.id")
-							//- 				.c-avatar-group
-							//- 					figure.c-avatar.c-avatar--sm.c-avatar--circle
-							//- 							img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-							//- 					.c-avatar-text.c-avatar-text--sm
-							//- 						.c-smb-15 {{employeeList.user.name}}
-							//- 						.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-							//- 							.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-							//- 				.c-list--staff__action
-							//- 					input.c-check__checkbox(type="checkbox" :value="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
-
+							.c-row.u-mx-0(v-for="organizationMember in selectedOrganizationMember")
+								template(v-for="selectedOrganiztionOption in selectedOrganiztionChecked" v-if="selectedOrganiztionOption.id == organizationMember.id")
+									nav.level.u-w-100-full
+										.level-left
+											.level-item
+												label.c-smb-18 {{organizationMember.name}}
+										.level-right
+											.level-item
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+													| Select everyone
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+													| Select no one
+									.c-list.c-list--staff.u-mt-10
+										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
+											.c-avatar-group
+												figure.c-avatar.c-avatar--sm.c-avatar--circle
+														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+												.c-avatar-text.c-avatar-text--sm
+													p.c-smb-15 {{employeeList.user.name}}
+													p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+													p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+												.c-list--staff__action
+													b-checkbox(type="checkbox", :native-value="employeeList.id" @change.native="checkboxMember($event)", v-model="selectedMembers")
 						.ju-toggle-review.review-byJobTitle(:class="reviewedMethod != 3 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
-								b-field
-									b-select.u-w-300(placeholder="Job title")
-										option Accountant
-										option Assitant of Regional Manager
-										option Senior Acountant
-										option Sales Representative
-							.c-row.u-mx-0.u-mb-20
-								span.tag.is-blue.is-small.u-mr-3.u-cl-white
-									| Sales Representative
-									button.delete.is-small
-							.c-row.u-mx-0
-								nav.level.u-w-100-full
-									.level-left
-										.level-item
-											label.c-smb-18 Sales Representative
-											span.u-ml-20.u-ft-reg 3
-									.level-right
-										.level-item
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
-												| Select everyone
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
-												| Select no one
-								.c-list.c-list--staff.u-mt-10
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Andy Bernard
-												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Phyllis-Lapin.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Phyllis Lapin
-												p.c-reg-15.u-cl-slate Sales Representative
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-									.c-list--staff__item
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Stanley-Hudson.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 Stanley Hudson
-												p.c-reg-15.u-cl-slate Sales Representative
-												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
-							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose Job Title.", data-pos="custom-row")
-							//- 	.c-col-4.jc-tooltip-mark.u-dib
-							//- 		.c-form-group
-							//- 			label Choose job title
-							//- 				.u-cl-red.u-dib *
-							//- 			.c-select.c-select--multiple
-							//- 				.c-select__input
-							//- 					span.c-select__arrow.fa.fa-angle-down
-							//- 					span.c-select__placeholder Job title
-							//- 					span.c-select__value
-							//- 					span.c-select__reset.u-dn &times;
-							//- 				.c-select__multiple.u-w-570
-							//- 					template(v-for="jobTitle in selectedJobTitle")
-							//- 						span.c-select__multiple-item(:data-val="jobTitle.name" v-if="checkboxJobTitle == jobTitle.id") {{jobTitle.title}} 
-							//- 							span.c-select__multiple-remove &times;
-							//- 				.c-select__menu.c-select__menu--multiple.c-select__menu--search
-							//- 					.c-select__search
-							//- 						.with-icon--left
-							//- 							input.c-form-control(placeholder="Search job title", type="text")
-							//- 							.with-icon--reset.u-dn &#10005;
-							//- 							span
-							//- 								img(src="@/assets/images/pages/icon-search.svg", alt="")
-							//- 					.c-select__itemsearch.ju-scroll-focus
-							//- 						.c-select__item(v-for="jobTitle in selectedJobTitle")
-							//- 							label.u-pl-46
-							//- 								input.c-check__checkbox(type="checkbox" :value="jobTitle.id" :id="jobTitle.id" v-model="checkboxJobTitle") 
-							//- 								span {{jobTitle.title}}
-							//- 						.c-select__item--noresult.u-dn
-							//- 							p Search not found
-
-							//- .c-row.u-mb-20.u-mt-10(v-for="jobTitle in selectedJobTitle")
-							//- 	template(v-for="checkedJobTitle in checkboxJobTitle" v-if="checkedJobTitle == jobTitle.id")
-							//- 		.c-col-12.u-clearfix
-							//- 		.u-pull
-							//- 			label.c-smb-18 {{jobTitle.title}}
-							//- 			span.u-ml-20.u-ft-reg 5
-							//- 		.u-push
-							//- 			button.c-btn.c-btn--ghost.c-btn--xs Select all
-							//- 			button.c-btn.c-btn--ghost.c-btn--xs Unselect all
-							//- 		.c-list.c-list--staff
-							//- 			.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitle.id")
-							//- 				.c-avatar-group
-							//- 					figure.c-avatar.c-avatar--sm.c-avatar--circle
-							//- 							img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-							//- 					.c-avatar-text.c-avatar-text--sm
-							//- 						.c-smb-15 {{employeeList.user.name}}
-							//- 						.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-							//- 							.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-							//- 				.c-list--staff__action
-							//- 					input.c-check__checkbox(type="checkbox" :value="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
+								.c-col-10.u-pl-0
+									.c-select.c-select--multiple
+										multiselect.u-w-300(
+											v-model="selectedJobTitleChecked" 
+											:options="selectedJobTitle"
+											:multiple="true"
+											track-by="id"
+											label="name"
+										)
+										.c-select__multiple.u-mt-10
+											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
+												button.delete.is-small
+							.c-row.u-mx-0(v-for="jobTitleMember in selectedJobTitleMember")
+								template(v-for="selectedJobTitleOption in selectedJobTitleChecked" v-if="selectedJobTitleOption.id == jobTitleMember.id")
+									nav.level.u-w-100-full
+										.level-left
+											.level-item
+												label.c-smb-18 {{jobTitleMember.title}}
+												//- span.u-ml-20.u-ft-reg {{employeeMember.length}}
+										.level-right
+											.level-item
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+													| Select everyone
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+													| Select no one
+									.c-list.c-list--staff.u-mt-10
+										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
+											.c-avatar-group
+												figure.c-avatar.c-avatar--sm.c-avatar--circle
+														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+												.c-avatar-text.c-avatar-text--sm
+													p.c-smb-15 {{employeeList.user.name}}
+													p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+													p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+												.c-list--staff__action
+													b-checkbox(type="checkbox", :native-value="employeeList.id" @change.native="checkboxMember($event)", v-model="selectedMembers")
 						.ju-toggle-review.review-byStaff(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 							.c-row.u-mx-0
 								nav.level.u-w-100-full
