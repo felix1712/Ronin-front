@@ -20,6 +20,54 @@
     border: 1px solid $v-ui-border;
     box-shadow: 0 2px 10px 0 $v-ui-border;
     padding: 30px;
+
+    &--blank {
+      width: 520px;
+      margin: 60px auto;
+      text-align: center;
+    }
+
+    &--preview {
+      border: 5px solid $v-orange;
+      position: relative;
+
+      &__badge {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $v-orange;
+        color: $v-white;
+        padding: 8px 12px;
+        font-size: 13px;
+        border-radius: 0 0 6px 6px;
+      }
+
+      &__close {
+        position: absolute;
+        right: -80px;
+        top: 30px;
+        z-index: 1;
+        button {
+          max-width: 55px;
+          min-width: 0;
+          padding: 0;
+          @extend .c-reg-15;
+        }
+
+        @media screen and (max-width: $v-md){
+          right: 20px;
+        }
+      }
+    }
+  }
+
+  &-blank {
+    width: 520px;
+    max-width: 100%;
+    text-align: center;
+    
   }
 
   &-heading {
@@ -77,6 +125,25 @@
         border-bottom: none;
         padding-bottom: 10px;
       }
+
+      &.is-open {
+        .p-prfrm-create__list {
+          &-edit {
+            display: none;
+          }
+          &-content {
+            max-height: none;
+            overflow: visible;
+            visibility: visible;
+          }
+        }
+      }
+
+      &-content {
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
     }
   }
 
@@ -85,6 +152,7 @@
     flex-wrap: wrap;
     margin: 0 -10px;
     &__item {
+      position: relative;
       width: 100%;
       height: 100%;
       margin: 0;
@@ -94,52 +162,23 @@
       cursor: pointer;
 
       &:hover { border-color: $v-slate; }
-
-      &-name{
-        font-family: "Avenir Next Medium";
-        font-size: 1.5rem;
-        line-height: 23px;
-      }
       
       &-wrapper {
         width: calc(100% / 3);
         padding: 10px;
-        // custom radio button template review
-        .b-radio{
-          &.radio{
-            input[type=radio]{
-              ~ .check{
-                display: none;
-              }
-              &:checked{
-                ~ .check{
-                  display: none;
-                }
-                ~ .control-label{
-                  padding-left: 0;
-                  border-color: $v-blue;
-                  background-color: rgba(66,152,252,.05);
-                  .p-prfrm-templatelist__item{
-                    border-color: $v-blue;
-                    &-name{
-                      color: $v-blue;
-                    }
-                  }
-                }
-              }
-            }
-            .control-label{
-              width: 100%;
-              padding-left: 0;
-            }
-            width: 100%;
-          }
+      }
+      &-name {
+        @extend .c-smb-15;
+
+        + div {
+          margin-bottom: 60px;
         }
       }
-      // &-name { @extend .c-smb-15; }
       &-action {
+        position: absolute;
+        width: calc(100% - 60px);
+        bottom: 20px;
         @extend .u-clearfix;
-        margin-top: 20px;
         border-top: 1px solid $v-ui-border;
         padding-top: 10px;
         button {
@@ -157,14 +196,14 @@
     input[type="radio"] {
       display: none;
       &:checked {
-        //~ label {
-          ~ .p-prfrm-templatelist__item {
+        ~ label {
+          &.p-prfrm-templatelist__item {
+            background-color: rgba(66,152,252,0.05);
             border-color: $v-blue;
-            background-color: rgba(66,152,252,.05);
 
             .p-prfrm-templatelist__item-name { color: $v-blue; }
           }
-        //}
+        }
       }
     }
   }
@@ -172,16 +211,19 @@
   &-review {
     padding: 10px 0;
     max-width: 900px;
+    overflow: hidden;
     &__category {
       opacity: 0;
       height: 0;
       visibility: hidden;
+      > { height: 0; } 
       &.is-active {
         opacity: 1;
         height: auto;
         visibility: visible;
         transition: opacity .8s linear;
         .p-prfrm-review__category-head { margin: 30px 0; }
+        > { height: auto; } 
       }
     }
     &__question {
@@ -189,11 +231,13 @@
       opacity: 0;
       height: 0;
       visibility: hidden;
+      * { height: 0; } 
       &.is-active {
         opacity: 1;
         height: auto;
         visibility: visible;
         transition: opacity .8s linear;
+        * { height: auto; }
       }
       &-no {
         width: 60px;
@@ -234,14 +278,8 @@
     }
     &__rating {
       span {
-        width: 60px;
-        height: 60px;
-        line-height: 60px;
-        border-radius: 50%;
         background-color: $v-blue;
         color: $v-white;
-        text-align: center;
-        vertical-align: middle;
       }
     }
     &__comment {
@@ -268,7 +306,7 @@
     text-align: center;
     color: #FFF;
     font-size: 36px;
-    font-weight: 600;
+    font-family: "Avenir Next Demi";
     max-width: 120px;
     width: 100%;
     margin-left: auto;
