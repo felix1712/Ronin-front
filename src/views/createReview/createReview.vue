@@ -11,9 +11,10 @@
 			return {
 				reviewStep: 1,
 				editReview: 0,
+        reviewedMethod:null,
 				selectedOrganiztionMethod: null,
 				selectedOrganiztionChecked: null,
-				selectedOrganization: null,
+				selectedOrganization:[],
 				employeeMember: null,
 				selectedJobTitle: null,
 				memberJobTitle: null,
@@ -74,10 +75,10 @@
 				this.selectedMembers = [];
 			},  
 
-			changeSelectedOrganization(e) {
-				this.selectedOrganiztionMethod = e.target.value;
-				this.selectedOrganiztionChecked = e.target.checked;
-			},
+			// changeSelectedOrganization(e) {
+			// 	this.selectedOrganiztionMethod = e.target.value;
+			// 	this.selectedOrganiztionChecked = e.target.checked;
+			// },
 
 			changeReviewDue() {
 				const getStartDate = new Date(this.dataReview.review_start_date);
@@ -220,7 +221,12 @@
 
 			service.get('organizations')
 			.then(response => {
-				this.selectedOrganization = response.data.contents.organizations;
+        this.selectedOrganization = response.data.contents.organizations.map(function(test){
+          return{
+            id: test.id,
+            name: test.name
+          }
+        })
 				// console.log(this.selectedOrganization)
 			})
 			.catch(e => {

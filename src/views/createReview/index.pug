@@ -17,15 +17,15 @@
 							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 1 (review information form)
-				.p-prfrm-create__list-content.u-mt-30(v-show="reviewStep === 1")
-					form(@submit.prevent="validateBeforeSubmit")
+				.p-prfrm-create__list-content.u-mt-30
+					form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 1")
 						.c-row.u-cpointer.jc-tooltip(data-content="Input Review Title field with maximum of 50 characters.", data-pos="custom-row")
 							.c-col-6.jc-tooltip-mark.u-mb-20
 								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('Title') }")
 									.field
 										label.label Review title
 										.control
-											input.input(type="text" , name="Title", maxlength="50")
+											input.input(type="text" , v-model="dataReview.name", maxlength="50")
 
 						.c-row.u-cpointer.jc-tooltip(data-content="Input description about this performance review cycle.", data-pos="custom-row")
 							.c-col-6.jc-tooltip-mark.u-mb-20
@@ -33,7 +33,7 @@
 									.field(label="Description")
 										label.label Description
 										.control
-											textarea.textarea.is-normal(type="text")
+											textarea.textarea.is-normal(type="text" v-model="dataReview.description")
 
 						.c-row.u-cpointer.jc-tooltip(data-content="Filtering staff to be reviewed.", data-pos="custom-row")
 							.c-col-6.jc-tooltip-mark.u-mb-20
@@ -67,21 +67,21 @@
 
 						.ju-toggle-review.review-byOrganization(:class="reviewedMethod != 2 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
-								b-field
-									b-select.u-w-300(placeholder="Department")
+								multiselect(
+							    v-model="selectedOrganiztionChecked" 
+							    :options="selectedOrganization"
+							    :multiple="true"
+							    track-by="id"
+							    label="name"
+							  )
+								//- b-field
+									b-select.u-w-300(placeholder="Department" v-model="selectedMembers")
 										option Management
 										option Accounting
 										option Sales
 										option Receptionist
 							.c-row.u-mx-0.u-mb-20
-								span.tag.is-blue.is-small.u-mr-3.u-cl-white
-									| Sales
-									button.delete.is-small
-								span.tag.is-blue.is-small.u-mr-3.u-cl-white
-									| Engineering
-									button.delete.is-small
-								span.tag.is-blue.is-small.u-mr-3.u-cl-white
-									| HRD
+								span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") {{selectedOrganiztion.name}}
 									button.delete.is-small
 							.c-row.u-mx-0
 								nav.level.u-w-100-full
@@ -432,7 +432,7 @@
 								label Select template
 									.u-cl-red.u-dib *
 					//- step 2 ( Questionare form )
-					form(@submit.prevent="validateBeforeSubmit")
+					form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 2")
 						.c-row.u-mb-20
 							.c-col-12
 								.p-prfrm-templatelist

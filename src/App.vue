@@ -39,7 +39,7 @@
 		},
 
 		mounted() {
-      this.checkAuth();
+			this.checkAuth();
 		}
 	};
 </script>
