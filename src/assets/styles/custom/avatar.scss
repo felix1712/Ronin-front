@@ -1,7 +1,7 @@
 //variable
-$img-type : xs, sm, md, lg;
-$img-size : 30, 50, 60, 170;
-$img-font : 12, 20, 28, 56;
+$img-type : xxs, xs, sm, md, lg;
+$img-size : 20, 30, 50, 60, 80;
+$img-font : 12, 12, 20, 28, 56;
 $img-bg : #12bf92;
 $img-more : #3E83FF;
 
@@ -68,5 +68,18 @@ $img-more : #3E83FF;
       }
     }
     figure, .c-avatar-text { @extend .u-vat }
+
+    &.is-image {
+      figure {
+        margin-right: -10px;
+        border: 1px solid $v-white;
+
+        &:first-child { z-index: 3; }
+        &:nth-child(2) { z-index: 2; }
+      }
+      .c-avatar--more {
+        margin-left: 20px;
+      }
+    }
   }
 }

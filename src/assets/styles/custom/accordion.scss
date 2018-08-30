@@ -1,0 +1,67 @@
+.c-accordion {
+	&__head{
+		position: relative;
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 0;
+    .c-accordion{
+    	&__title{
+    		font-size: 16px;
+		    line-height: 24px;
+		    font-family: "Avenir Next Medium";
+		    color: #424649;
+		    padding-right: 40px;
+    	}
+    	&__icon{
+    		display: inline-block;
+	      @include transition(all .4s);
+	      position: absolute;
+	      right: 0;
+	      top: 50%;
+	      transform: translateY(-50%);
+	      cursor: pointer;
+	      border: 2px solid #9a9c9d;
+	      border-radius: 50%;
+	      padding: 5px 10px;
+	      color: #9a9c9d;
+	      font-weight: 700;
+	      &.icon-plus{
+	      	&::after{
+		        content: '\002B';
+		      }
+	      }
+    	}
+    }
+	}
+	&__section{
+		opacity: 1;
+		ol{
+      padding: 0;
+      list-style-position:outside; 
+      li{
+        padding: 0 20px;
+        margin-left: 0;
+        margin-bottom: 60px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+    &-item {
+      margin-bottom: 60px;
+      margin-right: 30px;
+      display: flex;
+      &:last-child { margin-bottom: 0; }
+
+      &-no {
+        width: 46px;
+        padding-right: 10px;
+      }
+
+      &-content {
+        width: calc(100% - 50px);
+      }
+    }
+	}
+}

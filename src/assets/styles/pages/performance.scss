@@ -1,9 +1,21 @@
+@mixin rating {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 50%;
+  font-size: 21px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: "Avenir Next Medium"
+}
+
 .p-prfm-rating {
+  display: flex;
   &__item {
-    margin: 0 30px;
-    display: inline-block;
-    &:first-child { margin-left: 0; }
-    &:last-child { margin-right: 0; }
+    width: 130px;
+    &:last-child {
+      width: 60px;
+    }
     
     input {
       display: none;
@@ -12,18 +24,41 @@
         background-color: $v-blue;
         color: $v-white;
       }
+
+      &:disabled ~ label {
+        cursor: not-allowed;
+      }
     }
     label {
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
-      border-radius: 50%;
+      @include rating;
       background-color: $v-smoke;
-      text-align: center;
-      vertical-align: middle;
+      color: $v-slate;
       cursor: pointer;
       transition: background .3s linear;
+      padding: 18px 24px;
     }
+  }
+}
+
+.p-prfrm-comment {
+  width: 520px;
+  max-width: 100%;
+  &.is-button {
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed $v-ui-border;
+    border-radius: 6px;
+    color: $v-slate;
+    cursor: pointer;
+    &.is-disabled {
+      cursor: not-allowed;
+    }
+  }
+  &.is-filled {
+    padding: 20px 20px 30px;
+    background-color: $v-snow;
+    border: 1px solid $v-ui-border;
+    border-radius: 6px;
   }
 }
 
