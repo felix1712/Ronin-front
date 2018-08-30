@@ -56,17 +56,18 @@
 			.c-list__action.u-dib
 				b-dropdown.custom-popover
 					a.button.is-outlined.u-cl-slate(slot="trigger") Send reminder
-					b-dropdown-item
-						.field
-							.control
-								textarea.textarea.is-normal(type="text")
-						nav.level.u-mt-40
-							.level-left
-								.level-item
-							.level-right
-								.level-item
-									a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
-									a.button.is-primary.u-mx-5(type='submit') Send
+					b-dropdown-item(custom)
+						form
+							.field
+								.control
+									textarea.textarea.is-normal(type="text")
+							nav.level.u-mt-40
+								.level-left
+									.level-item
+								.level-right
+									.level-item
+										a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
+										a.button.is-primary.u-mx-5(type='submit') Send
 		.c-list__item
 			.c-list__detail.u-dib
 				.c-reg-13.u-cl-slate Due in 5 days
