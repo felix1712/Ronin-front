@@ -61,3 +61,28 @@
 		}
 	}
 }
+
+.c-check{
+	&__checkbox {
+		-webkit-appearance: none;
+		margin: 4px 10px 0px 0;
+		width: 15px;
+		height: 15px;
+		border: 1px solid $v-ui-border;
+		@include border-radius(3px);
+		background-color: $v-white;
+		background-image: none;
+		background-size: calc(100% - 5px);
+		background-position: center;
+		background-repeat: no-repeat;
+		cursor: pointer;
+		outline: none;
+		@include transition(all .3s);
+		&:checked {
+			background-image: url(../images/component/icon-checkbox-white.svg);
+			border-color: $v-blue;
+			background-color: $v-blue;
+			outline: none;
+		}
+	}
+}

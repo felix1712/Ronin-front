@@ -9,7 +9,7 @@
 		br
 		span {{dataReview.members}}
 		.p-prfrm-create
-			.p-prfrm-create__list
+			.p-prfrm-create__list.is-open
 				.p-prfrm-create__list-head.u-clearfix
 					.u-pull
 						h3.c-str-21 Review Information
@@ -46,29 +46,32 @@
 										.u-cl-red.u-dib *
 								.block.u-mb-10
 									b-radio(name="radio-reviewee"
-													native-value="1"
-													v-model="reviewedMethod"
+										native-value="1"
+										v-model="reviewedMethod"
+										@change.native="changeMemberSelectedType"
 									)
 										| All staff
 								.block.u-mb-10
 									b-radio(name="radio-reviewee"
-													native-value="2"
-													v-model="reviewedMethod"
+										native-value="2"
+										v-model="reviewedMethod"
+										@change.native="changeMemberSelectedType"
 									)
 										| By departement
 								.block.u-mb-10
 									b-radio(name="radio-reviewee"
-													native-value="3"
-													v-model="reviewedMethod"
+										native-value="3"
+										v-model="reviewedMethod"
+										@change.native="changeMemberSelectedType"
 									)
 										| By job title
 								.block.u-mb-10
 									b-radio(name="radio-reviewee"
-													native-value="4"
-													v-model="reviewedMethod"
+										native-value="4"
+										v-model="reviewedMethod"
+										@change.native="changeMemberSelectedType"
 									)
 										| Specific staff
-						span {{selectedMembers}}
 						.ju-toggle-review.review-byOrganization(:class="reviewedMethod != 2 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
 								.c-col-10.u-pl-0
@@ -79,8 +82,7 @@
 											:multiple="true"
 											track-by="id"
 											label="name"
-											:taggable="true",
-											tag-placeholder="Department"
+											placeholder="Department"
 											hideSelected=true
 										)
 										.c-select__multiple.u-mt-10
@@ -100,21 +102,22 @@
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
-											.c-avatar-group
-												figure.c-avatar.c-avatar--sm.c-avatar--circle
-														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
-												.c-avatar-text.c-avatar-text--sm
-													p.c-smb-15 {{employeeList.user.name}}
-													p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-													p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-												.c-list--staff__action
-													b-checkbox(
-														v-model="selectedMembers"
-														:native-value="employeeList.id"
-														@change.native="checkboxMember($event)"
-														)
-													//- label.checkbox
-														input.c-check__checkbox(type="checkbox" v-model="selectedMembers", :value="employeeList.id", @change="checkboxMember($event)")
+											label(:for="employeeList.id")
+												.c-avatar-group
+													figure.c-avatar.c-avatar--sm.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+													.c-avatar-text.c-avatar-text--sm
+														p.c-smb-15 {{employeeList.user.name}}
+														p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+														p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+													.c-list--staff__action.wrapper-checkbox__default
+														input.c-check__checkbox(
+															type="checkbox" 
+															v-model="selectedMembers"
+															:value="employeeList.id"
+															:id="employeeList.id"
+															@change="checkboxMember($event)"
+															)
 						.ju-toggle-review.review-byJobTitle(:class="reviewedMethod != 3 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
 								.c-col-10.u-pl-0
@@ -125,6 +128,7 @@
 											:multiple="true"
 											track-by="id"
 											label="name"
+											placeholder="Job Title"
 											hideSelected=true
 										)
 										.c-select__multiple.u-mt-10
@@ -145,16 +149,22 @@
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
-											.c-avatar-group
-												figure.c-avatar.c-avatar--sm.c-avatar--circle
-														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
-												.c-avatar-text.c-avatar-text--sm
-													p.c-smb-15 {{employeeList.user.name}}
-													p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-													p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-												.c-list--staff__action
-													template(v-for="cbid in selectedMembers")
-														b-checkbox(type="checkbox", :native-value="employeeList.id" @change.native="checkboxMember($event)", v-model="cbid.i")
+											label(:for="employeeList.id")
+												.c-avatar-group
+													figure.c-avatar.c-avatar--sm.c-avatar--circle
+															img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+													.c-avatar-text.c-avatar-text--sm
+														p.c-smb-15 {{employeeList.user.name}}
+														p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
+														p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
+													.c-list--staff__action.wrapper-checkbox__default
+														input.c-check__checkbox(
+															type="checkbox" 
+															v-model="selectedMembers"
+															:value="employeeList.id"
+															:id="employeeList.id"
+															@change="checkboxMember($event)"
+															)
 						.ju-toggle-review.review-byStaff(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 							.c-row.u-mx-0
 								nav.level.u-w-100-full
@@ -166,7 +176,8 @@
 												:multiple="true"
 												track-by="id"
 												label="name"
-												hideSelected=true,
+												placeholder="Staff"
+												hideSelected=true
 												@input="reviewedSelectMemberId",
 											)
 									.level-right
@@ -176,16 +187,24 @@
 											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
 												| Select no one
 								.c-list.c-list--staff.u-mt-10
-									.c-list--staff__item(v-for="employeeList in employeeMember")
-										.c-avatar-group
-											figure.c-avatar.c-avatar--sm.c-avatar--circle
-													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
-											.c-avatar-text.c-avatar-text--sm
-												p.c-smb-15 {{employeeList.user.name}}
-												p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-												p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-											.c-list--staff__action
-												b-checkbox(type="checkbox", :native-value="employeeList.id" @change="checkboxMember($event)", v-model="selectedMembers")
+									.c-list--staff__item(v-for="employeeList in selectReviewedMembers")
+										label(:for="employeeList.id")
+											.c-avatar-group
+												figure.c-avatar.c-avatar--sm.c-avatar--circle
+														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+												.c-avatar-text.c-avatar-text--sm
+													p.c-smb-15 {{employeeList.name}}
+													template(v-for="employeeDataDetail in employeeMember" v-if="employeeDataDetail.id == employeeList.id")
+														p.c-reg-15.u-cl-slate {{employeeDataDetail.job_position.title}}
+														p.c-reg-15.u-cl-slate {{employeeDataDetail.organization.name}}
+												.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox(
+														type="checkbox" 
+														v-model="selectedMembers"
+														:value="employeeList.id" 
+														:id="employeeList.id"
+														@change="checkboxMember($event)"
+														)
 							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose specific staff.", data-pos="custom-row")
 							//- 	.c-col-4.jc-tooltip-mark.u-dib
 							//- 		.c-form-group

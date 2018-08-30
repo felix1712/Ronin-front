@@ -68,6 +68,8 @@
       	this.selectedMembers = this.selectReviewedMembers.map(function(data) {
       		return data.id
       	});
+
+      	this.addMember();
       },
 
 			editReviewStep1() {
@@ -130,6 +132,7 @@
 			},
 
 			removeMember(value) {
+				console.log(this.selectedMembers);
 				const intValue = parseInt(value);
 				this.dataReview.members = this.dataReview.members.filter(function (item) { 
 					return item.user_id !== intValue;
