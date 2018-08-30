@@ -87,6 +87,7 @@
 			changeMemberSelectedType() {
 				this.dataReview.members = [];
 				this.selectedMembers = [];
+				this.selectReviewedMembers = [];
 			},  
 
 			// changeSelectedOrganization(e) {
