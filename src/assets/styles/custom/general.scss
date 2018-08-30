@@ -130,17 +130,10 @@ input, textarea {
 	&__action {
 		// @include actionButtonWrapper;
 		.c-btn--sm { min-width: 140px; }
-<<<<<<< HEAD
-    text-align: right;
-    padding-left: 10px;
-    width: 170px;
-    margin-bottom: 10px;
-=======
 		width: 170px;
     margin-bottom: 0;
     padding-bottom: 5px;
     text-align: right;
->>>>>>> 315bbf3c13a0d532f1853b81589d2bfa03ff4077
 	}
 	&__row {
 		width: 100%;
