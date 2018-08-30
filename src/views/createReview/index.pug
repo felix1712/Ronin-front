@@ -102,8 +102,8 @@
 													p.c-smb-15 {{employeeList.user.name}}
 													p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
 													p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-												.c-list--staff__action
-													b-checkbox(type="checkbox", :native-value="employeeList.id" @change.native="checkboxMember($event)", v-model="selectedMembers")
+												.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox.c-checkbox__default(type="checkbox")
 						.ju-toggle-review.review-byJobTitle(:class="reviewedMethod != 3 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
 								.c-col-10.u-pl-0
@@ -140,8 +140,8 @@
 													p.c-smb-15 {{employeeList.user.name}}
 													p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
 													p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-												.c-list--staff__action
-													b-checkbox(type="checkbox", :native-value="employeeList.id" @change.native="checkboxMember($event)", v-model="selectedMembers")
+												.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox.c-checkbox__default(type="checkbox")
 						.ju-toggle-review.review-byStaff(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 							.c-row.u-mx-0
 								nav.level.u-w-100-full
@@ -174,8 +174,8 @@
 												p.c-smb-15 Andy Bernard
 												p.c-reg-15.u-cl-slate Regional Director in Charge of Sales
 												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
+											.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox.c-checkbox__default(type="checkbox")
 									.c-list--staff__item
 										.c-avatar-group
 											figure.c-avatar.c-avatar--sm.c-avatar--circle
@@ -184,8 +184,8 @@
 												p.c-smb-15 Phyllis Lapin
 												p.c-reg-15.u-cl-slate Sales Representative
 												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
+											.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox.c-checkbox__default(type="checkbox")
 									.c-list--staff__item
 										.c-avatar-group
 											figure.c-avatar.c-avatar--sm.c-avatar--circle
@@ -194,8 +194,8 @@
 												p.c-smb-15 Stanley Hudson
 												p.c-reg-15.u-cl-slate Sales Representative
 												p.c-reg-15.u-cl-slate Sales
-											.c-list--staff__action
-												b-checkbox(type="checkbox")
+											.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox.c-checkbox__default(type="checkbox")
 							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose specific staff.", data-pos="custom-row")
 							//- 	.c-col-4.jc-tooltip-mark.u-dib
 							//- 		.c-form-group

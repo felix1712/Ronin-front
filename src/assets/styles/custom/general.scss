@@ -304,6 +304,11 @@ input, textarea {
 					}
 				}
 			}
+			.wrapper-checkbox__default{
+				input[type="checkbox"] {
+					display: block;
+				}
+			}
 		}
 		&__action {
 			width: 20px;
