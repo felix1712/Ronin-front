@@ -11,7 +11,7 @@
 			return {
 				reviewStep: 1,
 				editReview: 0,
-        reviewedMethod: null,
+        reviewedMethod: 1,
         reviewerMethod: null,
 				selectedOrganiztionMethod: null,
 				selectedOrganiztionChecked: null,

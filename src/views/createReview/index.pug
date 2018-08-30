@@ -3,11 +3,6 @@
 		h1.c-str-26 Create review
 		.u-maxw-570.u-mb-40
 			p.c-reg-15 This is a menu where the admin can create performance review cycles by setting up reviewee that are reviewed, review schedules, and reviewers who join the collaboration to do employee reviews.
-		span {{dataReview.name}}
-		br
-		span {{dataReview.description}}
-		br
-		span {{dataReview.members}}
 		.p-prfrm-create
 			.p-prfrm-create__list.is-open
 				.p-prfrm-create__list-head.u-clearfix
@@ -29,7 +24,13 @@
 									.field
 										label.label Review title
 										.control
-											input.input(type="text" , v-model="dataReview.name", maxlength="50")
+											input.input(
+												type="text" 
+												v-model="dataReview.name"
+												name="Title"
+												v-validate="'required'"
+												maxlength="50")
+											span.is-message(v-show="errors.has('Title')") {{ errors.first('Title') }}
 
 						.c-row.u-cpointer.jc-tooltip(data-content="Input description about this performance review cycle.", data-pos="custom-row")
 							.c-col-6.jc-tooltip-mark.u-mb-20
