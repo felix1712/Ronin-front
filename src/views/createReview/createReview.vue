@@ -18,6 +18,7 @@
 				selectedOrganization:[],
         selectedOrganizationMember: null,
 				employeeMember: null,
+				reviewedMember: [],
 				selectedJobTitle: [],
         selectedJobTitleMember: null,
         selectedJobTitleChecked: null,
@@ -28,6 +29,7 @@
 				user_ids: null,
 				getReviewerMember: {},
 				selectedMembers: [],
+				selectReviewedMembers: [],
 				dataReview: {
 					name: null,
 					description: null,
@@ -56,10 +58,16 @@
 		},
 
 		methods: {
-      check(e){
+      dropDownPosition(e){
         // debugger
         e.target.offsetParent.lastChild.style.position="absolute"
         e.target.offsetParent.lastChild.style.left=-e.clientY/3+'px'
+      },
+
+      reviewedSelectMemberId() {
+      	this.selectedMembers = this.selectReviewedMembers.map(function(data) {
+      		return data.id
+      	});
       },
 
 			editReviewStep1() {
@@ -103,6 +111,7 @@
 			},
 
 			addMember() {
+				console.log(this.selectedMembers);
 				this.selectedMembers.forEach(function (value) {
 					const addMembers = {
 						user_id: value,
@@ -131,7 +140,7 @@
 				if (e.target.checked === true) {
           this.addMember();
 				} else {
-					 this.removeMember(e.target.value);
+					this.removeMember(e.target.value);
 				}
 			},
 
@@ -241,7 +250,13 @@
 			service.get('employee')
 			.then(response => {
 				this.employeeMember = response.data.contents.users;
-				// console.log(response.data);
+				this.reviewedMember = response.data.contents.users.map(function(member){
+					return{
+						id: member.id,
+						name: member.user.name
+					}
+				})
+				console.log(response.data);
 			})
 			.catch(e => {
 				this.errors.push(e);
