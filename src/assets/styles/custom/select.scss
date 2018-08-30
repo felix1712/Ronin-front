@@ -17,6 +17,11 @@
 				&__tags{
 					border: none;
 					span{
+						&.multiselect__tag{
+							display: none;
+						}
+					}
+					span{
 						&.multiselect__single{
 							margin-bottom: 0;
 						}

@@ -143,8 +143,18 @@
 			checkboxMember(e) {
 				if (e.target.checked === true) {
           this.addMember();
+          e.currentTarget.closest("label").classList.remove('not-checked')
 				} else {
 					this.removeMember(e.target.value);
+					e.currentTarget.closest("label").classList.add('not-checked')
+				}
+			},
+
+			templateChanges(e) {
+				if(e.target.checked == true){
+					e.currentTarget.classList.add('is-checked')
+				} else {
+					e.currentTarget.classList.remove('is-checked')
 				}
 			},
 

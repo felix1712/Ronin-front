@@ -250,61 +250,35 @@ input, textarea {
 			padding: 20px;
 			width: calc(100% / 3);
 			border-right: 1px solid $v-ui-border;
+			position: relative;
 			&:nth-child(3n){
 				border-right: none;
+			}
+			label{
+				cursor: pointer;
+				&.not-checked{
+					.c-avatar-group{
+						 figure{
+						 	img{
+						 		-webkit-filter: grayscale(100%);
+                filter: grayscale(100%);
+						 	}
+						 }
+					}
+					.c-avatar-text{
+            p{
+              color: $v-slate;
+            }
+          }
+				}
 			}
 
 			input[type="checkbox"] {
 				display: none;
-
-				&+label {
-					position: relative;
-					width: 100%;
-					margin-bottom: 0;
-					cursor: pointer;
-					color: $v-slate;
-
-					.c-avatar-group {
-						width: calc(100% - 25px);
-						display: inline-block;
-						figure {
-							img {
-								-webkit-filter: grayscale(100%);
-								filter: grayscale(100%);
-							}
-							span {
-								background-color: $v-slate;
-							}
-						}
-					}
-				}
-
-				&:checked {
-					&+label {
-						color: $v-black;
-
-						.c-avatar-group {
-							figure {
-								img {
-									-webkit-filter: none;
-									filter: none;
-								}
-								span {
-									background-color: $img-bg;
-								}
-							}
-						}
-						
-						.c-check__checkbox {
-							background-image: url(../images/component/icon-checkbox-white.svg);
-							border-color: $v-blue;
-							background-color: $v-blue;
-							outline: none;
-						}
-					}
-				}
 			}
 			.wrapper-checkbox__default{
+				top: 20px;
+				right: 20px;
 				input[type="checkbox"] {
 					display: block;
 				}

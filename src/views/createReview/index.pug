@@ -22,7 +22,8 @@
 							.c-col-6.jc-tooltip-mark.u-mb-20
 								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('Title') }")
 									.field
-										label.label Review title
+										label.label Review title 
+											.u-cl-red.u-dib *
 										.control
 											input.input(
 												type="text" 
@@ -73,7 +74,7 @@
 										@change.native="changeMemberSelectedType"
 									)
 										| Specific staff
-						.ju-toggle-review.review-byOrganization(:class="reviewedMethod != 2 ? 'u-dn': '' ")
+						.ju-toggle-review.review-byOrganization.c-slideToggle-animation(:class="reviewedMethod != 2 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
 								.c-col-10.u-pl-0
 									.c-select.c-select--multiple
@@ -106,20 +107,20 @@
 											label(:for="employeeList.id")
 												.c-avatar-group
 													figure.c-avatar.c-avatar--sm.c-avatar--circle
-															img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
 													.c-avatar-text.c-avatar-text--sm
 														p.c-smb-15 {{employeeList.user.name}}
 														p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
 														p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-													.c-list--staff__action.wrapper-checkbox__default
-														input.c-check__checkbox(
-															type="checkbox" 
-															v-model="selectedMembers"
-															:value="employeeList.id"
-															:id="employeeList.id"
-															@change="checkboxMember($event)"
-															)
-						.ju-toggle-review.review-byJobTitle(:class="reviewedMethod != 3 ? 'u-dn': '' ")
+												.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox(
+														type="checkbox" 
+														v-model="selectedMembers"
+														:value="employeeList.id"
+														:id="employeeList.id"
+														@change="checkboxMember($event)"
+														)
+						.ju-toggle-review.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
 								.c-col-10.u-pl-0
 									.c-select.c-select--multiple
@@ -153,34 +154,35 @@
 											label(:for="employeeList.id")
 												.c-avatar-group
 													figure.c-avatar.c-avatar--sm.c-avatar--circle
-															img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
 													.c-avatar-text.c-avatar-text--sm
 														p.c-smb-15 {{employeeList.user.name}}
 														p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
 														p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-													.c-list--staff__action.wrapper-checkbox__default
-														input.c-check__checkbox(
-															type="checkbox" 
-															v-model="selectedMembers"
-															:value="employeeList.id"
-															:id="employeeList.id"
-															@change="checkboxMember($event)"
-															)
-						.ju-toggle-review.review-byStaff(:class="reviewedMethod != 4 ? 'u-dn': '' ")
+												.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox(
+														type="checkbox" 
+														v-model="selectedMembers"
+														:value="employeeList.id"
+														:id="employeeList.id"
+														@change="checkboxMember($event)"
+														)
+						.ju-toggle-review.review-byStaff.c-slideToggle-animation(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 							.c-row.u-mx-0
 								nav.level.u-w-100-full
 									.level-left
 										.level-item
-											multiselect.u-w-300(
-												v-model="selectReviewedMembers" 
-												:options="reviewedMember"
-												:multiple="true"
-												track-by="id"
-												label="name"
-												placeholder="Staff"
-												hideSelected=true
-												@input="reviewedSelectMemberId",
-											)
+											.c-select.c-select--multiple
+												multiselect.u-w-300(
+													v-model="selectReviewedMembers" 
+													:options="reviewedMember"
+													:multiple="true"
+													track-by="id"
+													label="name"
+													placeholder="Staff"
+													hideSelected=true
+													@input="reviewedSelectMemberId",
+												)
 									.level-right
 										.level-item
 											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
@@ -192,65 +194,20 @@
 										label(:for="employeeList.id")
 											.c-avatar-group
 												figure.c-avatar.c-avatar--sm.c-avatar--circle
-														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
 												.c-avatar-text.c-avatar-text--sm
 													p.c-smb-15 {{employeeList.name}}
 													template(v-for="employeeDataDetail in employeeMember" v-if="employeeDataDetail.id == employeeList.id")
 														p.c-reg-15.u-cl-slate {{employeeDataDetail.job_position.title}}
 														p.c-reg-15.u-cl-slate {{employeeDataDetail.organization.name}}
-												.c-list--staff__action.wrapper-checkbox__default
-													input.c-check__checkbox(
-														type="checkbox" 
-														v-model="selectedMembers"
-														:value="employeeList.id" 
-														:id="employeeList.id"
-														@change="checkboxMember($event)"
-														)
-							//- .c-row.u-cpointer.jc-tooltip(data-content="Filtering staff by choose specific staff.", data-pos="custom-row")
-							//- 	.c-col-4.jc-tooltip-mark.u-dib
-							//- 		.c-form-group
-							//- 			label Choose staff
-							//- 				.u-cl-red.u-dib *
-							//- 			.c-select.c-select--multiple
-							//- 				.c-select__input
-							//- 					span.c-select__arrow.fa.fa-angle-down
-							//- 					span.c-select__placeholder Staff
-							//- 					span.c-select__value
-							//- 					span.c-select__reset.u-dn &times;
-							//- 				.c-select__multiple.u-dn
-							//- 				.c-select__menu.c-select__menu--multiple.c-select__menu--search
-							//- 					.c-select__search
-							//- 						.with-icon--left
-							//- 							input.c-form-control(placeholder="Search staff", type="text")
-							//- 							.with-icon--reset.u-dn &#10005;
-							//- 							span
-							//- 								img(src="@/assets/images/pages/icon-search.svg", alt="")
-							//- 					.c-select__itemsearch.ju-scroll-focus
-							//- 						.c-select__item(v-for="employeeList in employeeMember")
-							//- 							label
-							//- 								input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
-							//- 								.c-select__item--pict
-							//- 									figure.c-avatar.c-avatar--xs.c-avatar--circle
-							//- 										img.c-img-fluid.u-db(src="@/assets/images/avatar/user-11.png")
-							//- 								.c-select__item--pict.c-select__item--name
-							//- 									span {{employeeList.user.name}}
-							//- 						.c-select__item--noresult.u-dn
-							//- 							p Search not found
-
-							//- .c-row.u-mb-30.u-mt-10
-							//- 	.c-col-12
-							//- 		.c-list.c-list--staff
-							//- 			.c-list--staff__item(v-for="employeeList in employeeMember")
-							//- 				.c-avatar-group
-							//- 					figure.c-avatar.c-avatar--sm.c-avatar--circle
-							//- 							img.c-img-fluid(src="@/assets/images/avatar/user-11.png")
-							//- 					.c-avatar-text.c-avatar-text--sm
-							//- 						.c-smb-15 {{employeeList.user.name}}
-							//- 						.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-							//- 							.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-							//- 				.c-list--staff__action
-							//- 					input.c-check__checkbox(type="checkbox" :value="employeeList.id" :id="employeeList.id" @change="checkboxMember($event)" v-model="selectedMembers")
-
+											.c-list--staff__action.wrapper-checkbox__default
+												input.c-check__checkbox(
+													type="checkbox" 
+													v-model="selectedMembers"
+													:value="employeeList.id" 
+													:id="employeeList.id"
+													@change="checkboxMember($event)"
+													)
 						ButtonFooter
 				//- end step 1 (review information form)
 			
@@ -281,181 +238,123 @@
 										a.p-prfrm-templatelist__item.is-new
 											img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
 											span.u-ml-24 New template
+									//- .p-prfrm-templatelist__item-wrapper
+									//- 	b-radio(name="radio-review-template"
+									//- 					native-value="1"
+									//- 	)
+									//- 		.p-prfrm-templatelist__item(for="template-1")
+									//- 			.p-prfrm-templatelist__item-name Staff review
+									//- 			h5.c-reg-13.u-mb-60 4 review(s) using this template
+									//- 			.p-prfrm-templatelist__item-action
+									//- 				.u-pull
+									//- 					a(href="")
+									//- 						img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+									//- 					a.u-ml-20(href="")
+									//- 						img(src="@/assets/images/pages/icon-pencil.svg", alt="")
 									.p-prfrm-templatelist__item-wrapper
-										b-radio(name="radio-review-template"
+										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
 														native-value="1"
+														@change.native="templateChanges($event)"
 										)
-											.p-prfrm-templatelist__item(for="template-1")
-												.p-prfrm-templatelist__item-name Staff review
-												h5.c-reg-13.u-mb-60 4 review(s) using this template
-												.p-prfrm-templatelist__item-action
-													.u-pull
-														a(href="")
-															img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-														a.u-ml-20(href="")
-															img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									.p-prfrm-templatelist__item-wrapper
-										b-radio(name="radio-review-template"
-														native-value="1"
-										)
-											.p-prfrm-templatelist__item(for="template-1")
-												.p-prfrm-templatelist__item-name Staff review 2
-												h5.c-reg-13.u-mb-60 4 review(s) using this template
-												.p-prfrm-templatelist__item-action
-													nav.level
-														.level-left
-															.level-item
-																a(href="")
-																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-																a.u-ml-20(href="")
-																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-														.level-right
-															.level-item
-																b-dropdown.custom-popover(position="is-top-left")
-																	a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
-																		img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
-																	b-dropdown-item
-																		h3.c-smb-15.u-mb-20 Delete confirmation
-																		p.c-smb-15 Are you sure to delete this template?
-																		.u-mt-40
-																			a.button.c-btn--ghost.u-br-none.u-mx-5 No
-																			a.button.is-danger.u-mx-5(type='submit') Yes
-									.p-prfrm-templatelist__item-wrapper
-										b-radio(name="radio-review-template"
-														native-value="1"
-										)
-											.p-prfrm-templatelist__item(for="template-1")
-												.p-prfrm-templatelist__item-name Staff review 2
-												h5.c-reg-13.u-mb-60 4 review(s) using this template
-												.p-prfrm-templatelist__item-action
-													nav.level
-														.level-left
-															.level-item
-																a(href="")
-																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-																a.u-ml-20(href="")
-																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-														.level-right
-															.level-item
-																b-dropdown.custom-popover(position="is-top-left")
-																	a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="check($event)")
-																		img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
-																	b-dropdown-item
-																		h3.c-smb-15.u-mb-20 Delete confirmation
-																		p.c-smb-15 Are you sure to delete this template?
-																		.u-mt-40
-																			a.button.c-btn--ghost.u-br-none.u-mx-5 No
-																			a.button.is-danger.u-mx-5(type='submit') Yes
-									.p-prfrm-templatelist__item-wrapper
-										b-radio(name="radio-review-template"
-														native-value="1"
-										)
-											.p-prfrm-templatelist__item(for="template-1")
-												.p-prfrm-templatelist__item-name Staff review 2
-												h5.c-reg-13.u-mb-60 4 review(s) using this template
-												.p-prfrm-templatelist__item-action
-													nav.level
-														.level-left
-															.level-item
-																a(href="")
-																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-																a.u-ml-20(href="")
-																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-														.level-right
-															.level-item
-																a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
+											.p-prfrm-templatelist__item-name Staff review 2
+											h5.c-reg-13.u-mb-60 4 review(s) using this template
+											.p-prfrm-templatelist__item-action
+												nav.level
+													.level-left
+														.level-item
+															a(href="")
+																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+															a.u-ml-20(href="")
+																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+													.level-right
+														.level-item
+															b-dropdown.custom-popover(position="is-top-left")
+																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+																b-dropdown-item
+																	h3.c-smb-15.u-mb-20 Delete confirmation
+																	p.c-smb-15 Are you sure to delete this template?
+																	.u-mt-40
+																		a.button.c-btn--ghost.u-br-none.u-mx-5 No
+																		a.button.is-danger.u-mx-5(type='submit') Yes
 									.p-prfrm-templatelist__item-wrapper
-										b-radio(name="radio-review-template"
-														native-value="1"
+										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
+														native-value="2"
+														@change.native="templateChanges($event)"
 										)
-											.p-prfrm-templatelist__item(for="template-1")
-												.p-prfrm-templatelist__item-name Staff review 2
-												h5.c-reg-13.u-mb-60 4 review(s) using this template
-												.p-prfrm-templatelist__item-action
-													nav.level
-														.level-left
-															.level-item
-																a(href="")
-																	img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-																a.u-ml-20(href="")
-																	img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-														.level-right
-															.level-item
-																a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
+											.p-prfrm-templatelist__item-name Staff review 222
+											h5.c-reg-13.u-mb-60 4 review(s) using this template
+											.p-prfrm-templatelist__item-action
+												nav.level
+													.level-left
+														.level-item
+															a(href="")
+																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+															a.u-ml-20(href="")
+																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+													.level-right
+														.level-item
+															b-dropdown.custom-popover(position="is-top-left")
+																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
-
-										//- input#template-1(name="select-template", type="radio")
-										//- .p-prfrm-templatelist__item(for="template-1")
-										//- 	.p-prfrm-templatelist__item-name Staff review
-										//- 	h5.c-reg-13.u-mb-60 4 review(s) using this template
-										//- 	.p-prfrm-templatelist__item-action
-										//- 		.u-pull
-										//- 			a(href="")
-										//- 				img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-										//- 			a.u-ml-20(href="")
-										//- 				img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									//- .p-prfrm-templatelist__item-wrapper
-									//- 	input#template-2(name="select-template", type="radio", checked)
-									//- 	.p-prfrm-templatelist__item(for="template-2")
-									//- 		.p-prfrm-templatelist__item-name Manager review
-									//- 		h5.c-reg-13.u-mb-60 0 review(s) using this template
-									//- 		.p-prfrm-templatelist__item-action
-									//- 			.u-pull
-									//- 				a(href="")
-									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-									//- 				a.u-ml-20(href="")
-									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									//- 			.u-push
-									//- 				a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
-									//- 					img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
-									//- .p-prfrm-templatelist__item-wrapper
-									//- 	input#template-3(name="select-template", type="radio")
-									//- 	.p-prfrm-templatelist__item(for="template-3")
-									//- 		.p-prfrm-templatelist__item-name Peer to peer review
-									//- 		h5.c-reg-13.u-mb-60 4 review(s) using this template
-									//- 		.p-prfrm-templatelist__item-action
-									//- 			.u-pull
-									//- 				a(href="")
-									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-									//- 				a.u-ml-20(href="")
-									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									//- .p-prfrm-templatelist__item-wrapper
-									//- 	input#template-4(name="select-template", type="radio")
-									//- 	.p-prfrm-templatelist__item(for="template-4")
-									//- 		.p-prfrm-templatelist__item-name Company Evaluation Q1
-									//- 		h5.c-reg-13.u-mb-60 3 review(s) using this template
-									//- 		.p-prfrm-templatelist__item-action
-									//- 			.u-pull
-									//- 				a(href="")
-									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-									//- 				a.u-ml-20(href="")
-									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									//- .p-prfrm-templatelist__item-wrapper
-									//- 	input#template-5(name="select-template", type="radio")
-									//- 	.p-prfrm-templatelist__item(for="template-5")
-									//- 		.p-prfrm-templatelist__item-name Engineer review
-									//- 		h5.c-reg-13.u-mb-60 9 review(s) using this template
-									//- 		.p-prfrm-templatelist__item-action
-									//- 			.u-pull
-									//- 				a(href="")
-									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-									//- 				a.u-ml-20(href="")
-									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									//- .p-prfrm-templatelist__item-wrapper
-									//- 	input#template-6(name="select-template", type="radio")
-									//- 	.p-prfrm-templatelist__item(for="template-6")
-									//- 		.p-prfrm-templatelist__item-name Sales review
-									//- 		h5.c-reg-13.u-mb-60 0 review(s) using this template
-									//- 		.p-prfrm-templatelist__item-action
-									//- 			.u-pull
-									//- 				a(href="")
-									//- 					img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-									//- 				a.u-ml-20(href="")
-									//- 					img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-									//- 			.u-push
-									//- 				a.c-btn.c-btn--ghost.c-btn--xs.jc-popover(data-type="confirmationDelete")
-									//- 					img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+																b-dropdown-item
+																	h3.c-smb-15.u-mb-20 Delete confirmation
+																	p.c-smb-15 Are you sure to delete this template?
+																	.u-mt-40
+																		a.button.c-btn--ghost.u-br-none.u-mx-5 No
+																		a.button.is-danger.u-mx-5(type='submit') Yes
+									.p-prfrm-templatelist__item-wrapper
+										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
+														native-value="3"
+														@change.native="templateChanges($event)"
+										)
+											.p-prfrm-templatelist__item-name Staff review 333
+											h5.c-reg-13.u-mb-60 4 review(s) using this template
+											.p-prfrm-templatelist__item-action
+												nav.level
+													.level-left
+														.level-item
+															a(href="")
+																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+															a.u-ml-20(href="")
+																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+													.level-right
+														.level-item
+															b-dropdown.custom-popover(position="is-top-left")
+																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+																b-dropdown-item
+																	h3.c-smb-15.u-mb-20 Delete confirmation
+																	p.c-smb-15 Are you sure to delete this template?
+																	.u-mt-40
+																		a.button.c-btn--ghost.u-br-none.u-mx-5 No
+																		a.button.is-danger.u-mx-5(type='submit') Yes
+									.p-prfrm-templatelist__item-wrapper
+										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
+														native-value="4"
+														@change.native="templateChanges($event)"
+										)
+											.p-prfrm-templatelist__item-name Staff review 444
+											h5.c-reg-13.u-mb-60 4 review(s) using this template
+											.p-prfrm-templatelist__item-action
+												nav.level
+													.level-left
+														.level-item
+															a(href="")
+																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+															a.u-ml-20(href="")
+																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+													.level-right
+														.level-item
+															b-dropdown.custom-popover(position="is-top-left")
+																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+																b-dropdown-item
+																	h3.c-smb-15.u-mb-20 Delete confirmation
+																	p.c-smb-15 Are you sure to delete this template?
+																	.u-mt-40
+																		a.button.c-btn--ghost.u-br-none.u-mx-5 No
+																		a.button.is-danger.u-mx-5(type='submit') Yes
 
 						//- end step 2 ( Questionare form )
 						//- button save
