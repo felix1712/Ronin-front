@@ -60,40 +60,6 @@
 		},
 
 		methods: {
-			setTest(data) {
-				this.moreReviewerSelect = this.reviewedMember;
-				this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
-					return item.id != data.user_id
-				});
-				// const checkCurrentReviewer = [];
-				
-				// data.reviewer.forEach(function(arr){
-				// 	checkCurrentReviewer = arr.user_id;
-				// });
-
-				// this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
-				// 	return item.id != checkCurrentReviewer.user_id
-				// })
-			},
-
-			addReviewer(data) {
-				const getDataReviewer = this.employeeMember.filter(function(item){
-					return item.user_id == this.moreReviewerMember.id
-				}.bind(this))
-				var found = false;
-				for (var i = 0, len = data.length; i < len; i++) { 
-	        for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) { 
-            if (data[i].user_id === getDataReviewer[j].user_id) {
-            	var found = true;
-            }
-	        }
-		    }
-
-		    if(!found){
-		    	Array.prototype.push.apply(data,getDataReviewer);
-		    }
-			},
-
       dropDownPosition(e){
         e.target.offsetParent.lastChild.style.position="absolute"
         e.target.offsetParent.lastChild.style.left=-e.clientY/3+'px'
@@ -213,6 +179,42 @@
 				});
 			},
 
+			setOptionReviewer(data) {
+				this.moreReviewerSelect = this.reviewedMember;
+				this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
+					return item.id != data.user_id
+				});
+				// const checkCurrentReviewer = [];
+				
+				// data.reviewer.forEach(function(arr){
+				// 	checkCurrentReviewer = arr.user_id;
+				// });
+
+				// this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
+				// 	return item.id != checkCurrentReviewer.user_id
+				// })
+			},
+
+			addReviewer(data) {
+				const getDataReviewer = this.employeeMember.filter(function(item){
+					return item.user_id == this.moreReviewerMember.id
+				}.bind(this))
+				var found = false;
+				for (var i = 0, len = data.length; i < len; i++) { 
+	        for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) { 
+            if (data[i].user_id === getDataReviewer[j].user_id) {
+            	var found = true;
+            }
+	        }
+		    }
+
+		    if(!found){
+		    	Array.prototype.push.apply(data,getDataReviewer);
+		    }
+
+		    this.moreReviewerMember = [];
+			},
+
 			validateBeforeSubmit() {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
@@ -320,7 +322,7 @@
 				if(this.reviewStep == 4){
 					this.getReviewer();
 				}
-			}
-		}
+			},
+		},
 	};
 </script>
