@@ -33,14 +33,13 @@
 				moreReviewerMember: [],
 				moreReviewerSelect:[],
 				dataReview: {
-					name: null,
+					titles: null,
 					description: null,
 					members: [],
 					//form questionare
 					template: {
 						is_new: 0,
 						name: 'Chec',
-						new_name: '',
 						select_type: 'non-predefined',
 						uuid: '07869262-adb1-4a53-848d-1cbaf6e24859',
 						categories: [],
@@ -104,7 +103,7 @@
 				this.selectedMembers.forEach(function (value) {
 					const addMembers = {
 						user_id: value,
-						reviewer: null,
+						reviewers: null,
 						is_self_review: 0,
 						is_sequent: 0,
 					};
@@ -157,10 +156,10 @@
 
 			setReviewer(data) {
 				this.dataReview.members.forEach(function(item) {
-					item.reviewer = [];
+					item.reviewers = [];
 					data.forEach(function (value) {
 						if (item.user_id == value.id) {
-							item.reviewer = value.reviewers;
+							item.reviewers = value.reviewers;
 						}
 					})
 				});
@@ -240,23 +239,55 @@
 					new_name: '',
 					select_type: 'non-predefined',
 					uuid: '07869262-adb1-4a53-848d-1cbaf6e24859',
-					categories: [],
+					categories: [
+						{
+							name: 'apaja',
+							description: 'asd',
+							is_weight: 0,
+							weight: 0,
+							questions: [
+								{
+									name: 'apaja',
+									description: 'asa',
+									is_weight: 0,
+									weight: 0,
+									can_comment: 0,
+									answer_type: 'rating',
+									ratings: [
+										{
+											value: 1,
+											description: 'asd',
+										}
+									]
+								}
+							] 
+						}
+					],
 				};
+
+			 	this.dataReview.members.forEach(function(data){
+					if(data.reviewers.length > 0){
+						var result = data.reviewers.map(item => item.id);
+						data.reviewers = result;
+						return data;
+					}
+				})
+
 				service.post('createreview',{
-					name: this.dataReview.name,
+					name: this.dataReview.titles,
 					description: this.dataReview.description,
 					is_repeat: this.dataReview.is_repeat,
 					repeat_every: this.dataReview.repeat_every,
 					review_start_date: this.dataReview.review_start_date,
 					review_end_date: this.dataReview.review_end_date,
 					review_method: this.dataReview.review_method,
-					members: dataMember.members,
-					template: templateReview,
+					members: this.dataReview.members,
+					question_set: templateReview,
 				})
 				.then(response => {
 					// console.log(response.data);
-					this.$toastr('success', 'Review has been created');
 					this.$router.push('/');
+					this.$toastr('success', 'Review has been created');
 				})
 				.catch(e => {
 					console.log(e);

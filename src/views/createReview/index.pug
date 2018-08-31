@@ -16,9 +16,9 @@
 							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 1 (review information form)
-				.p-prfrm-create__list-contents.u-mt-30
-					form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 1")
-						.c-row.u-cpointer.jc-tooltip(data-content="Input Review Title field with maximum of 50 characters.", data-pos="custom-row")
+				form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 1")
+					.p-prfrm-create__list-contents.u-mt-30
+						.c-row.u-cpointer
 							.c-col-6.jc-tooltip-mark.u-mb-20
 								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('Title') }")
 									.field
@@ -27,7 +27,7 @@
 										.control
 											input.input(
 												type="text" 
-												v-model="dataReview.name"
+												v-model="dataReview.titles"
 												name="Title"
 												v-validate="'required'"
 												maxlength="50")
@@ -222,15 +222,13 @@
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep2()")
 							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
-				.p-prfrm-create__list-contents.u-mt-30
-					//- (v-show="reviewStep === 2")
-					.c-row.u-cpointer.jc-tooltip(data-content="Choose a exsiting template or create a new template questionnare for reviewing staff.", data-pos="custom-row")
-						.c-col-6.jc-tooltip-mark
-							.c-form-group.u-dib.u-mb-0
-								label Select template
-									.u-cl-red.u-dib *
-					//- step 2 ( Questionare form )
-					form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 2")
+				form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 2")
+					.p-prfrm-create__list-contents.u-mt-30
+						.c-row.u-cpointer
+							.c-col-6
+								.c-form-group.u-dib.u-mb-0
+									label Select template
+										.u-cl-red.u-dib *
 						.c-row.u-mb-20
 							.c-col-12
 								.p-prfrm-templatelist
@@ -238,19 +236,6 @@
 										a.p-prfrm-templatelist__item.is-new
 											img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
 											span.u-ml-24 New template
-									//- .p-prfrm-templatelist__item-wrapper
-									//- 	b-radio(name="radio-review-template"
-									//- 					native-value="1"
-									//- 	)
-									//- 		.p-prfrm-templatelist__item(for="template-1")
-									//- 			.p-prfrm-templatelist__item-name Staff review
-									//- 			h5.c-reg-13.u-mb-60 4 review(s) using this template
-									//- 			.p-prfrm-templatelist__item-action
-									//- 				.u-pull
-									//- 					a(href="")
-									//- 						img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-									//- 					a.u-ml-20(href="")
-									//- 						img(src="@/assets/images/pages/icon-pencil.svg", alt="")
 									.p-prfrm-templatelist__item-wrapper
 										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
 														native-value="1"
@@ -508,7 +493,6 @@
 													@change.native="changeReviewMehtod($event)"
 												)
 													| 360 peer review
-
 						.ju-toggle-directReview.u-mt-40.c-list--review(:class="dataReview.review_method != 'direct-report' ? 'u-dn': '' ")
 							.c-row
 								template(v-for="dataMember in dataReview.members")
@@ -532,7 +516,7 @@
 														label.u-ft-smb Weight remain: 100%
 													.c-list--reviewer__action
 												
-												.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewer")
+												.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
 													.c-list--reviewer__name
 														.c-avatar-group
 															figure.c-avatar.c-avatar--xs.c-avatar--circle
@@ -575,7 +559,7 @@
 													    :allow-empty="false",
 													    :hide-selected="true"
 													    @open="setOptionReviewer(dataMember)"
-													    @close="addReviewer(dataMember.reviewer, moreReviewerMember)"
+													    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
 													  )
 														.field
 															input.c-check__checkbox(
@@ -627,7 +611,7 @@
 															.c-list--reviewer__weight
 																label.u-ft-smb Weight remain: 100%
 															.c-list--reviewer__action
-														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewer")
+														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
 															.c-list--reviewer__name
 																.c-avatar-group
 																	figure.c-avatar.c-avatar--xs.c-avatar--circle
@@ -670,7 +654,7 @@
 															    :allow-empty="false",
 															    :hide-selected="true"
 															    @open="setOptionReviewer(dataMember)"
-															    @close="addReviewer(dataMember.reviewer, moreReviewerMember)"
+															    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
 															  )
 																.field
 																	input.c-check__checkbox(
@@ -722,7 +706,7 @@
 															.c-list--reviewer__weight
 																label.u-ft-smb Weight remain: 100%
 															.c-list--reviewer__action
-														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewer")
+														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
 															.c-list--reviewer__name
 																.c-avatar-group
 																	figure.c-avatar.c-avatar--xs.c-avatar--circle
@@ -765,7 +749,7 @@
 															    :allow-empty="false",
 															    :hide-selected="true"
 															    @open="setOptionReviewer(dataMember)"
-															    @close="addReviewer(dataMember.reviewer, moreReviewerMember)"
+															    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
 															  )
 																.field
 																	input.c-check__checkbox(
@@ -793,13 +777,11 @@
 																			position="is-top"
 																		)
 																			img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
-																
-
 				//- end step 4 ( Reviewer form )
 			.p-prfrm-create__list
 				.c-row
 					.c-col-12
-						.c-btn-group-wrapper.u-clearfix.u-tar.u-my-35
+						.c-btn-group-wrapper.u-clearfix.u-tar
 							.c-btn-group--right
 								.c-btn-group--item
 									nav.level
