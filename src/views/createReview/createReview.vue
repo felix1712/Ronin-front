@@ -12,7 +12,7 @@
 				reviewStep: 1,
 				editReview: 0,
         reviewedMethod: 1,
-        reviewerMethod: null,
+        reviewerMethod: 'direct-review',
 				selectedOrganiztionMethod: null,
 				selectedOrganiztionChecked: null,
 				selectedOrganization:[],
@@ -30,6 +30,8 @@
 				getReviewerMember: {},
 				selectedMembers: [],
 				selectReviewedMembers: [],
+				moreReviewerMember: [],
+				moreReviewerSelect:[],
 				dataReview: {
 					name: null,
 					description: null,
@@ -58,8 +60,41 @@
 		},
 
 		methods: {
+			setTest(data) {
+				this.moreReviewerSelect = this.reviewedMember;
+				this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
+					return item.id != data.user_id
+				});
+				// const checkCurrentReviewer = [];
+				
+				// data.reviewer.forEach(function(arr){
+				// 	checkCurrentReviewer = arr.user_id;
+				// });
+
+				// this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
+				// 	return item.id != checkCurrentReviewer.user_id
+				// })
+			},
+
+			addReviewer(data) {
+				const getDataReviewer = this.employeeMember.filter(function(item){
+					return item.user_id == this.moreReviewerMember.id
+				}.bind(this))
+				var found = false;
+				for (var i = 0, len = data.length; i < len; i++) { 
+	        for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) { 
+            if (data[i].user_id === getDataReviewer[j].user_id) {
+            	var found = true;
+            }
+	        }
+		    }
+
+		    if(!found){
+		    	Array.prototype.push.apply(data,getDataReviewer);
+		    }
+			},
+
       dropDownPosition(e){
-        // debugger
         e.target.offsetParent.lastChild.style.position="absolute"
         e.target.offsetParent.lastChild.style.left=-e.clientY/3+'px'
       },
@@ -90,11 +125,6 @@
 				this.selectReviewedMembers = [];
 			},  
 
-			// changeSelectedOrganization(e) {
-			// 	this.selectedOrganiztionMethod = e.target.value;
-			// 	this.selectedOrganiztionChecked = e.target.checked;
-			// },
-
 			changeReviewDue() {
 				const getStartDate = new Date(this.dataReview.review_start_date);
 				const dueValue = parseInt(this.review.deadline);
@@ -109,12 +139,8 @@
 				this.dataReview.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
 			},
 
-			changeReviewMehtod(e) {
-				// this.user_ids = this.dataReview.members
-			},
-
 			addMember() {
-				console.log(this.selectedMembers);
+				// console.log(this.selectedMembers);
 				this.selectedMembers.forEach(function (value) {
 					const addMembers = {
 						user_id: value,
@@ -133,7 +159,7 @@
 			},
 
 			removeMember(value) {
-				console.log(this.selectedMembers);
+				// console.log(this.selectedMembers);
 				const intValue = parseInt(value);
 				this.dataReview.members = this.dataReview.members.filter(function (item) { 
 					return item.user_id !== intValue;
@@ -184,11 +210,6 @@
 						this.editReview+=1;
 					}
 				});
-
-
-				if (this.reviewStep === 3) {
-					this.getReviewer();
-				}
 			},
 
 			submitFormReview() {
@@ -199,12 +220,6 @@
 					select_type: 'non-predefined',
 					uuid: '07869262-adb1-4a53-848d-1cbaf6e24859',
 					categories: [],
-				};
-				const dataMember = {
-					members: [
-						{ user_id: 70340, reviewers: [70337], is_self_review: 0, is_sequent: 0 },
-						{ user_id: 70339, reviewers: [70337], is_self_review: 0, is_sequent: 0 },
-					],
 				};
 				service.post('createreview',{
 					name: this.dataReview.name,
@@ -218,7 +233,7 @@
 					template: templateReview,
 				})
 				.then(response => {
-					console.log(response.data);
+					// console.log(response.data);
 					this.$toastr('success', 'Review has been created');
 					this.$router.push('/');
 				})
@@ -260,7 +275,14 @@
 						name: member.user.name
 					}
 				})
-				console.log(response.data);
+
+				this.moreReviewerSelect = response.data.contents.users.map(function(member){
+					return{
+						id: member.id,
+						name: member.user.name
+					}
+				})
+				// console.log(response.data);
 			})
 			.catch(e => {
 				this.errors.push(e);
@@ -282,5 +304,13 @@
 				this.errors.push(e);
 			});
 		},
+
+		watch: {
+			reviewStep(){
+				if(this.reviewStep == 4){
+					this.getReviewer();
+				}
+			}
+		}
 	};
 </script>
