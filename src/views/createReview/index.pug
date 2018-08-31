@@ -119,6 +119,7 @@
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
+														checked="checked"
 														)
 						.ju-toggle-review.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
@@ -546,29 +547,30 @@
 																		| &times;
 														.c-list--reviewer__item-select
 															.u-w-270
-																b-field.u-mb-20.u-w-100-full
-																multiselect(
-															    v-model="moreReviewerMember",
-															    deselect-label="Can't remove this value",
-															    track-by="name",
-															    label="name",
-															    placeholder="Staff",
-															    :show-labels="false"
-															    :options="moreReviewerSelect",
-															    :searchable="true",
-															    :allow-empty="false",
-															    :hide-selected="true"
-															    @open="setOptionReviewer(dataMember)"
-															    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
-															  )
+																.c-select.c-select--multiple.u-mb-10
+																	multiselect(
+																    v-model="moreReviewerMember",
+																    deselect-label="Can't remove this value",
+																    track-by="name",
+																    label="name",
+																    placeholder="Staff",
+																    :show-labels="false"
+																    :options="moreReviewerSelect",
+																    :searchable="true",
+																    :allow-empty="false",
+																    :hide-selected="true"
+																    @open="setOptionReviewer(dataMember)"
+																    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																  )
 																.field
-																	input.c-check__checkbox(
-																		type="checkbox" 
-																		v-model="dataMember.is_self_review"
-																		:true-value= "1"
-																		:false-value= "0"
-																		@change="selfReview(dataMember)"
-																		)
+																	span
+																		input.c-check__checkbox(
+																			type="checkbox" 
+																			v-model="dataMember.is_self_review"
+																			:true-value= "1"
+																			:false-value= "0"
+																			@change="selfReview(dataMember)"
+																			)
 																	span Self review
 																		b-tooltip(label="Lorem ipsum"
 																			type="is-dark"
@@ -576,12 +578,13 @@
 																		)
 																			img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 																.field
-																	input.c-check__checkbox(
-																		type="checkbox" 
-																		v-model="dataMember.is_sequent"
-																		:true-value= "1"
-																		:false-value= "0"
-																		)
+																	span
+																		input.c-check__checkbox(
+																			type="checkbox" 
+																			v-model="dataMember.is_sequent"
+																			:true-value= "1"
+																			:false-value= "0"
+																			)
 																	span Sequential review
 																		b-tooltip(label="Lorem ipsum"
 																			type="is-dark"
@@ -642,28 +645,29 @@
 																		| &times;
 														.c-list--reviewer__item-select
 															.u-w-270
-																b-field.u-mb-20.u-w-100-full
-																multiselect(
-															    v-model="moreReviewerMember",
-															    deselect-label="Can't remove this value",
-															    track-by="name",
-															    label="name",
-															    placeholder="Staff",
-															    :show-labels="false"
-															    :options="moreReviewerSelect",
-															    :searchable="true",
-															    :allow-empty="false",
-															    :hide-selected="true"
-															    @open="setOptionReviewer(dataMember)"
-															    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
-															  )
+																.c-select.c-select--multiple.u-mb-10
+																	multiselect(
+																    v-model="moreReviewerMember",
+																    deselect-label="Can't remove this value",
+																    track-by="name",
+																    label="name",
+																    placeholder="Staff",
+																    :show-labels="false"
+																    :options="moreReviewerSelect",
+																    :searchable="true",
+																    :allow-empty="false",
+																    :hide-selected="true"
+																    @open="setOptionReviewer(dataMember)"
+																    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																  )
 																.field
-																	input.c-check__checkbox(
-																		type="checkbox" 
-																		v-model="dataMember.is_self_review"
-																		:true-value= "1"
-																		:false-value= "0"
-																		)
+																	span
+																		input.c-check__checkbox(
+																			type="checkbox" 
+																			v-model="dataMember.is_self_review"
+																			:true-value= "1"
+																			:false-value= "0"
+																			)
 																	span Self review
 																		b-tooltip(label="Lorem ipsum"
 																			type="is-dark"
@@ -671,12 +675,13 @@
 																		)
 																			img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 																.field
-																	input.c-check__checkbox(
-																		type="checkbox" 
-																		v-model="dataMember.is_sequent"
-																		:true-value= "1"
-																		:false-value= "0"
-																		)
+																	span
+																		input.c-check__checkbox(
+																			type="checkbox" 
+																			v-model="dataMember.is_sequent"
+																			:true-value= "1"
+																			:false-value= "0"
+																			)
 																	span Sequential review
 																		b-tooltip(label="Lorem ipsum"
 																			type="is-dark"
@@ -737,28 +742,29 @@
 																| &times;
 												.c-list--reviewer__item-select
 													.u-w-270
-														b-field.u-mb-20.u-w-100-full
-														multiselect(
-													    v-model="moreReviewerMember",
-													    deselect-label="Can't remove this value",
-													    track-by="name",
-													    label="name",
-													    placeholder="Staff",
-													    :show-labels="false"
-													    :options="moreReviewerSelect",
-													    :searchable="true",
-													    :allow-empty="false",
-													    :hide-selected="true"
-													    @open="setOptionReviewer(dataMember)"
-													    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
-													  )
+														.c-select.c-select--multiple.u-mb-10
+															multiselect(
+														    v-model="moreReviewerMember",
+														    deselect-label="Can't remove this value",
+														    track-by="name",
+														    label="name",
+														    placeholder="Staff",
+														    :show-labels="false"
+														    :options="moreReviewerSelect",
+														    :searchable="true",
+														    :allow-empty="false",
+														    :hide-selected="true"
+														    @open="setOptionReviewer(dataMember)"
+														    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+														  )
 														.field
-															input.c-check__checkbox(
-																type="checkbox" 
-																v-model="dataMember.is_self_review"
-																:true-value= "1"
-																:false-value= "0"
-																)
+															span
+																input.c-check__checkbox(
+																	type="checkbox" 
+																	v-model="dataMember.is_self_review"
+																	:true-value= "1"
+																	:false-value= "0"
+																	)
 															span Self review
 																b-tooltip(label="Lorem ipsum"
 																	type="is-dark"
@@ -766,18 +772,19 @@
 																)
 																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 														.field
-															input.c-check__checkbox(
-																type="checkbox" 
-																v-model="dataMember.is_sequent"
-																:true-value= "1"
-																:false-value= "0"
-																)
+															span
+																input.c-check__checkbox(
+																	type="checkbox" 
+																	v-model="dataMember.is_sequent"
+																	:true-value= "1"
+																	:false-value= "0"
+																	)
 															span Sequential review
 																b-tooltip(label="Lorem ipsum"
 																	type="is-dark"
 																	position="is-top"
 																)
-																img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 
 				//- end step 4 ( Reviewer form )
 			.p-prfrm-create__list

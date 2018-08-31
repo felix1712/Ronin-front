@@ -16,6 +16,10 @@
 			resize: none;
     	overflow: hidden;
 		}
+		&:hover, &:active, &:focus {
+	    border-color: $v-blue-border;
+	    box-shadow: 0 0 4px 1px rgba(131,202,252,0.5);
+	  }
 	}
 	&.has-icons-left{
 		.icon{
@@ -30,11 +34,21 @@
 }
 
 .c-form-group{
-	span, div {
-    &.is-message {
-      color: $v-red;
-      font-family: "Avenir Next Medium";
-      font-size: 14px;
+	&.is-error {
+    input, textarea, .c-form-time {
+      border-color: $v-red;
+      &:hover, &:active, &:focus { border-color: $v-blue; }
+    }
+
+    // has a message required
+    span, div {
+      &.is-message {
+        color: $v-red;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
     }
   }
 }
