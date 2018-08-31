@@ -12,7 +12,6 @@
 				reviewStep: 1,
 				editReview: 0,
         reviewedMethod: 1,
-        reviewerMethod: 'direct-review',
 				selectedOrganiztionMethod: null,
 				selectedOrganiztionChecked: null,
 				selectedOrganization:[],
@@ -28,6 +27,7 @@
 				checkboxJobTitle: [],
 				user_ids: null,
 				getReviewerMember: {},
+				allSelectedMembers: [],
 				selectedMembers: [],
 				selectReviewedMembers: [],
 				moreReviewerMember: [],
@@ -85,12 +85,6 @@
 				this.reviewStep = 3;
 			},
 
-			changeMemberSelectedType() {
-				this.dataReview.members = [];
-				this.selectedMembers = [];
-				this.selectReviewedMembers = [];
-			},  
-
 			changeReviewDue() {
 				const getStartDate = new Date(this.dataReview.review_start_date);
 				const dueValue = parseInt(this.review.deadline);
@@ -131,6 +125,17 @@
 					return item.user_id !== intValue;
 				});
 			},
+
+			changeMemberSelectedType(e) {
+				if(e.target.value != 1){
+					this.dataReview.members = [];
+					this.selectedMembers = [];
+					this.selectReviewedMembers = [];
+				} else {
+					this.selectedMembers = this.allSelectedMember;
+					this.addMember();
+				}
+			},  
 
 			checkboxMember(e) {
 				if (e.target.checked === true) {
@@ -215,6 +220,10 @@
 		    this.moreReviewerMember = [];
 			},
 
+			changeReviewMehtod(e) {
+				this.getReviewer();
+			},
+
 			validateBeforeSubmit() {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
@@ -288,6 +297,12 @@
 					}
 				})
 
+				this.allSelectedMember = response.data.contents.users.map(function(member){
+					return member.id
+				})
+				this.selectedMembers = this.allSelectedMember;
+				this.addMember();
+
 				this.moreReviewerSelect = response.data.contents.users.map(function(member){
 					return{
 						id: member.id,
@@ -318,7 +333,7 @@
 		},
 
 		watch: {
-			reviewStep(){
+			reviewStep() {
 				if(this.reviewStep == 4){
 					this.getReviewer();
 				}
