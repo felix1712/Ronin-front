@@ -28,3 +28,13 @@
 		}
 	}
 }
+
+.c-form-group{
+	span, div {
+    &.is-message {
+      color: $v-red;
+      font-family: "Avenir Next Medium";
+      font-size: 14px;
+    }
+  }
+}

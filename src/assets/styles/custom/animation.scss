@@ -1,5 +1,6 @@
-// .ju-toggle-review{
-// 	height: 0;
-// 	overflow: hidden;
-// 	transition: all .5s ease-in-out;
-// }
+.c-slideToggle-animation{
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	max-height: 9999px;
+}
