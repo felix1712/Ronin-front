@@ -12,7 +12,6 @@ import Multiselect from 'vue-multiselect'
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
 // If you would like custom styling of the toastr the css file can be replaced
 import 'vue-multiselect/dist/vue-multiselect.min.css'
-import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
 
 Vue.use(VueCookie)
 Vue.use(Buefy)

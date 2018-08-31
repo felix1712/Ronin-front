@@ -223,6 +223,19 @@
 				this.getReviewer();
 			},
 
+			selfReview(data){
+				if(event.target.checked == true){
+					const dataSelfReviewer = this.employeeMember.filter(function(e){
+						return e.id == data.user_id
+					})
+					Array.prototype.unshift.apply(data.reviewers,dataSelfReviewer);
+				} else {
+					data.reviewers = data.reviewers.filter(function(item){
+						return item.id != data.user_id
+					})
+				}
+			},
+
 			validateBeforeSubmit() {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
@@ -267,15 +280,15 @@
 
 			 	this.dataReview.members.forEach(function(data){
 					if(data.reviewers.length > 0){
-						var result = data.reviewers.map(item => item.id);
+						const result = data.reviewers.map(item => item.id);
 						data.reviewers = result;
 						return data;
 					}
-				})
+				});
 
 				service.post('createreview',{
-					name: this.dataReview.titles,
 					description: this.dataReview.description,
+					name: this.dataReview.titles,
 					is_repeat: this.dataReview.is_repeat,
 					repeat_every: this.dataReview.repeat_every,
 					review_start_date: this.dataReview.review_start_date,
@@ -287,7 +300,6 @@
 				.then(response => {
 					// console.log(response.data);
 					this.$router.push('/');
-					this.$toastr('success', 'Review has been created');
 				})
 				.catch(e => {
 					console.log(e);
