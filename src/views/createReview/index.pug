@@ -91,10 +91,10 @@
 											hideSelected=true
 										)
 										.c-select__multiple.u-mt-10
-											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") 
+											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked")
 												span {{selectedOrganiztion.name}}
 												span
-													button.delete.is-small
+													a.delete.is-small(@click="deleteOrganizationSelect(selectedOrganiztion.id)")
 							.c-row.u-mx-0(v-for="organizationMember in selectedOrganizationMember")
 								template(v-for="selectedOrganiztionOption in selectedOrganiztionChecked" v-if="selectedOrganiztionOption.id == organizationMember.id")
 									nav.level.u-w-100-full
@@ -103,9 +103,9 @@
 												label.c-smb-18 {{organizationMember.name}}
 										.level-right
 											.level-item
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneOrganization(organizationMember.id)")
 													| Select everyone
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneOrganization(organizationMember.id)")
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
@@ -144,7 +144,7 @@
 										)
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
-												button.delete.is-small
+												a.delete.is-small(@click="deleteJobTitleSelect(selectedJobTitles.id)")
 							.c-row.u-mx-0(v-for="jobTitleMember in selectedJobTitleMember")
 								template(v-for="selectedJobTitleOption in selectedJobTitleChecked" v-if="selectedJobTitleOption.id == jobTitleMember.id")
 									nav.level.u-w-100-full
@@ -154,9 +154,9 @@
 												//- span.u-ml-20.u-ft-reg {{employeeMember.length}}
 										.level-right
 											.level-item
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneJobTitle(jobTitleMember.id)")
 													| Select everyone
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")

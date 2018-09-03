@@ -72,6 +72,100 @@
       	this.addMember();
       },
 
+      deleteOrganizationSelect(id){
+      	this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(function(data){
+					return data.id != id
+				})
+
+				let memberOrg = "";
+				memberOrg = this.employeeMember.filter(function(e){
+					return e.organization.id == id
+				})
+
+				memberOrg = memberOrg.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberOrg.indexOf( el ) < 0;
+				});
+      },
+
+      deleteJobTitleSelect(id){
+      	this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(function(data){
+					return data.id != id
+				})
+
+      	let memberJobTitle = "";
+				memberJobTitle = this.employeeMember.filter(function(e){
+					return e.job_position.id == id
+				})
+
+				memberJobTitle = memberJobTitle.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberJobTitle.indexOf( el ) < 0;
+				});
+      },
+
+      selectEveryoneOrganization(data) {
+      	let memberOrg = "";
+				memberOrg = this.employeeMember.filter(function(e){
+					return e.organization.id == data
+				})
+
+				memberOrg.map(function(item){
+					if(this.selectedMembers.includes(item.id) == false){
+						this.selectedMembers.push(item.id);
+					}
+				}.bind(this))
+      },
+
+      unselectEveryoneOrganization(data) {
+      	let memberOrg = "";
+				memberOrg = this.employeeMember.filter(function(e){
+					return e.organization.id == data
+				})
+
+				memberOrg = memberOrg.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberOrg.indexOf( el ) < 0;
+				});
+      },
+
+      selectEveryoneJobTitle(data) {
+      	let memberJobTitle = "";
+				memberJobTitle = this.employeeMember.filter(function(e){
+					return e.job_position.id == data
+				})
+
+				memberJobTitle.map(function(item){
+					if(this.selectedMembers.includes(item.id) == false){
+						this.selectedMembers.push(item.id);
+					}
+				}.bind(this))
+      },
+
+      unselectEveryoneJobTitle(data) {
+      	let memberJobTitle = "";
+				memberJobTitle = this.employeeMember.filter(function(e){
+					return e.job_position.id == data
+				})
+
+				memberJobTitle = memberJobTitle.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberJobTitle.indexOf( el ) < 0;
+				});
+      },
+
 			editReviewStep1() {
 				this.reviewStep = 1;
 			},
