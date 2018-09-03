@@ -21,9 +21,12 @@
 						.c-row.u-cpointer
 							.c-col-6.jc-tooltip-mark.u-mb-20
 								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('Title') }")
-									.field
-										label.label Review title 
+									.field.c-clearfix
+										.u-pull
+											label.label Review title 
 											.u-cl-red.u-dib *
+										.u-push
+											span.u-cl-slate 50
 										.control
 											input.input(
 												type="text" 
