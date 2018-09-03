@@ -77,6 +77,9 @@
 						.ju-toggle-review.review-byOrganization.c-slideToggle-animation(:class="reviewedMethod != 2 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
 								.c-col-10.u-pl-0
+									.field
+										label.label Choose department 
+											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
 										multiselect.u-w-300(
 											v-model="selectedOrganiztionChecked" 
@@ -124,6 +127,9 @@
 						.ju-toggle-review.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
 							.c-row.u-mb-10.u-mx-0
 								.c-col-10.u-pl-0
+									.field
+										label.label Choose job title
+											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
 										multiselect.u-w-300(
 											v-model="selectedJobTitleChecked" 
@@ -170,6 +176,9 @@
 														)
 						.ju-toggle-review.review-byStaff.c-slideToggle-animation(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 							.c-row.u-mx-0
+								.field
+									label.label Choose staff 
+										.u-cl-red.u-dib *
 								nav.level.u-w-100-full
 									.level-left
 										.level-item
