@@ -31,10 +31,10 @@
 											input.input(
 												type="text" 
 												v-model="dataReview.titles"
-												name="Title"
+												name="title"
 												v-validate="'required'"
 												maxlength="50")
-											span.is-message(v-show="errors.has('Title')") {{ errors.first('Title') }}
+											span.is-message(v-show="errors.has('title')") {{ errors.first('title') }}
 
 						.c-row.u-cpointer.jc-tooltip(data-content="Input description about this performance review cycle.", data-pos="custom-row")
 							.c-col-6.jc-tooltip-mark.u-mb-20
@@ -207,13 +207,16 @@
 												)
 									.level-right
 										.level-item
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectSpecificStaff(selectReviewedMembers)")
 												| Select everyone
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20
+											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectSpecificStaff()")
 												| Select no one
 								.c-list.c-list--staff.u-mt-10
 									.c-list--staff__item(v-for="employeeList in selectReviewedMembers")
-										label(:for="employeeList.id")
+										label(
+										:for="employeeList.id"
+										:class="selectedMembers.includes(employeeList.id) == true ? '':'not-checked'"
+											)
 											.c-avatar-group
 												figure.c-avatar.c-avatar--sm.c-avatar--circle
 													img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")

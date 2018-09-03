@@ -207,6 +207,23 @@
 				}.bind(this))
       },
 
+      selectSpecificStaff(data) {
+      	let getIdSpecificStaff = "";
+      	getIdSpecificStaff = data.map(function(item){
+      		return item.id
+      	});
+
+      	getIdSpecificStaff.map(function(item){
+      		if(this.selectedMembers.includes(item) == false){
+      			this.selectedMembers.push(item)
+      		}
+      	}.bind(this))
+      },
+
+      unselectSpecificStaff() {
+      	this.selectedMembers = [];
+      },
+
 			editReviewStep1() {
 				this.reviewStep = 1;
 			},
