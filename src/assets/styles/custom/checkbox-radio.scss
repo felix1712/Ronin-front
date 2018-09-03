@@ -10,6 +10,7 @@
 				border: 1px solid $v-smoke;
 				width: 15px;
 				height: 15px;
+				margin-top: -3px;
 				&:before{
 					background-color: $v-white;
 					width: 7px;
@@ -46,6 +47,9 @@
 					}
 				}
 			}
+		}
+		.control-label{
+			line-height: 15px;
 		}
 	}
 }

@@ -39,16 +39,15 @@
       border-color: $v-red;
       &:hover, &:active, &:focus { border-color: $v-blue; }
     }
+  }
+}
 
-    // has a message required
-    span, div {
-      &.is-message {
-        color: $v-red;
-        font-size: 14px;
-        font-weight: 600;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-    }
+span{
+  &.is-message {
+    color: $v-red;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }

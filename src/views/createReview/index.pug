@@ -23,8 +23,8 @@
 								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('Title') }")
 									.field.c-clearfix
 										.u-pull
-											label.label Review title 
-											.u-cl-red.u-dib *
+											label.label Review title
+												.u-cl-red.u-dib *
 										.u-push
 											span.u-cl-slate {{charactersRemaining}}
 										.control
@@ -47,7 +47,7 @@
 						.c-row.u-cpointer.jc-tooltip(data-content="Filtering staff to be reviewed.", data-pos="custom-row")
 							.c-col-6.jc-tooltip-mark.u-mb-20
 								.field
-									label Staff to be reviewed 
+									label Staff to be reviewed
 										.u-cl-red.u-dib *
 								.block.u-mb-10
 									b-radio(name="radio-reviewee"
@@ -81,7 +81,7 @@
 							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
-										label.label Choose department 
+										label.label Choose department
 											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
 										multiselect.u-w-300(
@@ -107,9 +107,9 @@
 												label.c-smb-18 {{organizationMember.name}}
 										.level-right
 											.level-item
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneOrganization(organizationMember.id)")
+												a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneOrganization(organizationMember.id)")
 													| Select everyone
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneOrganization(organizationMember.id)")
+												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneOrganization(organizationMember.id)")
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
@@ -161,9 +161,9 @@
 												//- span.u-ml-20.u-ft-reg {{employeeMember.length}}
 										.level-right
 											.level-item
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneJobTitle(jobTitleMember.id)")
+												a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneJobTitle(jobTitleMember.id)")
 													| Select everyone
-												a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
+												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
@@ -207,9 +207,9 @@
 												)
 									.level-right
 										.level-item
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectSpecificStaff(selectReviewedMembers)")
+											a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectSpecificStaff(selectReviewedMembers)")
 												| Select everyone
-											a.c-btn.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectSpecificStaff()")
+											a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectSpecificStaff()")
 												| Select no one
 								.c-list.c-list--staff.u-mt-10
 									.c-list--staff__item(v-for="employeeList in selectReviewedMembers")
@@ -824,4 +824,4 @@
 										.level-right
 											.level-item
 												a.c-btn.c-btn--ghost.c-btn--sm(data-type="confirmation") Cancel
-												a.c-btn.button.is-primary(:class="reviewStep != 4 ? 'is-disabled':''" @click="submitFormReview") Save and Publish
+												button.c-btn.button.is-primary(:class="reviewStep != 4 ? 'is-disabled':''" @click="submitFormReview") Save and Publish

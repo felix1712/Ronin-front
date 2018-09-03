@@ -47,16 +47,17 @@ a{
 	font-size: 1.5rem;
 	text-decoration: none;
 	font-family: "Avenir Next Regular";
-	min-height: 36px;
-	&:hover{
+	&:hover, &:active, &:focus{
 		text-decoration: none;
 		background: $v-ui-background;
+		box-shadow: none !important;
 	}
 	&.is-primary{
 		background-color: $v-green;
-		&:hover{
+		&:hover, &:active, &:focus{
 			background-color: $v-green-dark;
 			text-decoration: none;
+			box-shadow: none;
 		}
 	}
 	&.is-light{
