@@ -206,10 +206,6 @@
 				}.bind(this))
       },
 
-      wow() {
-      	this.selectedMembers = 70333
-      },
-
 			editReviewStep1() {
 				this.reviewStep = 1;
 			},
