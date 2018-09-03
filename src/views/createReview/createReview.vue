@@ -11,6 +11,7 @@
 			return {
 				reviewStep: 1,
 				editReview: 0,
+				maxCharacters: 50,
         reviewedMethod: 1,
 				selectedOrganiztionMethod: null,
 				selectedOrganiztionChecked: null,
@@ -33,7 +34,7 @@
 				moreReviewerMember: [],
 				moreReviewerSelect:[],
 				dataReview: {
-					titles: null,
+					titles: '',
 					description: null,
 					members: [],
 					//form questionare
@@ -514,6 +515,12 @@
 				if(this.reviewStep == 4){
 					this.getReviewer();
 				}
+			},
+		},
+
+		computed: {
+			charactersRemaining: function () {
+				return this.maxCharacters - this.dataReview.titles.length;
 			},
 		},
 	};
