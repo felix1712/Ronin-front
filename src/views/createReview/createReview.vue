@@ -91,7 +91,9 @@
 				})
 
 				memberOrg.map(function(item){
-					this.selectedMembers.push(item.id);
+					if(this.selectedMembers.includes(item.id) == false){
+						this.selectedMembers.push(item.id);
+					}
 				}.bind(this))
       },
 
@@ -117,7 +119,9 @@
 				})
 
 				memberJobTitle.map(function(item){
-					this.selectedMembers.push(item.id);
+					if(this.selectedMembers.includes(item.id) == false){
+						this.selectedMembers.push(item.id);
+					}
 				}.bind(this))
       },
 
