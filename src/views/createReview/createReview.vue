@@ -84,6 +84,58 @@
 				})
       },
 
+      selectEveryoneOrganization(data) {
+      	let memberOrg = "";
+				memberOrg = this.employeeMember.filter(function(e){
+					return e.organization.id == data
+				})
+
+				memberOrg.map(function(item){
+					this.selectedMembers.push(item.id);
+				}.bind(this))
+      },
+
+      unselectEveryoneOrganization(data) {
+      	let memberOrg = "";
+				memberOrg = this.employeeMember.filter(function(e){
+					return e.organization.id == data
+				})
+
+				memberOrg = memberOrg.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberOrg.indexOf( el ) < 0;
+				});
+      },
+
+      selectEveryoneJobTitle(data) {
+      	let memberJobTitle = "";
+				memberJobTitle = this.employeeMember.filter(function(e){
+					return e.job_position.id == data
+				})
+
+				memberJobTitle.map(function(item){
+					this.selectedMembers.push(item.id);
+				}.bind(this))
+      },
+
+      unselectEveryoneJobTitle(data) {
+      	let memberJobTitle = "";
+				memberJobTitle = this.employeeMember.filter(function(e){
+					return e.job_position.id == data
+				})
+
+				memberJobTitle = memberJobTitle.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberJobTitle.indexOf( el ) < 0;
+				});
+      },
+
 			editReviewStep1() {
 				this.reviewStep = 1;
 			},
