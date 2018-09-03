@@ -110,7 +110,10 @@
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
-											label(:for="employeeList.id")
+											label(
+												:for="employeeList.id"
+												:class="selectedMembers.includes(employeeList.id) == true ? '':'not-checked'"
+												)
 												.c-avatar-group
 													figure.c-avatar.c-avatar--sm.c-avatar--circle
 														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
@@ -125,7 +128,6 @@
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
-														checked="checked"
 														)
 						.ju-toggle-review.u-mb-30.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
 							.c-row.u-mb-25.u-mx-0
@@ -162,7 +164,10 @@
 													| Select no one
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
-											label(:for="employeeList.id")
+											label(
+												:for="employeeList.id"
+												:class="selectedMembers.includes(employeeList.id) == true ? '':'not-checked'"
+												)
 												.c-avatar-group
 													figure.c-avatar.c-avatar--sm.c-avatar--circle
 														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
