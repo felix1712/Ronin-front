@@ -76,12 +76,38 @@
       	this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(function(data){
 					return data.id != id
 				})
+
+				let memberOrg = "";
+				memberOrg = this.employeeMember.filter(function(e){
+					return e.organization.id == id
+				})
+
+				memberOrg = memberOrg.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberOrg.indexOf( el ) < 0;
+				});
       },
 
       deleteJobTitleSelect(id){
       	this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(function(data){
 					return data.id != id
 				})
+
+      	let memberJobTitle = "";
+				memberJobTitle = this.employeeMember.filter(function(e){
+					return e.job_position.id == id
+				})
+
+				memberJobTitle = memberJobTitle.map(function(data){
+					return data.id
+				})
+
+				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				  return memberJobTitle.indexOf( el ) < 0;
+				});
       },
 
       selectEveryoneOrganization(data) {
