@@ -74,8 +74,8 @@
 										@change.native="changeMemberSelectedType($event)"
 									)
 										| Specific staff
-						.ju-toggle-review.review-byOrganization.c-slideToggle-animation(:class="reviewedMethod != 2 ? 'u-dn': '' ")
-							.c-row.u-mb-10.u-mx-0
+						.ju-toggle-review.u-mb-30.review-byOrganization.c-slideToggle-animation(:class="reviewedMethod != 2 ? 'u-dn': '' ")
+							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
 										label.label Choose department 
@@ -91,8 +91,10 @@
 											hideSelected=true
 										)
 										.c-select__multiple.u-mt-10
-											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") {{selectedOrganiztion.name}}
-												button.delete.is-small
+											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked") 
+												span {{selectedOrganiztion.name}}
+												span
+													button.delete.is-small
 							.c-row.u-mx-0(v-for="organizationMember in selectedOrganizationMember")
 								template(v-for="selectedOrganiztionOption in selectedOrganiztionChecked" v-if="selectedOrganiztionOption.id == organizationMember.id")
 									nav.level.u-w-100-full
@@ -124,8 +126,8 @@
 														@change="checkboxMember($event)"
 														checked="checked"
 														)
-						.ju-toggle-review.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
-							.c-row.u-mb-10.u-mx-0
+						.ju-toggle-review.u-mb-30.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
+							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
 										label.label Choose job title
@@ -174,8 +176,8 @@
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
 														)
-						.ju-toggle-review.review-byStaff.c-slideToggle-animation(:class="reviewedMethod != 4 ? 'u-dn': '' ")
-							.c-row.u-mx-0
+						.ju-toggle-review.u-mb-30.review-byStaff.c-slideToggle-animation(:class="reviewedMethod != 4 ? 'u-dn': '' ")
+							.c-row.u-mb-25.u-mx-0
 								.field
 									label.label Choose staff 
 										.u-cl-red.u-dib *

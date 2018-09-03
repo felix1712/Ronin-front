@@ -99,6 +99,10 @@ input, textarea {
 .tag{
 	&:not(body){
 		font-size: 1.5rem;
+		line-height: 23px;
+		.delete{
+			margin-top: 3px;
+		}
 	}
 	&.is-blue{
 		background-color: $v-blue;
