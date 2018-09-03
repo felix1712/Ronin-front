@@ -72,6 +72,18 @@
       	this.addMember();
       },
 
+      deleteOrganizationSelect(id){
+      	this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(function(data){
+					return data.id != id
+				})
+      },
+
+      deleteJobTitleSelect(id){
+      	this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(function(data){
+					return data.id != id
+				})
+      },
+
 			editReviewStep1() {
 				this.reviewStep = 1;
 			},
