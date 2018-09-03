@@ -6,6 +6,7 @@ import store from './store';
 //Plugins
 import VueCookie from 'vue-cookie';
 import VeeValidate from 'vee-validate';
+import { Validator } from 'vee-validate';
 import Buefy from 'buefy'
 import Multiselect from 'vue-multiselect'
 
@@ -19,6 +20,24 @@ Vue.component('multiselect', Multiselect)
 Vue.use(VeeValidate);
 Vue.use(require('vue-moment'));
 Vue.config.productionTip = false;
+
+Validator.localize({
+  en: {
+    custom: {
+      // the field name
+      email: {
+        // the rules
+        required: "Please enter your email address",
+        email: "Your email does not look right"
+      },
+      title: {
+      	required: "This field is mandatory.",
+      	title: "This field is mandatory."
+      }
+    }
+  }
+});
+
 
 new Vue({
   router,

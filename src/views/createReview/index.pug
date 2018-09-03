@@ -32,10 +32,10 @@
 											input.input(
 												type="text" 
 												v-model="dataReview.titles"
-												name="Title"
+												name="title"
 												v-validate="'required'"
 												maxlength="50")
-											span.is-message(v-show="errors.has('Title')") {{ errors.first('Title') }}
+											span.is-message(v-show="errors.has('title')") {{ errors.first('title') }}
 
 						.c-row.u-cpointer.jc-tooltip(data-content="Input description about this performance review cycle.", data-pos="custom-row")
 							.c-col-6.jc-tooltip-mark.u-mb-20
