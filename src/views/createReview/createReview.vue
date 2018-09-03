@@ -166,6 +166,50 @@
 				});
       },
 
+      selectOrganizationChecked(data) {
+      	let getIdOrg = "";
+      	getIdOrg = data.map(function(item){
+      		return item.id
+      	});
+
+      	getIdOrg = getIdOrg[getIdOrg.length -1];
+
+      	let memberOrg = "";
+				memberOrg = this.employeeMember.filter(function(e){
+					return e.organization.id == getIdOrg
+				})
+
+				memberOrg.map(function(item){
+					if(this.selectedMembers.includes(item.id) == false){
+						this.selectedMembers.push(item.id);
+					}
+				}.bind(this))
+      },
+
+      selectJobTitleChecked(data) {
+      	let getIdJobTitle = "";
+      	getIdJobTitle = data.map(function(item){
+      		return item.id
+      	});
+
+      	getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
+
+      	let memberJobTitle = "";
+				memberJobTitle = this.employeeMember.filter(function(e){
+					return e.job_position.id == getIdJobTitle
+				})
+
+				memberJobTitle.map(function(item){
+					if(this.selectedMembers.includes(item.id) == false){
+						this.selectedMembers.push(item.id);
+					}
+				}.bind(this))
+      },
+
+      wow() {
+      	this.selectedMembers = 70333
+      },
+
 			editReviewStep1() {
 				this.reviewStep = 1;
 			},

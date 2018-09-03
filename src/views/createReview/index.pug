@@ -89,6 +89,7 @@
 											label="name"
 											placeholder="Department"
 											hideSelected=true
+											@close="selectOrganizationChecked(selectedOrganiztionChecked)"
 										)
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked")
@@ -141,6 +142,7 @@
 											label="name"
 											placeholder="Job Title"
 											hideSelected=true
+											@close="selectJobTitleChecked(selectedJobTitleChecked)"
 										)
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
