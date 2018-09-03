@@ -1,11 +1,16 @@
 a{
 	&.button{
 		font-size: 1.5rem;
+		font-family: "Avenir Next Regular";
 	}
 }
 
 .c-btn{
 	text-align: center;
+	font-family: "Avenir Next Regular";
+	line-height: 24px;
+	padding: 6px 30px;
+	min-height: 36px;
 	&--ghost{
 		color: $v-slate;
 		&:hover, &:active, &:focus {
@@ -41,6 +46,8 @@ a{
 .button{
 	font-size: 1.5rem;
 	text-decoration: none;
+	font-family: "Avenir Next Regular";
+	min-height: 36px;
 	&:hover{
 		text-decoration: none;
 		background: $v-ui-background;

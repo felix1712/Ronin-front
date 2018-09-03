@@ -8,8 +8,12 @@
 				border-color: $v-ui-border;
 				margin-bottom: 0;
 				border: 1px solid $v-smoke;
+				width: 15px;
+				height: 15px;
 				&:before{
 					background-color: $v-white;
+					width: 7px;
+					height: 7px;
 				}
 			}
 			&:checked{
@@ -26,6 +30,20 @@
 					border-color: $v-ui-border;
 					margin-bottom: 0;
 					border: 1px solid $v-smoke;
+				}
+			}
+		}
+		&:focus{
+			input[type=radio]{
+				~ .check{
+					box-shadow: none;
+				}
+			}
+			input[type=radio]{
+				&:checked{
+					~ .check{
+						box-shadow: none;
+					}
 				}
 			}
 		}
