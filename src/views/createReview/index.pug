@@ -20,7 +20,7 @@
 					.p-prfrm-create__list-contents.u-mt-30
 						.c-row.u-cpointer
 							.c-col-6.jc-tooltip-mark.u-mb-20
-								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('Title') }")
+								.c-form-group.with-count.jc-inputlimit(:class="{'is-error': errors.has('title') }")
 									.field.c-clearfix
 										.u-pull
 											label.label Review title
@@ -62,7 +62,7 @@
 										v-model="reviewedMethod"
 										@change.native="changeMemberSelectedType($event)"
 									)
-										| By departement
+										| By department
 								.block.u-mb-10
 									b-radio(name="radio-reviewee"
 										native-value="3"
@@ -279,7 +279,7 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
@@ -305,7 +305,7 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
@@ -331,7 +331,7 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
@@ -357,7 +357,7 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
