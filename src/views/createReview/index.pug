@@ -232,7 +232,7 @@
 													span(slot="noResult")
 														| No results found
 												span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
-									.level-right
+									.level-right(v-if="selectReviewedMembers.length > 0")
 										.level-item
 											a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectSpecificStaff(selectReviewedMembers)")
 												| Select everyone
@@ -303,21 +303,24 @@
 												nav.level
 													.level-left
 														.level-item
-															a(href="")
+															router-link(
+																:to="{ name: 'PreviewTemplate', params: template.uuid }"
+																target="_blank"
+																)
 																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
 															a.u-ml-20(href="")
 																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 0")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
 																	p.c-smb-15 Are you sure to delete this template?
 																	.u-mt-40
 																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5 No
-																		a.c-btn.button.is-danger.u-mx-5(type='submit') Yes
+																		a.c-btn.button.is-danger.u-mx-5(@click.prevent="deleteTemplate(template.uuid)") Yes
 
 						//- end step 2 ( Questionare form )
 						//- button save
