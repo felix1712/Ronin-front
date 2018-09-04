@@ -304,14 +304,14 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 0")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
 																	p.c-smb-15 Are you sure to delete this template?
 																	.u-mt-40
 																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5 No
-																		a.c-btn.button.is-danger.u-mx-5(type='submit') Yes
+																		a.c-btn.button.is-danger.u-mx-5(@click.prevent="deleteTemplate(template.uuid)") Yes
 
 						//- end step 2 ( Questionare form )
 						//- button save

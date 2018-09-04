@@ -65,7 +65,20 @@
 		methods: {
       dropDownPosition(e){
         e.target.offsetParent.lastChild.style.position="absolute"
-        e.target.offsetParent.lastChild.style.left=-e.clientY/3+'px'
+        e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
+      },
+
+      deleteTemplate(data){
+      	service.delete('templates/'+ data)
+				.then(response => {
+					this.$toast.open({
+            message: response.data.contents,
+            type: 'is-success'
+	        })
+				})
+				.catch(e =>{
+					console.log(e);
+				});
       },
 
       reviewedSelectMemberId() {
