@@ -8,14 +8,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    padding-top: 90px;
+    padding: 90px 20px;
 
     @media screen and (min-width: $v-lg) {
-        padding-top: 150px;
+        padding: 150px 20px;
     }
     @media screen and (max-width: $v-sm) {
-        padding-top: 70px;
+        padding: 70px 20px;
     }
     
     a {
