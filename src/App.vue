@@ -1,11 +1,13 @@
 <template lang="pug">
 	#app(:class="hasLoggedIn ?'u-bg-snow':''")
 		Header(v-if="hasLoggedIn")
-		SecondHeader(v-if="!hasLoggedIn")
-		.p-prfrm-wrapper
+		.p-prfrm-wrapper(v-if="hasLoggedIn")
 			.p-prfrm-content.u-hsm-up.u-tac.u-py-90
 				h1.c-smb-18.u-mb-40 Halaman tidak tersedia dalam ukuran mobile.
 				<!-- img(src="/assets/images/pages/icon-goals.svg", alt="") -->
+			router-view
+		.p-prfrm-entry(v-if="!hasLoggedIn")
+			SecondHeader
 			router-view
 		Footer(v-if="hasLoggedIn")
 
