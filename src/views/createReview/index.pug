@@ -97,6 +97,9 @@
 											hideSelected=true
 											@close="selectOrganizationChecked(selectedOrganiztionChecked)"
 										)
+											template(slot="tag", slot-scope="props")
+												span.custom__tag
+													| Department
 										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked")
@@ -156,6 +159,10 @@
 											hideSelected=true
 											@close="selectJobTitleChecked(selectedJobTitleChecked)"
 										)
+											template(slot="tag", slot-scope="props")
+												span.custom__tag
+													| Job Title
+										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
 												a.delete.is-small(@click="deleteJobTitleSelect(selectedJobTitles.id)")
@@ -215,6 +222,10 @@
 													hideSelected=true
 													@input="reviewedSelectMemberId",
 												)
+													template(slot="tag", slot-scope="props")
+														span.custom__tag
+															| Staff
+												span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 									.level-right
 										.level-item
 											a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectSpecificStaff(selectReviewedMembers)")
@@ -583,19 +594,19 @@
 															.u-w-270
 																.c-select.c-select--multiple.u-mb-10
 																	multiselect(
-																    v-model="moreReviewerMember",
-																    deselect-label="Can't remove this value",
-																    track-by="name",
-																    label="name",
-																    placeholder="Staff",
-																    :show-labels="false"
-																    :options="moreReviewerSelect",
-																    :searchable="true",
-																    :allow-empty="false",
-																    :hide-selected="true"
-																    @open="setOptionReviewer(dataMember)"
-																    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
-																  )
+																		v-model="moreReviewerMember",
+																		deselect-label="Can't remove this value",
+																		track-by="name",
+																		label="name",
+																		placeholder="Staff",
+																		:show-labels="false"
+																		:options="moreReviewerSelect",
+																		:searchable="true",
+																		:allow-empty="false",
+																		:hide-selected="true"
+																		@open="setOptionReviewer(dataMember)"
+																		@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																	)
 																.field
 																	span
 																		input.c-check__checkbox(
@@ -681,19 +692,19 @@
 															.u-w-270
 																.c-select.c-select--multiple.u-mb-10
 																	multiselect(
-																    v-model="moreReviewerMember",
-																    deselect-label="Can't remove this value",
-																    track-by="name",
-																    label="name",
-																    placeholder="Staff",
-																    :show-labels="false"
-																    :options="moreReviewerSelect",
-																    :searchable="true",
-																    :allow-empty="false",
-																    :hide-selected="true"
-																    @open="setOptionReviewer(dataMember)"
-																    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
-																  )
+																		v-model="moreReviewerMember",
+																		deselect-label="Can't remove this value",
+																		track-by="name",
+																		label="name",
+																		placeholder="Staff",
+																		:show-labels="false"
+																		:options="moreReviewerSelect",
+																		:searchable="true",
+																		:allow-empty="false",
+																		:hide-selected="true"
+																		@open="setOptionReviewer(dataMember)"
+																		@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																	)
 																.field
 																	span
 																		input.c-check__checkbox(
@@ -778,19 +789,19 @@
 													.u-w-270
 														.c-select.c-select--multiple.u-mb-10
 															multiselect(
-														    v-model="moreReviewerMember",
-														    deselect-label="Can't remove this value",
-														    track-by="name",
-														    label="name",
-														    placeholder="Staff",
-														    :show-labels="false"
-														    :options="moreReviewerSelect",
-														    :searchable="true",
-														    :allow-empty="false",
-														    :hide-selected="true"
-														    @open="setOptionReviewer(dataMember)"
-														    @close="addReviewer(dataMember.reviewers, moreReviewerMember)"
-														  )
+																v-model="moreReviewerMember",
+																deselect-label="Can't remove this value",
+																track-by="name",
+																label="name",
+																placeholder="Staff",
+																:show-labels="false"
+																:options="moreReviewerSelect",
+																:searchable="true",
+																:allow-empty="false",
+																:hide-selected="true"
+																@open="setOptionReviewer(dataMember)"
+																@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+															)
 														.field
 															span
 																input.c-check__checkbox(
