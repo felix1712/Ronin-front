@@ -232,7 +232,7 @@
 													span(slot="noResult")
 														| No results found
 												span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
-									.level-right
+									.level-right(v-if="selectReviewedMembers.length > 0")
 										.level-item
 											a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectSpecificStaff(selectReviewedMembers)")
 												| Select everyone
@@ -304,7 +304,7 @@
 													.level-left
 														.level-item
 															router-link(
-																:to="{ name: 'PreviewTemplate'} "
+																:to="{ name: 'PreviewTemplate', params: template.uuid }"
 																target="_blank"
 																)
 																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
