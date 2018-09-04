@@ -11,6 +11,7 @@
 			return {
 				reviewStep: 1,
 				editReview: 0,
+				isTemplateReview: false,
 				maxCharacters: 50,
         reviewedMethod: 1,
 				selectedOrganiztionMethod: null,

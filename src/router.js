@@ -6,6 +6,7 @@ import createReview from './views/createReview/createReview.vue';
 import Company from './views/company/Company.vue';
 import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
+import PreviewTemplate from './components/PreviewTemplate/PreviewTemplate.vue';
 
 
 Vue.use(Router);
@@ -51,6 +52,11 @@ export default new Router({
       path: '/company-review-summary',
       name: 'CompanyReviewSummary',
       component: CompanyReviewSummary,
+    },
+    {
+      path: '/preview-template',
+      name: 'PreviewTemplate',
+      component: PreviewTemplate,
     },
   ],
 });
