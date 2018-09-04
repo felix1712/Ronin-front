@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import Home from './views/home/home.vue';
 import auth from './views/auth/auth.vue';
 import SignUp from './views/SignUp/SignUp.vue';
+import SignIn from './views/SignIn/SignIn.vue';
+import ForgotPassword from './views/ForgotPassword/ForgotPassword.vue';
 import createReview from './views/createReview/createReview.vue';
 import Company from './views/company/Company.vue';
 import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
@@ -48,6 +50,16 @@ export default new Router({
 			path: '/sign-up',
 			name: 'SignUp',
 			component: SignUp,
+		},
+		{
+			path: '/sign-in',
+			name: 'SignIn',
+			component: SignIn,
+		},
+		{
+			path: '/forgot-password',
+			name: 'ForgotPassword',
+			component: ForgotPassword,
 		},
 		{
 			path: '/company-review-detail',

@@ -25,6 +25,22 @@
         }
     }
 
+    button {
+        padding: 0;
+        border: none;
+        color: $v-green;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        font-family: "Avenir Next Medium";
+        font-size: 1.5rem;
+        &:hover, &:active, &:focus {
+            color: $v-green-dark;
+            text-decoration: underline;
+            box-shadow: none;
+        }
+    }
+
     &__header {
         position: absolute;
         top: 0;
@@ -56,6 +72,9 @@
                 }
                 &:focus {
                     border: 2px solid $v-blue;
+                }
+                &:-webkit-autofill{
+                    border-color: #FAFFBD;
                 }
             }
         }
