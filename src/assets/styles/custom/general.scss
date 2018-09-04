@@ -352,6 +352,9 @@ input, textarea {
 		&__action {
 			opacity: 0;
 			width: 100px;
+			transition: opacity 0.3s ease-in-out;
+      -moz-transition: opacity 0.3s ease-in-out;
+      -webkit-transition: opacity 0.3s ease-in-out;
 			a {
 				font-size: 20px;
 			}
