@@ -1,6 +1,7 @@
 <template lang="pug">
 	#app(:class="hasLoggedIn ?'u-bg-snow':''")
 		Header(v-if="hasLoggedIn")
+		SecondHeader(v-if="!hasLoggedIn")
 		.p-prfrm-wrapper
 			.p-prfrm-content.u-hsm-up.u-tac.u-py-90
 				h1.c-smb-18.u-mb-40 Halaman tidak tersedia dalam ukuran mobile.
@@ -20,6 +21,7 @@
 
 <script>
 	import Header from '@/components/header/Header.vue';
+	import SecondHeader from '@/components/SecondHeader/SecondHeader.vue';
 	import Footer from '@/components/footer/Footer.vue';
 
 	export default {
@@ -27,6 +29,7 @@
 		components: {
 			Header,
 			Footer,
+			SecondHeader,
 		},
 
 		data() {
@@ -36,19 +39,19 @@
 		},
 
 		methods: {
-			checkAuth() {
-				const tokenCookies = this.$cookie.get('Auth');
-				if(!tokenCookies || tokenCookies == null){
-					this.$router.replace({ name: "login" });
-					this.hasLoggedIn = false;
-				} else {
-					this.hasLoggedIn = true;
-				}
-			}
+			// checkAuth() {
+			// 	const tokenCookies = this.$cookie.get('Auth');
+			// 	if(!tokenCookies || tokenCookies == null){
+			// 		this.$router.replace({ name: "login" });
+			// 		this.hasLoggedIn = false;
+			// 	} else {
+			// 		this.hasLoggedIn = true;
+			// 	}
+			// }
 		},
 
 		mounted() {
-			this.checkAuth();
+			// this.checkAuth();
 		}
 	};
 </script>
