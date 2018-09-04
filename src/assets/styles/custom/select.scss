@@ -19,18 +19,35 @@
 					padding: 10px 40px 10px 8px;
 					background: transparent;
 					span{
-						&.multiselect__tag{
-							display: none;
-						}
-					}
-					span{
 						&.multiselect__single{
 							margin-bottom: 0;
 							vertical-align: -webkit-baseline-middle;
 						}
 					}
+
+					.multiselect__tags-wrap{
+						.custom__tag{
+							display:none;
+
+							&:first-child{
+								display: inline-block;
+							}
+						}
+					}
 				}
 			}
+
+			// hide custom tag
+			&.multiselect--active{
+				.multiselect__tags{
+					.multiselect__tags-wrap{
+						.custom__tag{
+							display:none;
+						}
+					}
+				}
+			}
+
 			&__input{
 				margin-bottom: 0;
 				vertical-align: -webkit-baseline-middle;
