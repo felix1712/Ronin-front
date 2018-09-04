@@ -55,7 +55,7 @@
 										v-model="reviewedMethod"
 										@change.native="changeMemberSelectedType($event)"
 									)
-										| All staff
+										| Everyone in the company
 								.block.u-mb-10
 									b-radio(name="radio-reviewee"
 										native-value="2"
@@ -91,7 +91,7 @@
 											:multiple="true"
 											track-by="id"
 											label="name"
-											placeholder="Department"
+											placeholder="Search for department"
 											data-vv-name="select_reviewee"
 											v-if="reviewedMethod == 2"
 											hideSelected=true
@@ -100,6 +100,8 @@
 											template(slot="tag", slot-scope="props")
 												span.custom__tag
 													| Department
+											span(slot="noResult")
+												| No results found
 										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked")
@@ -153,7 +155,7 @@
 											:multiple="true"
 											track-by="id"
 											label="name"
-											placeholder="Job Title"
+											placeholder="Search for job title"
 											data-vv-name="select_reviewee"
 											v-if="reviewedMethod == 3"
 											hideSelected=true
@@ -162,6 +164,8 @@
 											template(slot="tag", slot-scope="props")
 												span.custom__tag
 													| Job Title
+											span(slot="noResult")
+												| No results found
 										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
@@ -216,7 +220,7 @@
 													:multiple="true"
 													track-by="id"
 													label="name"
-													placeholder="Staff"
+													placeholder="Search for staff"
 													data-vv-name="select_reviewee"
 													v-if="reviewedMethod == 4"
 													hideSelected=true
@@ -225,6 +229,8 @@
 													template(slot="tag", slot-scope="props")
 														span.custom__tag
 															| Staff
+													span(slot="noResult")
+														| No results found
 												span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 									.level-right
 										.level-item

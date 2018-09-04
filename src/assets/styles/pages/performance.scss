@@ -37,6 +37,11 @@
       transition: background .3s linear;
       padding: 18px 24px;
     }
+    &:nth-child(10){
+      label{
+        padding: 18px;
+      }
+    }
   }
 }
 
