@@ -86,14 +86,18 @@
 									.c-select.c-select--multiple
 										multiselect.u-w-300(
 											v-model="selectedOrganiztionChecked" 
+											v-validate="'required'"
 											:options="selectedOrganization"
 											:multiple="true"
 											track-by="id"
 											label="name"
 											placeholder="Department"
+											data-vv-name="select_reviewee"
+											v-if="reviewedMethod == 2"
 											hideSelected=true
 											@close="selectOrganizationChecked(selectedOrganiztionChecked)"
 										)
+										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked")
 												span {{selectedOrganiztion.name}}
@@ -140,12 +144,15 @@
 											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
 										multiselect.u-w-300(
-											v-model="selectedJobTitleChecked" 
+											v-model="selectedJobTitleChecked"
+											v-validate="'required'"
 											:options="selectedJobTitle"
 											:multiple="true"
 											track-by="id"
 											label="name"
 											placeholder="Job Title"
+											data-vv-name="select_reviewee"
+											v-if="reviewedMethod == 3"
 											hideSelected=true
 											@close="selectJobTitleChecked(selectedJobTitleChecked)"
 										)
@@ -197,11 +204,14 @@
 											.c-select.c-select--multiple
 												multiselect.u-w-300(
 													v-model="selectReviewedMembers" 
+													v-validate="'required'"
 													:options="reviewedMember"
 													:multiple="true"
 													track-by="id"
 													label="name"
 													placeholder="Staff"
+													data-vv-name="select_reviewee"
+													v-if="reviewedMethod == 4"
 													hideSelected=true
 													@input="reviewedSelectMemberId",
 												)

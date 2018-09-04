@@ -33,6 +33,9 @@ Validator.localize({
       title: {
       	required: "This field is mandatory.",
       	title: "This field is mandatory."
+      },
+      select_reviewee: {
+      	required: "This field is mandatory"
       }
     }
   }
