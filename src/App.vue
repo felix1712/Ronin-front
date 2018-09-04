@@ -1,12 +1,12 @@
 <template lang="pug">
-	#app.u-bg-snow
-		Header
+	#app(:class="hasLoggedIn ?'u-bg-snow':''")
+		Header(v-if="hasLoggedIn")
 		.p-prfrm-wrapper
 			.p-prfrm-content.u-hsm-up.u-tac.u-py-90
 				h1.c-smb-18.u-mb-40 Halaman tidak tersedia dalam ukuran mobile.
 				<!-- img(src="/assets/images/pages/icon-goals.svg", alt="") -->
 			router-view
-		Footer
+		Footer(v-if="hasLoggedIn")
 
 		<!-- Modal Section -->
 		.c-popover.jc-povc-confirmation.u-w-400.u-dn
@@ -29,17 +29,26 @@
 			Footer,
 		},
 
+		data() {
+			return {
+				hasLoggedIn: false,
+			}
+		},
+
 		methods: {
-			// checkAuth() {
-			// 	const tokenCookies = this.$cookie.get('Auth');
-			// 	if(!tokenCookies || tokenCookies == null){
-			// 		this.$router.replace({ name: "login" });
-			// 	}
-			// }
+			checkAuth() {
+				const tokenCookies = this.$cookie.get('Auth');
+				if(!tokenCookies || tokenCookies == null){
+					this.$router.replace({ name: "login" });
+					this.hasLoggedIn = false;
+				} else {
+					this.hasLoggedIn = true;
+				}
+			}
 		},
 
 		mounted() {
-			// this.checkAuth();
+			this.checkAuth();
 		}
 	};
 </script>

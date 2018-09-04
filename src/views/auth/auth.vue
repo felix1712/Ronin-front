@@ -1,7 +1,8 @@
 <template><h5>wew</h5></template>
 
 <script>
-import {newService} from '@/api/main-service';
+import {service} from '@/api/main-service';
+// import {newService} from '@/api/main-service';
 
 	export default{
 		name: 'login',
@@ -14,25 +15,41 @@ import {newService} from '@/api/main-service';
 		},
 
 		methods: {
-			submitLogin() {
-				newService.post('auth/login',{
-          email : this.email,
-          password : this.password,
-        })
-        .then(response => {
-          if(response.data.status == 200){
-	          this.authToken = response.data.data.token
-	          this.$cookie.set('Auth', this.authToken);
-	        }
-        })
-        .catch(e => {
-          // console.log(e);
-        }) 
+			// submitLogin() {
+			// 	newService.post('auth/login',{
+			// 		email : this.email,
+			// 		password : this.password,
+			// 	})
+			// 	.then(response => {
+			// 		if(response.data.status == 200){
+			// 			this.authToken = response.data.data.token
+			// 			this.$cookie.set('Auth', this.authToken);
+			// 		}
+			// 	})
+			// 	.catch(e => {
+			// 		// console.log(e);
+			// 	}) 
+			// }
+
+			loginLatestApi(){
+				service.post('oauth/access_token', {
+					email: this.email,
+					password: this.password,
+				})
+				.then(response => {
+					if(response.data.status_code == 200){
+						this.authToken = 'Bearer'+response.data.contents.token
+						this.$cookie.set('Auth', this.authToken, { expires: '23h' });
+					}
+				})
+				.catch(e => {
+					console.log(e);
+				})
 			}
 		},
 
 		mounted(){
-			this.submitLogin();
+			this.loginLatestApi();
 		}
 	};
 </script>
