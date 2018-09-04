@@ -282,91 +282,17 @@
 										a.p-prfrm-templatelist__item.is-new
 											img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
 											span.u-ml-24 New template
-									.p-prfrm-templatelist__item-wrapper
-										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
-														native-value="1"
-														@change.native="templateChanges($event)"
+									.p-prfrm-templatelist__item-wrapper(v-for="template in templates")
+										b-radio.p-prfrm-templatelist__item(
+											name="radio-review-template"
+											:native-value="template.uuid"
+											:id="template.uuid"
+											v-model="selectedTemplate"
+											@change.native="templateChanges($event)"
+											:class="selectedTemplate.includes(template.uuid) == true ? 'is-checked':''"
 										)
-											.p-prfrm-templatelist__item-name Staff review 2
-											h5.c-reg-13.u-mb-60 4 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												nav.level
-													.level-left
-														.level-item
-															router-link(:to="{ name: 'PreviewTemplate'}" target="_blank")
-																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-															a.u-ml-20(href="")
-																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-													.level-right
-														.level-item
-															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
-																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
-																b-dropdown-item
-																	h3.c-smb-15.u-mb-20 Delete confirmation
-																	p.c-smb-15 Are you sure to delete this template?
-																	.u-mt-40
-																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5 No
-																		a.c-btn.button.is-danger.u-mx-5(type='submit') Yes
-									.p-prfrm-templatelist__item-wrapper
-										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
-														native-value="2"
-														@change.native="templateChanges($event)"
-										)
-											.p-prfrm-templatelist__item-name Staff review 222
-											h5.c-reg-13.u-mb-60 4 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												nav.level
-													.level-left
-														.level-item
-															a(href="")
-																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-															a.u-ml-20(href="")
-																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-													.level-right
-														.level-item
-															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
-																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
-																b-dropdown-item
-																	h3.c-smb-15.u-mb-20 Delete confirmation
-																	p.c-smb-15 Are you sure to delete this template?
-																	.u-mt-40
-																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5 No
-																		a.c-btn.button.is-danger.u-mx-5(type='submit') Yes
-									.p-prfrm-templatelist__item-wrapper
-										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
-														native-value="3"
-														@change.native="templateChanges($event)"
-										)
-											.p-prfrm-templatelist__item-name Staff review 333
-											h5.c-reg-13.u-mb-60 4 review(s) using this template
-											.p-prfrm-templatelist__item-action
-												nav.level
-													.level-left
-														.level-item
-															a(href="")
-																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
-															a.u-ml-20(href="")
-																img(src="@/assets/images/pages/icon-pencil.svg", alt="")
-													.level-right
-														.level-item
-															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)")
-																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
-																b-dropdown-item
-																	h3.c-smb-15.u-mb-20 Delete confirmation
-																	p.c-smb-15 Are you sure to delete this template?
-																	.u-mt-40
-																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5 No
-																		a.c-btn.button.is-danger.u-mx-5(type='submit') Yes
-									.p-prfrm-templatelist__item-wrapper
-										b-radio.p-prfrm-templatelist__item(name="radio-review-template"
-														native-value="4"
-														@change.native="templateChanges($event)"
-										)
-											.p-prfrm-templatelist__item-name Staff review 444
-											h5.c-reg-13.u-mb-60 4 review(s) using this template
+											.p-prfrm-templatelist__item-name {{template.name}}
+											h5.c-reg-13.u-mb-60 {{template.used}} review(s) using this template
 											.p-prfrm-templatelist__item-action
 												nav.level
 													.level-left

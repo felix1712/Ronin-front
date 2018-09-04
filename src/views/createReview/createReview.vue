@@ -35,6 +35,7 @@
 				moreReviewerMember: [],
 				moreReviewerSelect:[],
 				templates: null,
+				selectedTemplate: [],
 				dataReview: {
 					titles: '',
 					description: null,
@@ -307,11 +308,11 @@
 			},
 
 			templateChanges(e) {
-				if(e.target.checked == true){
-					e.currentTarget.classList.add('is-checked')
-				} else {
-					e.currentTarget.classList.remove('is-checked')
-				}
+				// if(e.target.checked == true){
+				// 	e.currentTarget.classList.add('is-checked')
+				// } else {
+				// 	e.currentTarget.classList.remove('is-checked')
+				// }
 			},
 
 			setReviewer(data) {
@@ -536,7 +537,7 @@
 
 			service.get('templates')
 			.then(response => {
-				this.templates = response.data.contents;
+				this.templates = response.data.contents.template;
 			})
 			.catch(e =>{
 				console.log(e);
