@@ -1,5 +1,5 @@
 <template lang="pug">
-	#app(:is="layout")
+	#app.u-bg-snow(:is="layout")
 		router-view(:layout.sync="layout")
 		<!-- Modal Section -->
 		.c-popover.jc-povc-confirmation.u-w-400.u-dn
