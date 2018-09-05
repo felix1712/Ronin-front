@@ -72,7 +72,7 @@ export default new Router({
 			component: CompanyReviewSummary,
 		},
 		{
-			path: '/preview-template',
+			path: '/preview-template/:uuid',
 			name: 'PreviewTemplate',
 			component: PreviewTemplate,
 		},

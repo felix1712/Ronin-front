@@ -310,7 +310,7 @@
 													.level-left
 														.level-item
 															router-link(
-																:to="{ name: 'PreviewTemplate', params: template.uuid }"
+																:to="{ name: 'PreviewTemplate', params: {uuid: template.uuid} }"
 																target="_blank"
 																)
 																img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
