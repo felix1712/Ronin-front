@@ -102,6 +102,8 @@
 													| Department
 											span(slot="noResult")
 												| No results found
+											div.multiselect__element(slot="afterList" v-if="selectedOrganization.length == selectedOrganiztionChecked.length")
+												span.multiselect__option No results found
 										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedOrganiztion in selectedOrganiztionChecked")
@@ -166,6 +168,8 @@
 													| Job Title
 											span(slot="noResult")
 												| No results found
+											div.multiselect__element(slot="afterList" v-if="selectedJobTitle.length == selectedJobTitleChecked.length")
+												span.multiselect__option No results found
 										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
@@ -231,6 +235,8 @@
 															| Staff
 													span(slot="noResult")
 														| No results found
+													div.multiselect__element(slot="afterList" v-if="reviewedMember.length == selectReviewedMembers.length")
+														span.multiselect__option No results found
 												span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
 									.level-right(v-if="selectReviewedMembers.length > 0")
 										.level-item
@@ -313,7 +319,7 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 0")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 1")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
