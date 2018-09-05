@@ -32,7 +32,7 @@ Validator.localize({
       },
       title: {
       	required: "This field is mandatory.",
-      	title: "This field is mandatory."
+      	title: "Input title field with maximum of 50 characters."
       },
       select_reviewee: {
       	required: "This field is mandatory"

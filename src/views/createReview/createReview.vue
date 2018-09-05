@@ -14,16 +14,16 @@
 				editReview: 0,
 				isTemplateReview: false,
 				maxCharacters: 50,
-        reviewedMethod: 1,
+				reviewedMethod: 1,
 				selectedOrganiztionMethod: null,
 				selectedOrganiztionChecked: null,
 				selectedOrganization:[],
-        selectedOrganizationMember: null,
+				selectedOrganizationMember: null,
 				employeeMember: null,
 				reviewedMember: [],
 				selectedJobTitle: [],
-        selectedJobTitleMember: null,
-        selectedJobTitleChecked: null,
+				selectedJobTitleMember: null,
+				selectedJobTitleChecked: null,
 				memberJobTitle: null,
 				getReviewerData: null,
 				checkboxOrganization: [],
@@ -64,21 +64,36 @@
 		},
 
 		methods: {
-      dropDownPosition(e){
-        e.target.offsetParent.lastChild.style.position="absolute"
-        e.target.offsetParent.lastChild.style.left=-e.clientY/3+'px'
-      },
+			dropDownPosition(e){
+				e.target.offsetParent.lastChild.style.position="absolute"
+				e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
+			},
 
-      reviewedSelectMemberId() {
-      	this.selectedMembers = this.selectReviewedMembers.map(function(data) {
-      		return data.id
-      	});
+			deleteTemplate(data, index){
+				this.templates.splice(index, 1);
 
-      	this.addMember();
-      },
+				service.delete('templates/'+ data)
+				.then(response => {
+					this.$toast.open({
+						message: response.data.contents,
+						type: 'is-success'
+					})
+				})
+				.catch(e =>{
+					console.log(e);
+				});
+			},
 
-      deleteOrganizationSelect(id){
-      	this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(function(data){
+			reviewedSelectMemberId() {
+				this.selectedMembers = this.selectReviewedMembers.map(function(data) {
+					return data.id
+				});
+
+				this.addMember();
+			},
+
+			deleteOrganizationSelect(id){
+				this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(function(data){
 					return data.id != id
 				})
 
@@ -92,16 +107,16 @@
 				})
 
 				this.selectedMembers = this.selectedMembers.filter( function( el ) {
-				  return memberOrg.indexOf( el ) < 0;
+					return memberOrg.indexOf( el ) < 0;
 				});
-      },
+			},
 
-      deleteJobTitleSelect(id){
-      	this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(function(data){
+			deleteJobTitleSelect(id){
+				this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(function(data){
 					return data.id != id
 				})
 
-      	let memberJobTitle = "";
+				let memberJobTitle = "";
 				memberJobTitle = this.employeeMember.filter(function(e){
 					return e.job_position.id == id
 				})
@@ -111,12 +126,12 @@
 				})
 
 				this.selectedMembers = this.selectedMembers.filter( function( el ) {
-				  return memberJobTitle.indexOf( el ) < 0;
+					return memberJobTitle.indexOf( el ) < 0;
 				});
-      },
+			},
 
-      selectEveryoneOrganization(data) {
-      	let memberOrg = "";
+			selectEveryoneOrganization(data) {
+				let memberOrg = "";
 				memberOrg = this.employeeMember.filter(function(e){
 					return e.organization.id == data
 				})
@@ -126,10 +141,10 @@
 						this.selectedMembers.push(item.id);
 					}
 				}.bind(this))
-      },
+			},
 
-      unselectEveryoneOrganization(data) {
-      	let memberOrg = "";
+			unselectEveryoneOrganization(data) {
+				let memberOrg = "";
 				memberOrg = this.employeeMember.filter(function(e){
 					return e.organization.id == data
 				})
@@ -139,12 +154,12 @@
 				})
 
 				this.selectedMembers = this.selectedMembers.filter( function( el ) {
-				  return memberOrg.indexOf( el ) < 0;
+					return memberOrg.indexOf( el ) < 0;
 				});
-      },
+			},
 
-      selectEveryoneJobTitle(data) {
-      	let memberJobTitle = "";
+			selectEveryoneJobTitle(data) {
+				let memberJobTitle = "";
 				memberJobTitle = this.employeeMember.filter(function(e){
 					return e.job_position.id == data
 				})
@@ -154,10 +169,10 @@
 						this.selectedMembers.push(item.id);
 					}
 				}.bind(this))
-      },
+			},
 
-      unselectEveryoneJobTitle(data) {
-      	let memberJobTitle = "";
+			unselectEveryoneJobTitle(data) {
+				let memberJobTitle = "";
 				memberJobTitle = this.employeeMember.filter(function(e){
 					return e.job_position.id == data
 				})
@@ -167,20 +182,20 @@
 				})
 
 				this.selectedMembers = this.selectedMembers.filter( function( el ) {
-				  return memberJobTitle.indexOf( el ) < 0;
+					return memberJobTitle.indexOf( el ) < 0;
 				});
-      },
+			},
 
-      selectOrganizationChecked(data) {
-      	if (data != null) {
-	      	let getIdOrg = "";
-	      	getIdOrg = data.map(function(item){
-	      		return item.id
-	      	});
+			selectOrganizationChecked(data) {
+				if (data != null) {
+					let getIdOrg = "";
+					getIdOrg = data.map(function(item){
+						return item.id
+					});
 
-	      	getIdOrg = getIdOrg[getIdOrg.length -1];
+					getIdOrg = getIdOrg[getIdOrg.length -1];
 
-	      	let memberOrg = "";
+					let memberOrg = "";
 					memberOrg = this.employeeMember.filter(function(e){
 						return e.organization.id == getIdOrg
 					})
@@ -191,18 +206,18 @@
 						}
 					}.bind(this));
 				}
-      },
+			},
 
-      selectJobTitleChecked(data) {
-      	if(data != null){
-	      	let getIdJobTitle = "";
-	      	getIdJobTitle = data.map(function(item){
-	      		return item.id
-	      	});
+			selectJobTitleChecked(data) {
+				if(data != null){
+					let getIdJobTitle = "";
+					getIdJobTitle = data.map(function(item){
+						return item.id
+					});
 
-	      	getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
+					getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
 
-	      	let memberJobTitle = "";
+					let memberJobTitle = "";
 					memberJobTitle = this.employeeMember.filter(function(e){
 						return e.job_position.id == getIdJobTitle
 					})
@@ -213,24 +228,24 @@
 						}
 					}.bind(this));
 				}
-      },
+			},
 
-      selectSpecificStaff(data) {
-      	let getIdSpecificStaff = "";
-      	getIdSpecificStaff = data.map(function(item){
-      		return item.id
-      	});
+			selectSpecificStaff(data) {
+				let getIdSpecificStaff = "";
+				getIdSpecificStaff = data.map(function(item){
+					return item.id
+				});
 
-      	getIdSpecificStaff.map(function(item){
-      		if(this.selectedMembers.includes(item) == false){
-      			this.selectedMembers.push(item)
-      		}
-      	}.bind(this));
-      },
+				getIdSpecificStaff.map(function(item){
+					if(this.selectedMembers.includes(item) == false){
+						this.selectedMembers.push(item)
+					}
+				}.bind(this));
+			},
 
-      unselectSpecificStaff() {
-      	this.selectedMembers = [];
-      },
+			unselectSpecificStaff() {
+				this.selectedMembers = [];
+			},
 
 			editReviewStep1() {
 				this.reviewStep = 1;
@@ -300,8 +315,8 @@
 
 			checkboxMember(e) {
 				if (e.target.checked === true) {
-          this.addMember();
-          e.currentTarget.closest("label").classList.remove('not-checked')
+					this.addMember();
+					e.currentTarget.closest("label").classList.remove('not-checked')
 				} else {
 					this.removeMember(e.target.value);
 					e.currentTarget.closest("label").classList.add('not-checked')
@@ -367,18 +382,18 @@
 				}.bind(this))
 				var found = false;
 				for (var i = 0, len = data.length; i < len; i++) { 
-	        for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) { 
-            if (data[i].user_id === getDataReviewer[j].user_id) {
-            	var found = true;
-            }
-	        }
-		    }
+					for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) { 
+						if (data[i].user_id === getDataReviewer[j].user_id) {
+							var found = true;
+						}
+					}
+				}
 
-		    if(!found){
-		    	Array.prototype.push.apply(data,getDataReviewer);
-		    }
+				if(!found){
+					Array.prototype.push.apply(data,getDataReviewer);
+				}
 
-		    this.moreReviewerMember = [];
+				this.moreReviewerMember = [];
 			},
 
 			changeReviewMehtod(e) {
@@ -440,7 +455,7 @@
 					],
 				};
 
-			 	this.dataReview.members.forEach(function(data){
+				this.dataReview.members.forEach(function(data){
 					if(data.reviewers.length > 0){
 						const result = data.reviewers.map(item => item.id);
 						data.reviewers = result;
@@ -480,13 +495,13 @@
 
 			service.get('organizations')
 			.then(response => {
-        this.selectedOrganization = response.data.contents.organizations.map(function(test){
-          return{
-            id: test.id,
-            name: test.name
-          }
-        });
-        this.selectedOrganizationMember = response.data.contents.organizations;
+				this.selectedOrganization = response.data.contents.organizations.map(function(test){
+					return{
+						id: test.id,
+						name: test.name
+					}
+				});
+				this.selectedOrganizationMember = response.data.contents.organizations;
 				// console.log(this.selectedOrganization)
 			})
 			.catch(e => {
@@ -523,12 +538,12 @@
 
 			service.get('jobposition')
 			.then(response => {
-        this.selectedJobTitle = response.data.contents.job_positions.map(function(test){
-          return{
-            id: test.id,
-            name: test.title
-          }
-        });
+				this.selectedJobTitle = response.data.contents.job_positions.map(function(test){
+					return{
+						id: test.id,
+						name: test.title
+					}
+				});
 
 				this.selectedJobTitleMember = response.data.contents.job_positions;
 				// console.log(response.data);

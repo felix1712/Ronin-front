@@ -32,6 +32,11 @@
 					margin-bottom: 0;
 					border: 1px solid $v-smoke;
 				}
+				&:checked{
+					~ .check{
+						border: none;
+					}
+				}
 			}
 		}
 		&:focus{
