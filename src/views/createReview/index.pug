@@ -288,7 +288,7 @@
 										a.p-prfrm-templatelist__item.is-new
 											img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
 											span.u-ml-24 New template
-									.p-prfrm-templatelist__item-wrapper(v-for="template in templates")
+									.p-prfrm-templatelist__item-wrapper(v-for="(template, index) in templates")
 										b-radio.p-prfrm-templatelist__item(
 											name="radio-review-template"
 											:native-value="template.uuid"
@@ -320,7 +320,7 @@
 																	p.c-smb-15 Are you sure to delete this template?
 																	.u-mt-40
 																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5 No
-																		a.c-btn.button.is-danger.u-mx-5(@click.prevent="deleteTemplate(template.uuid)") Yes
+																		a.c-btn.button.is-danger.u-mx-5(@click.prevent="deleteTemplate(template.uuid, index)") Yes
 
 						//- end step 2 ( Questionare form )
 						//- button save
