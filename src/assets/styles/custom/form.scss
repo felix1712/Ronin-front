@@ -1,5 +1,6 @@
 .control{
 	input{
+		font-family: $v-avenir;
 		border: 1px solid $v-ui-border;
 	  outline: 0;
 	  background-color: transparent;
@@ -12,6 +13,7 @@
 	  }
 	}
 	textarea{
+		font-family: $v-avenir;
 		font-size: 1.5rem;
 		&.c-auto-height{
 			resize: none;

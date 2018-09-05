@@ -1,6 +1,9 @@
 // Style general
 // Default viewport fontsize for rem
-html { font-size: 62.5%; }
+html {
+	font-size: 62.5%;
+	overflow-y: auto;
+}
 
 // Default body
 body {

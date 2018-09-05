@@ -1,0 +1,82 @@
+// Style for entry pages: signin, signup and reset password
+.p-prfrm-entry {
+    position: relative;
+    background-color: $v-snow;
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 20px;
+
+    @media screen and (min-width: $v-lg) {
+        padding: 150px 20px;
+    }
+    @media screen and (max-width: $v-sm) {
+        padding: 70px 20px;
+    }
+    
+    a {
+        font-family: "Avenir Next Medium";
+        color: $v-green;
+        &:hover, &:active, &:focus {
+            color: $v-green-dark;
+        }
+    }
+
+    button {
+        padding: 0;
+        border: none;
+        color: $v-green;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        font-family: "Avenir Next Medium";
+        font-size: 1.5rem;
+        &:hover, &:active, &:focus {
+            color: $v-green-dark;
+            text-decoration: underline;
+            box-shadow: none;
+        }
+    }
+
+    &__header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px;
+        @media screen and (min-width: $v-lg) {
+            padding: 60px;
+        }
+        @media screen and (max-width: $v-sm) {
+            padding: 20px;
+        }
+    }
+
+    &__content {
+        text-align: center;
+        width: 270px;
+        max-width: 100%;
+        margin: 30px 10px;
+
+        .control {
+            .input {
+                box-shadow: none;
+                background-color: #F5F6F7;
+                border: 2px solid #F5F6F7;
+                margin-bottom: 2px;
+                &::placeholder {
+                    color: $v-slate;
+                }
+                &:focus {
+                    border: 2px solid $v-blue;
+                }
+                &:-webkit-autofill{
+                    border-color: #FAFFBD;
+                }
+            }
+        }
+    }
+}

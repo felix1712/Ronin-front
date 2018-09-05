@@ -11,6 +11,29 @@ a{
 	line-height: 24px;
 	padding: 6px 30px;
 	min-height: 36px;
+	&--full {
+		width: 100%;
+	}
+	&--withicon {
+		padding: 10px 0;
+		height: 42px;
+		justify-content: left;
+		transition: background-color 0.2s linear;
+		.icon {
+			width: 40px;
+			height: 40px;
+			background-color: $v-white;
+			border-radius: 4px 0 0 4px;
+			margin: 0!important;
+			img {
+				max-width: 20px;
+			}
+		}
+		span:last-child {
+			width: calc(100% - 40px);
+			text-align: center;
+		}
+	}
 	&--ghost{
 		color: $v-slate;
 		&:hover, &:active, &:focus {
@@ -68,5 +91,23 @@ a{
     border: 1px solid $v-smoke;
     color: #FFF!important;
     pointer-events: none;
+	}
+	&.is-green {
+		background-color: $v-green-dark;
+		color: $v-white;
+		border: 1px solid $v-green-dark;
+		&:hover, &:active, &:focus{
+			background-color: $v-green-darker;
+			color: $v-white;
+		}
+	}
+	&.is-blue {
+		background-color: $v-blue-dark;
+		color: $v-white;
+		border: 1px solid $v-blue-dark;
+		&:hover, &:active, &:focus{
+			background-color: $v-blue-darker;
+			color: $v-white;
+		}
 	}
 }
