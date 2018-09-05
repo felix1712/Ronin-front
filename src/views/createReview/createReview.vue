@@ -474,7 +474,23 @@
 					question_set: templateReview,
 				})
 				.then(response => {
-					// console.log(response.data);
+
+					if(response.data.status == 200){
+						this.$toast.open({
+							duration: 10000,
+							message: 'Your create review cycle has been successfully created!',
+							position: 'is-top',
+							type: 'is-success'
+						})
+					}else{
+						this.$toast.open({
+							duration: 10000,
+							message: 'Your create review cycle has been failed to be created. Please try again to save it!',
+							position: 'is-top',
+							type: 'is-danger'
+						})
+					}
+
 					this.$router.push('/');
 				})
 				.catch(e => {
