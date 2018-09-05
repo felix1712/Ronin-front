@@ -13,7 +13,7 @@
 
 					.u-push(v-if="editReview >= 1")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep1()")
-							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 1 (review information form)
 				form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 1")
@@ -272,7 +272,7 @@
 
 					.u-push(v-if="editReview >= 2")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep2()")
-							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 2")
 					.p-prfrm-create__list-contents.u-mt-30
@@ -335,7 +335,7 @@
 
 					.u-push(v-if="editReview >= 3")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep3()")
-							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 3 (Schedule Form)`
 				form(@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 3")
@@ -440,7 +440,7 @@
 
 					.u-push(v-if="editReview >= 4")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep2()")
-							img.u-mr-10(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 4 ( Reviewer form )
 				form(@submit.prevent="validateBeforeSubmit", v-show="reviewStep === 4")
