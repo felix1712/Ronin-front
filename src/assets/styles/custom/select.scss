@@ -16,8 +16,9 @@
 			.multiselect{
 				&__tags{
 					border: none;
-					padding: 10px 40px 10px 8px;
+					padding: 6px 40px 6px 8px;
 					background: transparent;
+					min-height: 0px;
 					span{
 						&.multiselect__single{
 							margin-bottom: 0;
@@ -53,6 +54,8 @@
 				vertical-align: -webkit-baseline-middle;
 			}
 			&__select{
+				height: 36px;
+				top: -1px;
 				&:before{
 					right: 15px;
 					border: 1px solid $v-black;

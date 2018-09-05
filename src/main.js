@@ -31,7 +31,7 @@ Validator.localize({
         email: "Your email does not look right"
       },
       title: {
-      	required: "Input title field with maximum of 50 characters.",
+      	required: "This field is mandatory.",
       	title: "Input title field with maximum of 50 characters."
       },
       select_reviewee: {
