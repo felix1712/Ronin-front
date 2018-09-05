@@ -28,7 +28,12 @@
 
 					.multiselect__tags-wrap{
 						.custom__tag{
+							font-size: 16px;
 							display:none;
+							vertical-align: bottom;
+							padding-left: 5px;
+							padding-top: 5px;
+							line-height: 20px;
 
 							&:first-child{
 								display: inline-block;
@@ -43,7 +48,12 @@
 				.multiselect__tags{
 					.multiselect__tags-wrap{
 						.custom__tag{
+							font-size: 16px;
 							display:none;
+							vertical-align: bottom;
+							padding-left: 5px;
+							padding-top: 5px;
+							line-height: 20px;
 						}
 					}
 				}

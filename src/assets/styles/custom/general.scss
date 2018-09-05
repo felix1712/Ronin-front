@@ -454,3 +454,19 @@ input, textarea {
 		}
 	}
 }
+
+.notices{
+	.toast{
+		padding: 8px 30px;
+		margin-top: 60px;
+		opacity: 1;
+		box-shadow: 0 5px 10px 0 rgba(0,0,0,0.15);
+		border-radius: 30px;
+		&.is-success{
+			background: $v-green;
+		}
+		&.is-danger{
+			background: #FF3860;
+		}
+	}
+}
