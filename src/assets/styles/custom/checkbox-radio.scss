@@ -119,6 +119,11 @@
 	&-templatelist{
 		&__item{
 			&-wrapper{
+				.b-radio{
+					&.radio{
+						align-items: normal;
+					}
+				}
 				label{
 					span{
 						&.check{
