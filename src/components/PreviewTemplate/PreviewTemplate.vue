@@ -25,5 +25,11 @@ import { service } from '@/api/main-service';
 				console.log(e);
 			});
     },
+
+    methods: {
+    	closeWindow(){
+    		window.close();
+    	}
+    }
   };
 </script>
