@@ -1,6 +1,7 @@
 <template lag="pug" src="./index.pug"></template>
 
 <script>
+	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
 	import { service } from '@/api/main-service';
 	import ButtonFooter from './shared/button-footer/ButtonFooter.vue';
 	import Datepicker from 'vuejs-datepicker';
@@ -473,6 +474,7 @@
 		},
 
 		created() {
+			this.$emit(`update:layout`, MainLayouts);
 			// set review end date
 			this.dataReview.review_end_date = new Date(this.dataReview.review_end_date.setDate(this.dataReview.review_end_date.getDate() + this.review.deadline));
 

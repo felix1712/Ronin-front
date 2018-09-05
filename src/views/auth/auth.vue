@@ -3,6 +3,7 @@
 <script>
 import {service} from '@/api/main-service';
 // import {newService} from '@/api/main-service';
+import LoginLayouts from '@/layouts/LoginLayouts/LoginLayouts.vue';
 
 	export default{
 		name: 'login',
@@ -12,6 +13,10 @@ import {service} from '@/api/main-service';
 				password: "Sleekr1234",
 				authToken: "",
 			}
+		},
+
+		created() {
+			this.$emit(`update:layout`, LoginLayouts);
 		},
 
 		methods: {

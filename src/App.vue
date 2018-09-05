@@ -1,16 +1,6 @@
 <template lang="pug">
-	#app(:class="hasLoggedIn ?'u-bg-snow':''")
-		Header(v-if="hasLoggedIn")
-		.p-prfrm-wrapper(v-if="hasLoggedIn")
-			.p-prfrm-content.u-hsm-up.u-tac.u-py-90
-				h1.c-smb-18.u-mb-40 Halaman tidak tersedia dalam ukuran mobile.
-				<!-- img(src="/assets/images/pages/icon-goals.svg", alt="") -->
-			router-view
-		.p-prfrm-entry(v-if="!hasLoggedIn")
-			SecondHeader
-			router-view
-		Footer(v-if="hasLoggedIn")
-
+	#app(:is="layout")
+		router-view(:layout.sync="layout")
 		<!-- Modal Section -->
 		.c-popover.jc-povc-confirmation.u-w-400.u-dn
 			.u-tac
@@ -22,21 +12,17 @@
 </template>
 
 <script>
-	import Header from '@/components/header/Header.vue';
-	import SecondHeader from '@/components/SecondHeader/SecondHeader.vue';
-	import Footer from '@/components/footer/Footer.vue';
+	import LoginLayouts from './layouts/LoginLayouts/LoginLayouts.vue';
 
 	export default {
 		name: 'App',
 		components: {
-			Header,
-			Footer,
-			SecondHeader,
+			LoginLayouts
 		},
 
 		data() {
 			return {
-				hasLoggedIn: false,
+				layout: LoginLayouts,
 			}
 		},
 

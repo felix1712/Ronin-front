@@ -1,6 +1,7 @@
 <template lag="pug" src="./index.pug"></template>
 
 <script>
+	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
 	import { service } from '@/api/main-service';
 
 	export default{
@@ -11,8 +12,13 @@
 			};
 		},
 
+		created() {
+			this.$emit(`update:layout`, MainLayouts);
+		},
+
 		methods: {
 		},
+
 		components: {
 		},
 	};
