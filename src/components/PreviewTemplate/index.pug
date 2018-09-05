@@ -139,6 +139,7 @@
 													maxlength="3"
 													value="33"
 													v-validate="'between:0,100'"
+													disabled
 													)
 											span.u-ml-10.c-reg-15
 												| from 100%
@@ -170,11 +171,13 @@
 									b-field
 										b-radio-button.radio-button(v-model="radioButton"
 																								native-value="Yes"
+																								disabled
 										)
 											img.u-mr-10(src="@/assets/images/pages/icon-check.svg")
 											span Yes
 										b-radio-button.radio-button(v-model="radioButton"
 																								native-value="No"
+																								disabled
 										)
 											img.u-mr-10(src="@/assets/images/pages/icon-reset.svg")
 											span No

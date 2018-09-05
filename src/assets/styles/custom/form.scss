@@ -12,6 +12,12 @@
 	    box-shadow: 0 0 4px 1px rgba(131,202,252,0.5);
 	  }
 	}
+	input[disabled]{
+		&:hover{
+			border-color: transparent;
+			box-shadow: none;
+		}
+	}
 	textarea{
 		font-family: $v-avenir;
 		font-size: 1.5rem;
