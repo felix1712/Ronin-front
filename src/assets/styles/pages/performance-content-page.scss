@@ -166,6 +166,7 @@
         border-color: $v-slate;
         &.is-new{
           border-style: solid;
+          cursor: not-allowed;
         }
       }
       

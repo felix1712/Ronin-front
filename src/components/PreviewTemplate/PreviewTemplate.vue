@@ -10,6 +10,7 @@ import { service } from '@/api/main-service';
     	return {
     		templatesUuid: null,
     		template: "",
+        radioButton: 1,
     	}
     },
 
