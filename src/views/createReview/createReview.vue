@@ -276,7 +276,7 @@
 			},
 
 			isRepeat(e){
-				if(e.target.value == 1) {
+				if(e.target.value == 1){
 					this.dataReview.repeat_every = 1;
 				} else {
 					this.dataReview.repeat_every = 0;
