@@ -28,7 +28,7 @@ import { loginService } from '@/api/main-service.js';
 						.then(response => {
 							if(response.data.status_code == 200){
 								this.token = response.data.contents.token;
-								this.$cookie.set('Auth', this.token, { expires: '23h' });
+								this.$cookie.set('Auth', 'Bearer'+this.token, { expires: '23h' });
 								this.$router.push('/');
 							} else {
 								this.$toast.open({
