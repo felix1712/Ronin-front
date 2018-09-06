@@ -77,6 +77,12 @@
                     border-color: #FAFFBD;
                 }
             }
+
+            &.is-error {
+                input {
+                    border-color: $v-red;
+                }
+            }
         }
     }
 }
