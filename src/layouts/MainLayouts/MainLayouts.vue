@@ -13,13 +13,20 @@
 		methods: {
 			checkAuth() {
 				const checkToken = this.$cookie.get('AuthPrfrm');
-				if(checkToken == "undefined" || checkToken == null){
+				if(checkToken == null){
 					this.$router.push('/login');
 				}
 			}
 		},
-		mounted() {
+		created() {
 			this.checkAuth();
+		},
+
+		updated() {
+			const checkToken = this.$cookie.get('AuthPrfrm');
+			if(checkToken == null){
+				this.$router.push('/login');
+			}
 		},
 	};
 </script>
