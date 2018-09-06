@@ -1,7 +1,7 @@
 <template><h5>wew</h5></template>
 
 <script>
-import {service} from '@/api/main-service';
+import {loginService} from '@/api/main-service';
 // import {newService} from '@/api/main-service';
 import LoginLayouts from '@/layouts/LoginLayouts/LoginLayouts.vue';
 
@@ -37,7 +37,7 @@ import LoginLayouts from '@/layouts/LoginLayouts/LoginLayouts.vue';
 			// }
 
 			loginLatestApi(){
-				service.post('oauth/access_token', {
+				loginService.post('oauth/access_token', {
 					email: this.email,
 					password: this.password,
 				})

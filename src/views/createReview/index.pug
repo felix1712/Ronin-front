@@ -370,6 +370,7 @@
 												name="radio-review-schedule"
 												native-value="0"
 												v-model="dataReview.is_repeat"
+												@change.native="isRepeat($event)"
 											)
 												| Once
 										.block.u-mb-10
@@ -377,6 +378,7 @@
 												name="radio-reviewee-schedule"
 												native-value="1"
 												v-model="dataReview.is_repeat"
+												@change.native="isRepeat($event)"
 											)
 												| Repeat
 				
@@ -390,14 +392,15 @@
 										span.u-maxw-170
 											input.input(
 												type="text" 
-												name="repeat every"
+												name="is_repeat_every"
 												maxlength="2"
+												v-model="dataReview.repeat_every"
 												v-validate="'between:0,12'"
-												)
+											)
 										span.u-ml-10.c-reg-15
 											| Month
 									br
-									span.is-message.c-reg-14.u-cl-red(v-show="errors.has('repeat every')") {{ errors.first('repeat every') }}
+									span.is-message.c-reg-14.u-cl-red(v-show="errors.has('is_repeat_every')") {{ errors.first('is_repeat_every') }}
 				
 						.c-row.u-cpointer
 							.u-mb-20.c-col-5
