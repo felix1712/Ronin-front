@@ -426,6 +426,9 @@
 			validateBeforeSubmit() {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
+						if(this.reviewStep == 1){
+							this.addMember();
+						}
 						this.reviewStep+=1;
 						this.editReview+=1;
 					}
