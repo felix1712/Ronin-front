@@ -35,8 +35,15 @@ Validator.localize({
       	title: "Input title field with maximum of 50 characters."
       },
       select_reviewee: {
-      	required: "This field is mandatory"
-      }
+      	required: "This field is mandatory",
+      },
+      loginEmail: {
+        required: "This field is mandatory",
+        email: "Your email does not look right"
+      },
+      loginPassword: {
+        required: "This field is mandatory",
+      },
     }
   }
 });
