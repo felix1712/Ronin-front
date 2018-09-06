@@ -290,7 +290,10 @@
 						.c-row.u-mb-20
 							.c-col-12
 								.p-prfrm-templatelist
-									.p-prfrm-templatelist__item-wrapper
+									b-tooltip.p-prfrm-templatelist__item-wrapper(label="Not available"
+														:active="active"
+														type="is-dark"
+									)
 										a.p-prfrm-templatelist__item.is-new
 											img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
 											span.u-ml-24 New template
@@ -319,7 +322,7 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 1")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 0")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation

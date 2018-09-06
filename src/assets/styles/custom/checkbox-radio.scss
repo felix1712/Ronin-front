@@ -145,3 +145,25 @@
 		}
 	}
 }
+
+.radio-button{
+	.b-radio{
+		&.radio{
+			&.button{
+				background-color: $v-smoke;
+				padding: 8px 30px;
+				border-color: transparent;
+				color: $v-slate;
+				font-weight: 500;
+				&:hover{
+					border-color: transparent;
+					background: $v-smoke;
+				}
+				&.is-primary{
+					background-color: $v-blue;
+					color: $v-white;
+				}
+			}
+		}
+	}
+}
