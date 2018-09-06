@@ -12,6 +12,7 @@ import axios from 'axios';
 			templatesUuid: null,
 			template: "",
 			radioButton: "Yes",
+			isAccActive: true,
 		}
 	},
 
@@ -31,7 +32,7 @@ import axios from 'axios';
 			this.api.get('templates/'+this.templatesUuid)
 			.then(response => {
 				this.template = response.data.contents.template;
-				// console.log(this.template);
+				console.log(this.template);
 			})
 			.catch(e =>{
 				console.log(e);
@@ -42,6 +43,10 @@ import axios from 'axios';
 	methods: {
 		closeWindow(){
 			window.close();
+		},
+
+		accToggle(){
+			this.isAccActive = !this.isAccActive
 		}
 	}
   };
