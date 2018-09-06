@@ -22,7 +22,7 @@
 
 		data() {
 			return {
-				layout: LoginLayouts,
+				layout: 'div',
 			}
 		},
 

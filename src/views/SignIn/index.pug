@@ -11,12 +11,26 @@
 					img(src="@/assets/images/pages/logo-sleekr.svg", alt="Icon")
 				span Sign in with Sleekr
 		.c-reg-15 or
-		form.u-mt-30
+		form.u-mt-30(@submit.prevent="validateLogin")
 			.u-tal
 				.control
-					input.input(type="email", placeholder="Email address")
+					input.input(
+						type="email"
+						v-model="loginEmail"
+						placeholder="Email address"
+						name="loginEmail"
+						v-validate="'required|email'"
+						)
+					span.is-message(v-show="errors.has('loginEmail')") {{ errors.first('loginEmail') }}
 				.control
-					input.input(type="password", placeholder="Password")
+					input.input(
+						type="password"
+						v-model="loginPassword"
+						placeholder="Password"
+						name="loginPassword"
+						v-validate="'required'"
+					)
+					span.is-message(v-show="errors.has('loginPassword')") {{ errors.first('loginPassword') }}
 			.u-mt-30.u-clearfix
 				.u-pull
 					button Sign in

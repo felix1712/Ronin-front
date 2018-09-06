@@ -2,7 +2,7 @@
 
 <script>
 	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
-	import { service } from '@/api/main-service';
+	import axios from 'axios';
 	import ButtonFooter from './shared/button-footer/ButtonFooter.vue';
 	import Datepicker from 'vuejs-datepicker';
 
@@ -37,6 +37,7 @@
 				moreReviewerSelect:[],
 				templates: null,
 				selectedTemplate: [],
+				api: null,
 				dataReview: {
 					titles: '',
 					description: null,
@@ -73,7 +74,7 @@
 			deleteTemplate(data, index){
 				this.templates.splice(index, 1);
 
-				service.delete('templates/'+ data)
+				this.api.delete('templates/'+ data)
 				.then(response => {
 					this.$toast.open({
 						message: response.data.contents,
@@ -348,7 +349,7 @@
 				this.dataReview.members.forEach(function (data) {
 					user_ids.push(data.user_id);
 				});
-				service.post('getreviewers', {
+				this.api.post('getreviewers', {
 					user_ids: user_ids,
 					review_method: this.dataReview.review_method,
 				})
@@ -464,7 +465,7 @@
 					}
 				});
 
-				service.post('createreview',{
+				this.api.post('createreview', {
 					description: this.dataReview.description,
 					name: this.dataReview.titles,
 					is_repeat: this.dataReview.is_repeat,
@@ -509,73 +510,85 @@
 			this.$emit(`update:layout`, MainLayouts);
 			// set review end date
 			this.dataReview.review_end_date = new Date(this.dataReview.review_end_date.setDate(this.dataReview.review_end_date.getDate() + this.review.deadline));
+		},
 
-			service.get('organizations')
-			.then(response => {
-				this.selectedOrganization = response.data.contents.organizations.map(function(test){
-					return{
-						id: test.id,
-						name: test.name
-					}
-				});
-				this.selectedOrganizationMember = response.data.contents.organizations;
-				// console.log(this.selectedOrganization)
-			})
-			.catch(e => {
-				this.errors.push(e);
-			});
-
-			service.get('employee')
-			.then(response => {
-				this.employeeMember = response.data.contents.users;
-				this.reviewedMember = response.data.contents.users.map(function(member){
-					return{
-						id: member.id,
-						name: member.user.name
-					}
-				})
-
-				this.allSelectedMember = response.data.contents.users.map(function(member){
-					return member.id
-				})
-				this.selectedMembers = this.allSelectedMember;
-				this.addMember();
-
-				this.moreReviewerSelect = response.data.contents.users.map(function(member){
-					return{
-						id: member.id,
-						name: member.user.name
-					}
-				})
-				// console.log(response.data);
-			})
-			.catch(e => {
-				this.errors.push(e);
-			});
-
-			service.get('jobposition')
-			.then(response => {
-				this.selectedJobTitle = response.data.contents.job_positions.map(function(test){
-					return{
-						id: test.id,
-						name: test.title
-					}
+		mounted() {
+			const checkToken = this.$cookie.get('AuthPrfrm');
+			if(checkToken != null){
+				this.api = axios.create({
+				  baseURL: process.env.VUE_APP_OLD_API_URL,
+				  headers: {
+				    Authorization: this.$cookie.get('AuthPrfrm'),
+				  },
 				});
 
-				this.selectedJobTitleMember = response.data.contents.job_positions;
-				// console.log(response.data);
-			})
-			.catch(e => {
-				this.errors.push(e);
-			});
+				this.api.get('organizations',)
+				.then(response => {
+					this.selectedOrganization = response.data.contents.organizations.map(function(test){
+						return{
+							id: test.id,
+							name: test.name
+						}
+					});
+					this.selectedOrganizationMember = response.data.contents.organizations;
+					// console.log(this.selectedOrganization)
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
 
-			service.get('templates')
-			.then(response => {
-				this.templates = response.data.contents.template;
-			})
-			.catch(e =>{
-				console.log(e);
-			});
+				this.api.get('employee')
+				.then(response => {
+					this.employeeMember = response.data.contents.users;
+					this.reviewedMember = response.data.contents.users.map(function(member){
+						return{
+							id: member.id,
+							name: member.user.name
+						}
+					})
+
+					this.allSelectedMember = response.data.contents.users.map(function(member){
+						return member.id
+					})
+					this.selectedMembers = this.allSelectedMember;
+					this.addMember();
+
+					this.moreReviewerSelect = response.data.contents.users.map(function(member){
+						return{
+							id: member.id,
+							name: member.user.name
+						}
+					})
+					// console.log(response.data);
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+
+				this.api.get('jobposition')
+				.then(response => {
+					this.selectedJobTitle = response.data.contents.job_positions.map(function(test){
+						return{
+							id: test.id,
+							name: test.title
+						}
+					});
+
+					this.selectedJobTitleMember = response.data.contents.job_positions;
+					// console.log(response.data);
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+
+				this.api.get('templates')
+				.then(response => {
+					this.templates = response.data.contents.template;
+				})
+				.catch(e =>{
+					// console.log(e);
+				});
+			}
 		},
 
 		watch: {

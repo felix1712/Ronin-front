@@ -8,5 +8,24 @@
 		components: {
 			SecondHeader,
 		},
+		methods: {
+			checkAuth() {
+				const checkToken = this.$cookie.get('AuthPrfrm');
+				if(checkToken != null){
+					this.$router.push('/');
+				}
+			}
+		},
+
+		mounted() {
+			this.checkAuth();
+		},
+
+		updated() {
+			const checkToken = this.$cookie.get('AuthPrfrm');
+			if(checkToken != null){
+				this.$router.push('/');
+			}
+		},
 	};
 </script>

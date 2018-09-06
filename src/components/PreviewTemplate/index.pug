@@ -10,188 +10,51 @@
 						h3.c-str-21 {{categories.name}}
 						p.c-reg-15.u-mb-10 {{categories.description}}
 						.c-reg-15.u-cl-slate Weight: {{categories.weight}} of 100%
-					.c-accordion__icon.icon-plus
-				.p-prfrm-create__list-content.c-accordion__body
+					.c-accordion__icon(
+						@click.prevent="accToggle"
+						:class="isAccActive ? 'icon-plus':'icon-minus'")
+				vue-slide-up-down.p-prfrm-create__list-content.c-accordion__body(:active="isAccActive")
 					.c-accordion__section.u-py-30
-						//- .c-accordion__section-item(v-for="(question, index) in categories.review_indicators")
-						//- 	.c-accordion__section-item-no
-						//- 		span.u-ft-smb 1
-						//- 		span.u-cl-slate /6
-						//- 	.c-accordion__section-item-content
-						//- 		.c-smb-15 Delight Customer
-						//- 		.u-maxw-570.u-py-10
-						//- 			p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
-						//- 		.u-cl-slate Weight: 17 of 100%
-						//- 		.p-prfm-rating.u-my-30
-						//- 			.p-prfm-rating__item
-						//- 				input(type='radio', name='radio-rating', id='one', disabled)
-						//- 				label(for='one') 1
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='two', disabled)
-						//- 				label(for='two') 2
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='three', disabled)
-						//- 				label(for='three') 3
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='four', disabled)
-						//- 				label(for='four') 4
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='five', disabled)
-						//- 				label(for='five') 5
-						//- 			.p-prfm-rating__item
-						//- 				input(type='radio', name='radio-rating', id='six', disabled)
-						//- 				label(for='six') 6
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='seven', disabled)
-						//- 				label(for='seven') 7
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='eight', disabled)
-						//- 				label(for='eight') 8
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='nine', disabled)
-						//- 				label(for='nine') 9
-						//- 			.p-prfm-rating__item 
-						//- 				input(type='radio', name='radio-rating', id='ten', disabled)
-						//- 				label(for='ten') 10
-						//- 		.p-prfrm-comment.is-button.is-disabled
-						//- 			img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
-						//- 			span.u-ml-10 Write comment
+						.c-accordion__section-item(v-for="(question, index) in categories.review_indicators")
+							.c-accordion__section-item-no
+								span.u-ft-smb {{index+1}}
+								span.u-cl-slate /{{categories.review_indicators.length}}
+							.c-accordion__section-item-content
+								.c-smb-15 {{question.name}}
+								.u-maxw-570.u-py-10
+									p.c-reg-15 {{question.description}}
+								.u-cl-slate Weight: {{question.weight}} of 100%
+								//- answer type rating
+								.p-prfm-rating.u-my-30(v-if="question.answer_type == 'rating'")
+									.p-prfm-rating__item(v-for="(rating,index) in question.review_ratings")
+										input(type='radio'
+											name='radio-rating'
+											:id='rating.id'
+											disabled
+										)
+										label(:for='rating.id') {{index + 1}}
 
-			.p-prfrm-create__list.c-accordion__panel.is-open
-				.p-prfrm-create__list-head.c-accordion__head.u-py-0
-					.c-accordion__title
-						h3.c-str-21 Technical Skill
-						p.c-reg-15.u-mb-10 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-						p.c-reg-15 Score: 30
-					.c-accordion__icon.icon-plus
-				.p-prfrm-create__list-content.c-accordion__body
-					.c-accordion__section.u-py-30
-						.c-accordion__section-item
-							.c-accordion__section-item-no
-								span.u-ft-smb 1
-								span.u-cl-slate /6
-							.c-accordion__section-item-content
-								.c-smb-15 Delight Customer
-								.u-maxw-570.u-py-10
-									p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
-								.u-cl-slate Weight: 17 of 100%
-								.p-prfm-rating.u-mt-30
-									.p-prfm-rating__item
-										input(type='radio', name='radio-rating', id='one', checked, disabled)
-										label(for='one') 1
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='two', disabled)
-										label(for='two') 2
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='three', disabled)
-										label(for='three') 3
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='four', disabled)
-										label(for='four') 4
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='five', disabled)
-										label(for='five') 5
-									.p-prfm-rating__item
-										input(type='radio', name='radio-rating', id='six', disabled)
-										label(for='six') 6
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='seven', disabled)
-										label(for='seven') 7
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='eight', disabled)
-										label(for='eight') 8
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='nine', disabled)
-										label(for='nine') 9
-									.p-prfm-rating__item 
-										input(type='radio', name='radio-rating', id='ten', disabled)
-										label(for='ten') 10
-								.p-prfrm-comment.is-button.is-disabled.u-mt-40
-									img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
-									span.u-ml-10 Write comment
-						.c-accordion__section-item
-							.c-accordion__section-item-no
-								span.u-ft-smb 2
-								span.u-cl-slate /6
-							.c-accordion__section-item-content
-								.c-smb-15 Delight Customer
-								.u-maxw-570.u-py-10
-									p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
-								.u-cl-slate Weight: 17 of 100%
-								.p-prfrm-comment.is-button.is-disabled.u-mt-40
-									img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
-									span.u-ml-10 Write comment
-						.c-accordion__section-item
-							.c-accordion__section-item-no
-								span.u-ft-smb 3
-								span.u-cl-slate /6
-							.c-accordion__section-item-content
-								.c-smb-15 Delight Customer
-								.u-maxw-570.u-py-10
-									p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
-								.u-cl-slate Weight: 17 of 100%
-								.u-mt-30
-									.field
-										.control
-											span.u-w-80
-												input.input(
-													type="text"
-													maxlength="3"
-													value="33"
-													v-validate="'between:0,100'"
-													disabled
-													)
-											span.u-ml-10.c-reg-15
-												| from 100%
-								.p-prfrm-comment.is-button.is-disabled.u-mt-40
-									img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
-									span.u-ml-10 Write comment
-						.c-accordion__section-item
-							.c-accordion__section-item-no
-								span.u-ft-smb 4
-								span.u-cl-slate /6
-							.c-accordion__section-item-content
-								.c-smb-15 Delight Customer
-								.u-maxw-570.u-py-10
-									p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
-								.u-cl-slate Weight: 17 of 100%
-								.p-prfrm-comment.is-button.is-disabled.u-mt-40
-									img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
-									span.u-ml-10 Write comment
-						.c-accordion__section-item
-							.c-accordion__section-item-no
-								span.u-ft-smb 5
-								span.u-cl-slate /6
-							.c-accordion__section-item-content
-								.c-smb-15 Delight Customer
-								.u-maxw-570.u-py-10
-									p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
-								.u-cl-slate Weight: 17 of 100%
-								.u-mt-30
+								//- answer type yes no
+								.u-mt-30(v-if="question.answer_type == 'yes-no'")
 									b-field
 										b-radio-button.radio-button(v-model="radioButton"
-																								native-value="Yes"
+											native-value="Yes"
+											disabled
 										)
 											img.u-mr-10(src="@/assets/images/pages/icon-check.svg")
 											span Yes
 										b-radio-button.radio-button(v-model="radioButton"
-																								native-value="No"
+											native-value="No"
+											disabled
 										)
 											img.u-mr-10(src="@/assets/images/pages/icon-reset.svg")
 											span No
-
-								.p-prfrm-comment.is-button.is-disabled.u-mt-40
+								//- answer type free text
+								.p-prfrm-comment.is-button.is-disabled(v-if="question.answer_type == 'free-text'")
 									img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
-									span.u-ml-10 Write comment
-						.c-accordion__section-item
-							.c-accordion__section-item-no
-								span.u-ft-smb 6
-								span.u-cl-slate /6
-							.c-accordion__section-item-content
-								.c-smb-15 Delight Customer
-								.u-maxw-570.u-py-10
-									p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
-								.u-cl-slate Weight: 17 of 100%
-								.p-prfrm-comment.is-button.is-disabled.u-mt-40
+									span.u-ml-10 Write answer
+
+								//- comment
+								.p-prfrm-comment.is-button(:class="question.can_comment == 0 ? 'is-disabled':'is-disabled'" v-if="question.answer_type != 'free-text'")
 									img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
 									span.u-ml-10 Write comment

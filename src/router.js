@@ -43,18 +43,13 @@ export default new Router({
 		},
 		{
 			path: '/login',
-			name: 'login',
-			component: auth,
+			name: 'SignIn',
+			component: SignIn,
 		},
 		{
 			path: '/sign-up',
 			name: 'SignUp',
 			component: SignUp,
-		},
-		{
-			path: '/sign-in',
-			name: 'SignIn',
-			component: SignIn,
 		},
 		{
 			path: '/forgot-password',

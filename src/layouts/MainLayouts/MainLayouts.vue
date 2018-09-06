@@ -9,5 +9,25 @@
 			Header,
 			Footer
 		},
+
+		methods: {
+			checkAuth() {
+				const checkToken = this.$cookie.get('AuthPrfrm');
+				if(checkToken == null){
+					this.$router.push('/login');
+				}
+			}
+		},
+
+		mounted() {
+			this.checkAuth();
+		},
+
+		updated() {
+			const checkToken = this.$cookie.get('AuthPrfrm');
+			if(checkToken == null){
+				this.$router.push('/login');
+			}
+		},
 	};
 </script>
