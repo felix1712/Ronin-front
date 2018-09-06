@@ -65,8 +65,9 @@
 
 		methods: {
 			dropDownPosition(e){
+				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
-				e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
+				// e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
 			},
 
 			deleteTemplate(data, index){

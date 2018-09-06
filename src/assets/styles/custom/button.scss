@@ -110,4 +110,14 @@ a{
 			color: $v-white;
 		}
 	}
+	&.is-transparant{
+		background-color: transparent;
+		color: $v-white;
+		border: none;
+		&:hover, &:active, &:focus{
+			background-color: transparent;
+			color: $v-white;
+			text-decoration: underline;
+		}
+	}
 }
