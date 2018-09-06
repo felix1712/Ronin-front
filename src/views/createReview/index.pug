@@ -122,6 +122,7 @@
 													| Select everyone
 												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneOrganization(organizationMember.id)")
 													| Select no one
+									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
 											label(
@@ -139,6 +140,8 @@
 													input.c-check__checkbox(
 														type="checkbox" 
 														v-model="selectedMembers"
+														name="revieweeCheckbox"
+														v-validate="'required'"
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
@@ -187,6 +190,7 @@
 													| Select everyone
 												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
 													| Select no one
+									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}													
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
 											label(
@@ -204,6 +208,8 @@
 													input.c-check__checkbox(
 														type="checkbox" 
 														v-model="selectedMembers"
+														name="revieweeCheckbox"
+														v-validate="'required'"
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
@@ -244,6 +250,7 @@
 												| Select everyone
 											a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectSpecificStaff()")
 												| Select no one
+								span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 								.c-list.c-list--staff.u-mt-10
 									.c-list--staff__item(v-for="employeeList in selectReviewedMembers")
 										label(
@@ -262,6 +269,8 @@
 												input.c-check__checkbox(
 													type="checkbox" 
 													v-model="selectedMembers"
+													name="revieweeCheckbox"
+													v-validate="'required'"
 													:value="employeeList.id" 
 													:id="employeeList.id"
 													@change="checkboxMember($event)"
