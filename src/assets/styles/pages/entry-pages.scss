@@ -67,6 +67,8 @@
                 background-color: #F5F6F7;
                 border: 2px solid #F5F6F7;
                 margin-bottom: 2px;
+                padding-top: 16px;
+                padding-bottom: 16px;
                 &::placeholder {
                     color: $v-slate;
                 }
