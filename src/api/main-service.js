@@ -14,6 +14,6 @@ export const loginService = axios.create({
 export const service = axios.create({
   baseURL: process.env.VUE_APP_OLD_API_URL,
   headers: {
-    Authorization: services.$cookie.get('Auth'),
+    Authorization: services.$cookie.get('AuthPrfrm'),
   },
 });
