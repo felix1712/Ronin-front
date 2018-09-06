@@ -122,6 +122,7 @@
 													| Select everyone
 												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneOrganization(organizationMember.id)")
 													| Select no one
+									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
 											label(
@@ -139,6 +140,8 @@
 													input.c-check__checkbox(
 														type="checkbox" 
 														v-model="selectedMembers"
+														name="revieweeCheckbox"
+														v-validate="'required'"
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
@@ -187,6 +190,7 @@
 													| Select everyone
 												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
 													| Select no one
+									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}													
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
 											label(
@@ -204,6 +208,8 @@
 													input.c-check__checkbox(
 														type="checkbox" 
 														v-model="selectedMembers"
+														name="revieweeCheckbox"
+														v-validate="'required'"
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
@@ -244,6 +250,7 @@
 												| Select everyone
 											a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectSpecificStaff()")
 												| Select no one
+								span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 								.c-list.c-list--staff.u-mt-10
 									.c-list--staff__item(v-for="employeeList in selectReviewedMembers")
 										label(
@@ -262,6 +269,8 @@
 												input.c-check__checkbox(
 													type="checkbox" 
 													v-model="selectedMembers"
+													name="revieweeCheckbox"
+													v-validate="'required'"
 													:value="employeeList.id" 
 													:id="employeeList.id"
 													@change="checkboxMember($event)"
@@ -361,6 +370,7 @@
 												name="radio-review-schedule"
 												native-value="0"
 												v-model="dataReview.is_repeat"
+												@change.native="isRepeat($event)"
 											)
 												| Once
 										.block.u-mb-10
@@ -368,6 +378,7 @@
 												name="radio-reviewee-schedule"
 												native-value="1"
 												v-model="dataReview.is_repeat"
+												@change.native="isRepeat($event)"
 											)
 												| Repeat
 				
@@ -381,14 +392,15 @@
 										span.u-maxw-170
 											input.input(
 												type="text" 
-												name="repeat every"
+												name="is_repeat_every"
 												maxlength="2"
+												v-model="dataReview.repeat_every"
 												v-validate="'between:0,12'"
-												)
+											)
 										span.u-ml-10.c-reg-15
 											| Month
 									br
-									span.is-message.c-reg-14.u-cl-red(v-show="errors.has('repeat every')") {{ errors.first('repeat every') }}
+									span.is-message.c-reg-14.u-cl-red(v-show="errors.has('is_repeat_every')") {{ errors.first('is_repeat_every') }}
 				
 						.c-row.u-cpointer
 							.u-mb-20.c-col-5

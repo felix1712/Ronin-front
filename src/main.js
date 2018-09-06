@@ -39,12 +39,18 @@ Validator.localize({
       select_reviewee: {
       	required: "This field is mandatory",
       },
+      revieweeCheckbox: {
+        required: "This field is mandatory",
+      },
       loginEmail: {
         required: "This field is mandatory",
         email: "Your email does not look right"
       },
       loginPassword: {
         required: "This field is mandatory",
+      },
+      is_repeat_every: {
+        between: "This field is between 1 - 12",
       },
     }
   }

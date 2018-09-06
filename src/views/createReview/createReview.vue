@@ -275,6 +275,14 @@
 				this.dataReview.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
 			},
 
+			isRepeat(e){
+				if(e.target.value == 1){
+					this.dataReview.repeat_every = 1;
+				} else {
+					this.dataReview.repeat_every = 0;
+				}
+			},
+
 			addMember() {
 				// console.log(this.selectedMembers);
 				this.selectedMembers.forEach(function (value) {

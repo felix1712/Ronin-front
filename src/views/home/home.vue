@@ -2,7 +2,7 @@
 
 <script>
 	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
-	import { service } from '@/api/main-service';
+	import { loginService } from '@/api/main-service';
 
 	export default{
 		name: 'Home',
