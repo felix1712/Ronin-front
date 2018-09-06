@@ -1,13 +1,13 @@
 #entryPage
-	.p-prfrm-entry__content
+	.p-prfrm-entry__content(v-if="!hasLink")
 		.c-str-26 Forgot password
-		form.u-mt-30
+		form(@submit.prevent="sendLinkForgot").u-mt-30
 			.u-tal
 				.control
 					input.input(type="email", placeholder="Email address")
 			.u-mt-30
 				button Send me the link
-	.p-prfrm-entry__content
+	.p-prfrm-entry__content(v-if="hasLink")
 		.c-str-26 Change password
 		form.u-mt-30
 			.u-tal
