@@ -12,7 +12,7 @@
 						.c-reg-15.u-cl-slate Weight: {{categories.weight}} of 100%
 					.c-accordion__icon(
 						@click.prevent="accToggle"
-						:class="isAccActive ? 'icon-plus':'icon-minus'")
+						:class="isAccActive ? 'icon-minus':'icon-plus'")
 				vue-slide-up-down.p-prfrm-create__list-content.c-accordion__body(:active="isAccActive")
 					.c-accordion__section.u-py-30
 						.c-accordion__section-item(v-for="(question, index) in categories.review_indicators")
@@ -41,13 +41,11 @@
 											native-value="Yes"
 											disabled
 										)
-											img.u-mr-10(src="@/assets/images/pages/icon-check.svg")
 											span Yes
 										b-radio-button.radio-button(v-model="radioButton"
 											native-value="No"
 											disabled
 										)
-											img.u-mr-10(src="@/assets/images/pages/icon-reset.svg")
 											span No
 								//- answer type free text
 								.p-prfrm-comment.is-button.is-disabled(v-if="question.answer_type == 'free-text'")

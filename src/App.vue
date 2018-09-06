@@ -39,6 +39,7 @@
 		},
 
 		mounted() {
+			console.log(process.env.VUE_APP_OLD_API_URL)
 			// this.checkAuth();
 		}
 	};
