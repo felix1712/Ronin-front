@@ -521,7 +521,7 @@
 				// console.log(this.selectedOrganization)
 			})
 			.catch(e => {
-				this.errors.push(e);
+				// this.errors.push(e);
 			});
 
 			service.get('employee')
@@ -549,7 +549,7 @@
 				// console.log(response.data);
 			})
 			.catch(e => {
-				this.errors.push(e);
+				// this.errors.push(e);
 			});
 
 			service.get('jobposition')
@@ -565,7 +565,7 @@
 				// console.log(response.data);
 			})
 			.catch(e => {
-				this.errors.push(e);
+				// this.errors.push(e);
 			});
 
 			service.get('templates')
@@ -573,7 +573,7 @@
 				this.templates = response.data.contents.template;
 			})
 			.catch(e =>{
-				console.log(e);
+				// console.log(e);
 			});
 		},
 

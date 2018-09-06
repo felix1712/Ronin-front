@@ -9,5 +9,17 @@
 			Header,
 			Footer
 		},
+
+		methods: {
+			checkAuth() {
+				const checkToken = this.$cookie.get('AuthPrfrm');
+				if(checkToken == "undefined" || checkToken == null){
+					this.$router.push('/login');
+				}
+			}
+		},
+		mounted() {
+			this.checkAuth();
+		},
 	};
 </script>
