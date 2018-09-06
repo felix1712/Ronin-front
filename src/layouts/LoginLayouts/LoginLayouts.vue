@@ -17,7 +17,7 @@
 			}
 		},
 
-		created() {
+		mounted() {
 			this.checkAuth();
 		},
 

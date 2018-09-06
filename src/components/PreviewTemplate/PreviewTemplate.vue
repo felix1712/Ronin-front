@@ -2,12 +2,13 @@
 
 <script>
 import BlankLayouts from '@/layouts/BlankLayouts/BlankLayouts.vue';
-import { service } from '@/api/main-service';
+import axios from 'axios';
   
   export default{
 	name: 'PreviewTemplate',
 	data(){
 		return {
+			api: null,
 			templatesUuid: null,
 			template: "",
 			radioButton: "Yes",
@@ -16,8 +17,18 @@ import { service } from '@/api/main-service';
 
 	created() {
 		this.$emit(`update:layout`, BlankLayouts);
-		this.templatesUuid = this.$route.params.uuid;
-		service.get('templates/'+this.templatesUuid)
+		const checkToken = this.$cookie.get('AuthPrfrm');
+		if(checkToken != null){
+			this.api = axios.create({
+			  baseURL: process.env.VUE_APP_OLD_API_URL,
+			  headers: {
+			    Authorization: this.$cookie.get('AuthPrfrm'),
+			  },
+			});
+
+			this.templatesUuid = this.$route.params.uuid;
+
+			this.api.get('templates/'+this.templatesUuid)
 			.then(response => {
 				this.template = response.data.contents.template;
 				// console.log(this.template);
@@ -25,6 +36,7 @@ import { service } from '@/api/main-service';
 			.catch(e =>{
 				console.log(e);
 			});
+		}
 	},
 
 	methods: {

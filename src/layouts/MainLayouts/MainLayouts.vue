@@ -18,7 +18,8 @@
 				}
 			}
 		},
-		created() {
+
+		mounted() {
 			this.checkAuth();
 		},
 
