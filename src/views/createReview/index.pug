@@ -330,13 +330,13 @@
 													.level-right
 														.level-item
 															b-dropdown.custom-popover(position="is-top-left")
-																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 0")
+																a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used ==1")
 																	img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
 																b-dropdown-item
 																	h3.c-smb-15.u-mb-20 Delete confirmation
 																	p.c-smb-15 Are you sure to delete this template?
 																	.u-mt-40
-																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5 No
+																		a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5.is-transparant No
 																		a.c-btn.button.is-danger.u-mx-5(@click.prevent="deleteTemplate(template.uuid, index)") Yes
 
 						//- end step 2 ( Questionare form )
@@ -379,20 +379,10 @@
 												v-model="dataReview.is_repeat"
 											)
 												| Repeat
-
-									//- 	label.c-check__item
-									//- 		span
-									//- 			input.c-check__radio(type='radio', name='radio-schedule', value="0", v-model="dataReview.is_repeat", checked)
-									//- 		span Once
-									//- .c-check__group
-									//- 	label.c-check__item
-									//- 		span
-									//- 			input.c-check__radio(type='radio', name='radio-schedule', value="1", v-model="dataReview.is_repeat", data-effect="slide", data-link="scheduleRepeat")
-									//- 		span Repeat
 				
 					.ju-togglelc-scheduleRepeat.u-mt-10
-						.c-row.u-cpointer.jc-tooltip(data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", data-pos="custom-row")
-							.jc-tooltip-mark.u-mb-20.c-col-4(:class="dataReview.is_repeat != 1 ? 'u-dn':''")
+						.c-row.u-cpointer
+							.u-mb-20.c-col-4.c-slideToggle-animation(:class="dataReview.is_repeat != 1 ? 'u-dn':''")
 								.field
 									label.label.u-db Repeat every 
 										span.u-cl-red *
@@ -408,18 +398,13 @@
 											| Month
 									br
 									span.is-message.c-reg-14.u-cl-red(v-show="errors.has('repeat every')") {{ errors.first('repeat every') }}
-										//- .c-form-group.u-dib
-										//- 	span.u-maxw-170
-										//- 		input.c-only-number.c-form-control(type="text", name="repeat every" maxlength="2", v-validate="'between:0,30'", v-model="dataReview.repeat_every") 
-										//- 		span.is-message.c-reg-14.u-cl-red(v-show="errors.has('repeat every')") {{ errors.first('repeat every') }}
-										//- 	span.u-ml-10 Month(s)
 				
-						.c-row.u-cpointer.jc-tooltip(data-content="Select date to start review cycle.", data-pos="custom-row")
-							.jc-tooltip-mark.u-mb-20.c-col-5
+						.c-row.u-cpointer
+							.u-mb-20.c-col-5
 								.field
 									label.label Start date
 										span.u-cl-red *
-									.control.u-maxw-170.has-icons-right
+									.control.u-maxw-170.has-icons-right.dropdown-datepicker
 										b-datepicker(
 											placeholder="Choose date"
 											v-model="dataReview.review_start_date" 
@@ -427,14 +412,10 @@
 											)
 										span.icon.is-small.is-right
 											i.icon-calendar
-												img.c-calendar__icon.u-mt-5(src="@/assets/images/pages/icon-calendar.svg", alt="icon-calendar")
-											//- .u-maxw-170
-											//- 	.with-icon--calendar.c-calendar
-											//- 		datepicker.c-form-control.c-calendar--value(v-model="dataReview.review_start_date" @selected="changeStartDate")
-													//- img.c-calendar__icon(src="@/assets/images/pages/icon-calendar.svg", alt="icon-calendar")
+												img.c-calendar__icon(src="@/assets/images/pages/icon-calendar.svg", alt="icon-calendar")
 
-						.c-row.u-cpointer.jc-tooltip(data-content="Input the number days of review period to determine the end date of the review.", data-pos="custom-row")
-							.jc-tooltip-mark.c-col-4
+						.c-row.u-cpointer
+							.c-col-4
 								.field
 									label.label.u-db Review due 
 										span.u-cl-red *
@@ -560,34 +541,36 @@
 																		@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
 																	)
 																.field
-																	span
-																		input.c-check__checkbox(
-																			type="checkbox" 
-																			v-model="dataMember.is_self_review"
-																			:true-value= "1"
-																			:false-value= "0"
-																			@change="selfReview(dataMember)"
+																	label 
+																		span
+																			input.c-check__checkbox(
+																				type="checkbox" 
+																				v-model="dataMember.is_self_review"
+																				:true-value= "1"
+																				:false-value= "0"
+																				@change="selfReview(dataMember)"
+																				)
+																		span Self review
+																			b-tooltip(label="Lorem ipsum"
+																				type="is-dark"
+																				position="is-top"
 																			)
-																	span Self review
-																		b-tooltip(label="Lorem ipsum"
-																			type="is-dark"
-																			position="is-top"
-																		)
-																			img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+																				img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 																.field
-																	span
-																		input.c-check__checkbox(
-																			type="checkbox" 
-																			v-model="dataMember.is_sequent"
-																			:true-value= "1"
-																			:false-value= "0"
+																	label
+																		span
+																			input.c-check__checkbox(
+																				type="checkbox" 
+																				v-model="dataMember.is_sequent"
+																				:true-value= "1"
+																				:false-value= "0"
+																				)
+																		span Sequential review
+																			b-tooltip(label="Lorem ipsum"
+																				type="is-dark"
+																				position="is-top"
 																			)
-																	span Sequential review
-																		b-tooltip(label="Lorem ipsum"
-																			type="is-dark"
-																			position="is-top"
-																		)
-																			img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+																				img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
 
 						.ju-toggle-managerReview.u-mt-40.c-list--review(:class="dataReview.review_method != 'manager-review' ? 'u-dn': '' ")
 							.c-row

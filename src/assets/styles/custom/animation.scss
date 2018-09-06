@@ -1,6 +1,6 @@
 .c-slideToggle-animation{
-	transition-property: all;
-	transition-duration: .5s;
-	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-	max-height: 9999px;
+	-webkit-transition: height 4s ease-out;
+  -moz-transition: height 4s ease-out;
+  -o-transition: height 4s ease-out;
+  transition: height 4s ease-out;
 }
