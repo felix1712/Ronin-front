@@ -9,6 +9,7 @@ import VeeValidate from 'vee-validate';
 import { Validator } from 'vee-validate';
 import Buefy from 'buefy'
 import Multiselect from 'vue-multiselect'
+import VueSlideUpDown from 'vue-slide-up-down'
 
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
 // If you would like custom styling of the toastr the css file can be replaced
@@ -19,6 +20,7 @@ Vue.use(Buefy)
 Vue.component('multiselect', Multiselect)
 Vue.use(VeeValidate);
 Vue.use(require('vue-moment'));
+Vue.component('vue-slide-up-down', VueSlideUpDown)
 Vue.config.productionTip = false;
 
 Validator.localize({
@@ -37,12 +39,18 @@ Validator.localize({
       select_reviewee: {
       	required: "This field is mandatory",
       },
+      revieweeCheckbox: {
+        required: "This field is mandatory",
+      },
       loginEmail: {
         required: "This field is mandatory",
         email: "Your email does not look right"
       },
       loginPassword: {
         required: "This field is mandatory",
+      },
+      is_repeat_every: {
+        between: "This field is between 1 - 12",
       },
     }
   }

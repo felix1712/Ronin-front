@@ -7,8 +7,8 @@ import { loginService } from '@/api/main-service.js';
     name: 'SignIn',
     data() {
     	return {
-    		loginEmail: '',
-    		loginPassword: '',
+    		loginEmail: 'ricky@dummy.com',
+    		loginPassword: 'Sleekr1234',
     		token: null,
     	}
     },

@@ -90,4 +90,26 @@
 			}
 	  }
 	}
+	&.dropdown{
+		&.is-top-left{
+			.dropdown-menu{
+				left: -142px;
+				bottom: 30px;
+			}
+		}
+	}
+}
+
+.dropdown-datepicker{
+	.dropdown{
+		&-menu{
+			width: 285px;
+			.dropdown-content{
+				.datepicker-table{
+					width: 100%;
+					margin: 0 auto 0.5rem auto;
+				}
+			}
+		}
+	}
 }

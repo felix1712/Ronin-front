@@ -66,8 +66,9 @@
 
 		methods: {
 			dropDownPosition(e){
+				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
-				e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
+				// e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
 			},
 
 			deleteTemplate(data, index){
@@ -272,6 +273,14 @@
 				const getStartDate = new Date(e);
 				const dueValue = parseInt(this.review.deadline);
 				this.dataReview.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
+			},
+
+			isRepeat(e){
+				if(e.target.value == 1){
+					this.dataReview.repeat_every = 1;
+				} else {
+					this.dataReview.repeat_every = 0;
+				}
 			},
 
 			addMember() {

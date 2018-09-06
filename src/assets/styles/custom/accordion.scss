@@ -31,6 +31,11 @@
 		        content: '\002B';
 		      }
 	      }
+        &.icon-minus{
+          &::after{
+            content: '\002D';
+          }
+        }
     	}
     }
 	}
