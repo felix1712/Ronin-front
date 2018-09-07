@@ -546,6 +546,8 @@
 																		@open="setOptionReviewer(dataMember)"
 																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
+																			span.multiselect__option No results found
 																.field
 																	label
 																		span
@@ -615,6 +617,7 @@
 																		input.input(
 																			type="text"
 																			name="weight"
+																			:value="weightReviewer(dataMember)"
 																			maxlength="3"
 																			v-validate="'between:0,100'"
 																			)
@@ -624,9 +627,10 @@
 																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs
-																	b-tooltip(label="Remove"
-																						position="is-top"
-																						type="is-dark"
+																	b-tooltip(
+																		label="Remove"
+																		position="is-top"
+																		type="is-dark"
 																	)
 																		| &times;
 														.c-list--reviewer__item-select
@@ -644,8 +648,10 @@
 																		:allow-empty="false",
 																		:hide-selected="true"
 																		@open="setOptionReviewer(dataMember)"
-																		@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
+																			span.multiselect__option No results found
 																.field
 																	span
 																		input.c-check__checkbox(
@@ -713,6 +719,7 @@
 																input.input(
 																	type="text"
 																	name="weight"
+																	:value="weightReviewer(dataMember)"
 																	maxlength="3"
 																	v-validate="'between:0,100'"
 																	)
@@ -742,8 +749,10 @@
 																:allow-empty="false",
 																:hide-selected="true"
 																@open="setOptionReviewer(dataMember)"
-																@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 															)
+																div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
+																	span.multiselect__option No results found
 														.field
 															span
 																input.c-check__checkbox(
