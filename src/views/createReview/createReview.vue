@@ -344,7 +344,6 @@
 				this.api.get('templates/'+data )
 				.then(response => {
 					this.templateDetails = response.data.contents.template;
-					console.log(this.templateDetails);
 				})
 				.catch(e =>{
 					console.log(e);
@@ -352,7 +351,16 @@
 			},
 
 			setTemplate() {
-				if(this.templateDetails.review_categories){
+
+				if(this.templateDetails == null ){
+					this.api.get('templates/'+this.selectedTemplate )
+					.then(response => {
+						this.templateDetails = response.data.contents.template;
+					})
+					.catch(e =>{
+						console.log(e);
+					});
+				} else {
 					this.dataReview.template.name = this.templateDetails.name;
 					this.dataReview.template.uuid = this.templateDetails.uuid;
 					this.templateDetails.review_categories.forEach((arr) => {
@@ -391,8 +399,6 @@
 							}
 						})
 					});
-
-					console.log(this.dataReview.template);
 				}
 			},
 
@@ -505,10 +511,9 @@
 
 			submitFormReview() {
 				this.dataReview.members.forEach(function(data){
-					if(data.reviewers.length > 0){
+					if(data.reviewers){
 						const result = data.reviewers.map(item => item.id);
 						data.reviewers = result;
-						return data;
 					}
 				});
 
