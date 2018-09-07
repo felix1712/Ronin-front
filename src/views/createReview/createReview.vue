@@ -46,7 +46,7 @@
 					description: '',
 					members: [],
 					//form questionare
-					template: 
+					template:
 					{
 						is_new: 0,
 						name: null,
@@ -312,7 +312,7 @@
 			removeMember(value) {
 				// console.log(this.selectedMembers);
 				const intValue = parseInt(value);
-				this.dataReview.members = this.dataReview.members.filter(function (item) { 
+				this.dataReview.members = this.dataReview.members.filter(function (item) {
 					return item.user_id !== intValue;
 				});
 			},
@@ -328,7 +328,7 @@
 					this.selectedMembers = this.allSelectedMember;
 					this.addMember();
 				}
-			},  
+			},
 
 			checkboxMember(e) {
 				if (e.target.checked === true) {
@@ -425,7 +425,7 @@
 				this.moreReviewerSelect = this.moreReviewerSelect.filter(item =>{
 					return item.id != data.user_id
 				});
-				
+
 				if(data.reviewers) {
 					this.moreReviewerSelect = this.moreReviewerSelect.filter(arr => {
 						return !data.reviewers.some(arr2 =>{
@@ -440,8 +440,8 @@
 					return item.user_id == this.moreReviewerMember.id
 				}.bind(this))
 				var found = false;
-				for (var i = 0, len = data.length; i < len; i++) { 
-					for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) { 
+				for (var i = 0, len = data.length; i < len; i++) {
+					for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) {
 						if (data[i].user_id === getDataReviewer[j].user_id) {
 							var found = true;
 						}
@@ -519,8 +519,7 @@
 					question_set: this.dataReview.template,
 				})
 				.then(response => {
-
-					if(response.data.status == 200){
+					if(response.data.status_code == 200){
 						this.$toast.open({
 							duration: 10000,
 							message: 'Your create review cycle has been successfully created!',
@@ -540,7 +539,7 @@
 				})
 				.catch(e => {
 					console.log(e);
-				}); 
+				});
 			},
 		},
 		components: {
