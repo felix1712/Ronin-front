@@ -36,18 +36,22 @@
 				moreReviewerMember: [],
 				moreReviewerSelect:[],
 				templates: null,
+				templateDetails: null,
 				selectedTemplate: [],
 				api: null,
+				weightReviewers: 100,
+				asd: null,
 				dataReview: {
 					titles: '',
 					description: null,
 					members: [],
 					//form questionare
-					template: {
+					template: 
+					{
 						is_new: 0,
-						name: 'Chec',
+						name: null,
 						select_type: 'non-predefined',
-						uuid: '07869262-adb1-4a53-848d-1cbaf6e24859',
+						uuid: null,
 						categories: [],
 					},
 					// form schedule
@@ -65,6 +69,10 @@
 		},
 
 		methods: {
+			weightReviewer(data){
+				return this.weightReviewers / data.reviewers.length;
+			},
+
 			dropDownPosition(e){
 				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
@@ -249,16 +257,15 @@
 				this.selectedMembers = [];
 			},
 
-			editReviewStep1() {
-				this.reviewStep = 1;
-			},
-
-			editReviewStep2() {
-				this.reviewStep = 2;
-			},
-
-			editReviewStep3() {
-				this.reviewStep = 3;
+			editReviewStep(data) {
+				this.$validator.validateAll().then((result) => {
+					if (result) {
+						if(this.reviewStep == 1){
+							this.addMember();
+						}
+						this.reviewStep = data;
+					}
+				});
 			},
 
 			changeReviewDue() {
@@ -333,12 +340,66 @@
 				}
 			},
 
-			templateChanges(e) {
-				// if(e.target.checked == true){
-				// 	e.currentTarget.classList.add('is-checked')
-				// } else {
-				// 	e.currentTarget.classList.remove('is-checked')
-				// }
+			getDetailTemplate(data) {
+				this.api.get('templates/'+data )
+				.then(response => {
+					this.templateDetails = response.data.contents.template;
+				})
+				.catch(e =>{
+					console.log(e);
+				});
+			},
+
+			setTemplate() {
+
+				if(this.templateDetails == null ){
+					this.api.get('templates/'+this.selectedTemplate )
+					.then(response => {
+						this.templateDetails = response.data.contents.template;
+					})
+					.catch(e =>{
+						console.log(e);
+					});
+				} else {
+					this.dataReview.template.name = this.templateDetails.name;
+					this.dataReview.template.uuid = this.templateDetails.uuid;
+					this.templateDetails.review_categories.forEach((arr) => {
+						const detailCategories = {
+							name: arr.name,
+							description: arr.description,
+							is_weight: arr.use_weight,
+							weight: arr.weight,
+							questions:[],
+						};
+
+						this.dataReview.template.categories.push(detailCategories);
+
+						arr.review_indicators.forEach(arr2 => {
+							const detailQuestions = {
+								name: arr2.name,
+								description: arr2.description,
+								is_weight: arr2.use_weight,
+								weight: arr2.weight,
+								can_comment: arr2.can_comment,
+								answer_type: arr2.answer_type,
+								ratings:[],
+							};
+
+							detailCategories.questions.push(detailQuestions);
+
+							if(arr2.answer_type == "rating"){
+								arr2.review_ratings.forEach(arr3 => {
+									const detailRatings = {
+										value: arr3.value,
+										description: arr3.description,
+									}
+
+									detailQuestions.ratings.push(detailRatings);
+								})
+							}
+						})
+					});
+				}
 			},
 
 			setReviewer(data) {
@@ -372,21 +433,20 @@
 
 			setOptionReviewer(data) {
 				this.moreReviewerSelect = this.reviewedMember;
-				this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
+				this.moreReviewerSelect = this.moreReviewerSelect.filter(item =>{
 					return item.id != data.user_id
 				});
-				// const checkCurrentReviewer = [];
 				
-				// data.reviewer.forEach(function(arr){
-				// 	checkCurrentReviewer = arr.user_id;
-				// });
-
-				// this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
-				// 	return item.id != checkCurrentReviewer.user_id
-				// })
+				if(data.reviewers) {
+					this.moreReviewerSelect = this.moreReviewerSelect.filter(arr => {
+						return !data.reviewers.some(arr2 =>{
+				        return arr.id === arr2.id;
+				    });
+					})
+				}
 			},
 
-			addReviewer(data) {
+			addReviewer(data, data2, data3) {
 				const getDataReviewer = this.employeeMember.filter(function(item){
 					return item.user_id == this.moreReviewerMember.id
 				}.bind(this))
@@ -404,10 +464,22 @@
 				}
 
 				this.moreReviewerMember = [];
+				this.weightReviewer(data3);
 			},
 
 			changeReviewMehtod(e) {
+				this.dataReview.members.forEach(data=>{
+					data.is_self_review = 0;
+					data.is_sequent = 0;
+				})
 				this.getReviewer();
+			},
+
+			removeReviewer(data, item){
+				let getDataDelete = this.dataReview.members.filter(arr=> arr.user_id == data.user_id)[0];
+				getDataDelete.reviewers = getDataDelete.reviewers.filter(arr=>{
+					return arr.id != item.id;
+				})
 			},
 
 			selfReview(data){
@@ -428,6 +500,8 @@
 					if (result) {
 						if(this.reviewStep == 1){
 							this.addMember();
+						} else if(this.reviewStep == 2){
+							this.setTemplate();
 						}
 						this.reviewStep+=1;
 						this.editReview+=1;
@@ -436,43 +510,10 @@
 			},
 
 			submitFormReview() {
-				const templateReview = {
-					is_new: 0,
-					name: 'Chec',
-					new_name: '',
-					select_type: 'non-predefined',
-					uuid: '07869262-adb1-4a53-848d-1cbaf6e24859',
-					categories: [
-						{
-							name: 'apaja',
-							description: 'asd',
-							is_weight: 0,
-							weight: 0,
-							questions: [
-								{
-									name: 'apaja',
-									description: 'asa',
-									is_weight: 0,
-									weight: 0,
-									can_comment: 0,
-									answer_type: 'rating',
-									ratings: [
-										{
-											value: 1,
-											description: 'asd',
-										}
-									]
-								}
-							] 
-						}
-					],
-				};
-
 				this.dataReview.members.forEach(function(data){
-					if(data.reviewers.length > 0){
+					if(data.reviewers){
 						const result = data.reviewers.map(item => item.id);
 						data.reviewers = result;
-						return data;
 					}
 				});
 
@@ -485,7 +526,7 @@
 					review_end_date: this.dataReview.review_end_date,
 					review_method: this.dataReview.review_method,
 					members: this.dataReview.members,
-					question_set: templateReview,
+					question_set: this.dataReview.template,
 				})
 				.then(response => {
 
@@ -614,6 +655,10 @@
 		computed: {
 			charactersRemaining: function () {
 				return this.maxCharacters - this.dataReview.titles.length;
+			},
+
+			weightRemaining(){
+				return this.weightReviewers;
 			},
 		},
 	};
