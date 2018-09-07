@@ -37,13 +37,13 @@
 				moreReviewerSelect:[],
 				templates: null,
 				templateDetails: null,
-				selectedTemplate: [],
+				selectedTemplate: '',
 				api: null,
 				weightReviewers: 100,
 				asd: null,
 				dataReview: {
 					titles: '',
-					description: null,
+					description: '',
 					members: [],
 					//form questionare
 					template: 
@@ -351,55 +351,44 @@
 			},
 
 			setTemplate() {
+				this.dataReview.template.name = this.templateDetails.name;
+				this.dataReview.template.uuid = this.templateDetails.uuid;
+				this.templateDetails.review_categories.forEach((arr) => {
+					const detailCategories = {
+						name: arr.name,
+						description: arr.description,
+						is_weight: arr.use_weight,
+						weight: arr.weight,
+						questions:[],
+					};
 
-				if(this.templateDetails == null ){
-					this.api.get('templates/'+this.selectedTemplate )
-					.then(response => {
-						this.templateDetails = response.data.contents.template;
-					})
-					.catch(e =>{
-						console.log(e);
-					});
-				} else {
-					this.dataReview.template.name = this.templateDetails.name;
-					this.dataReview.template.uuid = this.templateDetails.uuid;
-					this.templateDetails.review_categories.forEach((arr) => {
-						const detailCategories = {
-							name: arr.name,
-							description: arr.description,
-							is_weight: arr.use_weight,
-							weight: arr.weight,
-							questions:[],
+					this.dataReview.template.categories.push(detailCategories);
+
+					arr.review_indicators.forEach(arr2 => {
+						const detailQuestions = {
+							name: arr2.name,
+							description: arr2.description,
+							is_weight: arr2.use_weight,
+							weight: arr2.weight,
+							can_comment: arr2.can_comment,
+							answer_type: arr2.answer_type,
+							ratings:[],
 						};
 
-						this.dataReview.template.categories.push(detailCategories);
+						detailCategories.questions.push(detailQuestions);
 
-						arr.review_indicators.forEach(arr2 => {
-							const detailQuestions = {
-								name: arr2.name,
-								description: arr2.description,
-								is_weight: arr2.use_weight,
-								weight: arr2.weight,
-								can_comment: arr2.can_comment,
-								answer_type: arr2.answer_type,
-								ratings:[],
-							};
+						if(arr2.answer_type == "rating"){
+							arr2.review_ratings.forEach(arr3 => {
+								const detailRatings = {
+									value: arr3.value,
+									description: arr3.description,
+								}
 
-							detailCategories.questions.push(detailQuestions);
-
-							if(arr2.answer_type == "rating"){
-								arr2.review_ratings.forEach(arr3 => {
-									const detailRatings = {
-										value: arr3.value,
-										description: arr3.description,
-									}
-
-									detailQuestions.ratings.push(detailRatings);
-								})
-							}
-						})
-					});
-				}
+								detailQuestions.ratings.push(detailRatings);
+							})
+						}
+					})
+				});
 			},
 
 			setReviewer(data) {
@@ -510,10 +499,11 @@
 			},
 
 			submitFormReview() {
-				this.dataReview.members.forEach(function(data){
+				this.dataReview.members.map(data => {
 					if(data.reviewers){
 						const result = data.reviewers.map(item => item.id);
 						data.reviewers = result;
+						return data
 					}
 				});
 
@@ -637,10 +627,12 @@
 				.then(response => {
 					this.templates = response.data.contents.template;
 					this.selectedTemplate = this.templates[0].uuid;
+					this.getDetailTemplate(this.selectedTemplate);
 				})
 				.catch(e =>{
 					// console.log(e);
 				});
+
 			}
 		},
 
