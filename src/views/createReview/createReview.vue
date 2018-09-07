@@ -255,20 +255,15 @@
 				this.selectedMembers = [];
 			},
 
-			editReviewStep1() {
-				this.reviewStep = 1;
-			},
-
-			editReviewStep2() {
-				this.reviewStep = 2;
-			},
-
-			editReviewStep3() {
-				this.reviewStep = 3;
-			},
-
-			editReviewStep4(){
-				this.reviewStep = 4;
+			editReviewStep(data) {
+				this.$validator.validateAll().then((result) => {
+					if (result) {
+						if(this.reviewStep == 1){
+							this.addMember();
+						}
+						this.reviewStep = data;
+					}
+				});
 			},
 
 			changeReviewDue() {
