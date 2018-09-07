@@ -372,18 +372,17 @@
 
 			setOptionReviewer(data) {
 				this.moreReviewerSelect = this.reviewedMember;
-				this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
+				this.moreReviewerSelect = this.moreReviewerSelect.filter(item =>{
 					return item.id != data.user_id
 				});
-				// const checkCurrentReviewer = [];
 				
-				// data.reviewer.forEach(function(arr){
-				// 	checkCurrentReviewer = arr.user_id;
-				// });
-
-				// this.moreReviewerSelect = this.moreReviewerSelect.filter(function(item){
-				// 	return item.id != checkCurrentReviewer.user_id
-				// })
+				if(data.reviewers) {
+					this.moreReviewerSelect = this.moreReviewerSelect.filter(arr => {
+						return !data.reviewers.some(arr2 =>{
+				        return arr.id === arr2.id;
+				    });
+					})
+				}
 			},
 
 			addReviewer(data) {
@@ -407,6 +406,10 @@
 			},
 
 			changeReviewMehtod(e) {
+				this.dataReview.members.forEach(data=>{
+					data.is_self_review = 0;
+					data.is_sequent = 0;
+				})
 				this.getReviewer();
 			},
 

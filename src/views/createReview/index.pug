@@ -647,11 +647,12 @@
 																.field
 																	span
 																		input.c-check__checkbox(
-																			type="checkbox"
-																			v-model="dataMember.is_self_review"
-																			:true-value= "1"
-																			:false-value= "0"
-																			)
+																				type="checkbox"
+																				v-model="dataMember.is_self_review"
+																				:true-value= "1"
+																				:false-value= "0"
+																				@change="selfReview(dataMember)"
+																				)
 																	span Self review
 																		b-tooltip(label="Lorem ipsum"
 																			type="is-dark"
@@ -748,6 +749,7 @@
 																	v-model="dataMember.is_self_review"
 																	:true-value= "1"
 																	:false-value= "0"
+																	@change="selfReview(dataMember)"
 																	)
 															span Self review
 																b-tooltip(label="Lorem ipsum"
