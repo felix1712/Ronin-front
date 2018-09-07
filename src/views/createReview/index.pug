@@ -552,6 +552,8 @@
 																		@open="setOptionReviewer(dataMember)"
 																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		span(slot="noResult")
+																			| No results found
 																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
 																			span.multiselect__option No results found
 																.field
@@ -656,6 +658,8 @@
 																		@open="setOptionReviewer(dataMember)"
 																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		span(slot="noResult")
+																			| No results found
 																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
 																			span.multiselect__option No results found
 																.field
@@ -757,6 +761,8 @@
 																@open="setOptionReviewer(dataMember)"
 																@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 															)
+																span(slot="noResult")
+																	| No results found
 																div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
 																	span.multiselect__option No results found
 														.field
