@@ -261,6 +261,10 @@
 				this.reviewStep = 3;
 			},
 
+			editReviewStep4(){
+				this.reviewStep = 4;
+			},
+
 			changeReviewDue() {
 				const getStartDate = new Date(this.dataReview.review_start_date);
 				const dueValue = parseInt(this.review.deadline);
@@ -411,6 +415,13 @@
 					data.is_sequent = 0;
 				})
 				this.getReviewer();
+			},
+
+			removeReviewer(data, item){
+				let getDataDelete = this.dataReview.members.filter(arr=> arr.user_id == data.user_id)[0];
+				getDataDelete.reviewers = getDataDelete.reviewers.filter(arr=>{
+					return arr.id != item.id;
+				})
 			},
 
 			selfReview(data){

@@ -521,10 +521,11 @@
 																				| &#37;
 																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
-																a.c-btn--ghost.c-btn--xs
-																	b-tooltip(label="Remove"
-																						position="is-top"
-																						type="is-dark"
+																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)")
+																	b-tooltip(
+																		label="Remove"
+																		position="is-top"
+																		type="is-dark"
 																	)
 																		| &times;
 														.c-list--reviewer__item-select
