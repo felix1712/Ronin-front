@@ -419,6 +419,10 @@
 
 			removeReviewer(data, item){
 				let getDataDelete = this.dataReview.members.filter(arr=> arr.user_id == data.user_id)[0];
+				if(getDataDelete.user_id === item.id){
+					getDataDelete.is_self_review = 0;
+				}
+
 				getDataDelete.reviewers = getDataDelete.reviewers.filter(arr=>{
 					return arr.id != item.id;
 				})
