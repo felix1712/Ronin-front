@@ -552,6 +552,8 @@
 																		@open="setOptionReviewer(dataMember)"
 																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		span(slot="noResult")
+																			| No results found
 																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
 																			span.multiselect__option No results found
 																.field
@@ -564,8 +566,8 @@
 																				:false-value= "0"
 																				@change="selfReview(dataMember)"
 																				)
-																		span Self review
-																			b-tooltip(label="Lorem ipsum"
+																		span.u-ft-reg Self review
+																			b-tooltip(label="Reviewee will do a review of itself, but all the answers will not be calculated at the final score."
 																				type="is-dark"
 																				position="is-top"
 																			)
@@ -579,8 +581,8 @@
 																				:true-value= "1"
 																				:false-value= "0"
 																				)
-																		span Sequential review
-																			b-tooltip(label="Lorem ipsum"
+																		span.u-ft-reg Sequential review
+																			b-tooltip(label="All reviewer will be sequence to review reviewee and if there is self review enable then priority of sequence review will prioritize the self review before all the reviewers do it."
 																				type="is-dark"
 																				position="is-top"
 																			)
@@ -656,6 +658,8 @@
 																		@open="setOptionReviewer(dataMember)"
 																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		span(slot="noResult")
+																			| No results found
 																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
 																			span.multiselect__option No results found
 																.field
@@ -667,8 +671,8 @@
 																				:false-value= "0"
 																				@change="selfReview(dataMember)"
 																				)
-																	span Self review
-																		b-tooltip(label="Lorem ipsum"
+																	span.u-ft-reg Self review
+																		b-tooltip(label="Reviewee will do a review of itself, but all the answers will not be calculated at the final score."
 																			type="is-dark"
 																			position="is-top"
 																		)
@@ -681,8 +685,8 @@
 																			:true-value= "1"
 																			:false-value= "0"
 																			)
-																	span Sequential review
-																		b-tooltip(label="Lorem ipsum"
+																	span.u-ft-reg Sequential review
+																		b-tooltip(label="All reviewer will be sequence to review reviewee and if there is self review enable then priority of sequence review will prioritize the self review before all the reviewers do it."
 																			type="is-dark"
 																			position="is-top"
 																		)
@@ -757,6 +761,8 @@
 																@open="setOptionReviewer(dataMember)"
 																@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 															)
+																span(slot="noResult")
+																	| No results found
 																div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
 																	span.multiselect__option No results found
 														.field
@@ -768,8 +774,8 @@
 																	:false-value= "0"
 																	@change="selfReview(dataMember)"
 																	)
-															span Self review
-																b-tooltip(label="Lorem ipsum"
+															span.u-ft-reg Self review
+																b-tooltip(label="Reviewee will do a review of itself, but all the answers will not be calculated at the final score."
 																	type="is-dark"
 																	position="is-top"
 																)
@@ -782,8 +788,8 @@
 																	:true-value= "1"
 																	:false-value= "0"
 																	)
-															span Sequential review
-																b-tooltip(label="Lorem ipsum"
+															span.u-ft-reg Sequential review
+																b-tooltip(label="All reviewer will be sequence to review reviewee and if there is self review enable then priority of sequence review will prioritize the self review before all the reviewers do it."
 																	type="is-dark"
 																	position="is-top"
 																)

@@ -9,6 +9,8 @@
 			border-radius: 5px;
 			border: 1px solid $v-ui-border;
 			cursor: pointer;
+			max-height: 34px;
+			min-height: 34px;
 			&:hover{
 				border-color: $v-blue-border;
       	box-shadow: 0 0 4px 1px rgba(131,202,252,0.5);
@@ -16,30 +18,47 @@
 			.multiselect{
 				&__tags{
 					border: none;
-					padding: 6px 40px 6px 8px;
+					padding: 8px 40px 8px 15px;
 					background: transparent;
 					min-height: 0px;
+					line-height: 15px;
+					font-size: 15px;
 					span{
 						&.multiselect__single{
 							margin-bottom: 0;
-							vertical-align: -webkit-baseline-middle;
+							font-size: 15px;
+							line-height: 15px;
+							padding-left: 0;
+							min-height: 0;
 						}
 					}
 
 					.multiselect__tags-wrap{
 						.custom__tag{
-							font-size: 16px;
+							font-size: 15px;
 							display:none;
-							vertical-align: bottom;
-							padding-left: 5px;
-							padding-top: 5px;
-							line-height: 20px;
+							vertical-align: middle;
+							line-height: 15px;
 
 							&:first-child{
 								display: inline-block;
 							}
 						}
 					}
+
+					> span:last-child {
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+					}
+				}
+
+				&__input {
+					font-size: 15px;
+					line-height: 15px;
+					padding-left: 0;
+					height: 15px;
+					top: 0;
 				}
 			}
 
@@ -50,7 +69,7 @@
 						.custom__tag{
 							font-size: 16px;
 							display:none;
-							vertical-align: bottom;
+							vertical-align: middle;
 							padding-left: 5px;
 							padding-top: 5px;
 							line-height: 20px;
@@ -62,6 +81,7 @@
 			&__input{
 				margin-bottom: 0;
 				vertical-align: -webkit-baseline-middle;
+				top: 0;
 			}
 			&__select{
 				height: 36px;
@@ -118,6 +138,12 @@
 						@include scrollbar($v-black, 5px, transparent, 2.5px, $v-slate);
 						max-height: 200px;
 						overflow: auto;
+
+						li {
+							.multiselect__option {
+								span { line-height: 23px; }
+							}
+						}
 					}
 				}
 			}

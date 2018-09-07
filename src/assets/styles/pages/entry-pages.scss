@@ -20,8 +20,13 @@
     a {
         font-family: "Avenir Next Medium";
         color: $v-green;
+        font-size: 15px;
+        line-height: 15px;
         &:hover, &:active, &:focus {
             color: $v-green-dark;
+        }
+        span {
+            line-height: 15px;
         }
     }
 
@@ -33,7 +38,8 @@
         cursor: pointer;
         outline: none;
         font-family: "Avenir Next Medium";
-        font-size: 1.5rem;
+        font-size: 15px;
+        line-height: 15px;
         &:hover, &:active, &:focus {
             color: $v-green-dark;
             text-decoration: underline;
