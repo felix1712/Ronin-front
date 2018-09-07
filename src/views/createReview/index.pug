@@ -508,7 +508,7 @@
 																		.c-smb-15 {{dataReviewer.user.name}}
 																		.c-reg-15.u-cl-slate {{dataReviewer.job_position.title}}
 															.c-list--reviewer__weight
-																.field.u-w-80
+																.field.u-w-80(v-if="dataReviewer.user_id != dataMember.user_id")
 																	p.control.has-icons-right
 																		input.input(
 																			type="text"
@@ -521,7 +521,7 @@
 																				| &#37;
 																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
-																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)")
+																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
 																		label="Remove"
 																		position="is-top"
