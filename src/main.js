@@ -40,7 +40,7 @@ Validator.localize({
       	required: "This field is mandatory",
       },
       revieweeCheckbox: {
-        required: "This field is mandatory",
+        required: "Staff to be reviewed",
       },
       loginEmail: {
         required: "This field is mandatory",

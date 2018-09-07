@@ -12,7 +12,7 @@
 							p.c-reg-15 This is first step create review for naming review cycle and setup selected reviewee to review.
 
 					.u-push(v-if="editReview >= 1")
-						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep1()")
+						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(1)")
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 1 (review information form)
@@ -81,6 +81,8 @@
 							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
+										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
+										br
 										label.label Choose department
 											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
@@ -122,7 +124,6 @@
 													| Select everyone
 												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneOrganization(organizationMember.id)")
 													| Select no one
-									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.organization.id == organizationMember.id")
 											label(
@@ -142,6 +143,7 @@
 														v-model="selectedMembers"
 														name="revieweeCheckbox"
 														v-validate="'required'"
+														data-vv-validate-on="none"
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
@@ -150,6 +152,8 @@
 							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
+										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
+										br
 										label.label Choose job title
 											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
@@ -190,7 +194,6 @@
 													| Select everyone
 												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
 													| Select no one
-									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 									.c-list.c-list--staff.u-mt-10
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
 											label(
@@ -210,6 +213,7 @@
 														v-model="selectedMembers"
 														name="revieweeCheckbox"
 														v-validate="'required'"
+														data-vv-validate-on="none"
 														:value="employeeList.id"
 														:id="employeeList.id"
 														@change="checkboxMember($event)"
@@ -217,6 +221,8 @@
 						.ju-toggle-review.u-mb-30.review-byStaff.c-slideToggle-animation(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 							.c-row.u-mb-25.u-mx-0
 								.field
+									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
+									br
 									label.label Choose staff
 										.u-cl-red.u-dib *
 								nav.level.u-w-100-full
@@ -250,7 +256,6 @@
 												| Select everyone
 											a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectSpecificStaff()")
 												| Select no one
-								span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 								.c-list.c-list--staff.u-mt-10
 									.c-list--staff__item(v-for="employeeList in selectReviewedMembers")
 										label(
@@ -271,6 +276,7 @@
 													v-model="selectedMembers"
 													name="revieweeCheckbox"
 													v-validate="'required'"
+													data-vv-validate-on="none"
 													:value="employeeList.id"
 													:id="employeeList.id"
 													@change="checkboxMember($event)"
@@ -286,7 +292,7 @@
 							p.c-reg-15 This is second step create review for choose and setup questionarre template to be use.
 
 					.u-push(v-if="editReview >= 2")
-						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep2()")
+						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(2)")
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				form(@submit.prevent="validateBeforeSubmit" v-show="reviewStep === 2")
@@ -311,7 +317,7 @@
 											:native-value="template.uuid"
 											:id="template.uuid"
 											v-model="selectedTemplate"
-											@change.native="templateChanges($event)"
+											@change.native="getDetailTemplate(template.uuid)"
 											:class="selectedTemplate.includes(template.uuid) == true ? 'is-checked':''"
 										)
 											.p-prfrm-templatelist__item-name {{template.name}}
@@ -351,7 +357,7 @@
 							p.c-reg-15 This is third step create review for setting up timeline schedule review.
 
 					.u-push(v-if="editReview >= 3")
-						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep3()")
+						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(3)")
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 3 (Schedule Form)`
@@ -441,7 +447,7 @@
 							p.c-reg-15 This is final step create review for setting up review method and choose reviewer that collaborate doing review.
 
 					.u-push(v-if="editReview >= 4")
-						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep2()")
+						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(4)")
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 4 ( Reviewer form )
@@ -497,7 +503,7 @@
 															.c-list--reviewer__name
 																label.u-ft-smb Reviewer
 															.c-list--reviewer__weight
-																label.u-ft-smb Weight remain: 100%
+																label.u-ft-smb Weight remain: {{weightReviewers}}%
 															.c-list--reviewer__action
 														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
 															.c-list--reviewer__name
@@ -508,12 +514,13 @@
 																		.c-smb-15 {{dataReviewer.user.name}}
 																		.c-reg-15.u-cl-slate {{dataReviewer.job_position.title}}
 															.c-list--reviewer__weight
-																.field.u-w-80
+																.field.u-w-80(v-if="dataReviewer.user_id != dataMember.user_id")
 																	p.control.has-icons-right
 																		input.input(
 																			type="text"
 																			name="weight"
 																			maxlength="3"
+																			:value="weightReviewer(dataMember)"
 																			v-validate="'between:0,100'"
 																			)
 																		span.icon.is-small.is-right
@@ -521,10 +528,11 @@
 																				| &#37;
 																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
-																a.c-btn--ghost.c-btn--xs
-																	b-tooltip(label="Remove"
-																						position="is-top"
-																						type="is-dark"
+																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
+																	b-tooltip(
+																		label="Remove"
+																		position="is-top"
+																		type="is-dark"
 																	)
 																		| &times;
 														.c-list--reviewer__item-select
@@ -542,8 +550,10 @@
 																		:allow-empty="false",
 																		:hide-selected="true"
 																		@open="setOptionReviewer(dataMember)"
-																		@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
+																			span.multiselect__option No results found
 																.field
 																	label
 																		span
@@ -613,6 +623,7 @@
 																		input.input(
 																			type="text"
 																			name="weight"
+																			:value="weightReviewer(dataMember)"
 																			maxlength="3"
 																			v-validate="'between:0,100'"
 																			)
@@ -622,9 +633,10 @@
 																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs
-																	b-tooltip(label="Remove"
-																						position="is-top"
-																						type="is-dark"
+																	b-tooltip(
+																		label="Remove"
+																		position="is-top"
+																		type="is-dark"
 																	)
 																		| &times;
 														.c-list--reviewer__item-select
@@ -642,16 +654,19 @@
 																		:allow-empty="false",
 																		:hide-selected="true"
 																		@open="setOptionReviewer(dataMember)"
-																		@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
+																		div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
+																			span.multiselect__option No results found
 																.field
 																	span
 																		input.c-check__checkbox(
-																			type="checkbox"
-																			v-model="dataMember.is_self_review"
-																			:true-value= "1"
-																			:false-value= "0"
-																			)
+																				type="checkbox"
+																				v-model="dataMember.is_self_review"
+																				:true-value= "1"
+																				:false-value= "0"
+																				@change="selfReview(dataMember)"
+																				)
 																	span Self review
 																		b-tooltip(label="Reviewee will do a review of itself, but all the answers will not be calculated at the final score."
 																			type="is-dark"
@@ -710,6 +725,7 @@
 																input.input(
 																	type="text"
 																	name="weight"
+																	:value="weightReviewer(dataMember)"
 																	maxlength="3"
 																	v-validate="'between:0,100'"
 																	)
@@ -739,8 +755,10 @@
 																:allow-empty="false",
 																:hide-selected="true"
 																@open="setOptionReviewer(dataMember)"
-																@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 															)
+																div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
+																	span.multiselect__option No results found
 														.field
 															span
 																input.c-check__checkbox(
@@ -748,6 +766,7 @@
 																	v-model="dataMember.is_self_review"
 																	:true-value= "1"
 																	:false-value= "0"
+																	@change="selfReview(dataMember)"
 																	)
 															span Self review
 																b-tooltip(label="Reviewee will do a review of itself, but all the answers will not be calculated at the final score."
