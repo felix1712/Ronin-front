@@ -18,7 +18,7 @@
 			.multiselect{
 				&__tags{
 					border: none;
-					padding: 9px 40px 9px 15px;
+					padding: 8px 40px 8px 15px;
 					background: transparent;
 					min-height: 0px;
 					line-height: 15px;
@@ -45,13 +45,20 @@
 							}
 						}
 					}
+
+					> span:last-child {
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+					}
 				}
 
 				&__input {
 					font-size: 15px;
 					line-height: 15px;
 					padding-left: 0;
-					top: -4px;
+					height: 15px;
+					top: 0;
 				}
 			}
 
@@ -74,6 +81,7 @@
 			&__input{
 				margin-bottom: 0;
 				vertical-align: -webkit-baseline-middle;
+				top: 0;
 			}
 			&__select{
 				height: 36px;
@@ -130,6 +138,12 @@
 						@include scrollbar($v-black, 5px, transparent, 2.5px, $v-slate);
 						max-height: 200px;
 						overflow: auto;
+
+						li {
+							.multiselect__option {
+								span { line-height: 23px; }
+							}
+						}
 					}
 				}
 			}

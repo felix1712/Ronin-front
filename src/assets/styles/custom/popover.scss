@@ -189,25 +189,29 @@
 				}
 
 				.datepicker-body {
-					.datepicker-cell.is-selectable {
-						color: $v-white;
+					.datepicker-cell {
 						border-radius: 6px;
+						line-height: 15px!important;
+						padding: 10px;
+						&.is-selectable {
+							color: $v-white;
 
-						&:hover, &:focus, &:active {
-							text-decoration: none;
-							&:not(.is-selected) {
-								background-color: $v-black-darker;
-								color: $v-white;
+							&:hover, &:focus, &:active {
+								text-decoration: none;
+								&:not(.is-selected) {
+									background-color: $v-black-darker;
+									color: $v-white;
+								}
 							}
-						}
 
-						&.is-today {
-							border-color: $v-black;
-						}
+							&.is-today {
+								border-color: $v-black;
+							}
 
-						&.is-selected {
-							background-color: $v-yellow;
-							color: $v-black;
+							&.is-selected {
+								background-color: $v-yellow;
+								color: $v-black;
+							}
 						}
 					}
 				}
