@@ -111,5 +111,107 @@
 				}
 			}
 		}
+
+		&-content {
+			background-color: $v-black;
+			border-radius: 5px;
+			.datepicker-header {
+				border: none;
+				padding-top: 10px;
+
+				.pagination-previous, .pagination-next {
+					border: none;
+					padding: 14px 6px;
+					&::before {
+						border-style: solid;
+						border-width: 1px 1px 0 0;
+						content: '';
+						display: inline-block;
+						height: 10px;
+						left: 0.15em;
+						position: relative;
+						top: 0.15em;
+						transform: rotate(-45deg);
+						vertical-align: top;
+						width: 10px;
+						border-color: $v-white;
+					}
+
+					* { display: none; }
+				}
+
+				.pagination-previous {
+					&::before {
+						left: 0.25em;
+						transform: rotate(-135deg);
+					}
+				}
+
+				.pagination-next {
+					&::before {
+						left: 0px;
+						transform: rotate(45deg);
+					}
+				}
+
+				.pagination-list {
+					.select {
+						&:after {
+							border-width: 1px;
+							border-color: $v-white;
+						}
+
+						select {
+							border-color: $v-white;
+							background-color: $v-black;
+							color: white;
+							font-family: "Avenir Next Regular";
+							&:hover, &:active, &:focus {
+								box-shadow: none;
+								border-color: $v-white;
+							}
+
+							option {
+								background-color: $v-white;
+							}
+						}
+					}
+				}
+			}
+			.datepicker-table {
+				.datepicker-header {
+					.datepicker-cell {
+						font-family: "Avenir Next Medium";
+						color: $v-white;
+						font-weight: normal;
+						font-size: 15px;
+					}
+				}
+
+				.datepicker-body {
+					.datepicker-cell.is-selectable {
+						color: $v-white;
+						border-radius: 6px;
+
+						&:hover, &:focus, &:active {
+							text-decoration: none;
+							&:not(.is-selected) {
+								background-color: $v-black-darker;
+								color: $v-white;
+							}
+						}
+
+						&.is-today {
+							border-color: $v-black;
+						}
+
+						&.is-selected {
+							background-color: $v-yellow;
+							color: $v-black;
+						}
+					}
+				}
+			}
+		}
 	}
 }

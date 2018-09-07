@@ -118,6 +118,7 @@
 .p-prfrm{
 	&-templatelist{
 		&__item{
+			transition : linear .3s;
 			&-wrapper{
 				.b-radio{
 					&.radio{

@@ -1,5 +1,9 @@
 .tooltip{
 	&:after{
 		font-size: 1.5rem;
+		max-width: 300px;
+		width: max-content;
+		white-space: normal;
+		font-family: "Avenir Next Regular";
 	}
 }
