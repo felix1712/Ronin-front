@@ -595,6 +595,7 @@
 				this.api.get('templates')
 				.then(response => {
 					this.templates = response.data.contents.template;
+					this.selectedTemplate = this.templates[0].uuid;
 				})
 				.catch(e =>{
 					// console.log(e);

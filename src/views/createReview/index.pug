@@ -395,7 +395,7 @@
 												name="is_repeat_every"
 												maxlength="2"
 												v-model="dataReview.repeat_every"
-												v-validate="'between:0,12'"
+												v-validate="'required|between:0,12'"
 											)
 										span.u-ml-10.c-reg-15
 											| Month
@@ -424,11 +424,12 @@
 										span.u-cl-red *
 									.control.u-dib
 										span.u-maxw-170
-											input.input(type="text", name="review due", v-validate="'between:1,30'", maxlength="2", v-model="review.deadline" @change="changeReviewDue")
-											span.is-message.c-reg-14.u-cl-red(v-show="errors.has('review due')") {{ errors.first('review due') }}
+											input.input(type="text", name="review_due", v-validate="'required|between:1,30'", maxlength="2", v-model="review.deadline" @change="changeReviewDue")
+											span.is-message.c-reg-14.u-cl-red(v-show="errors.has('review_due')") {{ errors.first('review_due') }}
 										span.c-reg-15.u-ml-10.c-wrapper-text-left
 											| Days after review start
-											p.u-ft-smb.c-reg-15 {{dataReview.review_end_date | moment("DD MMM YYYY")}}
+											p.u-ft-smb.c-reg-15(v-if="review.deadline") {{dataReview.review_end_date | moment("DD MMM YYYY")}}
+											p.u-ft-smb.c-reg-15(v-if="!review.deadline") Nan
 					ButtonFooter
 				//- end step 3 (Schedule Form)
 
@@ -559,7 +560,7 @@
 																				position="is-top"
 																			)
 																				img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
-																.field
+																.field(v-if="dataMember.reviewers && dataMember.reviewers.length > 1")
 																	label
 																		span
 																			input.c-check__checkbox(
@@ -657,7 +658,7 @@
 																			position="is-top"
 																		)
 																			img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
-																.field
+																.field(v-if="dataMember.reviewers && dataMember.reviewers.length > 1")
 																	span
 																		input.c-check__checkbox(
 																			type="checkbox"
@@ -754,7 +755,7 @@
 																	position="is-top"
 																)
 																	img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
-														.field
+														.field(v-if="dataMember.reviewers && dataMember.reviewers.length > 1")
 															span
 																input.c-check__checkbox(
 																	type="checkbox"

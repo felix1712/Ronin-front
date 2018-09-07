@@ -50,7 +50,12 @@ Validator.localize({
         required: "This field is mandatory",
       },
       is_repeat_every: {
+        required: "This field is mandatory",
         between: "This field is between 1 - 12",
+      },
+      review_due: {
+        required: "This field is mandatory",
+        between: "This field is between 1 - 30",
       },
     }
   }
