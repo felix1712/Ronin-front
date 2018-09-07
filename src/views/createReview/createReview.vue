@@ -38,6 +38,8 @@
 				templates: null,
 				selectedTemplate: [],
 				api: null,
+				weightReviewers: 100,
+				asd: null,
 				dataReview: {
 					titles: '',
 					description: null,
@@ -65,6 +67,10 @@
 		},
 
 		methods: {
+			weightReviewer(data){
+				return this.weightReviewers / data.reviewers.length;
+			},
+
 			dropDownPosition(e){
 				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
@@ -389,7 +395,7 @@
 				}
 			},
 
-			addReviewer(data) {
+			addReviewer(data, data2, data3) {
 				const getDataReviewer = this.employeeMember.filter(function(item){
 					return item.user_id == this.moreReviewerMember.id
 				}.bind(this))
@@ -407,6 +413,7 @@
 				}
 
 				this.moreReviewerMember = [];
+				this.weightReviewer(data3);
 			},
 
 			changeReviewMehtod(e) {
@@ -628,6 +635,10 @@
 		computed: {
 			charactersRemaining: function () {
 				return this.maxCharacters - this.dataReview.titles.length;
+			},
+
+			weightRemaining(){
+				return this.weightReviewers;
 			},
 		},
 	};

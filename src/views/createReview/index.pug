@@ -497,7 +497,7 @@
 															.c-list--reviewer__name
 																label.u-ft-smb Reviewer
 															.c-list--reviewer__weight
-																label.u-ft-smb Weight remain: 100%
+																label.u-ft-smb Weight remain: {{weightReviewers}}%
 															.c-list--reviewer__action
 														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
 															.c-list--reviewer__name
@@ -514,6 +514,7 @@
 																			type="text"
 																			name="weight"
 																			maxlength="3"
+																			:value="weightReviewer(dataMember)"
 																			v-validate="'between:0,100'"
 																			)
 																		span.icon.is-small.is-right
@@ -543,7 +544,7 @@
 																		:allow-empty="false",
 																		:hide-selected="true"
 																		@open="setOptionReviewer(dataMember)"
-																		@close="addReviewer(dataMember.reviewers, moreReviewerMember)"
+																		@close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
 																	)
 																.field
 																	label
