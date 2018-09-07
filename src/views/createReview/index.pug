@@ -317,7 +317,7 @@
 											:native-value="template.uuid"
 											:id="template.uuid"
 											v-model="selectedTemplate"
-											@change.native="templateChanges($event)"
+											@change.native="getDetailTemplate(template.uuid)"
 											:class="selectedTemplate.includes(template.uuid) == true ? 'is-checked':''"
 										)
 											.p-prfrm-templatelist__item-name {{template.name}}

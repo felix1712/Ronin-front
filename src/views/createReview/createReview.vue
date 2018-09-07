@@ -36,6 +36,7 @@
 				moreReviewerMember: [],
 				moreReviewerSelect:[],
 				templates: null,
+				templateDetails: null,
 				selectedTemplate: [],
 				api: null,
 				weightReviewers: 100,
@@ -45,11 +46,12 @@
 					description: null,
 					members: [],
 					//form questionare
-					template: {
+					template: 
+					{
 						is_new: 0,
-						name: 'Chec',
+						name: null,
 						select_type: 'non-predefined',
-						uuid: '07869262-adb1-4a53-848d-1cbaf6e24859',
+						uuid: null,
 						categories: [],
 					},
 					// form schedule
@@ -338,12 +340,60 @@
 				}
 			},
 
-			templateChanges(e) {
-				// if(e.target.checked == true){
-				// 	e.currentTarget.classList.add('is-checked')
-				// } else {
-				// 	e.currentTarget.classList.remove('is-checked')
-				// }
+			getDetailTemplate(data) {
+				this.api.get('templates/'+data )
+				.then(response => {
+					this.templateDetails = response.data.contents.template;
+					console.log(this.templateDetails);
+				})
+				.catch(e =>{
+					console.log(e);
+				});
+			},
+
+			setTemplate() {
+				if(this.templateDetails.review_categories){
+					this.dataReview.template.name = this.templateDetails.name;
+					this.dataReview.template.uuid = this.templateDetails.uuid;
+					this.templateDetails.review_categories.forEach((arr) => {
+						const detailCategories = {
+							name: arr.name,
+							description: arr.description,
+							is_weight: arr.use_weight,
+							weight: arr.weight,
+							questions:[],
+						};
+
+						this.dataReview.template.categories.push(detailCategories);
+
+						arr.review_indicators.forEach(arr2 => {
+							const detailQuestions = {
+								name: arr2.name,
+								description: arr2.description,
+								is_weight: arr2.use_weight,
+								weight: arr2.weight,
+								can_comment: arr2.can_comment,
+								answer_type: arr2.answer_type,
+								ratings:[],
+							};
+
+							detailCategories.questions.push(detailQuestions);
+
+							if(arr2.answer_type == "rating"){
+								arr2.review_ratings.forEach(arr3 => {
+									const detailRatings = {
+										value: arr3.value,
+										description: arr3.description,
+									}
+
+									detailQuestions.ratings.push(detailRatings);
+								})
+							}
+						})
+					});
+
+					console.log(this.dataReview.template);
+				}
 			},
 
 			setReviewer(data) {
@@ -444,6 +494,8 @@
 					if (result) {
 						if(this.reviewStep == 1){
 							this.addMember();
+						} else if(this.reviewStep == 2){
+							this.setTemplate();
 						}
 						this.reviewStep+=1;
 						this.editReview+=1;
@@ -452,38 +504,6 @@
 			},
 
 			submitFormReview() {
-				const templateReview = {
-					is_new: 0,
-					name: 'Chec',
-					new_name: '',
-					select_type: 'non-predefined',
-					uuid: '07869262-adb1-4a53-848d-1cbaf6e24859',
-					categories: [
-						{
-							name: 'apaja',
-							description: 'asd',
-							is_weight: 0,
-							weight: 0,
-							questions: [
-								{
-									name: 'apaja',
-									description: 'asa',
-									is_weight: 0,
-									weight: 0,
-									can_comment: 0,
-									answer_type: 'rating',
-									ratings: [
-										{
-											value: 1,
-											description: 'asd',
-										}
-									]
-								}
-							] 
-						}
-					],
-				};
-
 				this.dataReview.members.forEach(function(data){
 					if(data.reviewers.length > 0){
 						const result = data.reviewers.map(item => item.id);
@@ -501,7 +521,7 @@
 					review_end_date: this.dataReview.review_end_date,
 					review_method: this.dataReview.review_method,
 					members: this.dataReview.members,
-					question_set: templateReview,
+					question_set: this.dataReview.template,
 				})
 				.then(response => {
 
