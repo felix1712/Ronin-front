@@ -503,7 +503,7 @@
 															.c-list--reviewer__name
 																label.u-ft-smb Reviewer
 															.c-list--reviewer__weight
-																label.u-ft-smb Weight remain: {{weightReviewers}}%
+																label.u-ft-smb Weight remain: {{dataMember.weightRemaining}}%
 															.c-list--reviewer__action
 														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
 															.c-list--reviewer__name
@@ -516,17 +516,19 @@
 															.c-list--reviewer__weight
 																.field.u-w-80(v-if="dataReviewer.user_id != dataMember.user_id")
 																	p.control.has-icons-right
+																		span {{dataReviewer}}
 																		input.input(
 																			type="text"
 																			name="weight"
 																			maxlength="3"
-																			:value="weightReviewer(dataMember)"
+																			v-model="dataReviewer.is_weight"
 																			v-validate="'between:0,100'"
+																			@change="weightRemaining(dataReviewer, dataMember)"
 																			)
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(

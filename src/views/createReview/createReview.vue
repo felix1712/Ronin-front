@@ -73,6 +73,22 @@
 				return this.weightReviewers / data.reviewers.length;
 			},
 
+			weightRemaining(data, data2){
+				if(data.is_weight <= 100 ){
+					data2.weightRemaining =  data2.weightRemaining - data.is_weight
+				}
+
+				if(data2.weightRemaining < 0){
+					this.$toast.open({
+						message: 'Weight remaining out of limit',
+						type: 'is-danger'
+					})
+
+					data2.weightRemaining = 100;
+					data.is_weight = 0;
+				}
+			},
+
 			dropDownPosition(e){
 				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
@@ -298,6 +314,7 @@
 						reviewers: null,
 						is_self_review: 0,
 						is_sequent: 0,
+						weightRemaining: 100,
 					};
 					const checkDataArr = this.dataReview.members.filter(item =>{
 						return item.user_id == value;
@@ -396,6 +413,11 @@
 					item.reviewers = [];
 					data.forEach(function (value) {
 						if (item.user_id == value.id) {
+							if(value.reviewers.length > 0){
+								value.reviewers.map(function(item){
+									item.is_weight = 0
+								})
+							}
 							item.reviewers = value.reviewers;
 						}
 					})
@@ -449,6 +471,7 @@
 				}
 
 				if(!found){
+					getDataReviewer[0].is_weight = 0;
 					Array.prototype.push.apply(data,getDataReviewer);
 				}
 
@@ -646,10 +669,6 @@
 		computed: {
 			charactersRemaining: function () {
 				return this.maxCharacters - this.dataReview.titles.length;
-			},
-
-			weightRemaining(){
-				return this.weightReviewers;
 			},
 		},
 	};
