@@ -69,26 +69,6 @@
 		},
 
 		methods: {
-			weightReviewer(data){
-				return this.weightReviewers / data.reviewers.length;
-			},
-
-			weightRemaining(data, data2){
-				if(data.is_weight <= 100 ){
-					data2.weightRemaining =  data2.weightRemaining - data.is_weight
-				}
-
-				if(data2.weightRemaining < 0){
-					this.$toast.open({
-						message: 'Weight remaining out of limit',
-						type: 'is-danger'
-					})
-
-					data2.weightRemaining = 100;
-					data.is_weight = 0;
-				}
-			},
-
 			dropDownPosition(e){
 				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
@@ -476,7 +456,6 @@
 				}
 
 				this.moreReviewerMember = [];
-				this.weightReviewer(data3);
 			},
 
 			changeReviewMehtod(e) {
@@ -504,6 +483,25 @@
 					data.reviewers = data.reviewers.filter(item => {
 						return item.id != data.user_id
 					})
+				}
+			},
+
+			weightRemaining(data, data2){
+				if(data.is_weight <= 100 ){
+					data2.weightRemaining = 100;
+					let weightCount = data2.reviewers.map(e => parseInt(e.is_weight)).reduce(function(acc, val) { return acc + val; }, 0)
+					console.log(weightCount);
+					data2.weightRemaining =  data2.weightRemaining - weightCount
+				}
+
+				if(data2.weightRemaining < 0){
+					this.$toast.open({
+						message: 'Weight remaining out of limit',
+						type: 'is-danger'
+					})
+
+					data2.weightRemaining = 100;
+					data.is_weight = 0;
 				}
 			},
 
