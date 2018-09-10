@@ -81,8 +81,6 @@
 							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
-										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
-										br
 										label.label Choose department
 											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
@@ -112,6 +110,7 @@
 												span {{selectedOrganiztion.name}}
 												span
 													a.delete.is-small(@click="deleteOrganizationSelect(selectedOrganiztion.id)")
+										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 							.c-row.u-mx-0(v-for="organizationMember in selectedOrganizationMember")
 								template(v-for="selectedOrganiztionOption in selectedOrganiztionChecked" v-if="selectedOrganiztionOption.id == organizationMember.id")
 									nav.level.u-w-100-full
@@ -611,7 +610,7 @@
 															.c-list--reviewer__name
 																label.u-ft-smb Reviewer
 															.c-list--reviewer__weight
-																label.u-ft-smb Weight remain: 100%
+																label.u-ft-smb Weight remain: {{dataMember.weightRemaining}}%
 															.c-list--reviewer__action
 														.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
 															.c-list--reviewer__name
@@ -627,16 +626,18 @@
 																		input.input(
 																			type="text"
 																			name="weight"
-																			:value="weightReviewer(dataMember)"
 																			maxlength="3"
+																			:disabled="dataReviewer.user_id == dataMember.user_id"
+																			v-model="dataReviewer.is_weight"
 																			v-validate="'between:0,100'"
+																			@change="weightRemaining(dataReviewer, dataMember)"
 																			)
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
 																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
-																a.c-btn--ghost.c-btn--xs
+																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
 																		label="Remove"
 																		position="is-top"
@@ -714,7 +715,7 @@
 													.c-list--reviewer__name
 														label.u-ft-smb Reviewer
 													.c-list--reviewer__weight
-														label.u-ft-smb Weight remain: 100%
+														label.u-ft-smb Weight remain: {{dataMember.weightRemaining}}%
 													.c-list--reviewer__action
 
 												.c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
@@ -731,16 +732,18 @@
 																input.input(
 																	type="text"
 																	name="weight"
-																	:value="weightReviewer(dataMember)"
 																	maxlength="3"
+																	:disabled="dataReviewer.user_id == dataMember.user_id"
+																	v-model="dataReviewer.is_weight"
 																	v-validate="'between:0,100'"
+																	@change="weightRemaining(dataReviewer, dataMember)"
 																	)
 																span.icon.is-small.is-right
 																	i.icon-percent
 																		| &#37;
 															//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 													.c-list--reviewer__action
-														a.c-btn--ghost.c-btn--xs
+														a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 															b-tooltip(label="Remove"
 																position="is-top"
 																type="is-dark"
@@ -807,7 +810,7 @@
 									nav.level
 										.level-left
 											.level-item
-												a.c-btn--ghost.c-btn--sm Save as draft
+												a.c-btn--ghost.c-btn--sm(@click="showSaveDraft") Save as draft
 										.level-right
 											.level-item
 												a.c-btn.c-btn--ghost.c-btn--sm(data-type="confirmation") Cancel

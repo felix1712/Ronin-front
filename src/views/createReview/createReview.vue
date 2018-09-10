@@ -69,26 +69,6 @@
 		},
 
 		methods: {
-			weightReviewer(data){
-				return this.weightReviewers / data.reviewers.length;
-			},
-
-			weightRemaining(data, data2){
-				if(data.is_weight <= 100 ){
-					data2.weightRemaining =  data2.weightRemaining - data.is_weight
-				}
-
-				if(data2.weightRemaining < 0){
-					this.$toast.open({
-						message: 'Weight remaining out of limit',
-						type: 'is-danger'
-					})
-
-					data2.weightRemaining = 100;
-					data.is_weight = 0;
-				}
-			},
-
 			dropDownPosition(e){
 				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
@@ -471,12 +451,13 @@
 				}
 
 				if(!found){
-					getDataReviewer[0].is_weight = 0;
+					if(data2 && data2.id){
+						getDataReviewer[0].is_weight = 0;
+					}
 					Array.prototype.push.apply(data,getDataReviewer);
 				}
 
 				this.moreReviewerMember = [];
-				this.weightReviewer(data3);
 			},
 
 			changeReviewMehtod(e) {
@@ -492,6 +473,8 @@
 				getDataDelete.reviewers = getDataDelete.reviewers.filter(arr=>{
 					return arr.id != item.id;
 				})
+
+				this.weightRemaining(item, data);
 			},
 
 			selfReview(data){
@@ -507,6 +490,25 @@
 				}
 			},
 
+			weightRemaining(data, data2){
+				if(data.is_weight <= 100 ){
+					data2.weightRemaining = 100;
+					let weightCount = data2.reviewers.map(e => parseInt(e.is_weight)).reduce(function(acc, val) { return acc + val; }, 0)
+					console.log(weightCount);
+					data2.weightRemaining =  data2.weightRemaining - weightCount
+				}
+
+				if(data2.weightRemaining < 0){
+					this.$toast.open({
+						message: 'Weight remaining out of limit',
+						type: 'is-danger'
+					})
+
+					data2.weightRemaining = 100;
+					data.is_weight = 0;
+				}
+			},
+
 			validateBeforeSubmit() {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
@@ -519,6 +521,26 @@
 						this.editReview+=1;
 					}
 				});
+			},
+
+			showSaveDraft(){
+				if(this.dataReview.titles){
+					this.$toast.open({
+						duration: 3000,
+						message: 'Review has been successfully saved as draft.',
+						position: 'is-top',
+						type: 'is-success'
+					})
+
+					this.$router.push('/');
+				} else {
+					this.$toast.open({
+						duration: 3000,
+						message: 'Title must be filled.',
+						position: 'is-top',
+						type: 'is-danger'
+					})
+				}
 			},
 
 			submitFormReview() {
