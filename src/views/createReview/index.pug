@@ -397,11 +397,12 @@
 									.control.u-dib
 										span.u-maxw-170
 											input.input(
+												v-if="dataReview.is_repeat == 1"
 												type="text"
 												name="is_repeat_every"
 												maxlength="2"
 												v-model="dataReview.repeat_every"
-												v-validate="'required|between:0,12'"
+												v-validate="'required|between:1,12'"
 											)
 										span.u-ml-10.c-reg-15
 											| Month
