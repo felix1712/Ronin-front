@@ -636,7 +636,7 @@
 																				| &#37;
 																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
-																a.c-btn--ghost.c-btn--xs
+																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
 																		label="Remove"
 																		position="is-top"
