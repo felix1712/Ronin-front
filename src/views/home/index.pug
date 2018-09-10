@@ -43,7 +43,7 @@
 						.c-smb-18 Write Michael Scott’s review summary and share it with him.
 						.c-reg-15.u-cl-slate Performance Review Q2 2018
 			.c-list__action.u-dib
-				a.button.is-outlined.u-cl-slate Write summary
+				a.button.c-btn--sm.c-btn--default Write summary
 		.c-list__item
 			.c-list__detail.u-dib
 				.c-reg-13.u-cl-slate Due in 2 days
@@ -55,7 +55,7 @@
 						.c-reg-15.u-cl-slate Performance Review Q2 2018
 			.c-list__action.u-dib
 				b-dropdown.custom-popover
-					a.button.is-outlined.u-cl-slate(slot="trigger") Send reminder
+					a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
 					b-dropdown-item(custom)
 						form
 							.field
@@ -78,7 +78,7 @@
 						.c-smb-18 Write your self-assessment and share it with your Manager
 						.c-reg-15.u-cl-slate Performance Review Q2 2018
 			.c-list__action.u-dib
-				a.button.is-outlined.u-cl-slate Write review
+				a.button.c-btn--sm.c-btn--default Write review
 		.c-list__item.u-br-none
 			.c-list__detail.u-dib
 				.c-reg-13.u-cl-slate Due in 14 days
@@ -89,6 +89,19 @@
 						.c-smb-18 Remind Pam Beesly to review Jim Halpert
 						.c-reg-15.u-cl-slate Performance Review Q2 2018
 			.c-list__action.u-dib
-				a.button.is-outlined.jc-popover.u-cl-slate(data-type="reminder") Send reminder
+				b-dropdown.custom-popover
+					a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
+					b-dropdown-item(custom)
+						form
+							.field
+								.control
+									textarea.textarea.is-normal(type="text")
+							nav.level.u-mt-40
+								.level-left
+									.level-item
+								.level-right
+									.level-item
+										a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
+										a.button.is-primary.u-mx-5(type='submit') Send
 	.p-prfrm-showmore
 		span Show More
