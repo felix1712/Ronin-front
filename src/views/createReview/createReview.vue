@@ -95,7 +95,7 @@
 			},
 
 			reviewedSelectMemberId() {
-				this.selectedMembers = this.selectReviewedMembers.map(function(data) {
+				this.selectedMembers = this.selectReviewedMembers.map(data =>{
 					return data.id
 				});
 
@@ -103,46 +103,46 @@
 			},
 
 			deleteOrganizationSelect(id){
-				this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(function(data){
+				this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(data =>{
 					return data.id != id
 				})
 
 				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(function(e){
+				memberOrg = this.employeeMember.filter(e =>{
 					return e.organization.id == id
 				})
 
-				memberOrg = memberOrg.map(function(data){
+				memberOrg = memberOrg.map(data =>{
 					return data.id
 				})
 
-				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				this.selectedMembers = this.selectedMembers.filter(el =>{
 					return memberOrg.indexOf( el ) < 0;
 				});
 			},
 
 			deleteJobTitleSelect(id){
-				this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(function(data){
+				this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(data =>{
 					return data.id != id
 				})
 
 				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(function(e){
+				memberJobTitle = this.employeeMember.filter(e =>{
 					return e.job_position.id == id
 				})
 
-				memberJobTitle = memberJobTitle.map(function(data){
+				memberJobTitle = memberJobTitle.map(data =>{
 					return data.id
 				})
 
-				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				this.selectedMembers = this.selectedMembers.filter( el =>{
 					return memberJobTitle.indexOf( el ) < 0;
 				});
 			},
 
 			selectEveryoneOrganization(data) {
 				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(function(e){
+				memberOrg = this.employeeMember.filter(e =>{
 					return e.organization.id == data
 				})
 
@@ -155,22 +155,22 @@
 
 			unselectEveryoneOrganization(data) {
 				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(function(e){
+				memberOrg = this.employeeMember.filter(e =>{
 					return e.organization.id == data
 				})
 
-				memberOrg = memberOrg.map(function(data){
+				memberOrg = memberOrg.map(data =>{
 					return data.id
 				})
 
-				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				this.selectedMembers = this.selectedMembers.filter(el =>{
 					return memberOrg.indexOf( el ) < 0;
 				});
 			},
 
 			selectEveryoneJobTitle(data) {
 				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(function(e){
+				memberJobTitle = this.employeeMember.filter(e =>{
 					return e.job_position.id == data
 				})
 
@@ -183,15 +183,15 @@
 
 			unselectEveryoneJobTitle(data) {
 				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(function(e){
+				memberJobTitle = this.employeeMember.filter(e =>{
 					return e.job_position.id == data
 				})
 
-				memberJobTitle = memberJobTitle.map(function(data){
+				memberJobTitle = memberJobTitle.map(data =>{
 					return data.id
 				})
 
-				this.selectedMembers = this.selectedMembers.filter( function( el ) {
+				this.selectedMembers = this.selectedMembers.filter(el =>{
 					return memberJobTitle.indexOf( el ) < 0;
 				});
 			},
@@ -199,14 +199,14 @@
 			selectOrganizationChecked(data) {
 				if (data != null) {
 					let getIdOrg = "";
-					getIdOrg = data.map(function(item){
+					getIdOrg = data.map(item =>{
 						return item.id
 					});
 
 					getIdOrg = getIdOrg[getIdOrg.length -1];
 
 					let memberOrg = "";
-					memberOrg = this.employeeMember.filter(function(e){
+					memberOrg = this.employeeMember.filter(e =>{
 						return e.organization.id == getIdOrg
 					})
 
@@ -221,14 +221,14 @@
 			selectJobTitleChecked(data) {
 				if(data != null){
 					let getIdJobTitle = "";
-					getIdJobTitle = data.map(function(item){
+					getIdJobTitle = data.map(item =>{
 						return item.id
 					});
 
 					getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
 
 					let memberJobTitle = "";
-					memberJobTitle = this.employeeMember.filter(function(e){
+					memberJobTitle = this.employeeMember.filter(e =>{
 						return e.job_position.id == getIdJobTitle
 					})
 
@@ -242,7 +242,7 @@
 
 			selectSpecificStaff(data) {
 				let getIdSpecificStaff = "";
-				getIdSpecificStaff = data.map(function(item){
+				getIdSpecificStaff = data.map(item =>{
 					return item.id
 				});
 
@@ -292,14 +292,14 @@
 
 			addMember() {
 				// console.log(this.selectedMembers);
-				this.selectedMembers.forEach(function (value) {
+				this.selectedMembers.forEach(function(value){
 					const addMembers = {
 						user_id: value,
 						reviewers: null,
 						is_self_review: 0,
 						is_sequent: 0,
 					};
-					const checkDataArr = this.dataReview.members.filter(function (item) {
+					const checkDataArr = this.dataReview.members.filter(item =>{
 						return item.user_id == value;
 					});
 
@@ -312,7 +312,7 @@
 			removeMember(value) {
 				// console.log(this.selectedMembers);
 				const intValue = parseInt(value);
-				this.dataReview.members = this.dataReview.members.filter(function (item) {
+				this.dataReview.members = this.dataReview.members.filter(item =>{
 					return item.user_id !== intValue;
 				});
 			},
@@ -392,7 +392,7 @@
 			},
 
 			setReviewer(data) {
-				this.dataReview.members.forEach(function(item) {
+				this.dataReview.members.forEach(item => {
 					item.reviewers = [];
 					data.forEach(function (value) {
 						if (item.user_id == value.id) {
@@ -404,7 +404,7 @@
 
 			getReviewer() {
 				const user_ids = [];
-				this.dataReview.members.forEach(function (data) {
+				this.dataReview.members.forEach(data => {
 					user_ids.push(data.user_id);
 				});
 				this.api.post('getreviewers', {
@@ -478,7 +478,7 @@
 					})
 					Array.prototype.unshift.apply(data.reviewers,dataSelfReviewer);
 				} else {
-					data.reviewers = data.reviewers.filter(function(item){
+					data.reviewers = data.reviewers.filter(item => {
 						return item.id != data.user_id
 					})
 				}
@@ -565,10 +565,10 @@
 
 				this.api.get('organizations',)
 				.then(response => {
-					this.selectedOrganization = response.data.contents.organizations.map(function(test){
+					this.selectedOrganization = response.data.contents.organizations.map(data => {
 						return{
-							id: test.id,
-							name: test.name
+							id: data.id,
+							name: data.name
 						}
 					});
 					this.selectedOrganizationMember = response.data.contents.organizations;
@@ -581,20 +581,20 @@
 				this.api.get('employee')
 				.then(response => {
 					this.employeeMember = response.data.contents.users;
-					this.reviewedMember = response.data.contents.users.map(function(member){
+					this.reviewedMember = response.data.contents.users.map(member => {
 						return{
 							id: member.id,
 							name: member.user.name
 						}
 					})
 
-					this.allSelectedMember = response.data.contents.users.map(function(member){
+					this.allSelectedMember = response.data.contents.users.map(member => {
 						return member.id
 					})
 					this.selectedMembers = this.allSelectedMember;
 					this.addMember();
 
-					this.moreReviewerSelect = response.data.contents.users.map(function(member){
+					this.moreReviewerSelect = response.data.contents.users.map(member => {
 						return{
 							id: member.id,
 							name: member.user.name
@@ -608,10 +608,10 @@
 
 				this.api.get('jobposition')
 				.then(response => {
-					this.selectedJobTitle = response.data.contents.job_positions.map(function(test){
+					this.selectedJobTitle = response.data.contents.job_positions.map(data => {
 						return{
-							id: test.id,
-							name: test.title
+							id: data.id,
+							name: data.title
 						}
 					});
 
