@@ -162,8 +162,9 @@
 						}
 
 						select {
-							border-color: $v-white;
-							background-color: $v-black;
+							border: none;
+							background-color: $v-black-darker;
+							height: 36px;
 							color: white;
 							font-family: "Avenir Next Regular";
 							&:hover, &:active, &:focus {
