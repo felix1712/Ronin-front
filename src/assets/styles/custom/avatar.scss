@@ -69,7 +69,7 @@ $img-more : #3E83FF;
     figure, .c-avatar-text { @extend .u-vat }
 
     &.is-image {
-      figure {
+      > figure {
         margin-right: -10px;
         border: 1px solid $v-white;
 
