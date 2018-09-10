@@ -51,6 +51,11 @@ a{
 		  color: $v-slate;
 		}
 	}
+	&--sm {
+		min-width: 140px;
+		line-height: 15px;
+		padding: 19px 14px;
+	}
 	&--more {
 		padding: 7px 0;
 		line-height: 20px;
