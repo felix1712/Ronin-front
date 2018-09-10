@@ -1,8 +1,10 @@
 .custom-popover{
 	&.c-list--staff__dropdown{
+		position: unset;
 		.dropdown{
 			&-trigger{
 				width: 30px;
+				cursor: pointer;
 			}
 			&-content{
 				text-align: left;
@@ -20,75 +22,49 @@
 				}
 			}
 		}
+
+		&.is-top {
+			.dropdown-menu {
+				top: unset;
+				bottom: 0;
+			}
+		}
 	}
-  .dropdown{
-	  &-menu{
-		// position: absolute;
-			position: fixed;
+  	.dropdown{
+	  	&-menu{
+			position: absolute;
 			z-index: 3;
 			background: #424649;
 			color: #fff;
-			width: 300px;
+			width: 270px;
 			text-align: center;
-			top: 20px;
+			top: 0;
 			border-radius: 6px;
-			left: 30%;
-			padding-top: 0;
+			left: 38px;
+			padding: 8px;
 			cursor: default;
 			.dropdown-content{
-			  background-color: inherit;
-			  .dropdown-item{
+				background-color: inherit;
+				max-height: 236px;
+				overflow: auto;
+				box-shadow: none;
+				padding: 0;
+				@include scrollbar($v-black, 5px, transparent, 2.5px, $v-slate);
+			  	.dropdown-item{
 					color: $v-white;
 					text-decoration: none;
 					padding: 14px;
 					&:hover{
-					  background-color: transparent;
+						background-color: transparent;
 					}
 					textarea{
 						background-color: transparent;
 						border-color: transparent;
 						color: $v-white;
 					}
-					// &.c-list--staff{
-					// 	width: 100%;
-					// 	margin: 0;
-					// 	.c-avatar{
-					// 		display: inline-block;
-					// 	}
-					// 	span{
-					// 		display: inline-block;
-					// 		background-color: transparent;
-					// 	}
-					// }
-			  }
+			  	}
 			}
-			// &:before{
-			// 	content: '';
-			// 	position: absolute;
-			// 	left: 50%;
-			// 	transform: translateX(-50%);
-			// 	-webkit-transform: translateX(-50%);
-			// 	-moz-transform: translateX(-50%);
-			// 	display: inline-block;
-			// 	top: -11px;
-			// 	border-right: 11px solid transparent;
-			// 	border-bottom: 11px solid #424649;
-			// 	border-left: 11px solid transparent;
-			// }
-			&:after{
-				content: '';
-				left: 50%;
-				transform: translateX(-50%);
-				-webkit-transform: translateX(-50%);
-				-moz-transform: translateX(-50%);
-				display: inline-block;
-				position: absolute;
-				bottom: -11px;
-				border-right: 11px solid transparent;
-				border-top: 11px solid #424649;
-				border-left: 11px solid transparent;
-			}
-	  }
+	  	}
 	}
 	&.dropdown{
 		&.is-top-left{

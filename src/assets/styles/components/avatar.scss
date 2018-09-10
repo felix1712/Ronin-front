@@ -39,6 +39,7 @@ figure, img {
     }
 
     &--more {
+      position: relative;
       a {
         position: absolute;
         z-index: 9;

@@ -141,11 +141,15 @@ input, textarea {
 	}
 	&__action {
 		// @include actionButtonWrapper;
-		.c-btn--sm { min-width: 140px; }
 		width: 170px;
-    margin-bottom: 0;
-    padding-bottom: 5px;
-    text-align: right;
+		margin-bottom: 0;
+		padding-bottom: 5px;
+		text-align: right;
+		.c-btn--sm {
+			min-width: 140px;
+			line-height: 15px;
+			padding: 19px 14px;
+		}
 	}
 	&__row {
 		width: 100%;
