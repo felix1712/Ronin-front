@@ -81,8 +81,6 @@
 							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
-										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
-										br
 										label.label Choose department
 											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
@@ -112,6 +110,7 @@
 												span {{selectedOrganiztion.name}}
 												span
 													a.delete.is-small(@click="deleteOrganizationSelect(selectedOrganiztion.id)")
+										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 							.c-row.u-mx-0(v-for="organizationMember in selectedOrganizationMember")
 								template(v-for="selectedOrganiztionOption in selectedOrganiztionChecked" v-if="selectedOrganiztionOption.id == organizationMember.id")
 									nav.level.u-w-100-full
