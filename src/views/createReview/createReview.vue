@@ -451,7 +451,9 @@
 				}
 
 				if(!found){
-					getDataReviewer[0].is_weight = 0;
+					if(data2 && data2.id){
+						getDataReviewer[0].is_weight = 0;
+					}
 					Array.prototype.push.apply(data,getDataReviewer);
 				}
 
@@ -471,6 +473,8 @@
 				getDataDelete.reviewers = getDataDelete.reviewers.filter(arr=>{
 					return arr.id != item.id;
 				})
+
+				this.weightRemaining(item, data);
 			},
 
 			selfReview(data){
@@ -527,7 +531,7 @@
 						position: 'is-top',
 						type: 'is-success'
 					})
-					
+
 					this.$router.push('/');
 				} else {
 					this.$toast.open({
