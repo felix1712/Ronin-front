@@ -519,6 +519,26 @@
 				});
 			},
 
+			showSaveDraft(){
+				if(this.dataReview.titles){
+					this.$toast.open({
+						duration: 3000,
+						message: 'Review has been successfully saved as draft.',
+						position: 'is-top',
+						type: 'is-success'
+					})
+					
+					this.$router.push('/');
+				} else {
+					this.$toast.open({
+						duration: 3000,
+						message: 'Title must be filled.',
+						position: 'is-top',
+						type: 'is-danger'
+					})
+				}
+			},
+
 			submitFormReview() {
 				this.dataReview.members.map(data => {
 					if(data.reviewers){
