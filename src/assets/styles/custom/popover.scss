@@ -74,6 +74,36 @@
 			}
 		}
 	}
+
+	&.c-dropdown--reminder {
+		padding: 0;
+		.dropdown {
+			&-menu {
+				width: 400px;
+				padding: 10px;
+				left: auto;
+				right: 0;
+				top: 50px;
+			}
+			&-content {
+				max-height: none;
+
+				textarea {
+					box-shadow: none;
+					color: $v-white;
+					padding: 0;
+					resize: none;
+					@include scrollbar($v-black, 5px, transparent, 2.5px, $v-slate);
+					&::placeholder {
+						color: $v-slate;
+					}
+					&:hover, &:focus, &:active {
+						box-shadow: none;
+					}
+				}
+			}
+		}
+	}
 }
 
 .dropdown-datepicker{

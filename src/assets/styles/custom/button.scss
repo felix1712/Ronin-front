@@ -11,6 +11,10 @@ a{
 	line-height: 24px;
 	padding: 6px 30px;
 	min-height: 36px;
+    &:hover, &:focus, &:active {
+		background-color: $v-slate;
+		.c-btn--more-dots { background-color: $v-white; }
+    }
 	&--full {
 		width: 100%;
 	}
@@ -36,9 +40,12 @@ a{
 	}
 	&--ghost{
 		color: $v-slate;
+		background-color: transparent;
+		border: none;
 		&:hover, &:active, &:focus {
-			text-decoration: underline;
-			color: $v-slate;
+			background-color: transparent!important;
+			border: none;
+			text-decoration: underline!important;
 		}
 	}
 	&--default {
@@ -73,10 +80,6 @@ a{
 		background-color: $v-slate;
 		@include border-radius(50%);
 		@include transition(all .3s);
-    }
-    &:hover, &:focus, &:active {
-		background-color: $v-slate;
-		.c-btn--more-dots { background-color: $v-white; }
     }
   }
 }

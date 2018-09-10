@@ -54,20 +54,20 @@
 						.c-smb-18 Remind Dwight Schrute to provide Performance Review Q2 2018 for Jim Halpert
 						.c-reg-15.u-cl-slate Performance Review Q2 2018
 			.c-list__action.u-dib
-				b-dropdown.custom-popover
+				b-dropdown.custom-popover.c-dropdown--reminder
 					a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
 					b-dropdown-item(custom)
 						form
 							.field
 								.control
-									textarea.textarea.is-normal(type="text")
-							nav.level.u-mt-40
+									textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
+							nav.level.u-mt-20
 								.level-left
 									.level-item
 								.level-right
 									.level-item
-										a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
-										a.button.is-primary.u-mx-5(type='submit') Send
+										a.button.c-btn--ghost.u-cl-white Cancel
+										a.button.is-primary(type='submit') Send
 		.c-list__item
 			.c-list__detail.u-dib
 				.c-reg-13.u-cl-slate Due in 5 days
@@ -89,19 +89,19 @@
 						.c-smb-18 Remind Pam Beesly to review Jim Halpert
 						.c-reg-15.u-cl-slate Performance Review Q2 2018
 			.c-list__action.u-dib
-				b-dropdown.custom-popover
+				b-dropdown.custom-popover.c-dropdown--reminder
 					a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
 					b-dropdown-item(custom)
 						form
 							.field
 								.control
-									textarea.textarea.is-normal(type="text")
-							nav.level.u-mt-40
+									textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
+							nav.level.u-mt-20
 								.level-left
 									.level-item
 								.level-right
 									.level-item
-										a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
-										a.button.is-primary.u-mx-5(type='submit') Send
+										a.button.c-btn--ghost.u-cl-white Cancel
+										a.button.is-primary(type='submit') Send
 	.p-prfrm-showmore
 		span Show More

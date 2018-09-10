@@ -5,7 +5,7 @@
 			.p-prfrm-header__action
 				.c-btn-wrapper
 					b-dropdown.custom-menu-dropdown(position="is-bottom-left")
-						.c-btn.c-btn--more(slot="trigger")
+						.c-btn.c-btn--more.u-cpointer(slot="trigger")
 							span.c-btn--more-dots
 							span.c-btn--more-dots
 							span.c-btn--more-dots
@@ -83,20 +83,20 @@
 									.level-item
 										| 0/10
 						.c-list--reviewdetail__action
-							b-dropdown.custom-popover
+							b-dropdown.custom-popover.c-dropdown--reminder
 								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
 								b-dropdown-item(custom)
 									form
 										.field
 											.control
-												textarea.textarea.is-normal(type="text")
-										nav.level.u-mt-40
+												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
+										nav.level.u-mt-20
 											.level-left
 												.level-item
 											.level-right
 												.level-item
-													a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
-													a.button.is-primary.u-mx-5(type='submit') Send
+													a.button.c-btn--ghost.u-cl-white Cancel
+													a.button.is-primary(type='submit') Send
 			.c-list__item.u-br-none
 				.c-list__avatar
 					.c-avatar-group
@@ -130,20 +130,20 @@
 									.level-item
 										| 0/10
 						.c-list--reviewdetail__action
-							b-dropdown.custom-popover
+							b-dropdown.custom-popover.c-dropdown--reminder
 								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
 								b-dropdown-item(custom)
 									form
 										.field
 											.control
-												textarea.textarea.is-normal(type="text")
-										nav.level.u-mt-40
+												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
+										nav.level.u-mt-20
 											.level-left
 												.level-item
 											.level-right
 												.level-item
-													a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
-													a.button.is-primary.u-mx-5(type='submit') Send
+													a.button.c-btn--ghost.u-cl-white Cancel
+													a.button.is-primary(type='submit') Send
 
 		.u-mt-40
 			span.c-str-18 In progress
@@ -182,20 +182,20 @@
 									.level-item
 										| 5/10
 						.c-list--reviewdetail__action
-							b-dropdown.custom-popover
+							b-dropdown.custom-popover.c-dropdown--reminder
 								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
 								b-dropdown-item(custom)
 									form
 										.field
 											.control
-												textarea.textarea.is-normal(type="text")
-										nav.level.u-mt-40
+												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
+										nav.level.u-mt-20
 											.level-left
 												.level-item
 											.level-right
 												.level-item
-													a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
-													a.button.is-primary.u-mx-5(type='submit') Send
+													a.button.c-btn--ghost.u-cl-white Cancel
+													a.button.is-primary(type='submit') Send
 			.c-list__item.u-br-none
 				.c-list__avatar
 					.c-avatar-group
@@ -229,20 +229,20 @@
 									.level-item
 										| 5/10
 						.c-list--reviewdetail__action
-							b-dropdown.custom-popover
+							b-dropdown.custom-popover.c-dropdown--reminder
 								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
 								b-dropdown-item(custom)
 									form
 										.field
 											.control
-												textarea.textarea.is-normal(type="text")
-										nav.level.u-mt-40
+												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
+										nav.level.u-mt-20
 											.level-left
 												.level-item
 											.level-right
 												.level-item
-													a.button.c-btn--ghost.u-br-none.u-mx-5 Cancel
-													a.button.is-primary.u-mx-5(type='submit') Send
+													a.button.c-btn--ghost.u-cl-white Cancel
+													a.button.is-primary(type='submit') Send
 
 		.u-mt-40
 			span.c-str-18 Completed
