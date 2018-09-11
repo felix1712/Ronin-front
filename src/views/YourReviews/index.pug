@@ -1,0 +1,288 @@
+#YourReviews
+	.p-prfrm-content.u-hsm-down
+		h2.c-str-26.u-mb-14 Your Reviews
+		.u-maxw-570.u-mb-40
+			p.c-reg-15 This is a module where you as a user can view all the result reports of your review and do your assignments as self review or a reviewer to review others.
+
+		template
+			section
+				b-tabs.c-tabbing--main(v-model='activeTab')
+					b-tab-item
+						template(slot="header") Reviews
+						.p-prfrm-content--blank
+							img(src="@/assets/images/pages/icon-cup.svg", alt='')
+							h2.c-str-26.u-my-18 Nothing has been reviews
+							p.c-reg-15
+								| There seems no review that you can view right now.
+								br
+								| If there's any review to be view then we will notify you immediately.
+
+						.c-list.c-list--review
+							.c-list__item
+								.c-list__detail
+									.u-mb-20
+										router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q2 2018
+									.c-list__row
+										.c-list--review__reviewer
+											.field
+												label.label Reviewer
+										.c-list--review__schedule
+											.field
+												label.label Schedule for
+										.c-list--review__status
+											.field
+												label.label Status
+									.c-list__row
+										.c-list--review__reviewer
+											.c-avatar-group.is-image
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													span.u-mt-0 BB
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar--more.u-ml-20.u-dib
+													.c-avatar--xs.c-avatar--circle
+														b-dropdown.custom-popover.c-list--staff__dropdown
+															span(slot="trigger") +4
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																span.u-ml-14 Jim Halpert
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+																span.u-ml-14 Dwight Schrute
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																span.u-ml-14 Jim Halpert
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+																span.u-ml-14 Dwight Schrute
+										.c-list--review__schedule Reviews due by Mon, 6 Aug 2018
+										.c-list--review__status
+											progress.progress.u-mb-0(value="10", max="100") 10
+											nav.level.c-reg-13.u-mt-4
+												.level-left
+													.level-item
+														| In progress
+												.level-right
+													.level-item
+														| 1/10
+								.c-list__action
+									a.button.c-btn--sm.c-btn--default Self review
+							.c-list__item.u-br-none
+								.c-list__detail
+									.u-mb-20
+										router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q1 2018
+									.c-list__row
+										.c-list--review__reviewer
+											.field
+												label.label Reviewer
+										.c-list--review__schedule
+											.field
+												label.label Schedule for
+										.c-list--review__status
+											.field
+												label.label Status
+									.c-list__row
+										.c-list--review__reviewer
+											.c-avatar-group.is-image
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													span.u-mt-0 BB
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar--more.u-ml-20.u-dib
+													.c-avatar--xs.c-avatar--circle
+														b-dropdown.custom-popover.c-list--staff__dropdown.is-top
+															span(slot="trigger") +6
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																span.u-ml-14 Jim Halpert
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+																span.u-ml-14 Dwight Schrute
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																span.u-ml-14 Jim Halpert
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+																span.u-ml-14 Dwight Schrute
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																span.u-ml-14 Jim Halpert
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Dwight-Schrute.png")
+																span.u-ml-14 Dwight Schrute
+										.c-list--review__schedule Mon, 1 Apr 2018
+										.c-list--review__status
+											progress.progress.u-mb-0.is-link(value="100", max="100") 100
+											nav.level.c-reg-13.u-mt-4
+												.level-left
+													.level-item
+														| Completed
+												.level-right
+													.level-item
+														| 10/10
+								.c-list__action
+									a.button.c-btn--sm.c-btn--default View report
+
+					b-tab-item
+						template(slot="header") To do
+							b-tag(rounded) 2
+						.p-prfrm-content--blank
+							img(src="@/assets/images/pages/icon-cup.svg", alt='')
+							h2.c-str-26.u-my-18 Nothing to do
+							p.c-reg-15
+								| It looks like you have nothing due in the coming days.
+								br
+								| Once you do, this page will show you what you need to do.
+
+						.c-list.c-list--review
+							.c-list__item
+								.c-list__detail
+									.u-mb-20
+										router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q2 2018
+									.c-list__row
+										.c-list--review__reviewer
+											.field
+												label.label Reviewee
+										.c-list--review__schedule
+											.field
+												label.label Schedule for
+									.c-list__row
+										.c-list--review__reviewer
+											.c-avatar-group.is-image
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													span.u-mt-0 BB
+										.c-list--review__schedule Reviews due by Mon, 6 Aug 2018
+								.c-list__action
+									a.button.c-btn--sm.c-btn--default Write review
+							.c-list__item.u-br-none
+								.c-list__detail
+									.u-mb-20
+										router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q1 2018
+									.c-list__row
+										.c-list--review__reviewer
+											.field
+												label.label Reviewee
+										.c-list--review__schedule
+											.field
+												label.label Schedule for
+									.c-list__row
+										.c-list--review__reviewer
+											.c-avatar-group.is-image
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													span.u-mt-0 BB
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar--more.u-ml-20.u-dib
+													.c-avatar--xs.c-avatar--circle
+														b-dropdown.custom-popover.c-list--staff__dropdown.is-top
+															span(slot="trigger") +1
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																span.u-ml-14 Jim Halpert
+										.c-list--review__schedule Mon, 1 Apr 2018
+								.c-list__action
+									a.button.c-btn--sm.c-btn--default Write report
+
+					b-tab-item
+						template(slot="header") Reviews given
+						.p-prfrm-content--blank
+							img(src="@/assets/images/pages/icon-cup.svg", alt='')
+							h2.c-str-26.u-my-18 Nothing has been given
+							p.c-reg-15
+								| There seems no assignment that you have been given right now.
+								br
+								| If there's any assignment that you have been given then we will notify you immediately.
+
+						.c-list.c-list--review
+							.c-list__item
+								.c-list__detail
+									.u-mb-20
+										router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q2 2018
+									.c-list__row
+										.c-list--review__reviewer
+											.field
+												label.label Reviewee
+										.c-list--review__schedule
+											.field
+												label.label Schedule for
+									.c-list__row
+										.c-list--review__reviewer
+											.c-avatar-group.is-image
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													span.u-mt-0 BB
+										.c-list--review__schedule Reviews due by Mon, 6 Aug 2018
+								.c-list__action
+									a.button.c-btn--sm.c-btn--default View details
+							.c-list__item
+								.c-list__detail
+									.u-mb-20
+										router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q2 2018
+									.c-list__row
+										.c-list--review__reviewer
+											.field
+												label.label Reviewee
+										.c-list--review__schedule
+											.field
+												label.label Schedule for
+									.c-list__row
+										.c-list--review__reviewer
+											.c-avatar-group.is-image
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													span.u-mt-0 BB
+										.c-list--review__schedule Reviews due by Mon, 6 Aug 2018
+								.c-list__action
+									a.button.c-btn--sm.c-btn--default View review
+							.c-list__item.u-br-none
+								.c-list__detail
+									.u-mb-20
+										router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q1 2018
+									.c-list__row
+										.c-list--review__reviewer
+											.field
+												label.label Reviewee
+										.c-list--review__schedule
+											.field
+												label.label Schedule for
+									.c-list__row
+										.c-list--review__reviewer
+											.c-avatar-group.is-image
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													span.u-mt-0 BB
+												figure.c-avatar.c-avatar--xs.c-avatar--circle
+													img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+												figure.c-avatar--more.u-ml-20.u-dib
+													.c-avatar--xs.c-avatar--circle
+														b-dropdown.custom-popover.c-list--staff__dropdown.is-top
+															span(slot="trigger") +1
+															b-dropdown-item.u-py-8
+																figure.c-avatar.c-avatar--xs.c-avatar--circle
+																	img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+																span.u-ml-14 Jim Halpert
+										.c-list--review__schedule Mon, 1 Apr 2018
+								.c-list__action
+									a.button.c-btn--sm.c-btn--default View details

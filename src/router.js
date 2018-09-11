@@ -7,6 +7,7 @@ import SignIn from './views/SignIn/SignIn.vue';
 import ForgotPassword from './views/ForgotPassword/ForgotPassword.vue';
 import Page404 from './views/Page404/Page404.vue';
 import createReview from './views/createReview/createReview.vue';
+import YourReviews from './views/YourReviews/YourReviews.vue';
 import Company from './views/company/Company.vue';
 import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
@@ -61,6 +62,11 @@ export default new Router({
 			path: '/404',
 			name: 'Page404',
 			component: Page404,
+		},
+		{
+			path: '/your-reviews',
+			name: 'YourReviews',
+			component: YourReviews,
 		},
 		{
 			path: '/company-review-detail',
