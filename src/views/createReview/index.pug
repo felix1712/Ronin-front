@@ -525,7 +525,7 @@
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
@@ -627,13 +627,13 @@
 																			maxlength="3"
 																			:disabled="dataReviewer.user_id == dataMember.user_id"
 																			v-model="dataReviewer.is_weight"
-																			v-validate="'between:0,100'"
+																			v-validate="'between:1,100'"
 																			@change="weightRemaining(dataReviewer, dataMember)"
 																			)
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
@@ -733,13 +733,13 @@
 																	maxlength="3"
 																	:disabled="dataReviewer.user_id == dataMember.user_id"
 																	v-model="dataReviewer.is_weight"
-																	v-validate="'between:0,100'"
+																	v-validate="'between:1,100'"
 																	@change="weightRemaining(dataReviewer, dataMember)"
 																	)
 																span.icon.is-small.is-right
 																	i.icon-percent
 																		| &#37;
-															//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+														span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 													.c-list--reviewer__action
 														a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 															b-tooltip(label="Remove"

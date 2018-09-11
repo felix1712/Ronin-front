@@ -57,6 +57,9 @@ Validator.localize({
         required: "This field is mandatory",
         between: "This field is between 1 - 30",
       },
+      weight: {
+        between: "This field is between 1 - 100",
+      },
     }
   }
 });
