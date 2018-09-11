@@ -560,7 +560,20 @@
 
 			submitFormReview() {
 				this.$validator.validateAll().then((result) => {
-					if (result) {
+					const reviewerExist = this.dataReview.members.map(function(data){
+						return Object.keys(data.reviewers).length != 0;
+					}).includes(false);
+
+					if(reviewerExist){
+						this.$toast.open({
+							duration: 1500,
+							message: 'Reviewer must be filled .',
+							position: 'is-top',
+							type: 'is-danger'
+						})
+					}
+
+					if (result && !reviewerExist) {
 						this.dataReview.members.map(data => {
 							if(data.reviewers){
 								const result = data.reviewers.map(item => item.id);
