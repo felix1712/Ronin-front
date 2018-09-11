@@ -465,21 +465,21 @@
 												b-radio(name="radio-reviewer"
 													native-value="direct-report"
 													v-model="dataReview.review_method"
-													@change.native="changeReviewMehtod($event)"
+													@click.native="changeReviewMehtod($event)"
 												)
 													| Direct report
 											.block.u-mb-10
 												b-radio(name="radio-reviewer"
 													native-value="manager-review"
 													v-model="dataReview.review_method"
-													@change.native="changeReviewMehtod($event)"
+													@click.native="changeReviewMehtod($event)"
 												)
 													| Employee's manager
 											.block.u-mb-10
 												b-radio(name="radio-reviewer"
 													native-value="360"
 													v-model="dataReview.review_method"
-													@change.native="changeReviewMehtod($event)"
+													@click.native="changeReviewMehtod($event)"
 												)
 													| 360 peer review
 						.ju-toggle-directReview.u-mt-40.c-list--review(:class="dataReview.review_method != 'direct-report' ? 'u-dn': '' ")

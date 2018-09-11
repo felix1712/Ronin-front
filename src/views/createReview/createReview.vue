@@ -465,7 +465,22 @@
 					data.is_self_review = 0;
 					data.is_sequent = 0;
 				})
-				this.getReviewer();
+
+				const user_ids = [];
+				this.dataReview.members.forEach(data => {
+					user_ids.push(data.user_id);
+				});
+				this.api.post('getreviewers', {
+					user_ids: user_ids,
+					review_method: event.target.value,
+				})
+				.then(response => {
+					this.getReviewerData = response.data.contents.mapping_reviewers;
+					this.setReviewer(this.getReviewerData);
+				})
+				.catch(e => {
+					this.errors.push(e)
+				});
 			},
 
 			removeReviewer(data, item){
