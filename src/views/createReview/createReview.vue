@@ -559,46 +559,50 @@
 			},
 
 			submitFormReview() {
-				this.dataReview.members.map(data => {
-					if(data.reviewers){
-						const result = data.reviewers.map(item => item.id);
-						data.reviewers = result;
-						return data
-					}
-				});
+				this.$validator.validateAll().then((result) => {
+					if (result) {
+						this.dataReview.members.map(data => {
+							if(data.reviewers){
+								const result = data.reviewers.map(item => item.id);
+								data.reviewers = result;
+								return data
+							}
+						});
 
-				this.api.post('createreview', {
-					description: this.dataReview.description,
-					name: this.dataReview.titles,
-					is_repeat: this.dataReview.is_repeat,
-					repeat_every: this.dataReview.repeat_every,
-					review_start_date: this.dataReview.review_start_date,
-					review_end_date: this.dataReview.review_end_date,
-					review_method: this.dataReview.review_method,
-					members: this.dataReview.members,
-					question_set: this.dataReview.template,
-				})
-				.then(response => {
-					if(response.data.status_code == 200){
-						this.$toast.open({
-							duration: 10000,
-							message: 'Your create review cycle has been successfully created!',
-							position: 'is-top',
-							type: 'is-success'
+						this.api.post('createreview', {
+							description: this.dataReview.description,
+							name: this.dataReview.titles,
+							is_repeat: this.dataReview.is_repeat,
+							repeat_every: this.dataReview.repeat_every,
+							review_start_date: this.dataReview.review_start_date,
+							review_end_date: this.dataReview.review_end_date,
+							review_method: this.dataReview.review_method,
+							members: this.dataReview.members,
+							question_set: this.dataReview.template,
 						})
-					}else{
-						this.$toast.open({
-							duration: 10000,
-							message: 'Your create review cycle has been failed to be created. Please try again to save it!',
-							position: 'is-top',
-							type: 'is-danger'
-						})
-					}
+						.then(response => {
+							if(response.data.status_code == 200){
+								this.$toast.open({
+									duration: 10000,
+									message: 'Your create review cycle has been successfully created!',
+									position: 'is-top',
+									type: 'is-success'
+								})
+							}else{
+								this.$toast.open({
+									duration: 10000,
+									message: 'Your create review cycle has been failed to be created. Please try again to save it!',
+									position: 'is-top',
+									type: 'is-danger'
+								})
+							}
 
-					this.$router.push('/');
-				})
-				.catch(e => {
-					console.log(e);
+							this.$router.push('/');
+						})
+						.catch(e => {
+							console.log(e);
+						});
+					}
 				});
 			},
 		},
