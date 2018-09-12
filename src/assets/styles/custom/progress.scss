@@ -31,3 +31,37 @@
 		}
 	}
 }
+
+$colors: (
+    slate: $v-slate,
+    blue: $v-blue,
+    purple: $v-purple,
+);
+
+.progress {
+	height: 8px;
+	background-color: $v-smoke;
+	&::-webkit-progress-value {
+		border-radius: 8px;
+	}
+	&::-moz-progress-bar {
+		border-radius: 8px;
+	}
+	&::-ms-fill {
+		border-radius: 8px;
+	}
+	// Colors
+	@each $name, $value in $colors {
+		&.is-#{$name} {
+			&::-webkit-progress-value {
+				background-color: $value;
+			}
+			&::-moz-progress-bar {
+				background-color: $value;
+			}
+			&::-ms-fill {
+				background-color: $value;
+			}
+		}		
+	}
+}

@@ -1,0 +1,84 @@
+#YourReviews
+	.p-prfrm-content.u-hsm-down
+		h2.c-str-26.u-mb-14 Your Reviews
+		.u-maxw-570.u-mb-40
+			p.c-reg-15 This is a module where you as a user can view all the result reports of your review and do your assignments as self review or a reviewer to review others.
+
+		section.c-tabbing--main
+			nav.tabs
+				ul
+					li
+						router-link(:to="{ name: 'ListReviews'}")
+							span Reviews
+					li.is-active
+						a
+							span To do
+								span.tag.is-rounded
+									span 2
+					li
+						router-link(:to="{ name: 'ListReviewsGiven'}")
+							span Reviews given
+							
+			section.tab-content
+				.tab-item
+					.p-prfrm-content--blank
+						img(src="@/assets/images/pages/icon-cup.svg", alt='')
+						h2.c-str-26.u-my-18 Nothing to do
+						p.c-reg-15
+							| It looks like you have nothing due in the coming days.
+							br
+							| Once you do, this page will show you what you need to do.
+
+					.c-list.c-list--review
+						.c-list__item
+							.c-list__detail
+								.u-mb-20
+									router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q2 2018
+								.c-list__row
+									.c-list--review__reviewer
+										.field
+											label.label Reviewee
+									.c-list--review__schedule
+										.field
+											label.label Schedule for
+								.c-list__row
+									.c-list--review__reviewer
+										.c-avatar-group.is-image
+											figure.c-avatar.c-avatar--xs.c-avatar--circle
+												img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+											figure.c-avatar.c-avatar--xs.c-avatar--circle
+												span.u-mt-0 BB
+									.c-list--review__schedule Reviews due by Mon, 6 Aug 2018
+							.c-list__action
+								a.button.c-btn--sm.c-btn--default Write review
+						.c-list__item.u-br-none
+							.c-list__detail
+								.u-mb-20
+									router-link(:to="{ name: reviewsDetail}").u-cl-black.c-str-18 Performance Review Q1 2018
+								.c-list__row
+									.c-list--review__reviewer
+										.field
+											label.label Reviewee
+									.c-list--review__schedule
+										.field
+											label.label Schedule for
+								.c-list__row
+									.c-list--review__reviewer
+										.c-avatar-group.is-image
+											figure.c-avatar.c-avatar--xs.c-avatar--circle
+												img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+											figure.c-avatar.c-avatar--xs.c-avatar--circle
+												span.u-mt-0 BB
+											figure.c-avatar.c-avatar--xs.c-avatar--circle
+												img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+											figure.c-avatar--more.u-ml-20.u-dib
+												.c-avatar--xs.c-avatar--circle
+													b-dropdown.custom-popover.c-list--staff__dropdown.is-top
+														span(slot="trigger") +1
+														b-dropdown-item.u-py-8
+															figure.c-avatar.c-avatar--xs.c-avatar--circle
+																img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+															span.u-ml-14 Jim Halpert
+									.c-list--review__schedule Mon, 1 Apr 2018
+							.c-list__action
+								a.button.c-btn--sm.c-btn--default Write report

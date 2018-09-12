@@ -108,7 +108,10 @@ a{
 		background-color: $v-smoke;
 		border: 1px solid $v-smoke;
 		color: #FFF!important;
-		pointer-events: none;
+		cursor: not-allowed;
+		&:hover, &:active, &:focus {
+			background-color: $v-smoke;
+		}
 	}
 	&.is-green {
 		background-color: $v-green-dark;
