@@ -509,7 +509,7 @@
 				if(data.is_weight <= 100 ){
 					data2.weightRemaining = 100;
 					let weightCount = data2.reviewers.map(e => {
-            if(e.is_weight != undefined){
+            if(e.is_weight){
               return parseInt(e.is_weight)
             } else {
               return 0;
