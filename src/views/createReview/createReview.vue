@@ -258,7 +258,11 @@
 					if (result) {
 						if(this.reviewStep == 1){
 							this.addMember();
-						}
+						} else if(this.reviewStep == 4){
+              this.dataReview.members.forEach(data =>{
+                data.weightRemaining = 100;
+              })
+            }
 						this.reviewStep = data;
 					}
 				});
@@ -464,6 +468,7 @@
 				this.dataReview.members.forEach(data=>{
 					data.is_self_review = 0;
 					data.is_sequent = 0;
+          data.weightRemaining = 100;
 				})
 
 				const user_ids = [];
