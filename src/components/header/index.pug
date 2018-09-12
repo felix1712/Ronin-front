@@ -15,14 +15,14 @@
 			.c-header__nav
 				.c-header__nav-item(:class="$route.name === 'home' ? 'is-active':''")
 					router-link(to="/") Home
-				.c-header__nav-item(:class="$route.name === 'createReview' ? 'is-active':''")
-					router-link(:to="{ name: 'createReview'}") Your Reviews
+				.c-header__nav-item(:class="$route.name === 'ListReviews' ? 'is-active':''")
+					router-link(:to="{ name: 'ListReviews'}") Your Reviews
 				.c-header__nav-item.is-disabled(:class="$route.name === 'objectives' ? 'is-active':''")
 					a Your Objectives
 				.c-header__nav-item.is-disabled(:class="$route.name === 'onevsone' ? 'is-active':''")
 					a Your 1:1 Meetings
-				.c-header__nav-item(:class="$route.name === 'company' ? 'is-active':''")
-					router-link(:to="{ name: 'Company'}") Company
+				.c-header__nav-item(:class="$route.name === 'createReview' ? 'is-active':''")
+					router-link(:to="{ name: 'createReview'}") Company
 				.c-header__nav-item(:class="$route.name === 'settings' ? 'is-active':''")
 					a Settings
 
