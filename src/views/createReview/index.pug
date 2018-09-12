@@ -151,6 +151,8 @@
 							.c-row.u-mb-25.u-mx-0
 								.c-col-10.u-pl-0
 									.field
+										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
+										br
 										label.label Choose job title
 											.u-cl-red.u-dib *
 									.c-select.c-select--multiple
@@ -178,7 +180,6 @@
 										.c-select__multiple.u-mt-10
 											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
 												a.delete.is-small(@click="deleteJobTitleSelect(selectedJobTitles.id)")
-										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 							.c-row.u-mx-0(v-for="jobTitleMember in selectedJobTitleMember")
 								template(v-for="selectedJobTitleOption in selectedJobTitleChecked" v-if="selectedJobTitleOption.id == jobTitleMember.id")
 									nav.level.u-w-100-full
@@ -219,6 +220,8 @@
 						.ju-toggle-review.u-mb-30.review-byStaff.c-slideToggle-animation(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 							.c-row.u-mb-25.u-mx-0
 								.field
+									span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
+									br
 									label.label Choose staff
 										.u-cl-red.u-dib *
 								nav.level.u-w-100-full
@@ -246,7 +249,6 @@
 													div.multiselect__element(slot="afterList" v-if="reviewedMember.length == selectReviewedMembers.length")
 														span.multiselect__option No results found
 												span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
-												span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
 									.level-right(v-if="selectReviewedMembers.length > 0")
 										.level-item
 											a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectSpecificStaff(selectReviewedMembers)")
@@ -463,21 +465,21 @@
 												b-radio(name="radio-reviewer"
 													native-value="direct-report"
 													v-model="dataReview.review_method"
-													@click.native="changeReviewMehtod($event)"
+													@change.native="changeReviewMehtod($event)"
 												)
 													| Direct report
 											.block.u-mb-10
 												b-radio(name="radio-reviewer"
 													native-value="manager-review"
 													v-model="dataReview.review_method"
-													@click.native="changeReviewMehtod($event)"
+													@change.native="changeReviewMehtod($event)"
 												)
 													| Employee's manager
 											.block.u-mb-10
 												b-radio(name="radio-reviewer"
 													native-value="360"
 													v-model="dataReview.review_method"
-													@click.native="changeReviewMehtod($event)"
+													@change.native="changeReviewMehtod($event)"
 												)
 													| 360 peer review
 						.ju-toggle-directReview.u-mt-40.c-list--review(:class="dataReview.review_method != 'direct-report' ? 'u-dn': '' ")
@@ -511,21 +513,21 @@
 																	.c-avatar-text.c-avatar-text--xs
 																		.c-smb-15 {{dataReviewer.user.name}}
 																		.c-reg-15.u-cl-slate {{dataReviewer.job_position.title}}
-															.c-list--reviewer__weight
-																.field.u-w-80(v-if="dataReviewer.user_id != dataMember.user_id")
+															.c-list--reviewer__weight(v-if="dataReviewer.user_id != dataMember.user_id")
+																.field.u-w-80
 																	p.control.has-icons-right
 																		input.input(
 																			type="text"
 																			name="weight"
 																			maxlength="3"
 																			v-model="dataReviewer.is_weight"
-																			v-validate="'between:1,100'"
+																			v-validate="'between:0,100'"
 																			@change="weightRemaining(dataReviewer, dataMember)"
 																			)
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
@@ -618,7 +620,7 @@
 																	.c-avatar-text.c-avatar-text--xs
 																		.c-smb-15 {{dataReviewer.user.name}}
 																		.c-reg-15.u-cl-slate {{dataReviewer.job_position.title}}
-															.c-list--reviewer__weight
+															.c-list--reviewer__weight(v-if="dataReviewer.user_id != dataMember.user_id")
 																.field.u-w-80
 																	p.control.has-icons-right
 																		input.input(
@@ -627,13 +629,13 @@
 																			maxlength="3"
 																			:disabled="dataReviewer.user_id == dataMember.user_id"
 																			v-model="dataReviewer.is_weight"
-																			v-validate="'between:1,100'"
+																			v-validate="'between:0,100'"
 																			@change="weightRemaining(dataReviewer, dataMember)"
 																			)
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
@@ -724,7 +726,7 @@
 															.c-avatar-text.c-avatar-text--xs
 																.c-smb-15 {{dataReviewer.user.name}}
 																.c-reg-15.u-cl-slate {{dataReviewer.job_position.title}}
-													.c-list--reviewer__weight
+													.c-list--reviewer__weight(v-if="dataReviewer.user_id != dataMember.user_id")
 														.field.u-w-80
 															p.control.has-icons-right
 																input.input(
@@ -733,13 +735,13 @@
 																	maxlength="3"
 																	:disabled="dataReviewer.user_id == dataMember.user_id"
 																	v-model="dataReviewer.is_weight"
-																	v-validate="'between:1,100'"
+																	v-validate="'between:0,100'"
 																	@change="weightRemaining(dataReviewer, dataMember)"
 																	)
 																span.icon.is-small.is-right
 																	i.icon-percent
 																		| &#37;
-														span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+															//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
 													.c-list--reviewer__action
 														a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 															b-tooltip(label="Remove"
