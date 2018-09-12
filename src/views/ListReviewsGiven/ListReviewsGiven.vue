@@ -3,12 +3,7 @@
 <script>
     import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
     export default {
-        name: 'YourReviews',
-		data() {
-			return {
-                activeTab: 0,
-			}
-		},
+        name: 'ListReviewsGiven',
 
         created (){
             this.$emit(`update:layout`, MainLayouts);
