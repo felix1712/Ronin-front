@@ -508,7 +508,13 @@
 			weightRemaining(data, data2){
 				if(data.is_weight <= 100 ){
 					data2.weightRemaining = 100;
-					let weightCount = data2.reviewers.map(e => parseInt(e.is_weight)).reduce(function(acc, val) { return acc + val; }, 0)
+					let weightCount = data2.reviewers.map(e => {
+            if(e.is_weight != undefined){
+              return parseInt(e.is_weight)
+            } else {
+              return 0;
+            }
+          }).reduce(function(acc, val) { return acc + val; }, 0)
 					data2.weightRemaining =  data2.weightRemaining - weightCount
 				}
 
