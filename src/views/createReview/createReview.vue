@@ -579,8 +579,14 @@
 					}
 
           let sumWeights = this.dataReview.members.map(data =>{
-            if(data.reviewers.length != 0){
-              return data.reviewers.map(e => parseInt(e.is_weight)).reduce(function(acc, val) { return acc + val; }, 0)
+            if(data.reviewers){
+              return data.reviewers.map(e =>{ 
+                if(e.is_weight){
+                  return parseInt(e.is_weight);
+                } else {
+                  return 0
+                }
+              }).reduce(function(acc, val) { return acc + val; }, 0)
             } else {
               return 0;
             }
@@ -589,6 +595,7 @@
           const checkWeight = sumWeights.map(function(data){
             if(data === 100){return true} else {return false}
           }).includes(false);
+
 
           if(checkWeight){
             this.$toast.open({
