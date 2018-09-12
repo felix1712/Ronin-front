@@ -398,8 +398,9 @@
 					data.forEach(function (value) {
 						if (item.user_id == value.id) {
 							if(value.reviewers.length > 0){
-								value.reviewers.map(function(item){
-									item.is_weight = 0
+								value.reviewers.map(function(items){
+									items.is_weight = parseInt(item.weightRemaining) / value.reviewers.length;
+                  item.weightRemaining = item.weightRemaining - items.is_weight;
 								})
 							}
 							item.reviewers = value.reviewers;
