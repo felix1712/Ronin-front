@@ -521,7 +521,7 @@
 																			name="weight"
 																			maxlength="3"
 																			v-model="dataReviewer.is_weight"
-																			v-validate="'between:0,100'"
+																			v-validate="'between:1,100'"
 																			@change="weightRemaining(dataReviewer, dataMember)"
 																			)
 																		span.icon.is-small.is-right
@@ -629,7 +629,7 @@
 																			maxlength="3"
 																			:disabled="dataReviewer.user_id == dataMember.user_id"
 																			v-model="dataReviewer.is_weight"
-																			v-validate="'between:0,100'"
+																			v-validate="'between:1,100'"
 																			@change="weightRemaining(dataReviewer, dataMember)"
 																			)
 																		span.icon.is-small.is-right
@@ -735,7 +735,7 @@
 																	maxlength="3"
 																	:disabled="dataReviewer.user_id == dataMember.user_id"
 																	v-model="dataReviewer.is_weight"
-																	v-validate="'between:0,100'"
+																	v-validate="'between:1,100'"
 																	@change="weightRemaining(dataReviewer, dataMember)"
 																	)
 																span.icon.is-small.is-right

@@ -509,7 +509,6 @@
 				if(data.is_weight <= 100 ){
 					data2.weightRemaining = 100;
 					let weightCount = data2.reviewers.map(e => parseInt(e.is_weight)).reduce(function(acc, val) { return acc + val; }, 0)
-					console.log(weightCount);
 					data2.weightRemaining =  data2.weightRemaining - weightCount
 				}
 
@@ -573,7 +572,28 @@
 						})
 					}
 
-					if (result && !reviewerExist) {
+          let sumWeights = this.dataReview.members.map(data =>{
+            if(data.reviewers.length != 0){
+              return data.reviewers.map(e => parseInt(e.is_weight)).reduce(function(acc, val) { return acc + val; }, 0)
+            } else {
+              return 0;
+            }
+          });
+
+          const checkWeight = sumWeights.map(function(data){
+            if(data === 100){return true} else {return false}
+          }).includes(false);
+
+          if(checkWeight){
+            this.$toast.open({
+              duration: 1500,
+              message: 'Total reviewer weight must be at 100%.',
+              position: 'is-top',
+              type: 'is-danger'
+            })
+          }
+
+					if (result && !reviewerExist && !checkWeight) {
 						this.dataReview.members.map(data => {
 							if(data.reviewers){
 								const result = data.reviewers.map(item => item.id);
