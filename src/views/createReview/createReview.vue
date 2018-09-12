@@ -592,18 +592,32 @@
                 } else {
                   return 0
                 }
-              }).reduce(function(acc, val) { return acc + val; }, 0)
+              })
             } else {
               return 0;
             }
           });
 
-          const checkWeight = sumWeights.map(function(data){
-            if(data === 100){return true} else {return false}
-          }).includes(false);
+          sumWeights = sumWeights[0];
+          if(sumWeights.length <= 1 && sumWeights[0] == 0){
+            sumWeights =  100;
+          } else {
+            sumWeights = sumWeights.reduce(function(acc, val) { return acc + val; }, 0)
+          }
 
+          console.log(sumWeights);
 
-          if(checkWeight){
+          let checkWeight = true;
+
+          if(sumWeights == 100){
+            checkWeight =  true;
+          } else {
+            checkWeight = false;
+          }
+
+          console.log(checkWeight);
+
+          if(!checkWeight){
             this.$toast.open({
               duration: 1500,
               message: 'Total reviewer weight must be at 100%.',
@@ -612,7 +626,7 @@
             })
           }
 
-					if (result && !reviewerExist && !checkWeight) {
+					if (result && !reviewerExist && checkWeight) {
 						this.dataReview.members.map(data => {
 							if(data.reviewers){
 								const result = data.reviewers.map(item => item.id);
