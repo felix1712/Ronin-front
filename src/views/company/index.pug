@@ -13,7 +13,7 @@
 								.level-item
 							.level-right
 								.level-item
-									a.button.is-primary
+									router-link(:to="{ name: 'createReview'}").button.is-primary
 										img.u-mr-10(src='@/assets/images/pages/icon-add.svg' alt="")
 										span Create Review
 						.c-list.c-list--review
