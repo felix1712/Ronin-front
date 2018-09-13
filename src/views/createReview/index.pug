@@ -518,7 +518,7 @@
 																	p.control.has-icons-right
 																		input.input(
 																			type="text"
-																			name="weight"
+																			:name="'weight'+item"
 																			maxlength="3"
 																			v-model="dataReviewer.is_weight"
 																			v-validate="'between:1,100'"
@@ -527,7 +527,7 @@
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight'+item)") This field is between 1 - 100
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
@@ -591,7 +591,7 @@
 
 						.ju-toggle-managerReview.u-mt-40.c-list--review(:class="dataReview.review_method != 'manager-review' ? 'u-dn': '' ")
 							.c-row
-								template(v-for="dataMember in dataReview.members")
+								template(v-for="(dataMember, item) in dataReview.members")
 									.c-col-12
 										.c-row
 											template
@@ -625,7 +625,7 @@
 																	p.control.has-icons-right
 																		input.input(
 																			type="text"
-																			name="weight"
+																			:name="'weight'+item"
 																			maxlength="3"
 																			:disabled="dataReviewer.user_id == dataMember.user_id"
 																			v-model="dataReviewer.is_weight"
@@ -635,7 +635,7 @@
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																	//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight'+item)") This field is between 1 - 100
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(
@@ -697,7 +697,7 @@
 
 						.ju-toggle-360Review.u-mt-40.c-list--review(:class="dataReview.review_method != '360' ? 'u-dn': '' ")
 							.c-row
-								template(v-for="dataMember in dataReview.members")
+								template(v-for="(dataMember, item) in dataReview.members")
 									.c-col-12
 										.c-row
 											.c-col-4.c-col-md-4
@@ -731,7 +731,7 @@
 															p.control.has-icons-right
 																input.input(
 																	type="text"
-																	name="weight"
+																	:name="'weight'+item"
 																	maxlength="3"
 																	:disabled="dataReviewer.user_id == dataMember.user_id"
 																	v-model="dataReviewer.is_weight"
@@ -741,7 +741,7 @@
 																span.icon.is-small.is-right
 																	i.icon-percent
 																		| &#37;
-															//- span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+															span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight'+item)") This field is between 1 - 100
 													.c-list--reviewer__action
 														a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 															b-tooltip(label="Remove"
