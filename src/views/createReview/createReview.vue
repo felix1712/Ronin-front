@@ -399,10 +399,14 @@
 						if (item.user_id == value.id) {
 							if(value.reviewers.length > 0){
 								value.reviewers.map(function(items){
-                  console.log(item);
-                  console.log(value.reviewers.length);
-									items.is_weight = 100 / value.reviewers.length;
-                  item.weightRemaining = item.weightRemaining - items.is_weight;
+									items.is_weight = Math.floor(100 / value.reviewers.length);
+                  const checkWeightRemaining = item.weightRemaining - items.is_weight;
+                  if(checkWeightRemaining > 0 && checkWeightRemaining < 5){
+                    items.is_weight = items.is_weight + checkWeightRemaining;
+                    item.weightRemaining = item.weightRemaining = items.is_weight;
+                  } else {
+                    item.weightRemaining = checkWeightRemaining;
+                  }
 								})
 							}
 							item.reviewers = value.reviewers;
