@@ -518,7 +518,7 @@
 																	p.control.has-icons-right
 																		input.input(
 																			type="text"
-																			name="weight"
+																			:name="'weight'+item"
 																			maxlength="3"
 																			v-model="dataReviewer.is_weight"
 																			v-validate="'between:1,100'"
@@ -527,7 +527,7 @@
 																		span.icon.is-small.is-right
 																			i.icon-percent
 																				| &#37;
-																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight')") {{ errors.first('weight') }}
+																	span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight'+item)") This field is between 1 - 100
 															.c-list--reviewer__action
 																a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.user_id != dataMember.user_id")
 																	b-tooltip(

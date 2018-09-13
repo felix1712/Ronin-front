@@ -605,8 +605,6 @@
             sumWeights = sumWeights.reduce(function(acc, val) { return acc + val; }, 0)
           }
 
-          console.log(sumWeights);
-
           let checkWeight = true;
 
           if(sumWeights == 100){
@@ -614,8 +612,6 @@
           } else {
             checkWeight = false;
           }
-
-          console.log(checkWeight);
 
           if(!checkWeight){
             this.$toast.open({
