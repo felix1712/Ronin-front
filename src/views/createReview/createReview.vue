@@ -403,7 +403,7 @@
                   const checkWeightRemaining = item.weightRemaining - items.is_weight;
                   if(checkWeightRemaining > 0 && checkWeightRemaining < 5){
                     items.is_weight = items.is_weight + checkWeightRemaining;
-                    item.weightRemaining = item.weightRemaining = items.is_weight;
+                    item.weightRemaining = item.weightRemaining - items.is_weight;
                   } else {
                     item.weightRemaining = checkWeightRemaining;
                   }
@@ -527,7 +527,7 @@
               return 0;
             }
           }).reduce(function(acc, val) { return acc + val; }, 0)
-					data2.weightRemaining =  data2.weightRemaining - weightCount
+					data2.weightRemaining =  data2.weightRemaining - weightCount;
 				}
 
 				if(data2.weightRemaining < 0){
@@ -536,7 +536,7 @@
 						type: 'is-danger'
 					})
 
-					data2.weightRemaining = 100;
+					data2.weightRemaining = data2.weightRemaining + parseInt(data.is_weight);
 					data.is_weight = 0;
 				}
 			},
