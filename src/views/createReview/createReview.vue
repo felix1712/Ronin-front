@@ -399,7 +399,9 @@
 						if (item.user_id == value.id) {
 							if(value.reviewers.length > 0){
 								value.reviewers.map(function(items){
-									items.is_weight = parseInt(item.weightRemaining) / value.reviewers.length;
+                  console.log(item);
+                  console.log(value.reviewers.length);
+									items.is_weight = 100 / value.reviewers.length;
                   item.weightRemaining = item.weightRemaining - items.is_weight;
 								})
 							}
