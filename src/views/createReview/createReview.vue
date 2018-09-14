@@ -105,7 +105,7 @@
 
 				let memberOrg = "";
 				memberOrg = this.employeeMember.filter(e =>{
-					return e.organization.id == id
+					return e.attributes.department_id == id
 				})
 
 				memberOrg = memberOrg.map(data =>{
@@ -139,7 +139,7 @@
 			selectEveryoneOrganization(data) {
 				let memberOrg = "";
 				memberOrg = this.employeeMember.filter(e =>{
-					return e.organization.id == data
+					return e.attributes.department_id == data
 				})
 
 				memberOrg.map(function(item){
@@ -152,7 +152,7 @@
 			unselectEveryoneOrganization(data) {
 				let memberOrg = "";
 				memberOrg = this.employeeMember.filter(e =>{
-					return e.organization.id == data
+					return e.attributes.department_id == data
 				})
 
 				memberOrg = memberOrg.map(data =>{
@@ -713,7 +713,6 @@
 
 				this.api.get('review/members')
 				.then(response => {
-					console.log(response);
 					this.employeeMember = response.data.data;
 					this.reviewedMember = response.data.data.map(member => {
 						return{
