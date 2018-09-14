@@ -103,8 +103,7 @@
 					return data.id != id
 				})
 
-				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(e =>{
+				let memberOrg = this.employeeMember.filter(e =>{
 					return e.attributes.department_id == id;
 				})
 
@@ -122,13 +121,12 @@
 					return data.id != id
 				})
 
-				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.attributes.job_title_id == id
+				let memberJobTitle = this.employeeMember.filter(e =>{
+					return e.attributes.job_title_id == id;
 				})
 
 				memberJobTitle = memberJobTitle.map(data =>{
-					return data.id
+					return data.attributes.id;
 				})
 
 				this.selectedMembers = this.selectedMembers.filter( el =>{
@@ -163,26 +161,24 @@
 			},
 
 			selectEveryoneJobTitle(data) {
-				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(e =>{
+				let memberJobTitle = this.employeeMember.filter(e =>{
 					return e.attributes.job_title_id == data
 				})
 
 				memberJobTitle.map(function(item){
-					if(this.selectedMembers.includes(item.id) == false){
-						this.selectedMembers.push(item.id);
+					if(this.selectedMembers.includes(item.attributes.id) == false){
+						this.selectedMembers.push(item.attributes.id);
 					}
 				}.bind(this))
 			},
 
 			unselectEveryoneJobTitle(data) {
-				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.attributes.job_title_id == data
+				let memberJobTitle = this.employeeMember.filter(e =>{
+					return e.attributes.job_title_id == data;
 				})
 
 				memberJobTitle = memberJobTitle.map(data =>{
-					return data.id
+					return data.attributes.id;
 				})
 
 				this.selectedMembers = this.selectedMembers.filter(el =>{
@@ -221,13 +217,12 @@
 					getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
 
 					let memberJobTitle = this.employeeMember.filter(e =>{
-						console.log(e)
-						return e.attributes.job_title_id == getIdJobTitle
+						return e.attributes.job_title_id == getIdJobTitle;
 					})
 
 					memberJobTitle.map(function(item){
-						if(this.selectedMembers.includes(item.id) == false){
-							this.selectedMembers.push(item.id);
+						if(this.selectedMembers.includes(item.attributes.id) == false){
+							this.selectedMembers.push(item.attributes.id);
 						}
 					}.bind(this));
 				}

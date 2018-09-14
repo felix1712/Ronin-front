@@ -198,7 +198,7 @@
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.attributes.job_title_id == jobTitleMember.id")
 											label(
 												:for="employeeList.id"
-												:class="selectedMembers.includes(employeeList.id) == true ? '':'not-checked'"
+												:class="selectedMembers.includes(employeeList.attributes.id) == true ? '':'not-checked'"
 												)
 												.c-avatar-group
 													figure.c-avatar.c-avatar--sm.c-avatar--circle
