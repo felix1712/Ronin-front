@@ -91,7 +91,7 @@ export default new Router({
 			component: CompanyReviewSummary,
 		},
 		{
-			path: '/preview-template/:uuid',
+			path: '/preview-template/:id',
 			name: 'PreviewTemplate',
 			component: PreviewTemplate,
 		},

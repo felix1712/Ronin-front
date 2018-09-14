@@ -51,7 +51,7 @@
 						is_new: 0,
 						name: null,
 						select_type: 'non-predefined',
-						uuid: null,
+						id: null,
 						categories: [],
 					},
 					// form schedule
@@ -334,9 +334,9 @@
 			},
 
 			getDetailTemplate(data) {
-				this.api.get('templates/'+data )
+				this.api.get('review/template/'+data )
 				.then(response => {
-					this.templateDetails = response.data.contents.template;
+					this.templateDetails = response.data.data;
 				})
 				.catch(e =>{
 					console.log(e);
@@ -344,44 +344,44 @@
 			},
 
 			setTemplate() {
-				this.dataReview.template.name = this.templateDetails.name;
-				this.dataReview.template.uuid = this.templateDetails.uuid;
-				this.templateDetails.review_categories.forEach((arr) => {
-					const detailCategories = {
-						name: arr.name,
-						description: arr.description,
-						is_weight: arr.use_weight,
-						weight: arr.weight,
-						questions:[],
-					};
+				this.dataReview.template.name = this.templateDetails.attributes.title;
+				this.dataReview.template.id = this.templateDetails.attributes.id;
+				// this.templateDetails.review_categories.forEach((arr) => {
+				// 	const detailCategories = {
+				// 		name: arr.name,
+				// 		description: arr.description,
+				// 		is_weight: arr.use_weight,
+				// 		weight: arr.weight,
+				// 		questions:[],
+				// 	};
 
-					this.dataReview.template.categories.push(detailCategories);
+				// 	this.dataReview.template.categories.push(detailCategories);
 
-					arr.review_indicators.forEach(arr2 => {
-						const detailQuestions = {
-							name: arr2.name,
-							description: arr2.description,
-							is_weight: arr2.use_weight,
-							weight: arr2.weight,
-							can_comment: arr2.can_comment,
-							answer_type: arr2.answer_type,
-							ratings:[],
-						};
+				// 	arr.review_indicators.forEach(arr2 => {
+				// 		const detailQuestions = {
+				// 			name: arr2.name,
+				// 			description: arr2.description,
+				// 			is_weight: arr2.use_weight,
+				// 			weight: arr2.weight,
+				// 			can_comment: arr2.can_comment,
+				// 			answer_type: arr2.answer_type,
+				// 			ratings:[],
+				// 		};
 
-						detailCategories.questions.push(detailQuestions);
+				// 		detailCategories.questions.push(detailQuestions);
 
-						if(arr2.answer_type == "rating"){
-							arr2.review_ratings.forEach(arr3 => {
-								const detailRatings = {
-									value: arr3.value,
-									description: arr3.description,
-								}
+				// 		if(arr2.answer_type == "rating"){
+				// 			arr2.review_ratings.forEach(arr3 => {
+				// 				const detailRatings = {
+				// 					value: arr3.value,
+				// 					description: arr3.description,
+				// 				}
 
-								detailQuestions.ratings.push(detailRatings);
-							})
-						}
-					})
-				});
+				// 				detailQuestions.ratings.push(detailRatings);
+				// 			})
+				// 		}
+				// 	})
+				// });
 			},
 
 			setReviewer(data) {
@@ -750,8 +750,8 @@
 
 				this.api.get('review/template')
 				.then(response => {
-					this.templates = response.data.contents.template;
-					this.selectedTemplate = this.templates[0].uuid;
+					this.templates = response.data.data;
+					this.selectedTemplate = this.templates[0].attributes.id;
 					this.getDetailTemplate(this.selectedTemplate);
 				})
 				.catch(e =>{

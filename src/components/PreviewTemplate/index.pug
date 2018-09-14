@@ -4,7 +4,7 @@
 		.p-prfrm-content--preview__close
 			a.c-btn.c-btn--ghost(@click.prevent="closeWindow") Exit<br>preview
 		.p-prfrm-create
-			.p-prfrm-create__list.c-accordion__panel.is-open(v-for="categories in template.review_categories")
+			.p-prfrm-create__list.c-accordion__panel.is-open(v-for="categories in template.data")
 				.p-prfrm-create__list-head.c-accordion__head.u-py-0
 					.c-accordion__title
 						h3.c-str-21 {{categories.name}}
