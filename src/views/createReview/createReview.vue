@@ -201,10 +201,9 @@
 
 					getIdOrg = getIdOrg[getIdOrg.length -1];
 
-					let memberOrg = "";
-					memberOrg = this.employeeMember.filter(e =>{
-						return e.organization.id == getIdOrg
-					})
+          let memberOrg = this.employeeMember.filter(e =>{
+						return e.attributes.department_id == getIdOrg
+					});
 
 					memberOrg.map(function(item){
 						if(this.selectedMembers.includes(item.id) == false){
@@ -291,7 +290,6 @@
 			},
 
 			addMember() {
-				// console.log(this.selectedMembers);
 				this.selectedMembers.forEach(function(value){
 					const addMembers = {
 						user_id: value,
@@ -300,7 +298,8 @@
 						is_sequent: 0,
 						weightRemaining: 100,
 					};
-					const checkDataArr = this.dataReview.members.filter(item =>{
+
+					let checkDataArr = this.dataReview.members.filter(item =>{
 						return item.user_id == value;
 					});
 
@@ -686,50 +685,53 @@
 		},
 
 		mounted() {
-			const checkToken = this.$cookie.get('AuthPrfrm');
-			if(checkToken != null){
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
 				this.api = axios.create({
-				  baseURL: process.env.VUE_APP_OLD_API_URL,
+				  baseURL: process.env.VUE_APP_API,
 				  headers: {
-				    Authorization: this.$cookie.get('AuthPrfrm'),
+				    Authorization: this.$cookie.get('AuthToken'),
+				    Refresh: this.$cookie.get('AuthRefresh'),
 				  },
 				});
 
-				this.api.get('organizations',)
+				this.api.get('review/organizations',)
 				.then(response => {
-					this.selectedOrganization = response.data.contents.organizations.map(data => {
+					this.selectedOrganization = response.data.data.map(data => {
 						return{
 							id: data.id,
-							name: data.name
+							name: data.attributes.name
 						}
 					});
-					this.selectedOrganizationMember = response.data.contents.organizations;
+					this.selectedOrganizationMember = response.data.data;
 					// console.log(this.selectedOrganization)
 				})
 				.catch(e => {
 					// this.errors.push(e);
 				});
 
-				this.api.get('employee')
+				this.api.get('review/members')
 				.then(response => {
-					this.employeeMember = response.data.contents.users;
-					this.reviewedMember = response.data.contents.users.map(member => {
+					console.log(response);
+					this.employeeMember = response.data.data;
+					this.reviewedMember = response.data.data.map(member => {
 						return{
-							id: member.id,
-							name: member.user.name
+							id: member.attributes.id,
+							name: member.attributes.name
 						}
 					})
 
-					this.allSelectedMember = response.data.contents.users.map(member => {
-						return member.id
+					this.allSelectedMember = response.data.data.map(member => {
+						return member.attributes.id
 					})
 					this.selectedMembers = this.allSelectedMember;
 					this.addMember();
 
-					this.moreReviewerSelect = response.data.contents.users.map(member => {
+					this.moreReviewerSelect = response.data.data.map(member => {
 						return{
-							id: member.id,
-							name: member.user.name
+							id: member.attributes.id,
+							name: member.attributes.name
 						}
 					})
 					// console.log(response.data);
@@ -738,23 +740,23 @@
 					// this.errors.push(e);
 				});
 
-				this.api.get('jobposition')
+				this.api.get('review/job_positions')
 				.then(response => {
-					this.selectedJobTitle = response.data.contents.job_positions.map(data => {
+					this.selectedJobTitle = response.data.data.map(data => {
 						return{
 							id: data.id,
-							name: data.title
+							name: data.attributes.title,
 						}
 					});
 
-					this.selectedJobTitleMember = response.data.contents.job_positions;
+					this.selectedJobTitleMember = response.data.data;
 					// console.log(response.data);
 				})
 				.catch(e => {
 					// this.errors.push(e);
 				});
 
-				this.api.get('templates')
+				this.api.get('review/template')
 				.then(response => {
 					this.templates = response.data.contents.template;
 					this.selectedTemplate = this.templates[0].uuid;
