@@ -128,7 +128,7 @@
 										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.attributes.department_id == organizationMember.attributes.id")
 											label(
 												:for="employeeList.id"
-												:class="selectedMembers.includes(employeeList.id) == true ? '':'not-checked'"
+												:class="selectedMembers.includes(employeeList.attributes.id) == true ? '':'not-checked'"
 												)
 												.c-avatar-group
 													figure.c-avatar.c-avatar--sm.c-avatar--circle
@@ -144,80 +144,80 @@
 														name="revieweeCheckbox"
 														v-validate="'required'"
 														data-vv-validate-on="none"
-														:value="employeeList.id"
-														:id="employeeList.id"
+														:value="employeeList.attributes.id"
+														:id="employeeList.attributes.id"
 														@change="checkboxMember($event)"
 														)
-						//- .ju-toggle-review.u-mb-30.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
-						//- 	.c-row.u-mb-25.u-mx-0
-						//- 		.c-col-10.u-pl-0
-						//- 			.field
-						//- 				span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
-						//- 				br
-						//- 				label.label Choose job title
-						//- 					.u-cl-red.u-dib *
-						//- 			.c-select.c-select--multiple
-						//- 				multiselect.u-w-300(
-						//- 					v-model="selectedJobTitleChecked"
-						//- 					v-validate="'required'"
-						//- 					:options="selectedJobTitle"
-						//- 					:multiple="true"
-						//- 					track-by="id"
-						//- 					label="name"
-						//- 					placeholder="Search for job title"
-						//- 					data-vv-name="select_reviewee"
-						//- 					v-if="reviewedMethod == 3"
-						//- 					hideSelected=true
-						//- 					@close="selectJobTitleChecked(selectedJobTitleChecked)"
-						//- 				)
-						//- 					template(slot="tag", slot-scope="props")
-						//- 						span.custom__tag
-						//- 							| Search for job title
-						//- 					span(slot="noResult")
-						//- 						| No results found
-						//- 					div.multiselect__element(slot="afterList" v-if="selectedJobTitle.length == selectedJobTitleChecked.length")
-						//- 						span.multiselect__option No results found
-						//- 				span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
-						//- 				.c-select__multiple.u-mt-10
-						//- 					span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
-						//- 						a.delete.is-small(@click="deleteJobTitleSelect(selectedJobTitles.id)")
-						//- 	.c-row.u-mx-0(v-for="jobTitleMember in selectedJobTitleMember")
-						//- 		template(v-for="selectedJobTitleOption in selectedJobTitleChecked" v-if="selectedJobTitleOption.id == jobTitleMember.id")
-						//- 			nav.level.u-w-100-full
-						//- 				.level-left
-						//- 					.level-item
-						//- 						label.c-smb-18 {{jobTitleMember.title}}
-						//- 						//- span.u-ml-20.u-ft-reg {{employeeMember.length}}
-						//- 				.level-right
-						//- 					.level-item
-						//- 						a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneJobTitle(jobTitleMember.id)")
-						//- 							| Select everyone
-						//- 						a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
-						//- 							| Select no one
-						//- 			.c-list.c-list--staff.u-mt-10
-						//- 				.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.job_position.id == jobTitleMember.id")
-						//- 					label(
-						//- 						:for="employeeList.id"
-						//- 						:class="selectedMembers.includes(employeeList.id) == true ? '':'not-checked'"
-						//- 						)
-						//- 						.c-avatar-group
-						//- 							figure.c-avatar.c-avatar--sm.c-avatar--circle
-						//- 								img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
-						//- 							.c-avatar-text.c-avatar-text--sm
-						//- 								p.c-smb-15 {{employeeList.user.name}}
-						//- 								p.c-reg-15.u-cl-slate {{employeeList.job_position.title}}
-						//- 								p.c-reg-15.u-cl-slate {{employeeList.organization.name}}
-						//- 						.c-list--staff__action.wrapper-checkbox__default
-						//- 							input.c-check__checkbox(
-						//- 								type="checkbox"
-						//- 								v-model="selectedMembers"
-						//- 								name="revieweeCheckbox"
-						//- 								v-validate="'required'"
-						//- 								data-vv-validate-on="none"
-						//- 								:value="employeeList.id"
-						//- 								:id="employeeList.id"
-						//- 								@change="checkboxMember($event)"
-						//- 								)
+						.ju-toggle-review.u-mb-30.review-byJobTitle.c-slideToggle-animation(:class="reviewedMethod != 3 ? 'u-dn': '' ")
+							.c-row.u-mb-25.u-mx-0
+								.c-col-10.u-pl-0
+									.field
+										span.is-message(v-show="errors.has('revieweeCheckbox')") {{ errors.first('revieweeCheckbox') }}
+										br
+										label.label Choose job title
+											.u-cl-red.u-dib *
+									.c-select.c-select--multiple
+										multiselect.u-w-300(
+											v-model="selectedJobTitleChecked"
+											v-validate="'required'"
+											:options="selectedJobTitle"
+											:multiple="true"
+											track-by="id"
+											label="name"
+											placeholder="Search for job title"
+											data-vv-name="select_reviewee"
+											v-if="reviewedMethod == 3"
+											hideSelected=true
+											@close="selectJobTitleChecked(selectedJobTitleChecked)"
+										)
+											template(slot="tag", slot-scope="props")
+												span.custom__tag
+													| Search for job title
+											span(slot="noResult")
+												| No results found
+											div.multiselect__element(slot="afterList" v-if="selectedJobTitle.length == selectedJobTitleChecked.length")
+												span.multiselect__option No results found
+										span.is-message(v-show="errors.has('select_reviewee')") {{ errors.first('select_reviewee') }}
+										.c-select__multiple.u-mt-10
+											span.tag.is-blue.is-small.u-mr-3.u-cl-white(v-for="selectedJobTitles in selectedJobTitleChecked") {{selectedJobTitles.name}}
+												a.delete.is-small(@click="deleteJobTitleSelect(selectedJobTitles.id)")
+							.c-row.u-mx-0(v-for="jobTitleMember in selectedJobTitleMember")
+								template(v-for="selectedJobTitleOption in selectedJobTitleChecked" v-if="selectedJobTitleOption.id == jobTitleMember.id")
+									nav.level.u-w-100-full
+										.level-left
+											.level-item
+												label.c-smb-18 {{jobTitleMember.attributes.title}}
+												//- span.u-ml-20.u-ft-reg {{employeeMember.length}}
+										.level-right
+											.level-item
+												a.c-btn--ghost.u-cl-blue.c-btn--xs(@click="selectEveryoneJobTitle(jobTitleMember.id)")
+													| Select everyone
+												a.c-btn--ghost.u-cl-blue.c-btn--xs.u-ml-20(@click="unselectEveryoneJobTitle(jobTitleMember.id)")
+													| Select no one
+									.c-list.c-list--staff.u-mt-10
+										.c-list--staff__item(v-for="employeeList in employeeMember" v-if="employeeList.attributes.job_title_id == jobTitleMember.id")
+											label(
+												:for="employeeList.id"
+												:class="selectedMembers.includes(employeeList.id) == true ? '':'not-checked'"
+												)
+												.c-avatar-group
+													figure.c-avatar.c-avatar--sm.c-avatar--circle
+														img.c-img-fluid(src="@/assets/images/avatar-performance/Andy-Bernard.png")
+													.c-avatar-text.c-avatar-text--sm
+														p.c-smb-15 {{employeeList.attributes.name}}
+														p.c-reg-15.u-cl-slate {{employeeList.attributes.job_position}}
+														p.c-reg-15.u-cl-slate {{employeeList.attributes.organization}}
+												.c-list--staff__action.wrapper-checkbox__default
+													input.c-check__checkbox(
+														type="checkbox"
+														v-model="selectedMembers"
+														name="revieweeCheckbox"
+														v-validate="'required'"
+														data-vv-validate-on="none"
+														:value="employeeList.attributes.id"
+														:id="employeeList.attributes.id"
+														@change="checkboxMember($event)"
+														)
 						//- .ju-toggle-review.u-mb-30.review-byStaff.c-slideToggle-animation(:class="reviewedMethod != 4 ? 'u-dn': '' ")
 						//- 	.c-row.u-mb-25.u-mx-0
 						//- 		.field

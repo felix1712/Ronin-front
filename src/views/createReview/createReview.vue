@@ -105,11 +105,11 @@
 
 				let memberOrg = "";
 				memberOrg = this.employeeMember.filter(e =>{
-					return e.attributes.department_id == id
+					return e.attributes.department_id == id;
 				})
 
 				memberOrg = memberOrg.map(data =>{
-					return data.id
+					return data.attributes.id;
 				})
 
 				this.selectedMembers = this.selectedMembers.filter(el =>{
@@ -124,7 +124,7 @@
 
 				let memberJobTitle = "";
 				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.job_position.id == id
+					return e.attributes.job_title_id == id
 				})
 
 				memberJobTitle = memberJobTitle.map(data =>{
@@ -137,26 +137,24 @@
 			},
 
 			selectEveryoneOrganization(data) {
-				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(e =>{
+				let memberOrg = this.employeeMember.filter(e =>{
 					return e.attributes.department_id == data
 				})
 
 				memberOrg.map(function(item){
-					if(this.selectedMembers.includes(item.id) == false){
-						this.selectedMembers.push(item.id);
+					if(this.selectedMembers.includes(item.attributes.id) == false){
+						this.selectedMembers.push(item.attributes.id);
 					}
 				}.bind(this))
 			},
 
 			unselectEveryoneOrganization(data) {
-				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(e =>{
+				let memberOrg = this.employeeMember.filter(e =>{
 					return e.attributes.department_id == data
 				})
 
 				memberOrg = memberOrg.map(data =>{
-					return data.id
+					return data.attributes.id
 				})
 
 				this.selectedMembers = this.selectedMembers.filter(el =>{
@@ -167,7 +165,7 @@
 			selectEveryoneJobTitle(data) {
 				let memberJobTitle = "";
 				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.job_position.id == data
+					return e.attributes.job_title_id == data
 				})
 
 				memberJobTitle.map(function(item){
@@ -180,7 +178,7 @@
 			unselectEveryoneJobTitle(data) {
 				let memberJobTitle = "";
 				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.job_position.id == data
+					return e.attributes.job_title_id == data
 				})
 
 				memberJobTitle = memberJobTitle.map(data =>{
@@ -206,8 +204,8 @@
 					});
 
 					memberOrg.map(function(item){
-						if(this.selectedMembers.includes(item.id) == false){
-							this.selectedMembers.push(item.id);
+						if(this.selectedMembers.includes(item.attributes.id) == false){
+							this.selectedMembers.push(item.attributes.id);
 						}
 					}.bind(this));
 				}
@@ -222,9 +220,9 @@
 
 					getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
 
-					let memberJobTitle = "";
-					memberJobTitle = this.employeeMember.filter(e =>{
-						return e.job_position.id == getIdJobTitle
+					let memberJobTitle = this.employeeMember.filter(e =>{
+						console.log(e)
+						return e.attributes.job_title_id == getIdJobTitle
 					})
 
 					memberJobTitle.map(function(item){
@@ -700,7 +698,7 @@
 				.then(response => {
 					this.selectedOrganization = response.data.data.map(data => {
 						return{
-							id: data.id,
+							id: data.attributes.id,
 							name: data.attributes.name
 						}
 					});
@@ -743,7 +741,7 @@
 				.then(response => {
 					this.selectedJobTitle = response.data.data.map(data => {
 						return{
-							id: data.id,
+							id: data.attributes.id,
 							name: data.attributes.title,
 						}
 					});
