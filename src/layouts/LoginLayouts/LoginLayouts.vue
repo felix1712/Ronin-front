@@ -10,8 +10,9 @@
 		},
 		methods: {
 			checkAuth() {
-				const checkToken = this.$cookie.get('AuthPrfrm');
-				if(checkToken != null){
+				const checkToken = this.$cookie.get('AuthToken');
+				const checkRefreshToken = this.$cookie.get('AuthRefresh');
+				if(checkToken != null && checkRefreshToken != null){
 					this.$router.push('/');
 				}
 			}
@@ -22,8 +23,9 @@
 		},
 
 		updated() {
-			const checkToken = this.$cookie.get('AuthPrfrm');
-			if(checkToken != null){
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
 				this.$router.push('/');
 			}
 		},

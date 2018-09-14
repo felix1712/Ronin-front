@@ -10,6 +10,7 @@ import { loginService } from '@/api/main-service.js';
     		loginEmail: 'ricky@dummy.com',
     		loginPassword: 'Sleekr1234',
     		token: null,
+    		refresh: null,
     	}
     },
 
@@ -21,14 +22,16 @@ import { loginService } from '@/api/main-service.js';
 	  	validateLogin() {
 	  		this.$validator.validateAll().then((result) => {
 					if (result) {
-						loginService.post('/oauth/access_token',{
+						loginService.post('/auth/login',{
 							email: this.loginEmail,
 							password: this.loginPassword,
 						})
 						.then(response => {
-							if(response.data.status_code == 200){
-								this.token = response.data.contents.token;
-								this.$cookie.set('AuthPrfrm', 'Bearer'+this.token, { expires: '23h' });
+							if(response.data.status == 200){
+								this.token = response.data.data.token;
+								this.refresh = response.data.data.refreshToken;
+								this.$cookie.set('AuthToken', 'Bearer '+this.token, { expires: '59m' });
+								this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh, { expires: '59m' });
 								this.$router.push('/');
 							} else {
 								this.$toast.open({
