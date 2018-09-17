@@ -4,10 +4,10 @@
 	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
 	import axios from 'axios';
 	import ButtonFooter from './shared/button-footer/ButtonFooter.vue';
-	import Datepicker from 'vuejs-datepicker';
 	// Form component
 	import FormReviewInformation from '@/components/FormReviewInformations/FormReviewInformation.vue';
 	import FormReviewQuestion from '@/components/FormReviewQuestions/FormReviewQuestion.vue';
+	import FormReviewSchedule from '@/components/FormReviewSchedules/FormReviewSchedule.vue';
 
 	export default{
 		name: 'createReview',
@@ -65,9 +65,6 @@
 					//form reviewer
 					review_method: 'direct-report',
 				},
-				review:{
-					deadline: 14,
-				},
 			}
 		},
 
@@ -83,6 +80,14 @@
 				this.dataReview.template.id = data.id;
 			},
 
+			scheduleSave(data){
+				console.log(data);
+				this.dataReview.is_repeat = data.is_repeat;
+				this.dataReview.repeat_every = data.repeat_every;
+				this.dataReview.review_start_date = data.start_date;
+				this.dataReview.review_end_date = data.end_date;
+			},
+
 			editReviewStep(data) {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
@@ -96,28 +101,6 @@
 						this.reviewStep = data;
 					}
 				});
-			},
-
-			changeReviewDue() {
-				const getStartDate = new Date(this.dataReview.review_start_date);
-				const dueValue = parseInt(this.review.deadline);
-				if (dueValue >= 1 && dueValue <= 30) {
-					this.dataReview.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
-				}
-			},
-
-			changeStartDate(e) {
-				const getStartDate = new Date(e);
-				const dueValue = parseInt(this.review.deadline);
-				this.dataReview.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
-			},
-
-			isRepeat(e){
-				if(e.target.value == 1){
-					this.dataReview.repeat_every = 1;
-				} else {
-					this.dataReview.repeat_every = 0;
-				}
 			},
 
 			setReviewer(data) {
@@ -406,14 +389,12 @@
 		components: {
 			FormReviewInformation,
 			FormReviewQuestion,
-			Datepicker,
+			FormReviewSchedule,
 			ButtonFooter,
 		},
 
 		created() {
 			this.$emit(`update:layout`, MainLayouts);
-			// set review end date
-			this.dataReview.review_end_date = new Date(this.dataReview.review_end_date.setDate(this.dataReview.review_end_date.getDate() + this.review.deadline));
 		},
 
 		mounted() {

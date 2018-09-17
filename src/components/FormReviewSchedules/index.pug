@@ -1,0 +1,78 @@
+form(@submit.prevent="validateBeforeSubmit")
+  span {{schedule}}
+  .p-prfrm-create__list-contents.u-mt-30
+  .c-row.u-cpointer.jc-tooltip(data-content="Select an option, how the review cycle is run.", data-pos="custom-row")
+    .c-col-6.jc-tooltip-mark
+      .c-form-group
+        .field
+          label How often will the review run?
+          .u-cl-red.u-dib *
+        .ju-toggle-l(data-triggertype="radio")
+          .c-check__group
+            .block.u-mb-10
+              b-radio(
+                name="radio-review-schedule"
+                native-value="0"
+                v-model="schedule.is_repeat"
+                @change.native="isRepeat($event)"
+              )
+                | Once
+            .block.u-mb-10
+              b-radio(
+                name="radio-reviewee-schedule"
+                native-value="1"
+                v-model="schedule.is_repeat"
+                @change.native="isRepeat($event)"
+              )
+                | Repeat
+
+  .ju-togglelc-scheduleRepeat.u-mt-10
+    .c-row.u-cpointer
+      .u-mb-20.c-col-4.c-slideToggle-animation(:class="schedule.is_repeat != 1 ? 'u-dn':''")
+        .field
+          label.label.u-db Repeat every
+            span.u-cl-red *
+          .control.u-dib
+            span.u-maxw-170
+              input.input(
+                v-if="schedule.is_repeat == 1"
+                type="text"
+                name="is_repeat_every"
+                maxlength="2"
+                v-model="schedule.repeat_every"
+                v-validate="'required|between:1,12'"
+              )
+            span.u-ml-10.c-reg-15
+              | Month
+          br
+          span.is-message.c-reg-14.u-cl-red(v-show="errors.has('is_repeat_every')") {{ errors.first('is_repeat_every') }}
+
+    .c-row.u-cpointer
+      .u-mb-20.c-col-5
+        .field
+          label.label Start date
+            span.u-cl-red *
+          .control.u-maxw-170.has-icons-right.dropdown-datepicker
+            b-datepicker(
+              placeholder="Choose date"
+              v-model="schedule.review_start_date"
+              @input="changeStartDate"
+              )
+            span.icon.is-small.is-right
+              i.icon-calendar
+                img.c-calendar__icon(src="@/assets/images/pages/icon-calendar.svg", alt="icon-calendar")
+
+    .c-row.u-cpointer
+      .c-col-4
+        .field
+          label.label.u-db Review due
+            span.u-cl-red *
+          .control.u-dib
+            span.u-maxw-170
+              input.input(type="text", name="review_due", v-validate="'required|between:1,30'", maxlength="2", v-model="deadline" @change="changeReviewDue")
+              span.is-message.c-reg-14.u-cl-red(v-show="errors.has('review_due')") {{ errors.first('review_due') }}
+            span.c-reg-15.u-ml-10.c-wrapper-text-left
+              | Days after review start
+              p.u-ft-smb.c-reg-15(v-if="deadline") {{schedule.review_end_date | moment("DD MMM YYYY")}}
+              p.u-ft-smb.c-reg-15(v-if="!deadline") Nan
+  ButtonFooter
