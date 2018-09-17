@@ -7,6 +7,7 @@
 	import Datepicker from 'vuejs-datepicker';
 	// Form component
 	import FormReviewInformation from '@/components/FormReviewInformations/FormReviewInformation.vue';
+	import FormReviewQuestion from '@/components/FormReviewQuestions/FormReviewQuestion.vue';
 
 	export default{
 		name: 'createReview',
@@ -77,6 +78,11 @@
 				this.dataReview.members = data.members;
 			},
 
+			questionSave(data){
+				this.dataReview.template.name = data.name;
+				this.dataReview.template.id = data.id;
+			},
+
 			dropDownPosition(e){
 				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
@@ -133,57 +139,6 @@
 				} else {
 					this.dataReview.repeat_every = 0;
 				}
-			},
-
-			getDetailTemplate(data) {
-				this.api.get('review/template/'+data )
-				.then(response => {
-					this.templateDetails = response.data.data;
-				})
-				.catch(e =>{
-					console.log(e);
-				});
-			},
-
-			setTemplate() {
-				this.dataReview.template.name = this.templateDetails.attributes.title;
-				this.dataReview.template.id = this.templateDetails.attributes.id;
-				// this.templateDetails.review_categories.forEach((arr) => {
-				// 	const detailCategories = {
-				// 		name: arr.name,
-				// 		description: arr.description,
-				// 		is_weight: arr.use_weight,
-				// 		weight: arr.weight,
-				// 		questions:[],
-				// 	};
-
-				// 	this.dataReview.template.categories.push(detailCategories);
-
-				// 	arr.review_indicators.forEach(arr2 => {
-				// 		const detailQuestions = {
-				// 			name: arr2.name,
-				// 			description: arr2.description,
-				// 			is_weight: arr2.use_weight,
-				// 			weight: arr2.weight,
-				// 			can_comment: arr2.can_comment,
-				// 			answer_type: arr2.answer_type,
-				// 			ratings:[],
-				// 		};
-
-				// 		detailCategories.questions.push(detailQuestions);
-
-				// 		if(arr2.answer_type == "rating"){
-				// 			arr2.review_ratings.forEach(arr3 => {
-				// 				const detailRatings = {
-				// 					value: arr3.value,
-				// 					description: arr3.description,
-				// 				}
-
-				// 				detailQuestions.ratings.push(detailRatings);
-				// 			})
-				// 		}
-				// 	})
-				// });
 			},
 
 			setReviewer(data) {
@@ -341,7 +296,8 @@
 						if(this.reviewStep == 1){
 							this.addMember();
 						} else if(this.reviewStep == 2){
-							this.setTemplate();
+							console.log(this.$child)
+							this.$child.setTemplate();
 						}
 						this.reviewStep+=1;
 						this.editReview+=1;
@@ -469,9 +425,10 @@
 			},
 		},
 		components: {
-			ButtonFooter,
-			Datepicker,
 			FormReviewInformation,
+			FormReviewQuestion,
+			Datepicker,
+			ButtonFooter,
 		},
 
 		created() {
@@ -554,7 +511,6 @@
 				this.api.get('review/template')
 				.then(response => {
 					this.templates = response.data.data;
-					this.selectedTemplate = this.templates[0].attributes.id;
 					this.getDetailTemplate(this.selectedTemplate);
 				})
 				.catch(e =>{
