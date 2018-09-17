@@ -10,7 +10,7 @@ import createReview from './views/createReview/createReview.vue';
 import ListReviews from './views/ListReviews/ListReviews.vue';
 import ListReviewsTodo from './views/ListReviewsTodo/ListReviewsTodo.vue';
 import ListReviewsGiven from './views/ListReviewsGiven/ListReviewsGiven.vue';
-import Company from './views/Company/Company.vue';
+import CompanyReview from './views/CompanyReviews/CompanyReview.vue';
 import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
 import PreviewTemplate from './components/PreviewTemplate/PreviewTemplate.vue';
@@ -34,7 +34,7 @@ export default new Router({
 		},
 		{
 			path: '/company',
-			name: 'Company',
+			name: 'CompanyReview',
 			component: Company,
 		},
 		{

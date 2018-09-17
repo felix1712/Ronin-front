@@ -3,7 +3,7 @@
 <script>
   import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
   export default{
-    name:'Company',
+    name:'CompanyReview',
     data() {
       return {
         activeTab: 0,
