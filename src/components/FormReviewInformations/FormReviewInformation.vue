@@ -48,7 +48,7 @@ import ButtonFooter from '@/views/createReview/shared/button-footer/ButtonFooter
 			},
 
 			employeeMember: {
-				type: Array
+				type: Object
 			},
 
 		},
