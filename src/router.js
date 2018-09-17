@@ -10,7 +10,7 @@ import createReview from './views/createReview/createReview.vue';
 import ListReviews from './views/ListReviews/ListReviews.vue';
 import ListReviewsTodo from './views/ListReviewsTodo/ListReviewsTodo.vue';
 import ListReviewsGiven from './views/ListReviewsGiven/ListReviewsGiven.vue';
-import Company from './views/company/Company.vue';
+import Company from './views/Company/Company.vue';
 import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
 import PreviewTemplate from './components/PreviewTemplate/PreviewTemplate.vue';
