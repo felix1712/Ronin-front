@@ -5,6 +5,8 @@
 	import axios from 'axios';
 	import ButtonFooter from './shared/button-footer/ButtonFooter.vue';
 	import Datepicker from 'vuejs-datepicker';
+	// Form component
+	import FormReviewInformation from '@/components/FormReviewInformations/FormReviewInformation.vue';
 
 	export default{
 		name: 'createReview',
@@ -69,6 +71,12 @@
 		},
 
 		methods: {
+			informationSave(data){
+				this.dataReview.titles = data.title;
+				this.dataReview.description = data.description;
+				this.dataReview.members = data.members;
+			},
+
 			dropDownPosition(e){
 				let iconDelete = e.target;
 				e.target.offsetParent.lastChild.style.position="absolute"
@@ -88,161 +96,6 @@
 				.catch(e =>{
 					console.log(e);
 				});
-			},
-
-			reviewedSelectMemberId() {
-				this.selectedMembers = this.selectReviewedMembers.map(data =>{
-					return data.id
-				});
-
-				this.addMember();
-			},
-
-			deleteOrganizationSelect(id){
-				this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(data =>{
-					return data.id != id
-				})
-
-				let memberOrg = this.employeeMember.filter(e =>{
-					return e.attributes.department_id == id;
-				})
-
-				memberOrg = memberOrg.map(data =>{
-					return data.attributes.id;
-				})
-
-				this.selectedMembers = this.selectedMembers.filter(el =>{
-					return memberOrg.indexOf( el ) < 0;
-				});
-			},
-
-			deleteJobTitleSelect(id){
-				this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(data =>{
-					return data.id != id
-				})
-
-				let memberJobTitle = this.employeeMember.filter(e =>{
-					return e.attributes.job_title_id == id;
-				})
-
-				memberJobTitle = memberJobTitle.map(data =>{
-					return data.attributes.id;
-				})
-
-				this.selectedMembers = this.selectedMembers.filter( el =>{
-					return memberJobTitle.indexOf( el ) < 0;
-				});
-			},
-
-			selectEveryoneOrganization(data) {
-				let memberOrg = this.employeeMember.filter(e =>{
-					return e.attributes.department_id == data
-				})
-
-				memberOrg.map(function(item){
-					if(this.selectedMembers.includes(item.attributes.id) == false){
-						this.selectedMembers.push(item.attributes.id);
-					}
-				}.bind(this))
-			},
-
-			unselectEveryoneOrganization(data) {
-				let memberOrg = this.employeeMember.filter(e =>{
-					return e.attributes.department_id == data
-				})
-
-				memberOrg = memberOrg.map(data =>{
-					return data.attributes.id
-				})
-
-				this.selectedMembers = this.selectedMembers.filter(el =>{
-					return memberOrg.indexOf( el ) < 0;
-				});
-			},
-
-			selectEveryoneJobTitle(data) {
-				let memberJobTitle = this.employeeMember.filter(e =>{
-					return e.attributes.job_title_id == data
-				})
-
-				memberJobTitle.map(function(item){
-					if(this.selectedMembers.includes(item.attributes.id) == false){
-						this.selectedMembers.push(item.attributes.id);
-					}
-				}.bind(this))
-			},
-
-			unselectEveryoneJobTitle(data) {
-				let memberJobTitle = this.employeeMember.filter(e =>{
-					return e.attributes.job_title_id == data;
-				})
-
-				memberJobTitle = memberJobTitle.map(data =>{
-					return data.attributes.id;
-				})
-
-				this.selectedMembers = this.selectedMembers.filter(el =>{
-					return memberJobTitle.indexOf( el ) < 0;
-				});
-			},
-
-			selectOrganizationChecked(data) {
-				if (data != null) {
-					let getIdOrg = "";
-					getIdOrg = data.map(item =>{
-						return item.id
-					});
-
-					getIdOrg = getIdOrg[getIdOrg.length -1];
-
-          let memberOrg = this.employeeMember.filter(e =>{
-						return e.attributes.department_id == getIdOrg
-					});
-
-					memberOrg.map(function(item){
-						if(this.selectedMembers.includes(item.attributes.id) == false){
-							this.selectedMembers.push(item.attributes.id);
-						}
-					}.bind(this));
-				}
-			},
-
-			selectJobTitleChecked(data) {
-				if(data != null){
-					let getIdJobTitle = "";
-					getIdJobTitle = data.map(item =>{
-						return item.id
-					});
-
-					getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
-
-					let memberJobTitle = this.employeeMember.filter(e =>{
-						return e.attributes.job_title_id == getIdJobTitle;
-					})
-
-					memberJobTitle.map(function(item){
-						if(this.selectedMembers.includes(item.attributes.id) == false){
-							this.selectedMembers.push(item.attributes.id);
-						}
-					}.bind(this));
-				}
-			},
-
-			selectSpecificStaff(data) {
-				let getIdSpecificStaff = "";
-				getIdSpecificStaff = data.map(item =>{
-					return item.id
-				});
-
-				getIdSpecificStaff.map(function(item){
-					if(this.selectedMembers.includes(item) == false){
-						this.selectedMembers.push(item)
-					}
-				}.bind(this));
-			},
-
-			unselectSpecificStaff() {
-				this.selectedMembers = [];
 			},
 
 			editReviewStep(data) {
@@ -279,57 +132,6 @@
 					this.dataReview.repeat_every = 1;
 				} else {
 					this.dataReview.repeat_every = 0;
-				}
-			},
-
-			addMember() {
-				this.selectedMembers.forEach(function(value){
-					const addMembers = {
-						user_id: value,
-						reviewers: null,
-						is_self_review: 0,
-						is_sequent: 0,
-						weightRemaining: 100,
-					};
-
-					let checkDataArr = this.dataReview.members.filter(item =>{
-						return item.user_id == value;
-					});
-
-					if (!checkDataArr.length) {
-						this.dataReview.members.push(addMembers);
-					}
-				}.bind(this));
-			},
-
-			removeMember(value) {
-				// console.log(this.selectedMembers);
-				const intValue = parseInt(value);
-				this.dataReview.members = this.dataReview.members.filter(item =>{
-					return item.user_id !== intValue;
-				});
-			},
-
-			changeMemberSelectedType(e) {
-				if(e.target.value != 1){
-					this.dataReview.members = [];
-					this.selectedMembers = [];
-					this.selectReviewedMembers = [];
-					this.selectedJobTitleChecked = [];
-					this.selectedOrganiztionChecked = [];
-				} else {
-					this.selectedMembers = this.allSelectedMember;
-					this.addMember();
-				}
-			},
-
-			checkboxMember(e) {
-				if (e.target.checked === true) {
-					this.addMember();
-					e.currentTarget.closest("label").classList.remove('not-checked')
-				} else {
-					this.removeMember(e.target.value);
-					e.currentTarget.closest("label").classList.add('not-checked')
 				}
 			},
 
@@ -669,6 +471,7 @@
 		components: {
 			ButtonFooter,
 			Datepicker,
+			FormReviewInformation,
 		},
 
 		created() {
@@ -714,10 +517,10 @@
 						}
 					})
 
-					this.allSelectedMember = response.data.data.map(member => {
+					this.allSelectedMembers = response.data.data.map(member => {
 						return member.attributes.id
 					})
-					this.selectedMembers = this.allSelectedMember;
+					this.selectedMembers = this.allSelectedMembers;
 					this.addMember();
 
 					this.moreReviewerSelect = response.data.data.map(member => {
@@ -766,12 +569,6 @@
 				if(this.reviewStep == 4){
 					this.getReviewer();
 				}
-			},
-		},
-
-		computed: {
-			charactersRemaining: function () {
-				return this.maxCharacters - this.dataReview.titles.length;
 			},
 		},
 	};
