@@ -35,7 +35,7 @@ export default new Router({
 		{
 			path: '/company',
 			name: 'CompanyReview',
-			component: Company,
+			component: CompanyReview,
 		},
 		{
 			path: '/about',

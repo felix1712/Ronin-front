@@ -21,8 +21,8 @@
 					a Your Objectives
 				.c-header__nav-item.is-disabled(:class="$route.name === 'onevsone' ? 'is-active':''")
 					a Your 1:1 Meetings
-				.c-header__nav-item(:class="$route.name === 'Company' || $route.name === 'createReview'  ? 'is-active':''")
-					router-link(:to="{ name: 'Company'}") Company
+				.c-header__nav-item(:class="$route.name === 'CompanyReview' || $route.name === 'createReview'  ? 'is-active':''")
+					router-link(:to="{ name: 'CompanyReview'}") Company
 				.c-header__nav-item(:class="$route.name === 'settings' ? 'is-active':''")
 					a Settings
 
