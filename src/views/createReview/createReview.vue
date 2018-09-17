@@ -83,27 +83,6 @@
 				this.dataReview.template.id = data.id;
 			},
 
-			dropDownPosition(e){
-				let iconDelete = e.target;
-				e.target.offsetParent.lastChild.style.position="absolute"
-				// e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
-			},
-
-			deleteTemplate(data, index){
-				this.templates.splice(index, 1);
-
-				this.api.delete('templates/'+ data)
-				.then(response => {
-					this.$toast.open({
-						message: response.data.contents,
-						type: 'is-success'
-					})
-				})
-				.catch(e =>{
-					console.log(e);
-				});
-			},
-
 			editReviewStep(data) {
 				this.$validator.validateAll().then((result) => {
 					if (result) {

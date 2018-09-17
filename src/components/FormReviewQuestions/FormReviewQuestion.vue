@@ -33,6 +33,29 @@ import ButtonFooter from '@/views/createReview/shared/button-footer/ButtonFooter
 				});
 			},
 
+			dropDownPosition(e){
+				let iconDelete = e.target;
+				e.target.offsetParent.lastChild.style.position="absolute"
+				// e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
+			},
+
+			deleteTemplate(data, index){
+				this.$parent.api.delete('review/template/'+ data)
+				.then(response => {
+					this.templates.splice(index, 1);
+					this.$toast.open({
+						message: response.data.contents,
+						type: 'is-success'
+					})
+				})
+				.catch(e =>{
+					this.$toast.open({
+						message: e.response.data.messages,
+						type: 'is-danger'
+					})
+				});
+			},
+
 			setTemplate() {
 				if(this.templateDetails != null){
 					this.template.name = this.templateDetails.attributes.title;
