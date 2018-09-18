@@ -87,7 +87,7 @@ export default new Router({
 			component: ListReviewsGiven,
 		},
 		{
-			path: '/company-review-detail',
+			path: '/company-review-detail/:id',
 			name: 'CompanyReviewDetail',
 			component: CompanyReviewDetail,
 		},

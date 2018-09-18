@@ -1,55 +1,60 @@
-#companyReview
+#DetailReview
 	.p-prfrm-content.u-hsm-down
-		.p-prfrm-header
-			a.u-cl-black(href="./company") Back to all reviews
-			.p-prfrm-header__action
-				.c-btn-wrapper
-					b-dropdown.custom-menu-dropdown(position="is-bottom-left")
-						.c-btn.c-btn--more.u-cpointer(slot="trigger")
-							span.c-btn--more-dots
-							span.c-btn--more-dots
-							span.c-btn--more-dots
-						b-dropdown-item
-							.c-item
-								.c-item__img
-									img(src="@/assets/images/pages/icon-filter.svg", alt="")
-								.c-item__content Filter by department
-						b-dropdown-item
-							.c-item
-								.c-item__img
-									img(src="@/assets/images/pages/icon-edit.svg", alt="")
-								.c-item__content Edit review
-						b-dropdown-item
-							.c-item
-								.c-item__img
-									img(src="@/assets/images/pages/icon-preview.svg", alt="")
-								.c-item__content Preview
-						b-dropdown-item
-							.c-item
-								.c-item__img
-									img(src="@/assets/images/pages/icon-delete.svg", alt="")
-								.c-item__content Delete
-			h2.c-str-26.u-mb-14 Performance Review Q2 2018
-			.u-maxw-570.u-mb-30
-				p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
-			.c-row
-				.c-col-2.c-col-md-2
-					label Review cycle
-				.c-col-5.c-col-md-5 Only once
-			.c-row
-				.c-col-2.c-col-md-2
-					label Review start date
-				.c-col-5.c-col-md-5 1 Aug 2018
-			.c-row
-				.c-col-2.c-col-md-2
-					label Review due date
-				.c-col-5.c-col-md-5 6 Aug 2018
-					a.u-cl-slate.u-ml-14 Extend due date
+		.p-prfrm-header.u-clearfix
+			.u-pull
+				a.u-cl-black(href="") Back to all reviews
+				h2.c-str-26.u-mb-14 Performance Appraisal Sales Q2 2018
+				.u-maxw-570.u-mb-30
+					p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+				.c-row.u-mb-10
+					.c-col-3.c-col-md-3
+						span.c-str-15 Review cycle
+					.c-col-5.c-col-md-5
+						span.c-reg-15 Only once
+				.c-row.u-mb-10
+					.c-col-3.c-col-md-3
+						span.c-str-15 Review start date
+					.c-col-5.c-col-md-5
+						span.c-reg-15 10 Aug 2018
+				.c-row.u-mb-10
+					.c-col-3.c-col-md-3
+						span.c-str-15 Review due date
+					.c-col-5.c-col-md-5
+						span.c-reg-15 16 Aug 2018
+				.c-row.u-mb-10
+					.c-col-3.c-col-md-3
+						span.c-str-15 Status
+					.c-col-5.c-col-md-5
+						.u-maxw-150.u-mt-5
+							progress.progress.u-mb-0.is-slate(value="10", max="100") 10
+							nav.level.c-reg-13.u-mt-4
+								.level-left
+									.level-item
+										| In progress
+								.level-right
+									.level-item
+										| 1/10
+				.c-row.u-mb-10
+					.c-col-3.c-col-md-3
+						span.c-str-15 Reviewer
+					.c-col-5.c-col-md-5
+						.c-avatar-group.is-image
+							figure.c-avatar.c-avatar--xs.c-avatar--circle
+								img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+							figure.c-avatar.c-avatar--xs.c-avatar--circle
+								img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
+			.u-push
+				.u-tar.c-profile-report
+					figure.c-avatar.c-avatar--lg.c-avatar--circle.u-mb-10
+						img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Andy-Bernard.png", alt="sleekr-avatar-user")
+					p.c-smb-15 Andy Bernard
+					p.c-reg-15.u-cl-slate Regional Director in Charge of Sales, Sales
+					.c-profile-report--score.u-mt-40 75
 
 		.u-mt-40
 			span.c-str-18 Not yet reviewed
-			span.u-ml-20.u-ft-reg 2
-		.c-list.c-list--reviewdetail.c-list--reviewdetail-company
+			span.u-ml-20.u-ft-reg 3
+		.c-list.c-list--reviewdetail
 			.c-list__item
 				.c-list__avatar
 					.c-avatar-group
@@ -59,45 +64,6 @@
 							.c-smb-15 Michael Scott
 							.c-reg-15.u-cl-slate General Manager
 							.c-reg-15.u-cl-slate General
-				.c-list__detail
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							label.c-smb-15 Reviewer
-						.c-list--reviewdetail__status
-							label.c-smb-15 Status
-						.c-list--reviewdetail__action
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							.c-avatar-group.is-image
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
-						.c-list--reviewdetail__status
-							progress.progress.u-mb-0.is-slate(value="0", max="100") 0
-							nav.level.c-reg-13.u-mt-4
-								.level-left
-									.level-item
-										| Not yet reviewed
-								.level-right
-									.level-item
-										| 0/10
-						.c-list--reviewdetail__action
-							b-dropdown.custom-popover.c-dropdown--reminder
-								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
-								b-dropdown-item(custom)
-									form
-										.field
-											.control
-												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
-										nav.level.u-mt-20
-											.level-left
-												.level-item
-											.level-right
-												.level-item
-													a.button.c-btn--ghost.u-cl-white Cancel
-													a.button.is-primary(type='submit') Send
-			.c-list__item
 				.c-list__avatar
 					.c-avatar-group
 						figure.c-avatar.c-avatar--sm.c-avatar--circle
@@ -106,49 +72,19 @@
 							.c-smb-15 Michael Scott
 							.c-reg-15.u-cl-slate General Manager
 							.c-reg-15.u-cl-slate General
-				.c-list__detail
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							label.c-smb-15 Reviewer
-						.c-list--reviewdetail__status
-							label.c-smb-15 Status
-						.c-list--reviewdetail__action
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							.c-avatar-group.is-image
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
-						.c-list--reviewdetail__status
-							progress.progress.u-mb-0.is-slate(value="0", max="100") 0
-							nav.level.c-reg-13.u-mt-4
-								.level-left
-									.level-item
-										| Not yet reviewed
-								.level-right
-									.level-item
-										| 0/10
-						.c-list--reviewdetail__action
-							b-dropdown.custom-popover.c-dropdown--reminder
-								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
-								b-dropdown-item(custom)
-									form
-										.field
-											.control
-												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
-										nav.level.u-mt-20
-											.level-left
-												.level-item
-											.level-right
-												.level-item
-													a.button.c-btn--ghost.u-cl-white Cancel
-													a.button.is-primary(type='submit') Send
+				.c-list__avatar
+					.c-avatar-group
+						figure.c-avatar.c-avatar--sm.c-avatar--circle
+								img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+						.c-avatar-text.c-avatar-text--sm
+							.c-smb-15 Michael Scott
+							.c-reg-15.u-cl-slate General Manager
+							.c-reg-15.u-cl-slate General
 
 		.u-mt-40
 			span.c-str-18 In progress
-			span.u-ml-20.u-ft-reg 2
-		.c-list.c-list--reviewdetail.c-list--reviewdetail-company
+			span.u-ml-20.u-ft-reg 1
+		.c-list.c-list--reviewdetail
 			.c-list__item
 				.c-list__avatar
 					.c-avatar-group
@@ -158,95 +94,51 @@
 							.c-smb-15 Michael Scott
 							.c-reg-15.u-cl-slate General Manager
 							.c-reg-15.u-cl-slate General
-				.c-list__detail
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							label.c-smb-15 Reviewer
-						.c-list--reviewdetail__status
-							label.c-smb-15 Status
-						.c-list--reviewdetail__action
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							.c-avatar-group.is-image
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
-						.c-list--reviewdetail__status
-							progress.progress.u-mb-0.is-info(value="50", max="100") 50
-							nav.level.c-reg-13.u-mt-4
-								.level-left
-									.level-item
-										| In progress
-								.level-right
-									.level-item
-										| 5/10
-						.c-list--reviewdetail__action
-							b-dropdown.custom-popover.c-dropdown--reminder
-								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
-								b-dropdown-item(custom)
-									form
-										.field
-											.control
-												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
-										nav.level.u-mt-20
-											.level-left
-												.level-item
-											.level-right
-												.level-item
-													a.button.c-btn--ghost.u-cl-white Cancel
-													a.button.is-primary(type='submit') Send
-			.c-list__item
-				.c-list__avatar
-					.c-avatar-group
-						figure.c-avatar.c-avatar--sm.c-avatar--circle
-								img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
-						.c-avatar-text.c-avatar-text--sm
-							.c-smb-15 Michael Scott
-							.c-reg-15.u-cl-slate General Manager
-							.c-reg-15.u-cl-slate General
-				.c-list__detail
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							label.c-smb-15 Reviewer
-						.c-list--reviewdetail__status
-							label.c-smb-15 Status
-						.c-list--reviewdetail__action
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							.c-avatar-group.is-image
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
-						.c-list--reviewdetail__status
-							progress.progress.u-mb-0.is-info(value="50", max="100") 50
-							nav.level.c-reg-13.u-mt-4
-								.level-left
-									.level-item
-										| In progress
-								.level-right
-									.level-item
-										| 5/10
-						.c-list--reviewdetail__action
-							b-dropdown.custom-popover.c-dropdown--reminder
-								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
-								b-dropdown-item(custom)
-									form
-										.field
-											.control
-												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
-										nav.level.u-mt-20
-											.level-left
-												.level-item
-											.level-right
-												.level-item
-													a.button.c-btn--ghost.u-cl-white Cancel
-													a.button.is-primary(type='submit') Send
 
 		.u-mt-40
 			span.c-str-18 Completed
-			span.u-ml-20.u-ft-reg 2
+			span.u-ml-20.u-ft-reg 1
+		.c-list.c-list--reviewdetail
+			.c-list__item
+				.c-list__avatar
+					.c-avatar-group
+						figure.c-avatar.c-avatar--sm.c-avatar--circle
+								img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+						.c-avatar-text.c-avatar-text--sm
+							.c-smb-15 Michael Scott
+							.c-reg-15.u-cl-slate General Manager
+							.c-reg-15.u-cl-slate General
+
+		.u-mt-40
+			span.c-str-18 Not yet reviewed
+			span.u-ml-20.u-ft-reg 3
+		.c-list.c-list--reviewdetail
+			.c-list__item
+				.c-list__avatar
+					.c-avatar-group
+						figure.c-avatar.c-avatar--sm.c-avatar--circle
+								img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+						.c-avatar-text.c-avatar-text--sm
+							.c-smb-15 Michael Scott
+							.c-reg-15.u-cl-slate General Manager
+							.c-reg-15.u-cl-slate General
+				.c-list__action
+					a.button.c-btn--sm.c-btn--default Write summary
+			.c-list__item
+				.c-list__avatar
+					.c-avatar-group
+						figure.c-avatar.c-avatar--sm.c-avatar--circle
+								img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+						.c-avatar-text.c-avatar-text--sm
+							.c-smb-15 Michael Scott
+							.c-reg-15.u-cl-slate General Manager
+							.c-reg-15.u-cl-slate General
+				.c-list__action
+					a.button.c-btn--sm.c-btn--default Send reminder
+
+		.u-mt-40
+			span.c-str-18 Not yet reviewed
+			span.u-ml-20.u-ft-reg 3
 		.c-list.c-list--reviewdetail.c-list--reviewdetail-company
 			.c-list__item
 				.c-list__avatar
@@ -272,47 +164,171 @@
 								figure.c-avatar.c-avatar--xs.c-avatar--circle
 									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
 						.c-list--reviewdetail__status
-							progress.progress.u-mb-0.is-link.is-purple(value="100", max="100") 100
+							progress.progress.u-mb-0.is-slate(value="0", max="100") 0
 							nav.level.c-reg-13.u-mt-4
 								.level-left
 									.level-item
-										| Completed
+										| Not yet reviewed
 								.level-right
 									.level-item
-										| 10/10
+										| 0/10
 						.c-list--reviewdetail__action
-							a.button.c-btn--sm.c-btn--default Write summary
-			.c-list__item
-				.c-list__avatar
-					.c-avatar-group
-						figure.c-avatar.c-avatar--sm.c-avatar--circle
-								img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
-						.c-avatar-text.c-avatar-text--sm
-							.c-smb-15 Michael Scott
-							.c-reg-15.u-cl-slate General Manager
-							.c-reg-15.u-cl-slate General
-				.c-list__detail
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							label.c-smb-15 Reviewer
-						.c-list--reviewdetail__status
-							label.c-smb-15 Status
-						.c-list--reviewdetail__action
-					.c-list__row
-						.c-list--reviewdetail__reviewer
-							.c-avatar-group.is-image
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
-								figure.c-avatar.c-avatar--xs.c-avatar--circle
-									img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
-						.c-list--reviewdetail__status
-							progress.progress.u-mb-0.is-link.is-purple(value="100", max="100") 100
-							nav.level.c-reg-13.u-mt-4
-								.level-left
-									.level-item
-										| Completed
-								.level-right
-									.level-item
-										| 10/10
-						.c-list--reviewdetail__action
-							a.button.c-btn--sm.c-btn--default Write summary
+							b-dropdown.custom-popover.c-dropdown--reminder
+								a.button.c-btn--sm.c-btn--default(slot="trigger") Send reminder
+								b-dropdown-item(custom)
+									form
+										.field
+											.control
+												textarea.textarea.is-normal(type="text", rows="5", placeholder="Write reminder message…")
+										nav.level.u-mt-20
+											.level-left
+												.level-item
+													a.button.c-btn--ghost.u-cl-white Cancel
+													a.button.is-primary(type='submit') Send
+											.level-right
+												.level-item
+
+		//- .p-prfrm-create
+		//- 	.p-prfrm-create__list.c-accordion__panel
+		//- 		.p-prfrm-create__list-head.c-accordion__head.u-py-0
+		//- 			.c-accordion__title
+		//- 				h3.c-str-21 Behavioral Skill
+		//- 				p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		//- 				p.c-reg-15 Score: 30
+		//- 			.c-accordion__icon.icon-plus
+		//- 		.p-prfrm-create__list-content.c-accordion__body
+		//- 			.c-accordion__section.u-py-30
+		//- 				.c-accordion__section-item
+		//- 					.c-accordion__section-item-no
+		//- 						span.u-ft-smb 1
+		//- 					.c-accordion__section-item-content
+		//- 						.c-smb-15 Delight Customer
+		//- 						.u-maxw-570.u-py-10
+		//- 							p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
+		//- 						.c-reg-15
+		//- 							span.u-mr-30 Score: 17
+		//- 						.u-mt-30
+		//- 							.p-prfrm-comment.is-filled
+		//- 								.u-clearfix.u-mb-10
+		//- 									.u-pull
+		//- 										.c-avatar-group.u-pl-0
+		//- 											figure.c-avatar.c-avatar--xxs.c-avatar--circle.u-mr-10
+		//- 												img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+		//- 											.c-avatar-text.c-avatar-text--lg
+		//- 												.c-reg-15 Jim Halpert
+		//- 									.u-push
+		//- 										p.c-reg-15 15 Aug 2018
+		//- 								p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		//- 							.p-prfrm-comment.ju-togglelc-comment1.u-dn
+		//- 								.c-commentinput
+		//- 								.c-row
+		//- 									.c-col-12
+		//- 										.c-btn-group-wrapper.u-clearfix.u-tar.u-mt-30
+		//- 											.c-btn-group--right
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--primary.c-btn--sm.ju-toggle-l(data-link="comment1", data-effect="slide") Save
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel
+		//- 				.c-accordion__section-item
+		//- 					.c-accordion__section-item-no
+		//- 						span.u-ft-smb 2
+		//- 					.c-accordion__section-item-content
+		//- 						.c-smb-15 Delight Customer
+		//- 						.u-maxw-570.u-py-10
+		//- 							p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
+		//- 						.c-reg-15
+		//- 							span.u-mr-30 Score: 17
+		//- 						.u-mt-30
+		//- 							.p-prfrm-comment.is-filled
+		//- 								.u-clearfix.u-mb-10
+		//- 									.u-pull
+		//- 										.c-avatar-group.u-pl-0
+		//- 											figure.c-avatar.c-avatar--xxs.c-avatar--circle.u-mr-10
+		//- 												img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+		//- 											.c-avatar-text.c-avatar-text--lg
+		//- 												.c-reg-15 Jim Halpert
+		//- 									.u-push
+		//- 										p.c-reg-15 15 Aug 2018
+		//- 								p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		//- 							.p-prfrm-comment.ju-togglelc-comment1.u-dn
+		//- 								.c-commentinput
+		//- 								.c-row
+		//- 									.c-col-12
+		//- 										.c-btn-group-wrapper.u-clearfix.u-tar.u-mt-30
+		//- 											.c-btn-group--right
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--primary.c-btn--sm.ju-toggle-l(data-link="comment1", data-effect="slide") Save
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel
+						
+		//- 	.p-prfrm-create__list.c-accordion__panel
+		//- 		.p-prfrm-create__list-head.c-accordion__head.u-py-0
+		//- 			.c-accordion__title
+		//- 				h3.c-str-21 Technical Skill
+		//- 				p.c-reg-15.u-mb-10 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		//- 				p.c-reg-15 Score: 30
+		//- 			.c-accordion__icon.icon-plus
+		//- 		.p-prfrm-create__list-content.c-accordion__body.u-dn
+		//- 			.c-accordion__section.u-py-30
+		//- 				.c-accordion__section-item
+		//- 					.c-accordion__section-item-no
+		//- 						span.u-ft-smb 1
+		//- 					.c-accordion__section-item-content
+		//- 						.c-smb-15 Delight Customer
+		//- 						.u-maxw-570.u-py-10
+		//- 							p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
+		//- 						.c-reg-15
+		//- 							span.u-mr-30 Score: 17
+		//- 						.u-mt-30
+		//- 							.p-prfrm-comment.is-filled
+		//- 								.u-clearfix.u-mb-10
+		//- 									.u-pull
+		//- 										.c-avatar-group.u-pl-0
+		//- 											figure.c-avatar.c-avatar--xxs.c-avatar--circle.u-mr-10
+		//- 												img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+		//- 											.c-avatar-text.c-avatar-text--lg
+		//- 												.c-reg-15 Jim Halpert
+		//- 									.u-push
+		//- 										p.c-reg-15 15 Aug 2018
+		//- 								p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		//- 							.p-prfrm-comment.ju-togglelc-comment1.u-dn
+		//- 								.c-commentinput
+		//- 								.c-row
+		//- 									.c-col-12
+		//- 										.c-btn-group-wrapper.u-clearfix.u-tar.u-mt-30
+		//- 											.c-btn-group--right
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--primary.c-btn--sm.ju-toggle-l(data-link="comment1", data-effect="slide") Save
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel
+		//- 				.c-accordion__section-item
+		//- 					.c-accordion__section-item-no
+		//- 						span.u-ft-smb 2
+		//- 					.c-accordion__section-item-content
+		//- 						.c-smb-15 Delight Customer
+		//- 						.u-maxw-570.u-py-10
+		//- 							p.c-reg-15 Sleeker total untuk membantu, melayani, dan memuaskan pelanggan. Pelanggan dapat diartikan secara luas, yaitu meliputi pelanggan eksternal (customer dalam arti sebenarnya) atau pelanggan internal (end-user di dalam organisasi).
+		//- 						.c-reg-15
+		//- 							span.u-mr-30 Score: 17
+		//- 						.u-mt-30
+		//- 							.p-prfrm-comment.is-filled
+		//- 								.u-clearfix.u-mb-10
+		//- 									.u-pull
+		//- 										.c-avatar-group.u-pl-0
+		//- 											figure.c-avatar.c-avatar--xxs.c-avatar--circle.u-mr-10
+		//- 												img.c-img-fluid(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+		//- 											.c-avatar-text.c-avatar-text--lg
+		//- 												.c-reg-15 Jim Halpert
+		//- 									.u-push
+		//- 										p.c-reg-15 15 Aug 2018
+		//- 								p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		//- 							.p-prfrm-comment.ju-togglelc-comment1.u-dn
+		//- 								.c-commentinput
+		//- 								.c-row
+		//- 									.c-col-12
+		//- 										.c-btn-group-wrapper.u-clearfix.u-tar.u-mt-30
+		//- 											.c-btn-group--right
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--primary.c-btn--sm.ju-toggle-l(data-link="comment1", data-effect="slide") Save
+		//- 												.c-btn-group--item
+		//- 													button.c-btn.c-btn--ghost.c-btn--sm.u-px-30.jc-popover(data-type="confirmation") Cancel

@@ -3,7 +3,9 @@ div
 		.c-list__item.is-showonhover(v-for="list in normalizeData")
 			.c-list__detail.u-py-10
 				.u-mb-20
-					a.u-cl-black.c-str-18(href="./company-review-detail") {{list.attributes.title}}
+					router-link.u-cl-black.c-str-18(
+	          :to="{ name: 'CompanyReviewDetail', params: {id: list.id} }"
+          ) {{list.attributes.title}}
 					span.tag.is-danger.u-ml-20.u-ft-smb(v-if="list.expired != 0") Expired
 					a.u-ml-16.c-reg-15.u-cl-blue(v-if="list.status == 'completed'") Write and share summary
 				.c-list__row
