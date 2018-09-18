@@ -33,11 +33,16 @@
 	&.has-icons-left{
 		.icon{
 			font-size: 1.5rem;
+			height: 2.4em;
 		}
 	}
 	&.has-icons-right{
 		.icon{
 			font-size: 1.5rem;
+			height: 2.4em;
+			.icon-percent{
+				font-style: normal;
+			}
 		}
 	}
 }
