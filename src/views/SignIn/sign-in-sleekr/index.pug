@@ -1,0 +1,25 @@
+#entryPageSleekr
+	.p-prfrm-entry__content
+		.c-str-26 Sign in with Sleekr
+		form.u-mt-30(@submit.prevent="validateLogin")
+			.u-tal
+				.control(:class="{'is-error': errors.has('loginEmail') }")
+					input.input(
+						type="email"
+						v-model="loginEmail"
+						placeholder="Email address"
+						name="loginEmail"
+						v-validate="'required|email'"
+						)
+					span.is-message(v-show="errors.has('loginEmail')") {{ errors.first('loginEmail') }}
+				.control(:class="{'is-error': errors.has('loginPassword') }")
+					input.input(
+						type="password"
+						v-model="loginPassword"
+						placeholder="Password"
+						name="loginPassword"
+						v-validate="'required'"
+					)
+					span.is-message(v-show="errors.has('loginPassword')") {{ errors.first('loginPassword') }}
+			.u-mt-30
+				button Sign in

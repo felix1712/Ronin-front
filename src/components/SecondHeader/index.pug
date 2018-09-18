@@ -2,4 +2,8 @@ header.p-prfrm-entry__header.u-clearfix
 		.u-pull
 			img(src="@/assets/images/pages/logo-polar.svg", alt="Icon", width="30")
 		.u-push
-			router-link(:to="{ name: signUrl}") {{SignText}}
+			b-tooltip(label="Not yet available"
+								position="is-left"
+								type="is-dark"
+			)
+				router-link(:to="{ name: signUrl}") {{SignText}}
