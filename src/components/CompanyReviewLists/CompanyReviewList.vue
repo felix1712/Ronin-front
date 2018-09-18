@@ -9,6 +9,22 @@
 			},
 			listCompanyIncluded: {
 				type: Array
+			},
+
+			normalizeData: {
+				type: Array
+			},
+
+			normalizeDataMember: {
+				type: Array
+			},
+
+			normalizeDataReviewer: {
+				type: Array
+			},
+
+			normalizeDataUser: {
+				type: Array
 			}
 		},
 

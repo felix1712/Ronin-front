@@ -12,6 +12,11 @@
         api: null,
         listCompanyReview: null,
         listCompanyIncluded: null,
+        normalize: null,
+        normalizeData: null,
+        normalizeDataMember: null,
+        normalizeDataReviewer: null,
+        normalizeDataUser: null,
       }
     },
 
@@ -35,7 +40,11 @@
         .then(response => {
           this.listCompanyReview = response.data.data;
           this.listCompanyIncluded = response.data.included;
-          console.log(response.data);
+          this.normalize = this.$normalize(response.data);
+          this.normalizeData = Object.values(this.normalize.cycle);
+          this.normalizeDataMember = Object.values(this.normalize.member);
+          this.normalizeDataReviewer = Object.values(this.normalize.reviewer);
+          this.normalizeDataUser = Object.values(this.normalize.user);
         })
         .catch(e => {
           // this.errors.push(e);
