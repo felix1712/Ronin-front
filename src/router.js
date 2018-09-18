@@ -4,6 +4,7 @@ import Home from './views/home/home.vue';
 import auth from './views/auth/auth.vue';
 import SignUp from './views/SignUp/SignUp.vue';
 import SignIn from './views/SignIn/SignIn.vue';
+import SignInSleekr from './views/SignIn/sign-in-sleekr/SignInSleekr.vue';
 import ForgotPassword from './views/ForgotPassword/ForgotPassword.vue';
 import Page404 from './views/Page404/Page404.vue';
 import createReview from './views/createReview/createReview.vue';
@@ -55,6 +56,11 @@ export default new Router({
 			path: '/sign-up',
 			name: 'SignUp',
 			component: SignUp,
+		},
+		{
+			path: '/sign-in-sleekr',
+			name: 'SignInSleekr',
+			component: SignInSleekr,
 		},
 		{
 			path: '/forgot-password',
