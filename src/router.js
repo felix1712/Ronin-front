@@ -14,6 +14,7 @@ import CompanyReview from './views/CompanyReviews/CompanyReview.vue';
 import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
 import PreviewTemplate from './components/PreviewTemplate/PreviewTemplate.vue';
+import ReviewDetail from './views/ReviewDetail/ReviewDetail.vue';
 
 
 Vue.use(Router);
@@ -94,6 +95,11 @@ export default new Router({
 			path: '/preview-template/:id',
 			name: 'PreviewTemplate',
 			component: PreviewTemplate,
+		},
+		{
+			path: '/review-detail',
+			name: 'ReviewDetail',
+			component: ReviewDetail,
 		},
 	],
 });
