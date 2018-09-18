@@ -12,9 +12,9 @@ div
 					.c-list--review__reviewee
 						.field
 							label.label Reviewee
-					.c-list--review__reviewer
-						.field
-							label.label Reviewer
+					//- .c-list--review__reviewer
+					//- 	.field
+					//- 		label.label Reviewer
 					.c-list--review__schedule
 						.field
 							label.label Schedule for
@@ -35,15 +35,15 @@ div
 											figure.c-avatar.c-avatar--xs.c-avatar--circle
 												img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
 											span.u-ml-14 {{dataUser.attributes.name}}
-					.c-list--review__reviewer
-						a.u-cl-black.jc-popover(data-type="stafflist", data-pos="bottom") Custom
+					//- .c-list--review__reviewer
+					//- 	a.u-cl-black.jc-popover(data-type="stafflist", data-pos="bottom") Custom
 					.c-list--review__schedule(:class="list.expired !== 0 ? 'u-cl-red' : ''") Reviews due by {{list.attributes.reviewStartDate | moment("ddd, d MMM YYYY")}}
 					.c-list--review__status
 						progress.progress.u-mb-0.is-slate(:value="list.attributes.totalCompletedReviews", :max="list.attributes.totalReviewers") 10
 						nav.level.c-reg-13.u-mt-4
 							.level-left
 								.level-item
-									| {{list.attributes.status}}
+									span.c-first-letter-capitalize {{list.attributes.status}}
 							.level-right
 								.level-item
 									| {{list.attributes.totalCompletedReviews}}/{{list.attributes.totalReviewers}}
