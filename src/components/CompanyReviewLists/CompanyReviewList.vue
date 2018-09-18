@@ -28,5 +28,12 @@
 			}
 		},
 
+		computed: {
+      totalReviewList: function () {
+      	if(this.normalizeData){
+        	return this.normalizeData.length;
+      	}
+      },
+    },
 	};
 </script>
