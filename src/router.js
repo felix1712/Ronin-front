@@ -15,6 +15,7 @@ import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
 import PreviewTemplate from './components/PreviewTemplate/PreviewTemplate.vue';
 import ReviewDetail from './views/ReviewDetail/ReviewDetail.vue';
+import CreateTemplate from './views/CreateTemplate/CreateTemplate.vue';
 
 
 Vue.use(Router);
@@ -100,6 +101,11 @@ export default new Router({
 			path: '/review-detail',
 			name: 'ReviewDetail',
 			component: ReviewDetail,
+		},
+		{
+			path: '/create-template',
+			name: 'CreateTemplate',
+			component: CreateTemplate,
 		},
 	],
 });
