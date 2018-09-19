@@ -42,14 +42,8 @@ div
 						ProgressBar(
 							:currentBar="list.attributes.totalCompletedReviews"
 							:maxBar="list.attributes.totalReviewers"
+							:statusProgress="list.attributes.status"
 						)
-						nav.level.c-reg-13.u-mt-4
-							.level-left
-								.level-item
-									span.c-first-letter-capitalize {{list.attributes.status}}
-							.level-right
-								.level-item
-									| {{list.attributes.totalCompletedReviews}}/{{list.attributes.totalReviewers}}
 			.c-list__action
 				a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs
 					img.u-mr-10(src="@/assets/images/pages/icon-pencil.svg", alt="")

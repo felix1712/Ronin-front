@@ -3,7 +3,7 @@
 <script>
 	export default{
 		name: 'ProgressBar',
-		props: ['currentBar', 'maxBar'],
+		props: ['currentBar', 'maxBar', 'statusProgress'],
 		computed: {
 			classProgress() {
 				return {
