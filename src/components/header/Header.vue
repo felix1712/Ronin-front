@@ -11,7 +11,7 @@
     	signOut(){
     		this.$cookie.delete('AuthToken');
     		this.$cookie.delete('AuthRefresh');
-    		this.$router.push('/');
+    		this.$router.push({ name: 'SignIn' });
     	}
     }
   };
