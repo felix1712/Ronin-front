@@ -44,26 +44,25 @@
 							figure.c-avatar.c-avatar--xs.c-avatar--circle
 								img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
 			.u-push
-				.u-tar.c-profile-report
-					figure.c-avatar.c-avatar--lg.c-avatar--circle.u-mb-10
-						img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Andy-Bernard.png", alt="sleekr-avatar-user")
-					p.c-smb-15 Andy Bernard
-					p.c-reg-15.u-cl-slate Regional Director in Charge of Sales, Sales
-					.c-profile-report--score.u-mt-40 75
+				UserProfileTop(
+				 :avatarProfileTop="'https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg'"
+				 :nameProfileTop="'Michael Jordan'"
+				 :jobTitleProfileTop="'Senior Frontend Developer'"
+				 :departmentProfileTop="'Developer'"
+				 :scoreProfileTop="100"
+				)
 
 		.u-mt-40
 			span.c-str-18 Not yet reviewed
 			span.u-ml-20.u-ft-reg 3
 		.c-list.c-list--reviewdetail
 			.c-list__item
-				.c-list__avatar
-					.c-avatar-group
-						figure.c-avatar.c-avatar--sm.c-avatar--circle
-								img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
-						.c-avatar-text.c-avatar-text--sm
-							.c-smb-15 Michael Scott
-							.c-reg-15.u-cl-slate General Manager
-							.c-reg-15.u-cl-slate General
+				UserProfileList(
+					:avatarProfileList="'https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg'"
+					:nameProfileList="'Michale Jordan'"
+					:jobTitleProfileList="'Frontend Developer'"
+					:departmentProfileList="'Developer'"
+				)
 				.c-list__avatar
 					.c-avatar-group
 						figure.c-avatar.c-avatar--sm.c-avatar--circle
