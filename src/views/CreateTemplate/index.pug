@@ -1,7 +1,134 @@
 #CreateTemplate
-	.p-prfrm-content.u-hsm-down
-		.p-prfrm-header
-			a.u-cl-black(href="") Back to create review
-			h2.c-str-26.u-mb-14 Company Review Q1
-			.u-maxw-570.u-mb-30
-				p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+	.p-prfrm-content.c-create-template.u-hsm-down
+		.p-prfm-header.p-prfm-content--active
+			//- a.u-cl-blue(href="")
+			//- 	img.u-mr-10(src="@/assets/images/pages/icon-arrow-left.svg", alt="")
+			//- 	span Back to questionnaire
+			.control
+				input.input.title(
+					type="title"
+					placeholder="Untitled template"
+					name="title"
+				)
+			vue-editor(v-model="content"
+								 :editorToolbar="customToolbar"
+								 placeholder= "Category description"
+			)
+			.c-btn-group--item
+				nav.level
+					.level-left
+						.level-item
+							a.c-btn--ghost.c-smb-15.u-cl-blue Save as new template
+					.level-right
+						.level-item
+							a.c-btn.c-btn--ghost.c-btn--sm Cancel
+							button.c-btn.button.is-primary Save
+				//- icon-arrow-left
+		//- .p-prfrm-header
+		//- 	a.u-cl-black(href="") Back to create review
+		//- 	.c-list__header.is-showonhover
+		//- 		.c-list__header-detail
+		//- 			h2.c-str-26.u-mb-14 Company Review Q1
+		//- 			.u-maxw-570.u-mb-30
+		//- 				p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+		//- 		.c-list__header-action
+		//- 			a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs
+		//- 				img.u-mr-10(src="@/assets/images/pages/icon-pencil.svg", alt="")
+		//- 				Span Edit
+		.p-prfrm-create
+			.p-prfrm-create__list.c-accordion__panel.is-open
+				.p-prfrm-create__list-head.c-accordion__head.u-py-0
+					.c-accordion__title
+						h3.c-str-21 Work Quality
+						p.c-reg-15.u-mb-10 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						.c-reg-15.u-cl-slate Weight: 60 of 100%
+					.c-accordion__icon.icon-minus
+				.p-prfrm-create__list-content.c-accordion__body
+					.c-accordion__section.u-py-30
+						.c-accordion__section-item
+							.c-accordion__section-item-no
+								span.u-ft-smb 1
+								span.u-cl-slate /2
+							.c-accordion__section-item-content
+								.c-smb-15 Quality of work
+								.u-maxw-570.u-py-10
+									p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+								.u-cl-slate Weight: 30 of 100%
+								//- answer type rating
+								.p-prfm-rating.u-my-30
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='1'
+										)
+										label(:for='1') 1
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='2'
+										)
+										label(:for='2') 2
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='3'
+										)
+										label(:for='3') 3
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='4'
+										)
+										label(:for='4') 4
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='5'
+										)
+										label(:for='5') 5
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='6'
+										)
+										label(:for='6') 6
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='7'
+										)
+										label(:for='7') 7
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='8'
+										)
+										label(:for='8') 8
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='9'
+										)
+										label(:for='9') 9
+									.p-prfm-rating__item
+										input(type='radio'
+											name='radio-rating'
+											:id='10'
+										)
+										label(:for='10') 10
+
+								.p-prfrm-comment.is-button
+									img(src="@/assets/images/pages/icon-pencil.svg", alt="", width="20")
+									span.u-ml-10 Write answer
+								.c-accordion__section-item-action
+									a.c-btn--ghost.c-btn--edit.c-btn--xs
+										img.u-mx-10(src="@/assets/images/pages/duplicate.svg", alt="")
+									a.c-btn--ghost.c-btn--edit.c-btn--xs
+										img.u-mx-10(src="@/assets/images/pages/edit.svg", alt="")
+									a.c-btn--ghost.c-btn--edit.c-btn--xs
+										img.u-mx-10(src="@/assets/images/pages/delete.svg", alt="")
+									a.c-btn--ghost.c-btn--edit.c-btn--xs
+										img.u-mx-10(src="@/assets/images/pages/move.svg", alt="")
+						.c-accordion__section-item-line
+							hr
+							.p-prfm-add-question

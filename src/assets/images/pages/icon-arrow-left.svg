@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="12px" viewBox="0 0 6 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>AFB37F7F-3304-4DBA-993B-C7B87C7945A4</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M5.78086881,10.375305 C6.12587836,10.8065669 6.05595698,11.4358593 5.62469505,11.7808688 C5.19343311,12.1258784 4.56414074,12.055957 4.21913119,11.624695 L0.219131191,6.62469505 C-0.0730437302,6.2594764 -0.0730437302,5.7405236 0.219131191,5.37530495 L4.21913119,0.375304952 C4.56414074,-0.0559569826 5.19343311,-0.125878358 5.62469505,0.219131191 C6.05595698,0.564140739 6.12587836,1.19343311 5.78086881,1.62469505 L2.28062485,6 L5.78086881,10.375305 Z" id="path-1"></path>
+    </defs>
+    <g id="Performance-Review" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="performance-reviews---admin---new-review---questionnaire---edit-template" transform="translate(-477.000000, -106.000000)">
+            <g id="section-header" transform="translate(445.000000, 60.000000)">
+                <g id="icon-arrow-left" transform="translate(25.000000, 42.000000)">
+                    <rect id="Background" x="0" y="0" width="20" height="20"></rect>
+                    <g id="icon-arrow" transform="translate(7.000000, 4.000000)">
+                        <g id="color" transform="translate(0.000000, 0.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Mask" fill="#C4CDD5" fill-rule="nonzero" xlink:href="#path-1"></use>
+                            <g mask="url(#mask-2)">
+                                <g transform="translate(-7.000000, -3.722222)">
+                                    <rect id="Background" fill="none" x="0" y="0" width="20" height="19.4444444"></rect>
+                                    <rect id="color-/-blue" fill="#4298FC" fill-rule="nonzero" x="0" y="0" width="20" height="19.4444444"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
