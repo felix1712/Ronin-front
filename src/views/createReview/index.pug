@@ -18,7 +18,7 @@
 							Span Edit
 				//- step 1 (review information form)
 				FormReviewInformation(
-					v-if="reviewStep === 1"
+					v-show="reviewStep === 1"
 					:allSelectedMembers="allSelectedMembers"
 					:selectedMembers="selectedMembers"
 					:selectedOrganization="selectedOrganization"
@@ -43,7 +43,7 @@
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				FormReviewQuestion(
-					v-if="reviewStep === 2"
+					v-show="reviewStep === 2"
 					:templates="templates"
 					@questionSave="questionSave"
 				)
@@ -61,7 +61,7 @@
 							Span Edit
 				//- step 3 (Schedule Form)`
 				FormReviewSchedule(
-					v-if="reviewStep === 3"
+					v-show="reviewStep === 3"
 					@scheduleSave="scheduleSave"
 				)
 				//- end step 3 (Schedule Form)
