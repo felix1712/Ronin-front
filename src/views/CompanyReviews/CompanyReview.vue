@@ -36,15 +36,9 @@
           },
         });
 
-        this.api.get('review/company-review',)
+        this.api.get('review/company-review')
         .then(response => {
-          this.listCompanyReview = response.data.data;
-          this.listCompanyIncluded = response.data.included;
-          this.normalize = this.$normalize(response.data);
-          this.normalizeData = Object.values(this.normalize.cycle);
-          this.normalizeDataMember = Object.values(this.normalize.member);
-          this.normalizeDataReviewer = Object.values(this.normalize.reviewer);
-          this.normalizeDataUser = Object.values(this.normalize.user);
+          this.listCompanyReview = this.$normalize.deserialize(response.data).data;
         })
         .catch(e => {
           // this.errors.push(e);

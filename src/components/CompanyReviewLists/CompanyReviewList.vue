@@ -8,31 +8,12 @@
 			listCompanyReview: {
 				type: Array
 			},
-			listCompanyIncluded: {
-				type: Array
-			},
-
-			normalizeData: {
-				type: Array
-			},
-
-			normalizeDataMember: {
-				type: Array
-			},
-
-			normalizeDataReviewer: {
-				type: Array
-			},
-
-			normalizeDataUser: {
-				type: Array
-			}
 		},
 
 		computed: {
       totalReviewList: function () {
-      	if(this.normalizeData){
-        	return this.normalizeData.length;
+      	if(this.listCompanyReview){
+        	return this.listCompanyReview.length;
       	}
       },
     },
