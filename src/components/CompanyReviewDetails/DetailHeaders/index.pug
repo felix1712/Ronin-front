@@ -1,9 +1,9 @@
 .p-prfrm-header.u-clearfix
 	.u-pull
 		a.u-cl-black(href="") Back to all reviews
-		h2.c-str-26.u-mb-14 Performance Appraisal Sales Q2 2018
+		h2.c-str-26.u-mb-14 {{detailCompanyReview.title}}
 		.u-maxw-570.u-mb-30
-			p.c-reg-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+			p.c-reg-15 {{detailCompanyReview.description}}.
 		.c-row.u-mb-10
 			.c-col-3.c-col-md-3
 				span.c-str-15 Review cycle
@@ -13,34 +13,31 @@
 			.c-col-3.c-col-md-3
 				span.c-str-15 Review start date
 			.c-col-5.c-col-md-5
-				span.c-reg-15 10 Aug 2018
+				span.c-reg-15 {{detailCompanyReview.review_start_date | moment("DD MMMM YYYY")}}
 		.c-row.u-mb-10
 			.c-col-3.c-col-md-3
 				span.c-str-15 Review due date
 			.c-col-5.c-col-md-5
-				span.c-reg-15 16 Aug 2018
+				span.c-reg-15 {{detailCompanyReview.review_end_date | moment("DD MMMM YYYY")}}
 		.c-row.u-mb-10
 			.c-col-3.c-col-md-3
 				span.c-str-15 Status
 			.c-col-5.c-col-md-5
 				.u-maxw-150.u-mt-5
-					progress.progress.u-mb-0.is-slate(value="10", max="100") 10
-					nav.level.c-reg-13.u-mt-4
-						.level-left
-							.level-item
-								| In progress
-						.level-right
-							.level-item
-								| 1/10
+					ProgressBar(
+						:currentBar="detailCompanyReview.total_completed_reviews"
+						:maxBar="detailCompanyReview.total_reviewers"
+						:statusProgress="detailCompanyReview.status"
+					)
 		.c-row.u-mb-10
 			.c-col-3.c-col-md-3
 				span.c-str-15 Reviewer
 			.c-col-5.c-col-md-5
-				.c-avatar-group.is-image
-					figure.c-avatar.c-avatar--xs.c-avatar--circle
-						img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
-					figure.c-avatar.c-avatar--xs.c-avatar--circle
-						img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
+				//- .c-avatar-group.is-image
+				//- 	figure.c-avatar.c-avatar--xs.c-avatar--circle
+				//- 		img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+				//- 	figure.c-avatar.c-avatar--xs.c-avatar--circle
+				//- 		img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
 	.u-push
 		UserProfileTop(
 		 :avatarProfileTop="'https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg'"

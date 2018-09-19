@@ -6,7 +6,9 @@
 	export default{
 		name: 'DetailBody',
 		props: {
-
+			detailCompanyReview: {
+				
+			}
 		},
 
 		components:{
