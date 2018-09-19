@@ -13,6 +13,8 @@
     "axios": "^0.18.0",
     "buefy": "^0.6.6",
     "font-awesome": "^4.7.0",
+    "json-api-normalizer": "^0.4.11",
+    "lodash": "^4.17.11",
     "vee-validate": "^2.1.0-beta.8",
     "vue": "^2.5.17",
     "vue-cookie": "^1.1.4",

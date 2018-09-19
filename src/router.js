@@ -4,14 +4,15 @@ import Home from './views/home/home.vue';
 import auth from './views/auth/auth.vue';
 import SignUp from './views/SignUp/SignUp.vue';
 import SignIn from './views/SignIn/SignIn.vue';
+import SignInSleekr from './views/SignInSleekrs/SignInSleekr.vue';
 import ForgotPassword from './views/ForgotPassword/ForgotPassword.vue';
 import Page404 from './views/Page404/Page404.vue';
 import createReview from './views/createReview/createReview.vue';
 import ListReviews from './views/ListReviews/ListReviews.vue';
 import ListReviewsTodo from './views/ListReviewsTodo/ListReviewsTodo.vue';
 import ListReviewsGiven from './views/ListReviewsGiven/ListReviewsGiven.vue';
-import Company from './views/company/Company.vue';
-import CompanyReviewDetail from './views/CompanyReviewDetail/CompanyReviewDetail.vue';
+import CompanyReview from './views/CompanyReviews/CompanyReview.vue';
+import CompanyReviewDetail from './views/CompanyReviewDetails/CompanyReviewDetail.vue';
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
 import PreviewTemplate from './components/PreviewTemplate/PreviewTemplate.vue';
 import ReviewDetail from './views/ReviewDetail/ReviewDetail.vue';
@@ -36,8 +37,8 @@ export default new Router({
 		},
 		{
 			path: '/company',
-			name: 'Company',
-			component: Company,
+			name: 'CompanyReview',
+			component: CompanyReview,
 		},
 		{
 			path: '/about',
@@ -56,6 +57,11 @@ export default new Router({
 			path: '/sign-up',
 			name: 'SignUp',
 			component: SignUp,
+		},
+		{
+			path: '/sign-in-sleekr',
+			name: 'SignInSleekr',
+			component: SignInSleekr,
 		},
 		{
 			path: '/forgot-password',
@@ -83,7 +89,7 @@ export default new Router({
 			component: ListReviewsGiven,
 		},
 		{
-			path: '/company-review-detail',
+			path: '/company-review-detail/:id',
 			name: 'CompanyReviewDetail',
 			component: CompanyReviewDetail,
 		},
@@ -93,7 +99,7 @@ export default new Router({
 			component: CompanyReviewSummary,
 		},
 		{
-			path: '/preview-template/:uuid',
+			path: '/preview-template/:id',
 			name: 'PreviewTemplate',
 			component: PreviewTemplate,
 		},

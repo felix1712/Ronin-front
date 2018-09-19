@@ -3,6 +3,10 @@
 <script>
   export default{
     name: 'Footer',
-    props: {},
+    data(){
+    	return {
+    		dayNow: new Date(),
+    	}
+    }
   };
 </script>

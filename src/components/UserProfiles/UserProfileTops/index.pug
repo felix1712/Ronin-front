@@ -1,0 +1,7 @@
+.u-tar.c-profile-report
+  figure.c-avatar.c-avatar--lg.c-avatar--circle.u-mb-10
+    img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Andy-Bernard.png", alt="sleekr-avatar-user" v-if="!avatarProfileTop")
+    img.c-img-fluid.u-vat(:src="avatarProfileTop", alt="sleekr-avatar-user" v-if="avatarProfileTop")
+  p.c-smb-15 {{nameProfileTop}}
+  p.c-reg-15.u-cl-slate {{jobTitleProfileTop}}, {{departmentProfileTop}}
+  .c-profile-report--score.u-mt-40(v-if="scoreProfileTop") {{scoreProfileTop}}

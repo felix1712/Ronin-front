@@ -9,7 +9,7 @@ import axios from 'axios';
 	data(){
 		return {
 			api: null,
-			templatesUuid: null,
+			templateId: null,
 			template: "",
 			radioButton: "Yes",
 			isAccActive: true,
@@ -18,21 +18,23 @@ import axios from 'axios';
 
 	created() {
 		this.$emit(`update:layout`, BlankLayouts);
-		const checkToken = this.$cookie.get('AuthPrfrm');
-		if(checkToken != null){
+		const checkToken = this.$cookie.get('AuthToken');
+		const checkRefreshToken = this.$cookie.get('AuthRefresh');
+		if(checkToken != null && checkRefreshToken != null){
 			this.api = axios.create({
-			  baseURL: process.env.VUE_APP_OLD_API_URL,
+			  baseURL: process.env.VUE_APP_API,
 			  headers: {
-			    Authorization: this.$cookie.get('AuthPrfrm'),
+			    Authorization: this.$cookie.get('AuthToken'),
+				  Refresh: this.$cookie.get('AuthRefresh'),
 			  },
 			});
 
-			this.templatesUuid = this.$route.params.uuid;
+			this.templateId = this.$route.params.id;
 
-			this.api.get('templates/'+this.templatesUuid)
+			this.api.get('review/template/'+this.templateId)
 			.then(response => {
-				this.template = response.data.contents.template;
-				console.log(this.template);
+				this.template = response.data.data.relationships.category_templates;
+				console.log(response);
 			})
 			.catch(e =>{
 				console.log(e);

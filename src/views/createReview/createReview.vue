@@ -4,7 +4,10 @@
 	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
 	import axios from 'axios';
 	import ButtonFooter from './shared/button-footer/ButtonFooter.vue';
-	import Datepicker from 'vuejs-datepicker';
+	// Form component
+	import FormReviewInformation from '@/components/FormReviewInformations/FormReviewInformation.vue';
+	import FormReviewQuestion from '@/components/FormReviewQuestions/FormReviewQuestion.vue';
+	import FormReviewSchedule from '@/components/FormReviewSchedules/FormReviewSchedule.vue';
 
 	export default{
 		name: 'createReview',
@@ -51,7 +54,7 @@
 						is_new: 0,
 						name: null,
 						select_type: 'non-predefined',
-						uuid: null,
+						id: null,
 						categories: [],
 					},
 					// form schedule
@@ -62,195 +65,27 @@
 					//form reviewer
 					review_method: 'direct-report',
 				},
-				review:{
-					deadline: 14,
-				},
 			}
 		},
 
 		methods: {
-			dropDownPosition(e){
-				let iconDelete = e.target;
-				e.target.offsetParent.lastChild.style.position="absolute"
-				// e.target.offsetParent.lastChild.style.left=-e.clientY/2.1+'px'
+			informationSave(data){
+				this.dataReview.titles = data.title;
+				this.dataReview.description = data.description;
+				this.dataReview.members = data.members;
 			},
 
-			deleteTemplate(data, index){
-				this.templates.splice(index, 1);
-
-				this.api.delete('templates/'+ data)
-				.then(response => {
-					this.$toast.open({
-						message: response.data.contents,
-						type: 'is-success'
-					})
-				})
-				.catch(e =>{
-					console.log(e);
-				});
+			questionSave(data){
+				this.dataReview.template.name = data.name;
+				this.dataReview.template.id = data.id;
 			},
 
-			reviewedSelectMemberId() {
-				this.selectedMembers = this.selectReviewedMembers.map(data =>{
-					return data.id
-				});
-
-				this.addMember();
-			},
-
-			deleteOrganizationSelect(id){
-				this.selectedOrganiztionChecked = this.selectedOrganiztionChecked.filter(data =>{
-					return data.id != id
-				})
-
-				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(e =>{
-					return e.organization.id == id
-				})
-
-				memberOrg = memberOrg.map(data =>{
-					return data.id
-				})
-
-				this.selectedMembers = this.selectedMembers.filter(el =>{
-					return memberOrg.indexOf( el ) < 0;
-				});
-			},
-
-			deleteJobTitleSelect(id){
-				this.selectedJobTitleChecked = this.selectedJobTitleChecked.filter(data =>{
-					return data.id != id
-				})
-
-				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.job_position.id == id
-				})
-
-				memberJobTitle = memberJobTitle.map(data =>{
-					return data.id
-				})
-
-				this.selectedMembers = this.selectedMembers.filter( el =>{
-					return memberJobTitle.indexOf( el ) < 0;
-				});
-			},
-
-			selectEveryoneOrganization(data) {
-				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(e =>{
-					return e.organization.id == data
-				})
-
-				memberOrg.map(function(item){
-					if(this.selectedMembers.includes(item.id) == false){
-						this.selectedMembers.push(item.id);
-					}
-				}.bind(this))
-			},
-
-			unselectEveryoneOrganization(data) {
-				let memberOrg = "";
-				memberOrg = this.employeeMember.filter(e =>{
-					return e.organization.id == data
-				})
-
-				memberOrg = memberOrg.map(data =>{
-					return data.id
-				})
-
-				this.selectedMembers = this.selectedMembers.filter(el =>{
-					return memberOrg.indexOf( el ) < 0;
-				});
-			},
-
-			selectEveryoneJobTitle(data) {
-				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.job_position.id == data
-				})
-
-				memberJobTitle.map(function(item){
-					if(this.selectedMembers.includes(item.id) == false){
-						this.selectedMembers.push(item.id);
-					}
-				}.bind(this))
-			},
-
-			unselectEveryoneJobTitle(data) {
-				let memberJobTitle = "";
-				memberJobTitle = this.employeeMember.filter(e =>{
-					return e.job_position.id == data
-				})
-
-				memberJobTitle = memberJobTitle.map(data =>{
-					return data.id
-				})
-
-				this.selectedMembers = this.selectedMembers.filter(el =>{
-					return memberJobTitle.indexOf( el ) < 0;
-				});
-			},
-
-			selectOrganizationChecked(data) {
-				if (data != null) {
-					let getIdOrg = "";
-					getIdOrg = data.map(item =>{
-						return item.id
-					});
-
-					getIdOrg = getIdOrg[getIdOrg.length -1];
-
-					let memberOrg = "";
-					memberOrg = this.employeeMember.filter(e =>{
-						return e.organization.id == getIdOrg
-					})
-
-					memberOrg.map(function(item){
-						if(this.selectedMembers.includes(item.id) == false){
-							this.selectedMembers.push(item.id);
-						}
-					}.bind(this));
-				}
-			},
-
-			selectJobTitleChecked(data) {
-				if(data != null){
-					let getIdJobTitle = "";
-					getIdJobTitle = data.map(item =>{
-						return item.id
-					});
-
-					getIdJobTitle = getIdJobTitle[getIdJobTitle.length -1];
-
-					let memberJobTitle = "";
-					memberJobTitle = this.employeeMember.filter(e =>{
-						return e.job_position.id == getIdJobTitle
-					})
-
-					memberJobTitle.map(function(item){
-						if(this.selectedMembers.includes(item.id) == false){
-							this.selectedMembers.push(item.id);
-						}
-					}.bind(this));
-				}
-			},
-
-			selectSpecificStaff(data) {
-				let getIdSpecificStaff = "";
-				getIdSpecificStaff = data.map(item =>{
-					return item.id
-				});
-
-				getIdSpecificStaff.map(function(item){
-					if(this.selectedMembers.includes(item) == false){
-						this.selectedMembers.push(item)
-					}
-				}.bind(this));
-			},
-
-			unselectSpecificStaff() {
-				this.selectedMembers = [];
+			scheduleSave(data){
+				console.log(data);
+				this.dataReview.is_repeat = data.is_repeat;
+				this.dataReview.repeat_every = data.repeat_every;
+				this.dataReview.review_start_date = data.start_date;
+				this.dataReview.review_end_date = data.end_date;
 			},
 
 			editReviewStep(data) {
@@ -265,130 +100,6 @@
             }
 						this.reviewStep = data;
 					}
-				});
-			},
-
-			changeReviewDue() {
-				const getStartDate = new Date(this.dataReview.review_start_date);
-				const dueValue = parseInt(this.review.deadline);
-				if (dueValue >= 1 && dueValue <= 30) {
-					this.dataReview.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
-				}
-			},
-
-			changeStartDate(e) {
-				const getStartDate = new Date(e);
-				const dueValue = parseInt(this.review.deadline);
-				this.dataReview.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
-			},
-
-			isRepeat(e){
-				if(e.target.value == 1){
-					this.dataReview.repeat_every = 1;
-				} else {
-					this.dataReview.repeat_every = 0;
-				}
-			},
-
-			addMember() {
-				// console.log(this.selectedMembers);
-				this.selectedMembers.forEach(function(value){
-					const addMembers = {
-						user_id: value,
-						reviewers: null,
-						is_self_review: 0,
-						is_sequent: 0,
-						weightRemaining: 100,
-					};
-					const checkDataArr = this.dataReview.members.filter(item =>{
-						return item.user_id == value;
-					});
-
-					if (!checkDataArr.length) {
-						this.dataReview.members.push(addMembers);
-					}
-				}.bind(this));
-			},
-
-			removeMember(value) {
-				// console.log(this.selectedMembers);
-				const intValue = parseInt(value);
-				this.dataReview.members = this.dataReview.members.filter(item =>{
-					return item.user_id !== intValue;
-				});
-			},
-
-			changeMemberSelectedType(e) {
-				if(e.target.value != 1){
-					this.dataReview.members = [];
-					this.selectedMembers = [];
-					this.selectReviewedMembers = [];
-					this.selectedJobTitleChecked = [];
-					this.selectedOrganiztionChecked = [];
-				} else {
-					this.selectedMembers = this.allSelectedMember;
-					this.addMember();
-				}
-			},
-
-			checkboxMember(e) {
-				if (e.target.checked === true) {
-					this.addMember();
-					e.currentTarget.closest("label").classList.remove('not-checked')
-				} else {
-					this.removeMember(e.target.value);
-					e.currentTarget.closest("label").classList.add('not-checked')
-				}
-			},
-
-			getDetailTemplate(data) {
-				this.api.get('templates/'+data )
-				.then(response => {
-					this.templateDetails = response.data.contents.template;
-				})
-				.catch(e =>{
-					console.log(e);
-				});
-			},
-
-			setTemplate() {
-				this.dataReview.template.name = this.templateDetails.name;
-				this.dataReview.template.uuid = this.templateDetails.uuid;
-				this.templateDetails.review_categories.forEach((arr) => {
-					const detailCategories = {
-						name: arr.name,
-						description: arr.description,
-						is_weight: arr.use_weight,
-						weight: arr.weight,
-						questions:[],
-					};
-
-					this.dataReview.template.categories.push(detailCategories);
-
-					arr.review_indicators.forEach(arr2 => {
-						const detailQuestions = {
-							name: arr2.name,
-							description: arr2.description,
-							is_weight: arr2.use_weight,
-							weight: arr2.weight,
-							can_comment: arr2.can_comment,
-							answer_type: arr2.answer_type,
-							ratings:[],
-						};
-
-						detailCategories.questions.push(detailQuestions);
-
-						if(arr2.answer_type == "rating"){
-							arr2.review_ratings.forEach(arr3 => {
-								const detailRatings = {
-									value: arr3.value,
-									description: arr3.description,
-								}
-
-								detailQuestions.ratings.push(detailRatings);
-							})
-						}
-					})
 				});
 			},
 
@@ -547,7 +258,8 @@
 						if(this.reviewStep == 1){
 							this.addMember();
 						} else if(this.reviewStep == 2){
-							this.setTemplate();
+							console.log(this.$child)
+							this.$child.setTemplate();
 						}
 						this.reviewStep+=1;
 						this.editReview+=1;
@@ -675,61 +387,63 @@
 			},
 		},
 		components: {
+			FormReviewInformation,
+			FormReviewQuestion,
+			FormReviewSchedule,
 			ButtonFooter,
-			Datepicker,
 		},
 
 		created() {
 			this.$emit(`update:layout`, MainLayouts);
-			// set review end date
-			this.dataReview.review_end_date = new Date(this.dataReview.review_end_date.setDate(this.dataReview.review_end_date.getDate() + this.review.deadline));
 		},
 
 		mounted() {
-			const checkToken = this.$cookie.get('AuthPrfrm');
-			if(checkToken != null){
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
 				this.api = axios.create({
-				  baseURL: process.env.VUE_APP_OLD_API_URL,
+				  baseURL: process.env.VUE_APP_API,
 				  headers: {
-				    Authorization: this.$cookie.get('AuthPrfrm'),
+				    Authorization: this.$cookie.get('AuthToken'),
+				    Refresh: this.$cookie.get('AuthRefresh'),
 				  },
 				});
 
-				this.api.get('organizations',)
+				this.api.get('review/organizations',)
 				.then(response => {
-					this.selectedOrganization = response.data.contents.organizations.map(data => {
+					this.selectedOrganization = response.data.data.map(data => {
 						return{
-							id: data.id,
-							name: data.name
+							id: data.attributes.id,
+							name: data.attributes.name
 						}
 					});
-					this.selectedOrganizationMember = response.data.contents.organizations;
+					this.selectedOrganizationMember = response.data.data;
 					// console.log(this.selectedOrganization)
 				})
 				.catch(e => {
 					// this.errors.push(e);
 				});
 
-				this.api.get('employee')
+				this.api.get('review/members')
 				.then(response => {
-					this.employeeMember = response.data.contents.users;
-					this.reviewedMember = response.data.contents.users.map(member => {
+					this.employeeMember = response.data.data;
+					this.reviewedMember = response.data.data.map(member => {
 						return{
-							id: member.id,
-							name: member.user.name
+							id: member.attributes.id,
+							name: member.attributes.name
 						}
 					})
 
-					this.allSelectedMember = response.data.contents.users.map(member => {
-						return member.id
+					this.allSelectedMembers = response.data.data.map(member => {
+						return member.attributes.id
 					})
-					this.selectedMembers = this.allSelectedMember;
+					this.selectedMembers = this.allSelectedMembers;
 					this.addMember();
 
-					this.moreReviewerSelect = response.data.contents.users.map(member => {
+					this.moreReviewerSelect = response.data.data.map(member => {
 						return{
-							id: member.id,
-							name: member.user.name
+							id: member.attributes.id,
+							name: member.attributes.name
 						}
 					})
 					// console.log(response.data);
@@ -738,26 +452,25 @@
 					// this.errors.push(e);
 				});
 
-				this.api.get('jobposition')
+				this.api.get('review/job_positions')
 				.then(response => {
-					this.selectedJobTitle = response.data.contents.job_positions.map(data => {
+					this.selectedJobTitle = response.data.data.map(data => {
 						return{
-							id: data.id,
-							name: data.title
+							id: data.attributes.id,
+							name: data.attributes.title,
 						}
 					});
 
-					this.selectedJobTitleMember = response.data.contents.job_positions;
+					this.selectedJobTitleMember = response.data.data;
 					// console.log(response.data);
 				})
 				.catch(e => {
 					// this.errors.push(e);
 				});
 
-				this.api.get('templates')
+				this.api.get('review/template')
 				.then(response => {
-					this.templates = response.data.contents.template;
-					this.selectedTemplate = this.templates[0].uuid;
+					this.templates = response.data.data;
 					this.getDetailTemplate(this.selectedTemplate);
 				})
 				.catch(e =>{
@@ -772,12 +485,6 @@
 				if(this.reviewStep == 4){
 					this.getReviewer();
 				}
-			},
-		},
-
-		computed: {
-			charactersRemaining: function () {
-				return this.maxCharacters - this.dataReview.titles.length;
 			},
 		},
 	};

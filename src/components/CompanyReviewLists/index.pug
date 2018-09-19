@@ -1,0 +1,52 @@
+div
+	.c-list.c-list--review
+		.c-list__item.is-showonhover(v-for="list in listCompanyReview")
+			.c-list__detail.u-py-10
+				.u-mb-20
+					router-link.u-cl-black.c-str-18(
+						:to="{ name: 'CompanyReviewDetail', params: {id: list.id} }"
+					) {{list.title}}
+					span.tag.is-danger.u-ml-20.u-ft-smb(v-if="list.expired != 0") Expired
+					a.u-ml-16.c-reg-15.u-cl-blue(v-if="list.status == 'completed'") Write and share summary
+				.c-list__row
+					.c-list--review__reviewee
+						.field
+							label.label Reviewee
+					//- .c-list--review__reviewer
+					//-   .field
+					//-     label.label Reviewer
+					.c-list--review__schedule
+						.field
+							label.label Schedule for
+					.c-list--review__status
+						.field
+							label.label Status
+				.c-list__row
+					.c-list--review__reviewee
+						.c-avatar-group.is-image
+							figure.c-avatar.c-avatar--xs.c-avatar--circle(v-for="listMember in list.members.data.slice(0, 3)")
+								img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
+							figure.c-avatar--more.u-ml-20.u-dib
+							.c-avatar.c-avatar--xs.c-avatar--circle
+								b-dropdown.custom-popover.c-list--staff__dropdown
+									span(slot="trigger") +{{list.members.data.length}}
+									template(v-for="dataMember in list.members.data")
+										b-dropdown-item.u-py-8
+											figure.c-avatar.c-avatar--xs.c-avatar--circle
+												img.c-img-fluid.u-db(src="@/assets/images/avatar-performance/Jim-Halpert.png")
+											span.u-ml-14 {{dataMember.user.data.name}}
+					//- .c-list--review__reviewer
+					//-   a.u-cl-black.jc-popover(data-type="stafflist", data-pos="bottom") Custom
+					.c-list--review__schedule(:class="list.expired !== 0 ? 'u-cl-red' : ''") Reviews due by {{list.review_start_date | moment("ddd, d MMM YYYY")}}
+					.c-list--review__status
+						ProgressBar(
+							:currentBar="list.total_completed_reviews"
+							:maxBar="list.total_reviewers"
+							:statusProgress="list.status"
+						)
+			.c-list__action
+				a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs
+					img.u-mr-10(src="@/assets/images/pages/icon-pencil.svg", alt="")
+					Span Edit
+	.p-prfrm-showmore(v-if="totalReviewList > 5")
+		span Show More

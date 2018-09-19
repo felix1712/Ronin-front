@@ -11,6 +11,7 @@ import Buefy from 'buefy'
 import Multiselect from 'vue-multiselect'
 import VueSlideUpDown from 'vue-slide-up-down'
 import { VueEditor } from "vue2-editor"
+import Formatter from './assets/scripts/json-api-formatter.js';
 
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
 // If you would like custom styling of the toastr the css file can be replaced
@@ -22,6 +23,8 @@ Vue.component('multiselect', Multiselect)
 Vue.use(VeeValidate);
 Vue.use(require('vue-moment'));
 Vue.component('vue-slide-up-down', VueSlideUpDown)
+const formatter = new Formatter();
+Vue.prototype.$normalize = formatter;
 Vue.config.productionTip = false;
 
 Validator.localize({

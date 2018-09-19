@@ -1,0 +1,30 @@
+form.u-mt-30(@submit.prevent="validateLogin")
+	.u-tal
+		.control(:class="{'is-error': errors.has('loginEmail') }")
+			input.input(
+				type="email"
+				v-model="form.loginEmail"
+				placeholder="Email address"
+				name="loginEmail"
+				v-validate="'required|email'"
+				)
+			span.is-message(v-show="errors.has('loginEmail')") {{ errors.first('loginEmail') }}
+		.control(:class="{'is-error': errors.has('loginPassword') }")
+			input.input(
+				type="password"
+				v-model="form.loginPassword"
+				placeholder="Password"
+				name="loginPassword"
+				v-validate="'required'"
+			)
+			span.is-message(v-show="errors.has('loginPassword')") {{ errors.first('loginPassword') }}
+	.u-mt-30.u-clearfix(v-if="typeLogin === 'normalLogin'")
+		.u-pull
+			router-link(:to="{ name: 'ForgotPassword'}").u-ft-reg.u-cl-slate 
+				slot(name="forgotPassword")
+		.u-push
+			button 
+				slot(name="signIn")
+	.u-mt-30(v-if="typeLogin == 'sleekrLogin'")
+		button
+			slot(name="signIn")

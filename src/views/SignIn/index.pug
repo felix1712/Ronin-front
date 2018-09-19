@@ -6,33 +6,15 @@
 				span.icon
 					img(src="@/assets/images/pages/google-g-logo.svg", alt="Icon")
 				span Sign in with Google
-			a.button(href="").c-btn--full.c-btn--withicon.is-green
+			router-link(:to="{ name: 'SignInSleekr'}").button.c-btn--full.c-btn--withicon.is-green
 				span.icon
 					img(src="@/assets/images/pages/logo-sleekr.svg", alt="Icon")
 				span Sign in with Sleekr
 		.c-reg-15 or
-		form.u-mt-30(@submit.prevent="validateLogin")
-			.u-tal
-				.control(:class="{'is-error': errors.has('loginEmail') }")
-					input.input(
-						type="email"
-						v-model="loginEmail"
-						placeholder="Email address"
-						name="loginEmail"
-						v-validate="'required|email'"
-						)
-					span.is-message(v-show="errors.has('loginEmail')") {{ errors.first('loginEmail') }}
-				.control(:class="{'is-error': errors.has('loginPassword') }")
-					input.input(
-						type="password"
-						v-model="loginPassword"
-						placeholder="Password"
-						name="loginPassword"
-						v-validate="'required'"
-					)
-					span.is-message(v-show="errors.has('loginPassword')") {{ errors.first('loginPassword') }}
-			.u-mt-30.u-clearfix
-				.u-pull
-					router-link(:to="{ name: 'ForgotPassword'}").u-ft-reg.u-cl-slate Forgot password
-				.u-push
-					button Sign in
+		FormLogin(
+			:typeLogin="typeLogin"
+		)
+			template(slot="forgotPassword")
+				| Forgot Password
+			template(slot="signIn") 
+				| Sign In

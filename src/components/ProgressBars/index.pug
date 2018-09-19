@@ -1,0 +1,13 @@
+div
+	progress.progress.u-mb-0(
+		:value="currentBar" 
+		:max="maxBar"
+		:class="classProgress"
+	) {{currentBar}}
+	nav.level.c-reg-13.u-mt-4
+		.level-left
+			.level-item 
+				| {{statusProgress}}
+		.level-right
+			.level-item 
+				| {{currentBar}}/{{maxBar}}

@@ -1,0 +1,53 @@
+form(@submit.prevent="validateBeforeSubmit")
+  .p-prfrm-create__list-contents.u-mt-30
+    .c-row.u-cpointer
+      .c-col-6
+        .c-form-group.u-dib.u-mb-0
+          label Select template
+            .u-cl-red.u-dib *
+    .c-row.u-mb-20
+      .c-col-12
+        .p-prfrm-templatelist
+          b-tooltip.p-prfrm-templatelist__item-wrapper(label="Not available"
+                    type="is-dark"
+          )
+            a.p-prfrm-templatelist__item.is-new
+              img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
+              span.u-ml-24 New template
+          .p-prfrm-templatelist__item-wrapper(v-for="(template, index) in templates")
+            b-radio.p-prfrm-templatelist__item(
+              name="radio-review-template"
+              :native-value="template.attributes.id"
+              :id="template.attributes.id"
+              v-model="selectedTemplate"
+              @change.native="getDetailTemplate(template.attributes.id)"
+              :class="selectedTemplate == template.attributes.id ? 'is-checked':''"
+            )
+              .p-prfrm-templatelist__item-name {{template.attributes.title}}
+              h5.c-reg-13.u-mb-60 {{template.attributes.used}} review(s) using this template
+              .p-prfrm-templatelist__item-action
+                nav.level
+                  .level-left
+                    .level-item
+                      router-link(
+                        :to="{ name: 'PreviewTemplate', params: {id: template.attributes.id} }"
+                        target="_blank"
+                        )
+                        img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+                      a.u-ml-20(href="")
+                        img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+                  .level-right
+                    .level-item
+                      b-dropdown.custom-popover(position="is-top-left")
+                        a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 0")
+                          img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+                        b-dropdown-item
+                          h3.c-smb-15.u-mb-20 Delete confirmation
+                          p.c-smb-15 Are you sure to delete this template?
+                          .u-mt-40
+                            a.c-btn.button.c-btn--ghost.u-br-none.u-mx-5.is-transparant No
+                            a.c-btn.button.is-danger.u-mx-5(@click.prevent="deleteTemplate(template.id, index)") Yes
+
+    //- end step 2 ( Questionare form )
+    //- button save
+    ButtonFooter

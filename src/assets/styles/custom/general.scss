@@ -476,3 +476,10 @@ input, textarea {
 		}
 	}
 }
+
+.c-first-letter-capitalize{
+	text-transform: lowercase;
+	&::first-letter{
+		text-transform: uppercase !important;
+	}
+}
