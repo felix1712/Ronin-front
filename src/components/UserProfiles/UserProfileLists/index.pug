@@ -1,0 +1,9 @@
+.c-list__avatar
+  .c-avatar-group
+    figure.c-avatar.c-avatar--sm.c-avatar--circle
+      img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png" v-if="!avatarProfileList")
+      img.c-img-fluid(:src="avatarProfileList" v-if="avatarProfileList")
+    .c-avatar-text.c-avatar-text--sm
+      .c-smb-15 {{nameProfileList}}
+      .c-reg-15.u-cl-slate {{jobTitleProfileList}}
+      .c-reg-15.u-cl-slate {{departmentProfileList}}
