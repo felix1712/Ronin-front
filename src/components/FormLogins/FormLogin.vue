@@ -16,6 +16,12 @@
 			}
 		},
 
+		props: {
+			typeLogin:{
+				type: String
+			}
+		},
+
 		methods: {
 			validateLogin() {
 	  		this.$validator.validateAll().then((result) => {

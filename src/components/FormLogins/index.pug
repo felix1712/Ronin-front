@@ -18,13 +18,13 @@ form.u-mt-30(@submit.prevent="validateLogin")
 				v-validate="'required'"
 			)
 			span.is-message(v-show="errors.has('loginPassword')") {{ errors.first('loginPassword') }}
-	.u-mt-30.u-clearfix(v-if="$route.name === 'SignIn'")
+	.u-mt-30.u-clearfix(v-if="typeLogin === 'normalLogin'")
 		.u-pull
 			router-link(:to="{ name: 'ForgotPassword'}").u-ft-reg.u-cl-slate 
 				slot(name="forgotPassword")
 		.u-push
 			button 
 				slot(name="signIn")
-	.u-mt-30(v-if="$route.name == 'SignInSleekr'")
+	.u-mt-30(v-if="typeLogin == 'sleekrLogin'")
 		button
 			slot(name="signIn")
