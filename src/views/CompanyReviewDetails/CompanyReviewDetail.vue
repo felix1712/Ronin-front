@@ -2,8 +2,8 @@
 
 <script>
   import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
-  import UserProfileList from '@/components/UserProfiles/UserProfileLists/UserProfileList.vue';
-  import UserProfileTop from '@/components/UserProfiles/UserProfileTops/UserProfileTop.vue';
+  import DetailBody from '@/components/CompanyReviewDetails/DetailBodies/DetailBody.vue';
+  import DetailHeader from '@/components/CompanyReviewDetails/DetailHeaders/DetailHeader.vue';
   export default {
     name: 'CompanyReviewDetail',
 
@@ -12,8 +12,8 @@
     },
 
     components: {
-    	UserProfileList,
-    	UserProfileTop
+    	DetailBody,
+      DetailHeader
     }
   };
 </script>
