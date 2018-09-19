@@ -1,6 +1,7 @@
 <template lang="pug" src="./index.pug"></template>
 
 <script>
+	import ProgressBar from '@/components/ProgressBars/ProgressBar.vue';
 	export default{
 		name: 'CompanyReviewList',
 		props: {
@@ -35,5 +36,9 @@
       	}
       },
     },
+
+    components: {
+    	ProgressBar,
+    }
 	};
 </script>

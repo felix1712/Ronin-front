@@ -39,7 +39,10 @@ div
 					//- 	a.u-cl-black.jc-popover(data-type="stafflist", data-pos="bottom") Custom
 					.c-list--review__schedule(:class="list.expired !== 0 ? 'u-cl-red' : ''") Reviews due by {{list.attributes.reviewStartDate | moment("ddd, d MMM YYYY")}}
 					.c-list--review__status
-						progress.progress.u-mb-0.is-slate(:value="list.attributes.totalCompletedReviews", :max="list.attributes.totalReviewers") 10
+						ProgressBar(
+							:currentBar="list.attributes.totalCompletedReviews"
+							:maxBar="list.attributes.totalReviewers"
+						)
 						nav.level.c-reg-13.u-mt-4
 							.level-left
 								.level-item
