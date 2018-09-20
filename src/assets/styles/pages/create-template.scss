@@ -31,19 +31,67 @@
 	.c-accordion{
 		&__section{
 			&-item{
-				margin-bottom: 30px;
+				margin-bottom: 0px;
+				position: relative;
+				.c-accordion__icon{
+					top: 20px;
+					right: -30px;
+				}
 				&-content{
 					position: relative;
 					.c-accordion__section-item-action{
 						position: absolute;
 						top: 0;
 						right: -40px;
+						opacity: 0;
+						transition: all .3s linear;
+					}
+					&:hover{
+						.c-accordion__section-item-action{
+							opacity: 1;
+						}
 					}
 				}
 				&-line{
+					position: relative;
 					hr{
 						margin: 0 -30px;
 						height: 1px;
+					}
+					.p-prfm-add-question{
+						position: absolute;
+						top: -15px;
+						right: 0;
+						text-align: right;
+						width: 100%;
+						opacity: 0;
+						transition: all .3s linear;
+						a{
+							background-color: $v-white;
+							-webkit-border-radius: 18px;
+							-moz-border-radius: 18px;
+							border-radius: 18px;
+							box-shadow: 0 5px 20px 0 rgba(140,140,140,0.22);
+							padding: 10px 4px;
+							color: $v-blue;
+							span{
+								vertical-align: baseline;
+							}
+							.icon-add{
+								background-color: $v-blue;
+								margin-right: 5px;
+								-webkit-border-radius: 50%;
+								-moz-border-radius: 50%;
+								border-radius: 50%;
+								padding: 4px 7px;
+								img{
+									vertical-align: middle;
+								}
+							}
+						}
+						&:hover{
+							opacity: 1;
+						}
 					}
 				}
 			}
@@ -52,23 +100,98 @@
 }
 
 .c-create-template{
+	.p-prfrm-create__list{
+		padding: 0 30px;
+		border-bottom: none;
+	}
 	.p-prfm-content--active{
 		border: 5px solid $v-blue;
-		margin: -30px;
+		margin: 0px -35px 35px -35px;
 		padding: 30px;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
 		border-radius: 8px;
+		box-shadow: 0 10px 20px 0 rgba(0,0,0,0.25);
+		&.p-prfm-content--header{
+			margin-top: -30px;
+		}
+		.ql-toolbar{
+			&.ql-snow{
+				border: none;
+				padding-left: 0;
+				button{
+					padding-left: 0;
+				}
+			}
+		}
+		.ql-container{
+			&.ql-snow{
+				border: none;
+			.ql-editor{
+				min-height: 100px;
+				padding-left: 0;
+				&.ql-blank{
+					&:before{
+						left: 0;
+						font-style: normal;
+						font-family: "Avenir Next Regular";
+					}
+				}
+			}
+			}
+		}
+		.c-accordion__section-item{
+			&-no{
+				display: inline-block;
+				vertical-align: top;
+			}
+			&-content{
+				display: inline-block;
+			}
+		}
+		.c-select--multiple{
+			.multiselect__single{
+				width: auto;
+			}
+			.multiselect__content-wrapper{
+				margin-top: 25px;
+				z-index: 10;
+				position: relative;
+			}
+		}
+		.vue-slider-component{
+			z-index: 0;
+			.vue-slider{
+				background-color: #DFE3E8;
+				&-dot{
+					background-color: $v-blue;
+					box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
+				}
+				&-process{
+					background-color: $v-blue;
+				}
+				&-tooltip{
+					background-color: $v-black;
+					border-color: $v-black;
+					padding: 5px 13px;
+					z-index: 1;
+				}
+			}
+		}
 	}
 	.control{
 		input{
-			border: none;
-			box-shadow: none;
-			font-size: 26px;
-			color: $v-black;
-			font-weight: 600;
-			line-height: 36px;
-			padding-left: 0;
-			padding-right: 0;
+			font-family: "Avenir Next Medium";
 			&.title{
+				border: none;
+				box-shadow: none;
+				font-size: 26px;
+				color: $v-black;
+				font-weight: 600;
+				line-height: 36px;
+				padding: 0;
+				min-height: 36px;
+				height: 100%;
 				&::placeholder{
 					color: $v-slate;
 					font-size: 21px;
@@ -76,9 +199,42 @@
 					line-height: 30px;
 				}
 			}
+			&.title-question{
+				border: none;
+				box-shadow: none;
+				font-size: 26px;
+				color: $v-black;
+				font-size: 18px;
+				padding-left: 0;
+				font-weight: 500;
+				line-height: 24px;
+				min-height: 24px;
+				height: 24px;
+				&::placeholder{
+					color: $v-slate;
+					font-size: 16px;
+					font-weight: 500;
+					line-height: 22px;
+				}
+			}
 			&:hover, &:focus, &:active{
 				border: none;
 				box-shadow: none;
+			}
+			&.input-weight{
+				border: 1px solid $v-smoke;
+				&:hover, &:focus, &:active{
+					border: 1px solid $v-smoke;
+				}
+			}
+			&.label-rating{
+				font-size: 15px;
+				border: none;
+				box-shadow: none;
+				&:hover, &:focus, &:active{
+					border: none;
+					box-shadow: none;
+				}
 			}
 		}
 	}
