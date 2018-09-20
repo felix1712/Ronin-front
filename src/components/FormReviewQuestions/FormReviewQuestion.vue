@@ -1,7 +1,7 @@
 <template lang="pug" src="./index.pug"></template>
 
 <script>
-import ButtonFooter from '@/views/createReview/shared/button-footer/ButtonFooter.vue';
+import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/ButtonFooter.vue';
 	export default{
 		name: 'FormReviewQuestion',
 		props:{

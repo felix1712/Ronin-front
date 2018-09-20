@@ -7,7 +7,7 @@ import SignIn from './views/SignIn/SignIn.vue';
 import SignInSleekr from './views/SignInSleekrs/SignInSleekr.vue';
 import ForgotPassword from './views/ForgotPassword/ForgotPassword.vue';
 import Page404 from './views/Page404/Page404.vue';
-import createReview from './views/createReview/createReview.vue';
+import CompanyReviewCreate from './views/CompanyReviewCreates/CompanyReviewCreate.vue';
 import ListReviews from './views/ListReviews/ListReviews.vue';
 import ListReviewsTodo from './views/ListReviewsTodo/ListReviewsTodo.vue';
 import ListReviewsGiven from './views/ListReviewsGiven/ListReviewsGiven.vue';
@@ -30,8 +30,8 @@ export default new Router({
 		},
 		{
 			path: '/reviews/create-review',
-			name: 'createReview',
-			component: createReview,
+			name: 'CompanyReviewCreate',
+			component: CompanyReviewCreate,
 		},
 		{
 			path: '/company',

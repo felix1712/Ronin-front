@@ -10,7 +10,7 @@
 	import FormReviewSchedule from '@/components/FormReviewSchedules/FormReviewSchedule.vue';
 
 	export default{
-		name: 'createReview',
+		name: 'CompanyReviewCreate',
 		data() {
 			return {
 				reviewStep: 1,
