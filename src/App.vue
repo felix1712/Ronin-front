@@ -38,7 +38,6 @@
 
 		methods: {
 			loadingStatus(data) {
-				debugger
 				this.isLoading = data.isLoading;
 			}
 		},
