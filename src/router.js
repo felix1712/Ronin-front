@@ -15,7 +15,6 @@ import CompanyReview from './views/CompanyReviews/CompanyReview.vue';
 import CompanyReviewDetail from './views/CompanyReviewDetails/CompanyReviewDetail.vue';
 import CompanyReviewSummary from './views/CompanyReviewSummary/CompanyReviewSummary.vue';
 import PreviewTemplate from './components/PreviewTemplate/PreviewTemplate.vue';
-import Loader from './components/loader/loader.vue';
 
 
 Vue.use(Router);
@@ -101,11 +100,6 @@ export default new Router({
 			path: '/preview-template/:id',
 			name: 'PreviewTemplate',
 			component: PreviewTemplate,
-		},
-		{
-			path: '/loader',
-			name: 'Loader',
-			component: Loader,
 		},
 	],
 });

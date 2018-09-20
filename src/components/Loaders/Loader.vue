@@ -6,12 +6,19 @@
 
 	export default{
 		name: 'Loader',
+		props: {
+			isLoading: {
+				type: Boolean,
+				default: false
+			}
+		},
+
 		data() {
 			return {
-				isLoading: false,
 				isFullPage: true
 			};
 		},
+
 		methods: {
       openLoading() {
           this.isLoading = true
@@ -20,8 +27,5 @@
           }, 10 * 1000)
       }
     },
-		created() {
-			this.$emit(`update:layout`, MainLayouts);
-		},
 	};
 </script>
