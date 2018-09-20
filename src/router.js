@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/home/home.vue';
+import Home from './views/Homes/Home.vue';
 import auth from './views/auth/auth.vue';
 import SignUp from './views/SignUp/SignUp.vue';
 import SignIn from './views/SignIn/SignIn.vue';
@@ -25,7 +25,7 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			name: 'home',
+			name: 'Home',
 			component: Home,
 		},
 		{

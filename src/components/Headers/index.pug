@@ -13,7 +13,7 @@
 			img(src="@/assets/images/pages/logo-polar.svg", alt="icon", width="30")
 			
 			.c-header__nav
-				.c-header__nav-item(:class="$route.name === 'home' ? 'is-active':''")
+				.c-header__nav-item(:class="$route.name === 'Home' ? 'is-active':''")
 					router-link(to="/") Home
 				.c-header__nav-item(:class="$route.name === 'ListReviews' ? 'is-active':''")
 					router-link(:to="{ name: 'ListReviews'}") Your Reviews
