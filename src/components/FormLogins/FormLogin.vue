@@ -24,6 +24,7 @@
 
 		methods: {
 			validateLogin() {
+				this.$parent.$emit('loadingStatus', {isLoading: true});
 	  		this.$validator.validateAll().then((result) => {
 					if (result) {
 						loginService.post('/auth/login',{
@@ -36,8 +37,10 @@
 								this.refresh = response.data.data.refreshToken;
 								this.$cookie.set('AuthToken', 'Bearer '+this.token, { expires: '59m' });
 								this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh, { expires: '59m' });
+								this.$parent.$emit('loadingStatus', {isLoading: false});
 								this.$router.push('/');
 							} else {
+								this.$parent.$emit('loadingStatus', {isLoading: false});
 								this.$toast.open({
 									duration: 3000,
 									message: response.data.message,
@@ -46,6 +49,7 @@
 							}
 						})
 						.catch(e =>{
+							this.$parent.$emit('loadingStatus', {isLoading: false});
 							this.$toast.open({
 								duration: 3000,
 								message: 'Ooops look something wrong !',
@@ -53,6 +57,7 @@
 							})
 						});
 					} else {
+						this.$parent.$emit('loadingStatus', {isLoading: false});
 						this.$toast.open({
 							duration: 3000,
 							message: 'Check your form completeness.',

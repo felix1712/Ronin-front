@@ -5,12 +5,12 @@
 	import axios from 'axios';
 	import ButtonFooter from './shared/button-footer/ButtonFooter.vue';
 	// Form component
-	import FormReviewInformation from '@/components/FormReviewInformations/FormReviewInformation.vue';
-	import FormReviewQuestion from '@/components/FormReviewQuestions/FormReviewQuestion.vue';
-	import FormReviewSchedule from '@/components/FormReviewSchedules/FormReviewSchedule.vue';
+	import FormReviewInformation from '@/components/FormReviews/FormReviewInformations/FormReviewInformation.vue';
+	import FormReviewQuestion from '@/components/FormReviews/FormReviewQuestions/FormReviewQuestion.vue';
+	import FormReviewSchedule from '@/components/FormReviews/FormReviewSchedules/FormReviewSchedule.vue';
 
 	export default{
-		name: 'createReview',
+		name: 'CompanyReviewCreate',
 		data() {
 			return {
 				reviewStep: 1,

@@ -13,7 +13,7 @@
                 .level-item
               .level-right
                 .level-item
-                  router-link(:to="{ name: 'createReview'}").button.is-primary.c-btn--sm
+                  router-link(:to="{ name: 'CompanyReviewCreate'}").button.is-primary.c-btn--sm
                     img.u-mr-10(src='@/assets/images/pages/icon-add.svg' alt="")
                     span Create Review
             CompanyReviewList(
@@ -26,4 +26,4 @@
             )
           b-tab-item(label='Objectives', disabled)
           b-tab-item(label='1:1 Meetings', disabled)
-          b-tab-item(label='1:1 Directory', disabled)
+          b-tab-item(label='Directory', disabled)

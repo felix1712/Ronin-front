@@ -1,6 +1,12 @@
 <template lang="pug">
 	#app.u-bg-snow(:is="layout")
-		router-view(:layout.sync="layout")
+		Loader(
+			:isLoading="isLoading"
+		)
+		router-view(
+			:layout.sync="layout"
+			@loadingStatus="loadingStatus"
+		)
 		<!-- Modal Section -->
 		.c-popover.jc-povc-confirmation.u-w-400.u-dn
 			.u-tac
@@ -13,34 +19,28 @@
 
 <script>
 	import LoginLayouts from './layouts/LoginLayouts/LoginLayouts.vue';
+	import Loader from '@/components/Loaders/Loader.vue';
+
 
 	export default {
 		name: 'App',
 		components: {
-			LoginLayouts
+			LoginLayouts,
+			Loader
 		},
 
 		data() {
 			return {
 				layout: 'div',
+				isLoading: false,
 			}
 		},
 
 		methods: {
-			// checkAuth() {
-			// 	const tokenCookies = this.$cookie.get('Auth');
-			// 	if(!tokenCookies || tokenCookies == null){
-			// 		this.$router.replace({ name: "login" });
-			// 		this.hasLoggedIn = false;
-			// 	} else {
-			// 		this.hasLoggedIn = true;
-			// 	}
-			// }
+			loadingStatus(data) {
+				this.isLoading = data.isLoading;
+			}
 		},
-
-		mounted() {
-			// this.checkAuth();
-		}
 	};
 </script>
 

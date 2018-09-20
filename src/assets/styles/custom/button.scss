@@ -142,3 +142,13 @@ a{
 		}
 	}
 }
+
+.c-btn-disabled{
+	color: #8A8E91;
+	text-decoration: none;
+	cursor: not-allowed;
+	&:hover{
+		text-decoration: none;
+		color: #8A8E91;
+	}
+}
