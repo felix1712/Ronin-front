@@ -4,10 +4,10 @@
 		.p-prfrm-content--preview__close
 			a.c-btn.c-btn--ghost(@click.prevent="closeWindow") Exit<br>preview
 		.p-prfrm-create
-			.p-prfrm-create__list.c-accordion__panel.is-open(v-for="categories in template.data")
+			.p-prfrm-create__list.c-accordion__panel.is-open(v-for="categories in template")
 				.p-prfrm-create__list-head.c-accordion__head.u-py-0
 					.c-accordion__title
-						h3.c-str-21 {{categories.name}}
+						h3.c-str-21 {{categories.title}}
 						p.c-reg-15.u-mb-10 {{categories.description}}
 						.c-reg-15.u-cl-slate Weight: {{categories.weight}} of 100%
 					.c-accordion__icon(
@@ -15,15 +15,15 @@
 						:class="isAccActive ? 'icon-minus':'icon-plus'")
 				vue-slide-up-down.p-prfrm-create__list-content.c-accordion__body(:active="isAccActive")
 					.c-accordion__section.u-py-30
-						.c-accordion__section-item(v-for="(question, index) in categories.review_indicators")
+						.c-accordion__section-item(v-for="(question, index) in categories.question_templates.data")
 							.c-accordion__section-item-no
 								span.u-ft-smb {{index+1}}
-								span.u-cl-slate /{{categories.review_indicators.length}}
+								span.u-cl-slate /{{categories.question_templates.data.length}}
 							.c-accordion__section-item-content
-								.c-smb-15 {{question.name}}
+								.c-smb-15 {{question.title}}
 								.u-maxw-570.u-py-10
 									p.c-reg-15 {{question.description}}
-								.u-cl-slate Weight: {{question.weight}} of 100%
+								.u-cl-slate(v-show="question.use_weight") Weight: {{question.weight}} of 100%
 								//- answer type rating
 								.p-prfm-rating.u-my-30(v-if="question.answer_type == 'rating'")
 									.p-prfm-rating__item(v-for="(rating,index) in question.review_ratings")
