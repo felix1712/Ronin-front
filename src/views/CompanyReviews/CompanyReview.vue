@@ -22,6 +22,7 @@
 
     created (){
       this.$emit(`update:layout`, MainLayouts);
+      this.$emit('loadingStatus', {isLoading: true});
     },
 
     mounted() {
@@ -39,6 +40,7 @@
         this.api.get('review/company-review')
         .then(response => {
           this.listCompanyReview = this.$normalize.deserialize(response.data).data;
+          this.$emit('loadingStatus', {isLoading: false});
         })
         .catch(e => {
           // this.errors.push(e);
