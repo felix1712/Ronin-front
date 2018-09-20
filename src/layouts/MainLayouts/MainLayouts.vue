@@ -2,7 +2,7 @@
 
 <script>
 	import Header from '@/components/Headers/Header.vue';
-	import Footer from '@/components/footer/Footer.vue';
+	import Footer from '@/components/Footers/Footer.vue';
 	export default{
 		name: 'MainLayouts',
 		components:{
