@@ -14,7 +14,7 @@
 
 					.u-push(v-if="editReview >= 1")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(1)")
-							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/new-icon/icon-edit-grey.svg')
 							Span Edit
 				//- step 1 (review information form)
 				FormReviewInformation(
@@ -33,7 +33,7 @@
 
 					.u-push(v-if="editReview >= 2")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(2)")
-							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/new-icon/icon-edit-grey.svg')
 							Span Edit
 				FormReviewQuestion(
 					v-show="reviewStep === 2"
@@ -49,7 +49,7 @@
 
 					.u-push(v-if="editReview >= 3")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(3)")
-							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/new-icon/icon-edit-grey.svg')
 							Span Edit
 				//- step 3 (Schedule Form)`
 				FormReviewSchedule(
@@ -67,7 +67,7 @@
 
 					.u-push(v-if="editReview >= 4")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(4)")
-							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
+							img.u-mr-10.u-mb-4(src='@/assets/images/pages/new-icon/icon-edit-grey.svg')
 							Span Edit
 				//- step 4 ( Reviewer form )
 				FormReviewReviewer(

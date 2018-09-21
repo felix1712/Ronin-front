@@ -1,7 +1,9 @@
 .p-prfrm-header.u-clearfix
-	.u-pull
-		a.u-cl-black(href="") Back to all reviews
-		h2.c-str-26.u-mb-14 {{detailCompanyReview.title}}
+	.u-pull.u-minw-565
+		router-link(:to="{ name: 'CompanyReview'}").u-cl-blue
+			img.u-mr-10.u-ml--5(src="@/assets/images/pages/new-icon/icon-arrow-left-blue.svg", alt="")
+			span Back to all reviews
+		h2.u-maxw-570.c-str-26.u-mb-14 {{detailCompanyReview.title}}
 		.u-maxw-570.u-mb-30
 			p.c-reg-15 {{detailCompanyReview.description}}.
 		.c-row.u-mb-10
