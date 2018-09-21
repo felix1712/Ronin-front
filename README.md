@@ -1,26 +1,20 @@
-# performance
+Welcome to Sleekr Performance
 
-## Project setup
-```
-npm install
-```
+What you need :
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+* Install Node Js (https://nodejs.org/en/ [latest version])
+* Install NPM (included on Node JS instalation)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Run the project you will need : 
 
-### Lints and fixes files
-```
-npm run lint
-```
+* Run `npm install`
+* Run `npm run serve`
 
-### Run your unit tests
-```
-npm run test:unit
-```
+
+Running ESlint:
+
+* Run `npm run lint`
+
+Build for production
+
+* Run `npm run build` 

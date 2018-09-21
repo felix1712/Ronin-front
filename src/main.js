@@ -10,7 +10,9 @@ import { Validator } from 'vee-validate';
 import Buefy from 'buefy'
 import Multiselect from 'vue-multiselect'
 import VueSlideUpDown from 'vue-slide-up-down'
+import { VueEditor } from "vue2-editor"
 import Formatter from './assets/scripts/json-api-formatter.js';
+import vueSlider from 'vue-slider-component/src/vue2-slider.vue'
 
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
 // If you would like custom styling of the toastr the css file can be replaced

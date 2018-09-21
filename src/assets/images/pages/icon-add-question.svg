@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>2474192B-B3DC-4A0D-ABA1-1BB154FDF1AC</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M5.53204553,12.182506 L13.6143189,4.10023258 L11.0997674,1.58568106 L3.01749401,9.66795447 L2.17931017,13.0206898 L5.53204553,12.182506 Z M0,15.2 L1.58568106,8.85727576 L9.97852159,0.46443523 C10.5977686,-0.154811743 11.6017663,-0.154811743 12.2210133,0.46443523 L14.7355648,2.97898675 C15.3548117,3.59823372 15.3548117,4.60223144 14.7355648,5.22147841 L6.34272424,13.6143189 L0,15.2 Z M8.16062292,3.86801496 L9.28186875,2.74676913 L10.6587617,4.22064069 C10.9606106,4.54374974 10.9520368,5.04796316 10.6393771,5.36062292 C10.3401074,5.65989259 9.85489539,5.65989259 9.55562571,5.36062292 C9.54948334,5.35448054 9.54344585,5.34823418 9.53751587,5.34188653 L8.16062292,3.86801496 Z M1.58568106,11.2357973 C2.11424141,11.2357973 2.64280177,11.5000775 3.17136212,12.0286379 C3.69992247,12.5571982 3.96420265,13.0857586 3.96420265,13.6143189 L0.79284053,14.4071595 L1.58568106,11.2357973 Z" id="path-1"></path>
+    </defs>
+    <g id="Performance-Review" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="performance-reviews---admin---new-review---questionnaire---edit-template" transform="translate(-1129.000000, -783.000000)">
+            <g id="button-/-add" transform="translate(444.000000, 773.000000)">
+                <g transform="translate(674.000000, 0.000000)" id="icon-/-edit">
+                    <g transform="translate(11.000000, 10.000000)">
+                        <g id="icon-edit">
+                            <g id="color-/-grey">
+                                <g id="color" transform="translate(0.800000, 0.000000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#8A8E91" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                    <g mask="url(#mask-2)">
+                                        <g transform="translate(0.000000, -0.800000)">
+                                            <rect id="Background" fill="none" x="0" y="0" width="16" height="16"></rect>
+                                            <rect id="color/-white" fill="#FFFFFF" fill-rule="nonzero" x="0" y="0" width="16" height="16"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
