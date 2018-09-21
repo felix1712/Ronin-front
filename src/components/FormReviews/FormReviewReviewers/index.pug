@@ -1,0 +1,36 @@
+form(@submit.prevent="validateBeforeSubmit" v-if="this.$parent.reviewStep == 4")
+	.p-prfrm-create__list-contents.u-mt-30
+		.c-row
+			.c-col-6
+				.c-form-group.u-dib
+					.field
+						label Who will conduct the review?
+							.u-cl-red.u-dib *
+					.u-dib.ju-toggle-l(data-triggertype="radio")
+						.c-check__group
+							.block.u-mb-10
+								b-radio(name="radio-reviewer"
+									native-value="direct-report"
+									@click.native="changeReviewMehtod($event)"
+									v-model="form.review_method"
+								)
+									| Direct report
+							.block.u-mb-10
+								b-radio(name="radio-reviewer"
+									native-value="manager-review"
+									@click.native="changeReviewMehtod($event)"
+									v-model="form.review_method"
+								)
+									| Employee's manager
+							.block.u-mb-10
+								b-radio(name="radio-reviewer"
+									native-value="360"
+									@click.native="changeReviewMehtod($event)"
+									v-model="form.review_method"
+								)
+									| 360 peer review
+
+		SelectReviewer(
+			:members="members"
+			ref="SelectReviewerChild"
+		)

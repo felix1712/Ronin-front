@@ -1,0 +1,107 @@
+.u-mt-40.c-list--review
+  .c-row
+    template(v-for="(dataMember, item) in members")
+      .c-col-12
+        .c-row
+          template
+            .c-col-4.c-col-md-4
+              p.u-ft-smb.u-mb-10 Reviewee
+              template(v-for="memberReviewee in employeeMember" v-if="memberReviewee.attributes.id == dataMember.user_id")
+                .c-avatar-group
+                  figure.c-avatar.c-avatar--xs.c-avatar--circle
+                    img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+                  .c-avatar-text.c-avatar-text--xs
+                    .c-smb-15 {{memberReviewee.attributes.name}}
+                    .c-reg-15.u-cl-slate {{memberReviewee.attributes.job_position}}
+            .c-col-8.c-col-md-8
+              .c-list.c-list--reviewer(:class="dataMember.is_sequent == 1 ? 'is-sequential':''")
+                .c-list--reviewer__item.is-label
+                  .c-list--reviewer__name
+                    label.u-ft-smb Reviewer
+                  .c-list--reviewer__weight
+                    label.u-ft-smb Weight remain: {{dataMember.weightRemaining}}%
+                  .c-list--reviewer__action
+                .c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
+                  .c-list--reviewer__name
+                    .c-avatar-group
+                      figure.c-avatar.c-avatar--xs.c-avatar--circle
+                          img.c-img-fluid(src="@/assets/images/avatar-performance/Michael-Scott.png")
+                      .c-avatar-text.c-avatar-text--xs
+                        .c-smb-15 {{dataReviewer.name}}
+                        .c-reg-15.u-cl-slate(v-if="!dataReviewer.job_position") {{dataReviewer.job_position_name}}
+                        .c-reg-15.u-cl-slate(v-if="!dataReviewer.job_position_name") {{dataReviewer.job_position}}
+                  .c-list--reviewer__weight(v-if="dataReviewer.id != dataMember.user_id")
+                    .field.u-w-80
+                      p.control.has-icons-right
+                        input.input(
+                          type="text"
+                          :name="'weight'+item"
+                          maxlength="3"
+                          v-model="dataReviewer.is_weight"
+                          v-validate="'between:1,100'"
+                          @change="weightRemaining(dataReviewer, dataMember)"
+                          )
+                        span.icon.is-small.is-right
+                          i.icon-percent
+                            | &#37;
+                      span.is-message.c-reg-14.u-cl-red(v-show="errors.has('weight'+item)") This field is between 1 - 100
+                  .c-list--reviewer__action
+                    a.c-btn--ghost.c-btn--xs(@click="removeReviewer(dataMember, dataReviewer)" v-if="dataReviewer.id != dataMember.user_id")
+                      b-tooltip(
+                        label="Remove"
+                        position="is-top"
+                        type="is-dark"
+                      )
+                        | &times;
+                .c-list--reviewer__item-select
+                  .u-w-270
+                    .c-select.c-select--multiple.u-mb-10
+                      multiselect(
+                        v-model="moreReviewerMember",
+                        deselect-label="Can't remove this value",
+                        track-by="name",
+                        label="name",
+                        placeholder="Search for staff",
+                        :show-labels="false"
+                        :options="moreReviewerSelect",
+                        :searchable="true",
+                        :allow-empty="false",
+                        :hide-selected="true"
+                        @open="setOptionReviewer(dataMember)"
+                        @close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
+                      )
+                        span(slot="noResult")
+                          | No results found
+                        div.multiselect__element(slot="afterList" v-if="moreReviewerSelect.length == moreReviewerMember.length")
+                          span.multiselect__option No results found
+                    .field
+                      label
+                        span
+                          input.c-check__checkbox(
+                            type="checkbox"
+                            v-model="dataMember.is_self_review"
+                            :true-value= "1"
+                            :false-value= "0"
+                            @change="selfReview(dataMember)"
+                            )
+                        span.u-ft-reg Self review
+                          b-tooltip(label="Reviewee will do a review of itself, but all the answers will not be calculated at the final score."
+                            type="is-dark"
+                            position="is-top"
+                          )
+                            img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
+                    .field(v-if="dataMember.reviewers && dataMember.reviewers.length > 1")
+                      label(v-show="review_method_get != 'threesixty'")
+                        span
+                          input.c-check__checkbox(
+                            type="checkbox"
+                            v-model="dataMember.is_sequent"
+                            :true-value= "1"
+                            :false-value= "0"
+                            )
+                        span.u-ft-reg Sequential review
+                          b-tooltip(label="All reviewer will be sequence to review reviewee and if there is self review enable then priority of sequence review will prioritize the self review before all the reviewers do it."
+                            type="is-dark"
+                            position="is-top"
+                          )
+                            img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
