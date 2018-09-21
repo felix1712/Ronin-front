@@ -12,6 +12,7 @@
         api: null,
         listId: null,
         detailCompanyReview: "",
+        detailCompanyReviewMember: "",
         normalize: null,
         normalizeData: null,
         normalizeDataMember: null,
@@ -38,6 +39,7 @@
         this.api.get('review/company-review/'+this.listId)
         .then(response => {
           this.detailCompanyReview = this.$normalize.deserialize(response.data);
+          this.detailCompanyReviewMember = this.$normalize.deserialize(response.data).members.data;
           console.log(this.detailCompanyReview);
           // this.normalize = this.$normalize(response.data);
           // this.normalizeData = Object.values(this.normalize.cycle);

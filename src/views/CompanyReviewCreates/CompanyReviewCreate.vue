@@ -109,102 +109,103 @@
 			},
 
 			submitFormReview() {
-				this.$validator.validateAll().then((result) => {
-					const reviewerExist = this.dataReview.members.map(function(data){
-						return Object.keys(data.reviewers).length != 0;
-					}).includes(false);
+				console.log(this.dataReview);
+				// this.$validator.validateAll().then((result) => {
+				// 	const reviewerExist = this.dataReview.members.map(function(data){
+				// 		return Object.keys(data.reviewers).length != 0;
+				// 	}).includes(false);
 
-					if(reviewerExist){
-						this.$toast.open({
-							duration: 1500,
-							message: 'Reviewer must be filled .',
-							position: 'is-top',
-							type: 'is-danger'
-						})
-					}
+				// 	if(reviewerExist){
+				// 		this.$toast.open({
+				// 			duration: 1500,
+				// 			message: 'Reviewer must be filled .',
+				// 			position: 'is-top',
+				// 			type: 'is-danger'
+				// 		})
+				// 	}
 
-					let sumWeights = this.dataReview.members.map(data =>{
-						if(data.reviewers){
-							return data.reviewers.map(e =>{ 
-								if(e.is_weight){
-									return parseInt(e.is_weight);
-								} else {
-									return 0
-								}
-							})
-						} else {
-							return 0;
-						}
-					});
+				// 	let sumWeights = this.dataReview.members.map(data =>{
+				// 		if(data.reviewers){
+				// 			return data.reviewers.map(e =>{ 
+				// 				if(e.is_weight){
+				// 					return parseInt(e.is_weight);
+				// 				} else {
+				// 					return 0
+				// 				}
+				// 			})
+				// 		} else {
+				// 			return 0;
+				// 		}
+				// 	});
 
-					sumWeights = sumWeights[0];
-					if(sumWeights.length <= 1 && sumWeights[0] == 0){
-						sumWeights =  100;
-					} else {
-						sumWeights = sumWeights.reduce(function(acc, val) { return acc + val; }, 0)
-					}
+				// 	sumWeights = sumWeights[0];
+				// 	if(sumWeights.length <= 1 && sumWeights[0] == 0){
+				// 		sumWeights =  100;
+				// 	} else {
+				// 		sumWeights = sumWeights.reduce(function(acc, val) { return acc + val; }, 0)
+				// 	}
 
-					let checkWeight = true;
+				// 	let checkWeight = true;
 
-					if(sumWeights == 100){
-						checkWeight =  true;
-					} else {
-						checkWeight = false;
-					}
+				// 	if(sumWeights == 100){
+				// 		checkWeight =  true;
+				// 	} else {
+				// 		checkWeight = false;
+				// 	}
 
-					if(!checkWeight){
-						this.$toast.open({
-							duration: 1500,
-							message: 'Total reviewer weight must be at 100%.',
-							position: 'is-top',
-							type: 'is-danger'
-						})
-					}
+				// 	if(!checkWeight){
+				// 		this.$toast.open({
+				// 			duration: 1500,
+				// 			message: 'Total reviewer weight must be at 100%.',
+				// 			position: 'is-top',
+				// 			type: 'is-danger'
+				// 		})
+				// 	}
 
-					if (result && !reviewerExist && checkWeight) {
-						this.dataReview.members.map(data => {
-							if(data.reviewers){
-								const result = data.reviewers.map(item => item.id);
-								data.reviewers = result;
-								return data
-							}
-						});
+				// 	if (result && !reviewerExist && checkWeight) {
+				// 		this.dataReview.members.map(data => {
+				// 			if(data.reviewers){
+				// 				const result = data.reviewers.map(item => item.id);
+				// 				data.reviewers = result;
+				// 				return data
+				// 			}
+				// 		});
 
-						this.api.post('createreview', {
-							description: this.dataReview.description,
-							name: this.dataReview.titles,
-							is_repeat: this.dataReview.is_repeat,
-							repeat_every: this.dataReview.repeat_every,
-							review_start_date: this.dataReview.review_start_date,
-							review_end_date: this.dataReview.review_end_date,
-							review_method: this.dataReview.review_method,
-							members: this.dataReview.members,
-							question_set: this.dataReview.template,
-						})
-						.then(response => {
-							if(response.data.status_code == 200){
-								this.$toast.open({
-									duration: 10000,
-									message: 'Your create review cycle has been successfully created!',
-									position: 'is-top',
-									type: 'is-success'
-								})
-							}else{
-								this.$toast.open({
-									duration: 10000,
-									message: 'Your create review cycle has been failed to be created. Please try again to save it!',
-									position: 'is-top',
-									type: 'is-danger'
-								})
-							}
+				// 		this.api.post('createreview', {
+				// 			description: this.dataReview.description,
+				// 			name: this.dataReview.titles,
+				// 			is_repeat: this.dataReview.is_repeat,
+				// 			repeat_every: this.dataReview.repeat_every,
+				// 			review_start_date: this.dataReview.review_start_date,
+				// 			review_end_date: this.dataReview.review_end_date,
+				// 			review_method: this.dataReview.review_method,
+				// 			members: this.dataReview.members,
+				// 			question_set: this.dataReview.template,
+				// 		})
+				// 		.then(response => {
+				// 			if(response.data.status_code == 200){
+				// 				this.$toast.open({
+				// 					duration: 10000,
+				// 					message: 'Your create review cycle has been successfully created!',
+				// 					position: 'is-top',
+				// 					type: 'is-success'
+				// 				})
+				// 			}else{
+				// 				this.$toast.open({
+				// 					duration: 10000,
+				// 					message: 'Your create review cycle has been failed to be created. Please try again to save it!',
+				// 					position: 'is-top',
+				// 					type: 'is-danger'
+				// 				})
+				// 			}
 
-							this.$router.push('/');
-						})
-						.catch(e => {
-							console.log(e);
-						});
-					}
-				});
+				// 			this.$router.push('/');
+				// 		})
+				// 		.catch(e => {
+				// 			console.log(e);
+				// 		});
+				// 	}
+				// });
 			},
 		},
 		components: {

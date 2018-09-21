@@ -8,7 +8,8 @@
 			.c-col-3.c-col-md-3
 				span.c-str-15 Review cycle
 			.c-col-5.c-col-md-5
-				span.c-reg-15 Only once
+				span.c-reg-15(v-show="detailCompanyReview.is_repeat == false") Only once
+				span.c-reg-15(v-show="detailCompanyReview.is_repeat == true") Repeat
 		.c-row.u-mb-10
 			.c-col-3.c-col-md-3
 				span.c-str-15 Review start date
@@ -29,20 +30,3 @@
 						:maxBar="detailCompanyReview.total_reviewers"
 						:statusProgress="detailCompanyReview.status"
 					)
-		.c-row.u-mb-10
-			.c-col-3.c-col-md-3
-				span.c-str-15 Reviewer
-			.c-col-5.c-col-md-5
-				//- .c-avatar-group.is-image
-				//- 	figure.c-avatar.c-avatar--xs.c-avatar--circle
-				//- 		img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Jim-Halpert.png", alt="sleekr-avatar-user")
-				//- 	figure.c-avatar.c-avatar--xs.c-avatar--circle
-				//- 		img.c-img-fluid.u-vat(src="@/assets/images/avatar-performance/Dwight-Schrute.png", alt="sleekr-avatar-user")
-	.u-push
-		UserProfileTop(
-		 :avatarProfileTop="'https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg'"
-		 :nameProfileTop="'Michael Jordan'"
-		 :jobTitleProfileTop="'Senior Frontend Developer'"
-		 :departmentProfileTop="'Developer'"
-		 :scoreProfileTop="100"
-		)
