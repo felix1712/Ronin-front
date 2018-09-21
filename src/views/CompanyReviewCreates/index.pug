@@ -19,14 +19,6 @@
 				//- step 1 (review information form)
 				FormReviewInformation(
 					v-show="reviewStep === 1"
-					:allSelectedMembers="allSelectedMembers"
-					:selectedMembers="selectedMembers"
-					:selectedOrganization="selectedOrganization"
-					:selectedOrganizationMember="selectedOrganizationMember"
-					:selectedJobTitle="selectedJobTitle"
-					:selectedJobTitleMember="selectedJobTitleMember"
-					:reviewedMember="reviewedMember"
-					:employeeMember="employeeMember"
 					@informationSave="informationSave"
 					ref="FormInformation"
 				)

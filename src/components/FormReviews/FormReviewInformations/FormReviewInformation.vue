@@ -1,6 +1,7 @@
 <template lang="pug" src="./index.pug"></template>
 
 <script>
+import axios from 'axios';
 import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/ButtonFooter.vue';
 	export default{
 		name: 'FormReviewInformation',
@@ -20,37 +21,6 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 				type: Array,
 				default: () => []
 			},
-
-			allSelectedMembers: {
-				type: Array
-			},
-
-			selectedOrganization: {
-				type: Array,
-				default: () => []
-			},
-
-			selectedOrganizationMember: {
-				type: Array
-			},
-
-			selectedJobTitle: {
-				type: Array,
-				default: () => []
-			},
-
-			selectedJobTitleMember: {
-				type: Array
-			},
-
-			reviewedMember: {
-				type: Array
-			},
-
-			employeeMember: {
-				type: Array
-			},
-
 		},
 
 		data() {
@@ -58,10 +28,17 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 				//custom data
 				maxCharacters: 50,
 				reviewedMethod: 1,
-				selectedJobTitleChecked: null,
+				allSelectedMembers: [],
+				selectedOrganization:[],
 				selectedOrganiztionChecked: null,
+				selectedOrganizationMember: null,
+				selectedJobTitle: [],
+				selectedJobTitleChecked: null,
+				selectedJobTitleMember: null,
+				reviewedMember: [],
 				selectedMembers: [],
 				selectReviewedMembers: [],
+				employeeMember: null,
 				//send data
 				form :{
 					title: this.title,
@@ -301,6 +278,80 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 
 		components: {
 			ButtonFooter,
+		},
+
+		mounted() {
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
+				this.api = axios.create({
+					baseURL: process.env.VUE_APP_API,
+					headers: {
+						Authorization: this.$cookie.get('AuthToken'),
+						Refresh: this.$cookie.get('AuthRefresh'),
+					},
+				});
+
+				this.api.get('review/organizations')
+				.then(response => {
+					this.selectedOrganization = response.data.data.map(data => {
+						return{
+							id: data.attributes.id,
+							name: data.attributes.name
+						}
+					});
+					this.selectedOrganizationMember = response.data.data;
+					// console.log(this.selectedOrganization)
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+
+				this.api.get('review/members')
+				.then(response => {
+					this.employeeMember = response.data.data;
+					console.log(this.employeeMember);
+					this.reviewedMember = response.data.data.map(member => {
+						return{
+							id: member.attributes.id,
+							name: member.attributes.name
+						}
+					})
+
+					this.allSelectedMembers = response.data.data.map(member => {
+						return member.attributes.id
+					})
+					this.selectedMembers = this.allSelectedMembers;
+					this.addMember();
+
+					this.moreReviewerSelect = response.data.data.map(member => {
+						return{
+							id: member.attributes.id,
+							name: member.attributes.name
+						}
+					})
+					// console.log(response.data);
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+
+				this.api.get('review/job_positions')
+				.then(response => {
+					this.selectedJobTitle = response.data.data.map(data => {
+						return{
+							id: data.attributes.id,
+							name: data.attributes.title,
+						}
+					});
+
+					this.selectedJobTitleMember = response.data.data;
+					// console.log(response.data);
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+			}
 		},
 
 		computed: {

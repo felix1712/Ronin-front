@@ -16,32 +16,9 @@
 			return {
 				reviewStep: 1,
 				editReview: 0,
-				isTemplateReview: false,
-				maxCharacters: 50,
-				reviewedMethod: 1,
-				selectedOrganiztionMethod: null,
-				selectedOrganiztionChecked: null,
-				selectedOrganization:[],
-				selectedOrganizationMember: null,
-				employeeMember: null,
-				reviewedMember: [],
-				selectedJobTitle: [],
-				selectedJobTitleMember: null,
-				selectedJobTitleChecked: null,
-				memberJobTitle: null,
-				getReviewerData: null,
-				checkboxOrganization: [],
-				checkboxJobTitle: [],
-				user_ids: null,
-				getReviewerMember: {},
-				allSelectedMembers: [],
-				selectedMembers: [],
-				selectReviewedMembers: [],
 				templates: null,
 				templateDetails: null,
 				selectedTemplate: '',
-				api: null,
-				weightReviewers: 100,
 				dataReview: {
 					titles: '',
 					description: '',
@@ -98,30 +75,6 @@
 						}
 						this.reviewStep = data;
 					}
-				});
-			},
-
-			changeReviewMehtod(e) {
-				this.dataReview.members.forEach(data=>{
-					data.is_self_review = 0;
-					data.is_sequent = 0;
-					data.weightRemaining = 100;
-				})
-
-				const user_ids = [];
-				this.dataReview.members.forEach(data => {
-					user_ids.push(data.user_id);
-				});
-				this.api.post('getreviewers', {
-					user_ids: user_ids,
-					review_method: event.target.value,
-				})
-				.then(response => {
-					this.getReviewerData = response.data.contents.mapping_reviewers;
-					this.setReviewer(this.getReviewerData);
-				})
-				.catch(e => {
-					this.errors.push(e)
 				});
 			},
 
@@ -281,66 +234,6 @@
 						Authorization: this.$cookie.get('AuthToken'),
 						Refresh: this.$cookie.get('AuthRefresh'),
 					},
-				});
-
-				this.api.get('review/organizations',)
-				.then(response => {
-					this.selectedOrganization = response.data.data.map(data => {
-						return{
-							id: data.attributes.id,
-							name: data.attributes.name
-						}
-					});
-					this.selectedOrganizationMember = response.data.data;
-					// console.log(this.selectedOrganization)
-				})
-				.catch(e => {
-					// this.errors.push(e);
-				});
-
-				this.api.get('review/members')
-				.then(response => {
-					this.employeeMember = response.data.data;
-					console.log(this.employeeMember);
-					this.reviewedMember = response.data.data.map(member => {
-						return{
-							id: member.attributes.id,
-							name: member.attributes.name
-						}
-					})
-
-					this.allSelectedMembers = response.data.data.map(member => {
-						return member.attributes.id
-					})
-					this.selectedMembers = this.allSelectedMembers;
-					this.addMember();
-
-					this.moreReviewerSelect = response.data.data.map(member => {
-						return{
-							id: member.attributes.id,
-							name: member.attributes.name
-						}
-					})
-					// console.log(response.data);
-				})
-				.catch(e => {
-					// this.errors.push(e);
-				});
-
-				this.api.get('review/job_positions')
-				.then(response => {
-					this.selectedJobTitle = response.data.data.map(data => {
-						return{
-							id: data.attributes.id,
-							name: data.attributes.title,
-						}
-					});
-
-					this.selectedJobTitleMember = response.data.data;
-					// console.log(response.data);
-				})
-				.catch(e => {
-					// this.errors.push(e);
 				});
 
 				this.api.get('review/template')
