@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon / send</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M2.06774324,3.4819568 C2.02355725,3.64718343 2,3.82084067 2,4 L2,11 C2,12.1045695 2.8954305,13 4,13 L14,13 C15.1045695,13 16,12.1045695 16,11 L16,4 C16,2.8954305 15.1045695,2 14,2 L4,2 C3.82084067,2 3.64718343,2.02355725 3.4819568,2.06774324 L9,7.58578644 L13.2928932,3.29289322 C13.6834175,2.90236893 14.3165825,2.90236893 14.7071068,3.29289322 C15.0976311,3.68341751 15.0976311,4.31658249 14.7071068,4.70710678 L10.4142136,9 C9.63316498,9.78104858 8.36683502,9.78104858 7.58578644,9 L2.06774324,3.4819568 Z M14,0 C16.209139,0 18,1.790861 18,4 L18,11 C18,13.209139 16.209139,15 14,15 L4,15 C1.790861,15 0,13.209139 0,11 L0,4 C0,1.790861 1.790861,0 4,0 L14,0 Z" id="path-1"></path>
+    </defs>
+    <g id="icon-/-send" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-mail" transform="translate(1.000000, 2.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#8A8E91" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="color-/-grey" mask="url(#mask-2)" fill="#8A8E91" fill-rule="nonzero">
+                <g transform="translate(-1.000000, -2.000000)">
+                    <rect x="0" y="0" width="20" height="20"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
