@@ -62,3 +62,9 @@
 html { 
 	font-size: 62.5%;
 }
+
+input:-webkit-autofill{
+  background-color: $v-white;
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  // transition: background-color 5000s ease-in-out 0s;
+}
