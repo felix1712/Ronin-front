@@ -2,8 +2,6 @@
 
 <script>
 	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
-	import axios from 'axios';
-	import ButtonFooter from './shared/button-footer/ButtonFooter.vue';
 	// Form component
 	import FormReviewInformation from '@/components/FormReviews/FormReviewInformations/FormReviewInformation.vue';
 	import FormReviewQuestion from '@/components/FormReviews/FormReviewQuestions/FormReviewQuestion.vue';
@@ -16,9 +14,6 @@
 			return {
 				reviewStep: 1,
 				editReview: 0,
-				templates: null,
-				templateDetails: null,
-				selectedTemplate: '',
 				dataReview: {
 					titles: '',
 					description: '',
@@ -217,35 +212,10 @@
 			FormReviewQuestion,
 			FormReviewSchedule,
 			FormReviewReviewer,
-			ButtonFooter,
 		},
 
 		created() {
 			this.$emit(`update:layout`, MainLayouts);
-		},
-
-		mounted() {
-			const checkToken = this.$cookie.get('AuthToken');
-			const checkRefreshToken = this.$cookie.get('AuthRefresh');
-			if(checkToken != null && checkRefreshToken != null){
-				this.api = axios.create({
-					baseURL: process.env.VUE_APP_API,
-					headers: {
-						Authorization: this.$cookie.get('AuthToken'),
-						Refresh: this.$cookie.get('AuthRefresh'),
-					},
-				});
-
-				this.api.get('review/template')
-				.then(response => {
-					this.templates = response.data.data;
-					this.getDetailTemplate(this.selectedTemplate);
-				})
-				.catch(e =>{
-					// console.log(e);
-				});
-
-			}
 		},
 	};
 </script>

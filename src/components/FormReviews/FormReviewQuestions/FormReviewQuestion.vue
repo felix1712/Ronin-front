@@ -1,19 +1,16 @@
 <template lang="pug" src="./index.pug"></template>
 
 <script>
-import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/ButtonFooter.vue';
+	import axios from 'axios';
+	import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/ButtonFooter.vue';
 	export default{
 		name: 'FormReviewQuestion',
-		props:{
-			templates: {
-				type: Array
-			},
-		},
 
 		data() {
 			return {
-				selectedTemplate: '',
+				templates: null,
 				templateDetails: null,
+				selectedTemplate: '',
 				//post data
 				template: {
 					id: null,
@@ -112,9 +109,28 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 		},
 
 		mounted() {
-			if(this.templates){
-				this.selectedTemplate = this.templates[0].attributes.id;
-				this.getDetailTemplate(this.selectedTemplate);
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
+				this.api = axios.create({
+					baseURL: process.env.VUE_APP_API,
+					headers: {
+						Authorization: this.$cookie.get('AuthToken'),
+						Refresh: this.$cookie.get('AuthRefresh'),
+					},
+				});
+
+				this.api.get('review/template')
+				.then(response => {
+					this.templates = response.data.data;
+					console.log(this.templates);
+					this.selectedTemplate = this.templates[0].attributes.id;
+					this.getDetailTemplate(this.selectedTemplate);
+				})
+				.catch(e =>{
+					// console.log(e);
+				});
+
 			}
 		},
 
