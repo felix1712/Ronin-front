@@ -11,12 +11,10 @@
 				type: Boolean,
 				default: false
 			}
-		},
-
-		data() {
-			return {
-				isFullPage: true
-			};
+			isFullPage: {
+				type: Boolean,
+				default: true,
+			}
 		},
 	};
 </script>
