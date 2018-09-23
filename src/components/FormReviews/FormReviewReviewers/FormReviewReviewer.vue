@@ -5,7 +5,7 @@
 	export default{
 		name: 'FormReviewReviewer',
 		props: {
-			members: {
+			members_attributes: {
 				type: Array,
 			}
 		},
@@ -21,7 +21,7 @@
 
 		methods: {
 			changeReviewMehtod(event){
-				this.members.forEach(data=>{
+				this.members_attributes.forEach(data=>{
 					data.is_self_review = 0;
 					data.is_sequent = 0;
 					data.weightRemaining = 100;

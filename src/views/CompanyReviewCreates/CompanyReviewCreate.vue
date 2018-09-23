@@ -2,6 +2,7 @@
 
 <script>
 	import MainLayouts from '@/layouts/MainLayouts/MainLayouts.vue';
+	import axios from 'axios';
 	// Form component
 	import FormReviewInformation from '@/components/FormReviews/FormReviewInformations/FormReviewInformation.vue';
 	import FormReviewQuestion from '@/components/FormReviews/FormReviewQuestions/FormReviewQuestion.vue';
@@ -13,20 +14,14 @@
 		data() {
 			return {
 				reviewStep: 1,
-				editReview: 0,
+				editReview: 1,
+				api: null,
 				dataReview: {
 					titles: '',
 					description: '',
-					members: [],
+					members_attributes: [],
 					//form questionare
-					template:
-					{
-						is_new: 0,
-						name: null,
-						select_type: 'non-predefined',
-						id: null,
-						categories: [],
-					},
+					question_set: null,
 					// form schedule
 					is_repeat: 0,
 					repeat_every: 0,
@@ -42,48 +37,50 @@
 			informationSave(data){
 				this.dataReview.titles = data.title;
 				this.dataReview.description = data.description;
-				this.dataReview.members = data.members;
+				this.dataReview.members_attributes = data.members_attributes;
+				if(this.reviewStep == 1){
+					this.reviewStep+=1;
+				}
+				if(this.editReview < 2 ){
+					this.editReview+=1;
+				}
 			},
 
 			questionSave(data){
-				this.dataReview.template.name = data.name;
-				this.dataReview.template.id = data.id;
+				this.dataReview.question_set = data.question_set;
+				if(this.reviewStep == 2){
+					this.reviewStep+=1;
+				}
+				if(this.editReview < 3 ){
+					this.editReview+=1;
+				}
 			},
 
 			scheduleSave(data){
-				console.log(data);
 				this.dataReview.is_repeat = data.is_repeat;
 				this.dataReview.repeat_every = data.repeat_every;
 				this.dataReview.review_start_date = data.start_date;
 				this.dataReview.review_end_date = data.end_date;
+				if(this.reviewStep == 3){
+					this.reviewStep+=1;
+				}
+				if(this.editReview < 4 ){
+					this.editReview+=1;
+				}
 			},
 
 			editReviewStep(data) {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
 						if(this.reviewStep == 1){
-							this.addMember();
+							this.$refs.FormInformation.addMember();
+							this.$refs.FormInformation.validateBeforeSubmit();
 						} else if(this.reviewStep == 4){
-							this.dataReview.members.forEach(data =>{
+							this.dataReview.members_attributes.forEach(data =>{
 								data.weightRemaining = 100;
 							})
 						}
 						this.reviewStep = data;
-					}
-				});
-			},
-
-			validateBeforeSubmit() {
-				this.$validator.validateAll().then((result) => {
-					if (result) {
-						if(this.reviewStep == 1){
-							this.addMember();
-						} else if(this.reviewStep == 2){
-							console.log(this.$child)
-							this.$child.setTemplate();
-						}
-						this.reviewStep+=1;
-						this.editReview+=1;
 					}
 				});
 			},
@@ -109,103 +106,115 @@
 			},
 
 			submitFormReview() {
-				console.log(this.dataReview);
-				// this.$validator.validateAll().then((result) => {
-				// 	const reviewerExist = this.dataReview.members.map(function(data){
-				// 		return Object.keys(data.reviewers).length != 0;
-				// 	}).includes(false);
+				const checkToken = this.$cookie.get('AuthToken');
+				const checkRefreshToken = this.$cookie.get('AuthRefresh');
+				if(checkToken != null && checkRefreshToken != null){
+					this.api = axios.create({
+						baseURL: process.env.VUE_APP_API,
+						headers: {
+							Authorization: this.$cookie.get('AuthToken'),
+							Refresh: this.$cookie.get('AuthRefresh'),
+						},
+					});
+					this.$validator.validateAll().then((result) => {
+						const reviewerExist = this.dataReview.members_attributes.map(function(data){
+							return Object.keys(data.reviewers_attributes).length != 0;
+						}).includes(false);
 
-				// 	if(reviewerExist){
-				// 		this.$toast.open({
-				// 			duration: 1500,
-				// 			message: 'Reviewer must be filled .',
-				// 			position: 'is-top',
-				// 			type: 'is-danger'
-				// 		})
-				// 	}
+						if(reviewerExist){
+							this.$toast.open({
+								duration: 1500,
+								message: 'Reviewer must be filled .',
+								position: 'is-top',
+								type: 'is-danger'
+							})
+						}
 
-				// 	let sumWeights = this.dataReview.members.map(data =>{
-				// 		if(data.reviewers){
-				// 			return data.reviewers.map(e =>{ 
-				// 				if(e.is_weight){
-				// 					return parseInt(e.is_weight);
-				// 				} else {
-				// 					return 0
-				// 				}
-				// 			})
-				// 		} else {
-				// 			return 0;
-				// 		}
-				// 	});
+						let sumWeights = this.dataReview.members_attributes.map(data =>{
+							if(data.reviewers_attributes){
+								return data.reviewers_attributes.map(e =>{ 
+									if(e.is_weight){
+										return parseInt(e.is_weight);
+									} else {
+										return 0
+									}
+								})
+							} else {
+								return 0;
+							}
+						});
 
-				// 	sumWeights = sumWeights[0];
-				// 	if(sumWeights.length <= 1 && sumWeights[0] == 0){
-				// 		sumWeights =  100;
-				// 	} else {
-				// 		sumWeights = sumWeights.reduce(function(acc, val) { return acc + val; }, 0)
-				// 	}
+						sumWeights = sumWeights[0];
+						if(sumWeights.length <= 1 && sumWeights[0] == 0){
+							sumWeights =  100;
+						} else {
+							sumWeights = sumWeights.reduce(function(acc, val) { return acc + val; }, 0)
+						}
 
-				// 	let checkWeight = true;
+						let checkWeight = true;
 
-				// 	if(sumWeights == 100){
-				// 		checkWeight =  true;
-				// 	} else {
-				// 		checkWeight = false;
-				// 	}
+						if(sumWeights == 100){
+							checkWeight =  true;
+						} else {
+							checkWeight = false;
+						}
 
-				// 	if(!checkWeight){
-				// 		this.$toast.open({
-				// 			duration: 1500,
-				// 			message: 'Total reviewer weight must be at 100%.',
-				// 			position: 'is-top',
-				// 			type: 'is-danger'
-				// 		})
-				// 	}
+						if(!checkWeight){
+							this.$toast.open({
+								duration: 1500,
+								message: 'Total reviewer weight must be at 100%.',
+								position: 'is-top',
+								type: 'is-danger'
+							})
+						}
 
-				// 	if (result && !reviewerExist && checkWeight) {
-				// 		this.dataReview.members.map(data => {
-				// 			if(data.reviewers){
-				// 				const result = data.reviewers.map(item => item.id);
-				// 				data.reviewers = result;
-				// 				return data
-				// 			}
-				// 		});
+						if (result && !reviewerExist && checkWeight) {
+							// this.dataReview.members.map(data => {
+							// 	if(data.reviewers){
+							// 		const result = data.reviewers.map(item => item.id);
+							// 		data.reviewers = result;
+							// 		return data
+							// 	}
+							// });
+							console.log(this.dataReview);
 
-				// 		this.api.post('createreview', {
-				// 			description: this.dataReview.description,
-				// 			name: this.dataReview.titles,
-				// 			is_repeat: this.dataReview.is_repeat,
-				// 			repeat_every: this.dataReview.repeat_every,
-				// 			review_start_date: this.dataReview.review_start_date,
-				// 			review_end_date: this.dataReview.review_end_date,
-				// 			review_method: this.dataReview.review_method,
-				// 			members: this.dataReview.members,
-				// 			question_set: this.dataReview.template,
-				// 		})
-				// 		.then(response => {
-				// 			if(response.data.status_code == 200){
-				// 				this.$toast.open({
-				// 					duration: 10000,
-				// 					message: 'Your create review cycle has been successfully created!',
-				// 					position: 'is-top',
-				// 					type: 'is-success'
-				// 				})
-				// 			}else{
-				// 				this.$toast.open({
-				// 					duration: 10000,
-				// 					message: 'Your create review cycle has been failed to be created. Please try again to save it!',
-				// 					position: 'is-top',
-				// 					type: 'is-danger'
-				// 				})
-				// 			}
+							this.api.post('/review/company-review', {
+								description: this.dataReview.description,
+								title: this.dataReview.titles,
+								is_repeat: this.dataReview.is_repeat,
+								repeat_every: this.dataReview.repeat_every,
+								review_start_date: this.dataReview.review_start_date,
+								review_end_date: this.dataReview.review_end_date,
+								review_method: this.dataReview.review_method,
+								members_attributes: this.dataReview.members_attributes,
+								question_set: this.dataReview.question_set,
+							})
+							.then(response => {
+								console.log(response.data);
+								if(response.data.status == 200){
+									this.$toast.open({
+										duration: 10000,
+										message: response.data.data,
+										position: 'is-top',
+										type: 'is-success'
+									})
+								}else{
+									this.$toast.open({
+										duration: 10000,
+										message: response.data.data,
+										position: 'is-top',
+										type: 'is-danger'
+									})
+								}
 
-				// 			this.$router.push('/');
-				// 		})
-				// 		.catch(e => {
-				// 			console.log(e);
-				// 		});
-				// 	}
-				// });
+								this.$router.push('/');
+							})
+							.catch(e => {
+								console.log(e);
+							});
+						}
+					});
+				}
 			},
 		},
 		components: {

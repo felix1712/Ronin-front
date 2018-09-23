@@ -1,6 +1,10 @@
 .u-mt-40.c-list--review
+  Loader(
+    :isLoading="isLoading"
+    refs="loader"
+  )
   .c-row
-    template(v-for="(dataMember, item) in members")
+    template(v-for="(dataMember, item) in members_attributes")
       .c-col-12
         .c-row
           template
@@ -21,7 +25,7 @@
                   .c-list--reviewer__weight
                     label.u-ft-smb Weight remain: {{dataMember.weightRemaining}}%
                   .c-list--reviewer__action
-                .c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers")
+                .c-list--reviewer__item(v-for="dataReviewer in dataMember.reviewers_attributes")
                   .c-list--reviewer__name
                     .c-avatar-group
                       figure.c-avatar.c-avatar--xs.c-avatar--circle
@@ -68,7 +72,7 @@
                         :allow-empty="false",
                         :hide-selected="true"
                         @open="setOptionReviewer(dataMember)"
-                        @close="addReviewer(dataMember.reviewers, moreReviewerMember, dataMember)"
+                        @close="addReviewer(dataMember.reviewers_attributes, moreReviewerMember, dataMember)"
                       )
                         span(slot="noResult")
                           | No results found
@@ -90,7 +94,7 @@
                             position="is-top"
                           )
                             img.u-ml-10.u-vam(src="@/assets/images/pages/icon-help.svg", alt="", data-content="Lorem ipsum")
-                    .field(v-if="dataMember.reviewers && dataMember.reviewers.length > 1")
+                    .field(v-if="dataMember.reviewers_attributes && dataMember.reviewers_attributes.length > 1")
                       label(v-show="review_method_get != 'threesixty'")
                         span
                           input.c-check__checkbox(

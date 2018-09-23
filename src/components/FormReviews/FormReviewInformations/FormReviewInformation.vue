@@ -2,30 +2,14 @@
 
 <script>
 import axios from 'axios';
+import Loader from '@/components/Loaders/Loader.vue';
 import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/ButtonFooter.vue';
 	export default{
 		name: 'FormReviewInformation',
-
-		props: {
-			title: {
-				type: String,
-				default: '',
-			},
-
-			description: {
-				type: String,
-				default: '',
-			},
-
-			members:{
-				type: Array,
-				default: () => []
-			},
-		},
-
 		data() {
 			return {
 				//custom data
+				isLoading: true,
 				maxCharacters: 50,
 				reviewedMethod: 1,
 				allSelectedMembers: [],
@@ -41,9 +25,9 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 				employeeMember: null,
 				//send data
 				form :{
-					title: this.title,
-					description: this.description,
-					members: this.members,
+					title: '',
+					description: '',
+					members_attributes: [],
 				}
 			}
 		},
@@ -52,7 +36,7 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 			//global function
 			changeMemberSelectedType(e) {
 				if(e.target.value != 1){
-					this.form.members = [];
+					this.form.members_attributes = [];
 					this.selectedMembers = [];
 					this.selectReviewedMembers = [];
 					this.selectedJobTitleChecked = [];
@@ -66,37 +50,20 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 				this.selectedMembers.forEach(function(value){
 					const addMembers = {
 						user_id: value,
-						reviewers: null,
+						reviewers_attributes: null,
 						is_self_review: 0,
 						is_sequent: 0,
 						weightRemaining: 100,
 					};
 
-					let checkDataArr = this.form.members.filter(item =>{
+					let checkDataArr = this.form.members_attributes.filter(item =>{
 						return item.user_id == value;
 					});
 
 					if (!checkDataArr.length) {
-						this.form.members.push(addMembers);
+						this.form.members_attributes.push(addMembers);
 					}
 				}.bind(this));
-			},
-
-			removeMember(value) {
-				// console.log(this.selectedMembers);
-				const intValue = parseInt(value);
-				this.form.members = this.form.members.filter(item =>{
-					return item.user_id !== intValue;
-				});
-			},
-
-			checkboxMember(e) {
-				if (e.target.checked === true) {
-					e.currentTarget.closest("label").classList.remove('not-checked')
-				} else {
-					this.removeMember(e.target.value);
-					e.currentTarget.closest("label").classList.add('not-checked')
-				}
 			},
 
 			//select organization function
@@ -232,10 +199,14 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 			},
 
 			//select specific staff function
-			reviewedSelectMemberId() {
-				this.selectedMembers = this.selectReviewedMembers.map(data =>{
-					return data.id
-				});
+			reviewedSelectMemberId(item) {
+				const getLastId = item[item.length - 1].id;
+				this.selectedMembers.push(getLastId);
+				// this.selectedMembers = this.selectReviewedMembers.map((value, key, arr) =>{
+				// 		if (Object.is(arr.length - 1, key)) {
+				// 	 		return value.id
+			 //      }
+				// });
 			},
 
 
@@ -268,15 +239,14 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 							this.addMember();
 						}
 
-						this.$emit('informationSave', {title: this.form.title, description: this.form.description, members: this.form.members})
-						this.$parent.reviewStep+=1;
-						this.$parent.editReview+=1;
+						this.$emit('informationSave', {title: this.form.title, description: this.form.description, members_attributes: this.form.members_attributes})
 					}
 				});
 			}
 		},
 
 		components: {
+			Loader,
 			ButtonFooter,
 		},
 
@@ -310,7 +280,6 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 				this.api.get('review/members')
 				.then(response => {
 					this.employeeMember = response.data.data;
-					console.log(this.employeeMember);
 					this.reviewedMember = response.data.data.map(member => {
 						return{
 							id: member.attributes.id,
@@ -323,6 +292,7 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 					})
 					this.selectedMembers = this.allSelectedMembers;
 					this.addMember();
+					this.isLoading=false;
 
 					this.moreReviewerSelect = response.data.data.map(member => {
 						return{

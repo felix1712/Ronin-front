@@ -26,14 +26,14 @@ import Datepicker from 'vuejs-datepicker';
 				const getStartDate = new Date(this.schedule.review_start_date);
 				const dueValue = parseInt(this.deadline);
 				if (dueValue >= 1 && dueValue <= 30) {
-					this.schedule.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
+					this.schedule.review_end_date = new Date(getStartDate.setDate(getStartDate.getDate() + dueValue));
 				}
 			},
 
-			changeStartDate(e) {
-				const getStartDate = new Date(e);
+			changeStartDate() {
+				const getStartDate = new Date();
 				const dueValue = parseInt(this.deadline);
-				this.schedule.review_end_date = getStartDate.setDate(getStartDate.getDate() + dueValue);
+				this.schedule.review_end_date = new Date(getStartDate.setDate(getStartDate.getDate() + dueValue));
 			},
 
 			isRepeat(e){
@@ -49,11 +49,10 @@ import Datepicker from 'vuejs-datepicker';
 					if (result) {
 						this.$emit('scheduleSave', {
 							is_repeat: this.schedule.is_repeat, 
+							repeat_every: this.schedule.repeat_every,
 							start_date: this.schedule.review_start_date, 
-							end_date:this.schedule.review_end_date
+							end_date:this.schedule.review_end_date,
 						})
-						this.$parent.reviewStep+=1;
-						this.$parent.editReview+=1;
 					}
 				});
 			},

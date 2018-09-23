@@ -10,7 +10,7 @@
 			isLoading: {
 				type: Boolean,
 				default: false
-			}
+			},
 			isFullPage: {
 				type: Boolean,
 				default: true,

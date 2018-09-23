@@ -12,13 +12,13 @@
 						.u-maxw-570
 							p.c-reg-15 This is first step create review for naming review cycle and setup selected reviewee to review.
 
-					.u-push(v-if="editReview >= 1")
+					.u-push(v-if="editReview > 1")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(1)")
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 1 (review information form)
 				FormReviewInformation(
-					v-show="reviewStep === 1"
+					v-show="reviewStep == 1"
 					@informationSave="informationSave"
 					ref="FormInformation"
 				)
@@ -31,12 +31,12 @@
 						.u-maxw-570
 							p.c-reg-15 This is second step create review for choose and setup questionarre template to be use.
 
-					.u-push(v-if="editReview >= 2")
+					.u-push(v-if="editReview > 2")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(2)")
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				FormReviewQuestion(
-					v-show="reviewStep === 2"
+					v-show="reviewStep == 2"
 					@questionSave="questionSave"
 				)
 
@@ -47,13 +47,13 @@
 						.u-maxw-570
 							p.c-reg-15 This is third step create review for setting up timeline schedule review.
 
-					.u-push(v-if="editReview >= 3")
+					.u-push(v-if="editReview > 3")
 						a.c-btn.c-btn--ghost.c-btn--edit.c-btn--xs(@click.prevent="editReviewStep(3)")
 							img.u-mr-10.u-mb-4(src='@/assets/images/pages/icon-pencil.svg')
 							Span Edit
 				//- step 3 (Schedule Form)`
 				FormReviewSchedule(
-					v-show="reviewStep === 3"
+					v-show="reviewStep == 3"
 					@scheduleSave="scheduleSave"
 				)
 				//- end step 3 (Schedule Form)
@@ -71,8 +71,8 @@
 							Span Edit
 				//- step 4 ( Reviewer form )
 				FormReviewReviewer(
-					v-if="reviewStep === 4"
-					:members="dataReview.members"
+					v-if="reviewStep == 4"
+					:members_attributes="dataReview.members_attributes"
 					ref="FormReviewer"
 				)
 

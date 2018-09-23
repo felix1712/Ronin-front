@@ -2,28 +2,30 @@
 
 <script>
 	import axios from 'axios';
+	import Loader from '@/components/Loaders/Loader.vue';
 	import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/ButtonFooter.vue';
 	export default{
 		name: 'FormReviewQuestion',
 
 		data() {
 			return {
+				isLoading: true,
 				templates: null,
 				templateDetails: null,
 				selectedTemplate: '',
 				//post data
-				template: {
-					id: null,
-					name: '', 
+				question_set: {
+					title: '',
+					categories_attributes:[],
 				}
 			}
 		},
 
 		methods: {
 			getDetailTemplate(data) {
-				this.$parent.api.get('review/template/'+data )
+				this.api.get('review/template/'+data )
 				.then(response => {
-					this.templateDetails = response.data.data;
+					this.templateDetails = this.$normalize.deserialize(response.data);
 				})
 				.catch(e =>{
 					console.log(e);
@@ -37,7 +39,7 @@
 			},
 
 			deleteTemplate(data, index){
-				this.$parent.api.delete('review/template/'+ data)
+				this.api.delete('review/template/'+ data)
 				.then(response => {
 					this.templates.splice(index, 1);
 					this.$toast.open({
@@ -54,55 +56,63 @@
 			},
 
 			setTemplate() {
-				if(this.templateDetails != null){
-					this.template.name = this.templateDetails.attributes.title;
-					this.template.id = this.templateDetails.attributes.id;
-					// this.templateDetails.review_categories.forEach((arr) => {
-					// 	const detailCategories = {
-					// 		name: arr.name,
-					// 		description: arr.description,
-					// 		is_weight: arr.use_weight,
-					// 		weight: arr.weight,
-					// 		questions:[],
-					// 	};
+				console.log(this.templateDetails);
+				this.question_set.title = this.templateDetails.title;
+				this.templateDetails.category_templates.data.forEach((arr) => {
+					const detailCategories = {
+						title: arr.title,
+						description: arr.description,
+						use_weight: arr.use_weight,
+						weight: arr.weight,
+						question_attributes:[],
+						questions:[],
+					};
 
-					// 	this.dataReview.template.categories.push(detailCategories);
+					this.question_set.categories_attributes.push(detailCategories);
 
-					// 	arr.review_indicators.forEach(arr2 => {
-					// 		const detailQuestions = {
-					// 			name: arr2.name,
-					// 			description: arr2.description,
-					// 			is_weight: arr2.use_weight,
-					// 			weight: arr2.weight,
-					// 			can_comment: arr2.can_comment,
-					// 			answer_type: arr2.answer_type,
-					// 			ratings:[],
-					// 		};
+					arr.question_templates.data.forEach(arr2 => {
+						const questionAttributes = {
+							title: arr2.title,
+							description: arr2.description,
+							use_weight: arr2.use_weight,
+							weight: arr2.weight,
+							kind:arr2.kind,
+							rating_attributes:[],
+							questions:[],
+						};
 
-					// 		detailCategories.questions.push(detailQuestions);
+						let question = "";
+						if(arr2.kind == "rating"){
+							arr2.rating_templates.data.forEach(arr3 => {
+								const ratingAttributes = {
+									// value: arr3.value,
+									description: arr3.description,
+								}
 
-					// 		if(arr2.answer_type == "rating"){
-					// 			arr2.review_ratings.forEach(arr3 => {
-					// 				const detailRatings = {
-					// 					value: arr3.value,
-					// 					description: arr3.description,
-					// 				}
+								questionAttributes.rating_attributes.push(ratingAttributes);
 
-					// 				detailQuestions.ratings.push(detailRatings);
-					// 			})
-					// 		}
-					// 	})
-					// });
-				}
+								question ={
+									value: arr3.value,									
+								};
+								questionAttributes.questions.push(question);
+
+							});
+
+							// detailCategories.questions.push(question);
+						};
+
+
+						detailCategories.question_attributes.push(questionAttributes);
+
+					});
+				});
 			},
 
 			validateBeforeSubmit() {
 				this.$validator.validateAll().then((result) => {
 					if (result) {
 						this.setTemplate();
-						this.$emit('questionSave', {id: this.template.id, name: this.template.name})
-						this.$parent.reviewStep+=1;
-						this.$parent.editReview+=1;
+						this.$emit('questionSave', {question_set: this.question_set})
 					}
 				});
 			},
@@ -123,9 +133,9 @@
 				this.api.get('review/template')
 				.then(response => {
 					this.templates = response.data.data;
-					console.log(this.templates);
 					this.selectedTemplate = this.templates[0].attributes.id;
 					this.getDetailTemplate(this.selectedTemplate);
+					this.isLoading=false;
 				})
 				.catch(e =>{
 					// console.log(e);
@@ -135,6 +145,7 @@
 		},
 
 		components: {
+			Loader,
 			ButtonFooter
 		}
 	};

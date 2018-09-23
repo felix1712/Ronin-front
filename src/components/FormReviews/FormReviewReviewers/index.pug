@@ -1,4 +1,4 @@
-form(@submit.prevent="validateBeforeSubmit" v-if="this.$parent.reviewStep == 4")
+form(@submit.prevent="validateBeforeSubmit")
 	.p-prfrm-create__list-contents.u-mt-30
 		.c-row
 			.c-col-6
@@ -31,6 +31,6 @@ form(@submit.prevent="validateBeforeSubmit" v-if="this.$parent.reviewStep == 4")
 									| 360 peer review
 
 		SelectReviewer(
-			:members="members"
+			:members_attributes="members_attributes"
 			ref="SelectReviewerChild"
 		)

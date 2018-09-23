@@ -1,5 +1,4 @@
 form(@submit.prevent="validateBeforeSubmit")
-	span {{selectedMembers}}
 	.p-prfrm-create__list-contents.u-mt-30
 		.c-row.u-cpointer
 			.c-col-6.jc-tooltip-mark.u-mb-20
@@ -31,6 +30,10 @@ form(@submit.prevent="validateBeforeSubmit")
 
 		.c-row.u-cpointer.jc-tooltip(data-content="Filtering staff to be reviewed.", data-pos="custom-row")
 			.c-col-6.jc-tooltip-mark.u-mb-20
+				Loader(
+					:isLoading="isLoading"
+					refs="loader"
+				)
 				.field
 					label Staff to be reviewed
 						.u-cl-red.u-dib *
@@ -224,7 +227,7 @@ form(@submit.prevent="validateBeforeSubmit")
 									data-vv-name="select_reviewee"
 									v-if="reviewedMethod == 4"
 									hideSelected=true
-									@input="reviewedSelectMemberId",
+									@input="reviewedSelectMemberId(selectReviewedMembers)",
 								)
 									template(slot="tag", slot-scope="props")
 										span.custom__tag
@@ -263,6 +266,5 @@ form(@submit.prevent="validateBeforeSubmit")
 									data-vv-validate-on="none"
 									:value="employeeList.id"
 									:id="employeeList.id"
-									@change="checkboxMember($event)"
 									)
 		ButtonFooter
