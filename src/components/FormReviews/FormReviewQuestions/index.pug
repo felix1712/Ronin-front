@@ -16,7 +16,7 @@ form(@submit.prevent="validateBeforeSubmit")
                     type="is-dark"
           )
             a.p-prfrm-templatelist__item.is-new
-              img(src="@/assets/images/pages/icon-add-blue.svg", alt="")
+              img(src="@/assets/images/pages/new-icon/icon-add-blue.svg", alt="")
               span.u-ml-24 New template
           .p-prfrm-templatelist__item-wrapper(v-for="(template, index) in templates")
             b-radio.p-prfrm-templatelist__item(
@@ -37,14 +37,14 @@ form(@submit.prevent="validateBeforeSubmit")
                         :to="{ name: 'PreviewTemplate', params: {id: template.attributes.id} }"
                         target="_blank"
                         )
-                        img(src="@/assets/images/pages/icon-preview-grey.svg", alt="")
+                        img(src="@/assets/images/pages/new-icon/icon-preview-grey.svg", alt="")
                       a.u-ml-20(href="")
-                        img(src="@/assets/images/pages/icon-pencil.svg", alt="")
+                        img(src="@/assets/images/pages/new-icon/icon-edit-grey.svg", alt="")
                   .level-right
                     .level-item
                       b-dropdown.custom-popover(position="is-top-left")
                         a.c-btn--ghost.c-btn--xs.icon-delete(slot="trigger" @click="dropDownPosition($event)" v-if="template.used == 0")
-                          img(src="@/assets/images/pages/icon-delete-grey.svg", alt="")
+                          img(src="@/assets/images/pages/new-icon/icon-delete-grey.svg", alt="")
                         b-dropdown-item
                           h3.c-smb-15.u-mb-20 Delete confirmation
                           p.c-smb-15 Are you sure to delete this template?

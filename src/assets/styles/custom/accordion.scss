@@ -27,20 +27,23 @@
         height: 32px;
 	      color: #9a9c9d;
 	      font-weight: 700;
+        text-align: center;
         &::after {
-          position: absolute;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          // position: absolute;
+          // left: 50%;
+          // transform: translate(-50%, -50%);
         }
 	      &.icon-plus{
 	      	&::after{
-            top: calc(50% + 1px);
+            // top: calc(50% + 1px);
+            position: relative;
+            top: 6px;
 		        content: url(../images/pages/icon-plus.svg);
 		      }
 	      }
         &.icon-minus{
           &::after{
-            top: calc(50% - 4px);
+            // top: calc(50% - 4px);
             content: url(../images/pages/icon-minus.svg);
           }
         }

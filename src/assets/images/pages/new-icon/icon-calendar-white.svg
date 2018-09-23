@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon / calendar-white</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M2,4 L2,17 L16,17 L16,4 L2,4 Z M2,2 L16,2 C17.1045695,2 18,2.8954305 18,4 L18,17 C18,18.1045695 17.1045695,19 16,19 L2,19 C0.8954305,19 1.3527075e-16,18.1045695 0,17 L0,4 C-1.3527075e-16,2.8954305 0.8954305,2 2,2 Z M1,9 C0.44771525,9 0,8.55228475 0,8 C0,7.44771525 0.44771525,7 1,7 L10,7 C10.5522847,7 11,7.44771525 11,8 C11,8.55228475 10.5522847,9 10,9 L1,9 Z M17,7 C17.5522847,7 18,7.44771525 18,8 C18,8.55228475 17.5522847,9 17,9 L14,9 C13.4477153,9 13,8.55228475 13,8 C13,7.44771525 13.4477153,7 14,7 L17,7 Z M7,5.07692308 C7,5.58672438 6.55228475,6 6,6 C5.44771525,6 5,5.58672438 5,5.07692308 L5,0.923076923 C5,0.413275616 5.44771525,0 6,0 C6.55228475,0 7,0.413275616 7,0.923076923 L7,5.07692308 Z M13,5.07692308 C13,5.58672438 12.5522847,6 12,6 C11.4477153,6 11,5.58672438 11,5.07692308 L11,0.923076923 C11,0.413275616 11.4477153,0 12,0 C12.5522847,0 13,0.413275616 13,0.923076923 L13,5.07692308 Z" id="path-1"></path>
+    </defs>
+    <g id="icon-/-calendar-white" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.900000036">
+        <g id="icon-calendar" transform="translate(1.000000, 0.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#8A8E91" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="color/-white" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero">
+                <g transform="translate(-1.000000, 0.000000)">
+                    <rect x="0" y="0" width="20" height="20"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

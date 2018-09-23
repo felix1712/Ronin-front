@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon / reset-white</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1.29289322,13.2928932 L6.58578644,8 L1.29289322,2.70710678 C0.902368927,2.31658249 0.902368927,1.68341751 1.29289322,1.29289322 C1.68341751,0.902368927 2.31658249,0.902368927 2.70710678,1.29289322 L8,6.58578644 L13.2928932,1.29289322 C14.2357023,0.350084177 15.6499158,1.76429774 14.7071068,2.70710678 L9.41421356,8 L14.7071068,13.2928932 C15.0976311,13.6834175 15.0976311,14.3165825 14.7071068,14.7071068 C14.3165825,15.0976311 13.6834175,15.0976311 13.2928932,14.7071068 L8,9.41421356 L2.70710678,14.7071068 C1.76429774,15.6499158 0.350084177,14.2357023 1.29289322,13.2928932 Z" id="path-1"></path>
+    </defs>
+    <g id="icon-/-reset-white" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-reset" transform="translate(2.000000, 2.000000)">
+            <g id="color">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#8A8E91" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="color/-white" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(-2.000000, -2.000000)">
+                        <rect x="0" y="0" width="20" height="20"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

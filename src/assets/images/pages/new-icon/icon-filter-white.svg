@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon / filter-white</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10,14 L15,14 C15.5522847,14 16,14.4477153 16,15 C16,15.5522847 15.5522847,16 15,16 L10,16 L10,17 C10,17.5522847 9.55228475,18 9,18 C8.44771525,18 8,17.5522847 8,17 L8,13 C8,12.4477153 8.44771525,12 9,12 C9.55228475,12 10,12.4477153 10,13 L10,14 Z M3,8 L3,7 C3,6.44771525 3.44771525,6 4,6 C4.55228475,6 5,6.44771525 5,7 L5,11 C5,11.5522847 4.55228475,12 4,12 C3.44771525,12 3,11.5522847 3,11 L3,10 L1,10 C0.44771525,10 0,9.55228475 0,9 C0,8.44771525 0.44771525,8 1,8 L3,8 Z M13,2 L15,2 C15.5522847,2 16,2.44771525 16,3 C16,3.55228475 15.5522847,4 15,4 L13,4 L13,5 C13,5.55228475 12.5522847,6 12,6 C11.4477153,6 11,5.55228475 11,5 L11,1 C11,0.44771525 11.4477153,0 12,0 C12.5522847,0 13,0.44771525 13,1 L13,2 Z M1,4 C0.44771525,4 0,3.55228475 0,3 C0,2.44771525 0.44771525,2 1,2 L9,2 C9.55228475,2 10,2.44771525 10,3 C10,3.55228475 9.55228475,4 9,4 L1,4 Z M7,10 C6.44771525,10 6,9.55228475 6,9 C6,8.44771525 6.44771525,8 7,8 L15,8 C15.5522847,8 16,8.44771525 16,9 C16,9.55228475 15.5522847,10 15,10 L7,10 Z M1,16 C0.44771525,16 0,15.5522847 0,15 C0,14.4477153 0.44771525,14 1,14 L6,14 C6.55228475,14 7,14.4477153 7,15 C7,15.5522847 6.55228475,16 6,16 L1,16 Z" id="path-1"></path>
+    </defs>
+    <g id="icon-/-filter-white" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-filter" transform="translate(2.000000, 1.000000)">
+            <g id="color">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Combined-Shape" fill="#8A8E91" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="color/-white" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(-2.000000, -1.000000)">
+                        <rect x="0" y="0" width="20" height="20"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
