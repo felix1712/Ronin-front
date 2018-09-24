@@ -44,6 +44,8 @@
         &.icon-minus{
           &::after{
             // top: calc(50% - 4px);
+            position: relative;
+            top: -1px;
             content: url(../images/pages/icon-minus.svg);
           }
         }
