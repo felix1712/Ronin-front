@@ -31,13 +31,13 @@
 				if(data2.length > 0){
 					data.weightRemaining = 100;
 					data2.forEach((value, key, arr) => {
-						value.attributes.is_weight = Math.floor(100 / data2.length);
+						value.attributes.weight = Math.floor(100 / data2.length);
 						value.attributes.is_self_review = 0;
 						value.attributes.user_id = value.attributes.id;
-						data.weightRemaining = parseInt(data.weightRemaining) - parseInt(value.attributes.is_weight);
+						data.weightRemaining = parseInt(data.weightRemaining) - parseInt(value.attributes.weight);
 						if(data.weightRemaining > 0 && data.weightRemaining < 5){
 						 	if (Object.is(arr.length - 1, key)) {
-						 		value.attributes.is_weight += data.weightRemaining;
+						 		value.attributes.weight += data.weightRemaining;
 						 		data.weightRemaining -= data.weightRemaining;
 				      }
 						}
@@ -92,7 +92,7 @@
 
 					if(!found){
 						if(data2 && data2.id){
-							getDataReviewer[0].is_weight = 0;
+							getDataReviewer[0].weight = 0;
 							getDataReviewer[0].user_id = data2.id;
 							getDataReviewer[0].is_self_review = 0;
 						};
@@ -115,7 +115,12 @@
 				if(event.target.checked == true){
 					const dataSelfReviewer = this.employeeMember.filter(function(e){
 						return e.attributes.id == data.user_id
-					}).map(e => {return e.attributes});
+					}).map(e => {
+						e.attributes.user_id = e.attributes.id;
+						e.attributes.is_self_review = 0;
+						e.attributes.weight = 0;
+						return e.attributes;
+					});
 					Array.prototype.unshift.apply(data.reviewers_attributes,dataSelfReviewer);
 				} else {
 					data.reviewers_attributes = data.reviewers_attributes.filter(item => {
@@ -125,11 +130,11 @@
 			},
 
 			weightRemaining(data, data2){
-				if(data.is_weight <= 100 ){
+				if(data.weight <= 100 ){
 					data2.weightRemaining = 100;
 					let weightCount = data2.reviewers_attributes.map(e => {
-						if(e.is_weight){
-							return parseInt(e.is_weight)
+						if(e.weight){
+							return parseInt(e.weight)
 						} else {
 							return 0;
 						}
@@ -143,8 +148,8 @@
 						type: 'is-danger'
 					})
 
-					data2.weightRemaining = data2.weightRemaining + parseInt(data.is_weight);
-					data.is_weight = 0;
+					data2.weightRemaining = data2.weightRemaining + parseInt(data.weight);
+					data.weight = 0;
 				}
 			},
 		},

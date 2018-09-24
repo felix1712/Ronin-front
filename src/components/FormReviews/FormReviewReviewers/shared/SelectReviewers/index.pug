@@ -3,7 +3,7 @@
     :isLoading="isLoading"
     refs="loader"
   )
-  .c-row
+  .c-row(v-if="members_attributes")
     template(v-for="(dataMember, item) in members_attributes")
       .c-col-12
         .c-row
@@ -41,7 +41,7 @@
                           type="text"
                           :name="'weight'+item"
                           maxlength="3"
-                          v-model="dataReviewer.is_weight"
+                          v-model="dataReviewer.weight"
                           v-validate="'between:1,100'"
                           @change="weightRemaining(dataReviewer, dataMember)"
                           )
