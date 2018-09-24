@@ -11,8 +11,5 @@
             <use xlink:href="#path-1"></use>
         </mask>
         <use id="Combined-Shape" fill="#8A8E91" fill-rule="nonzero" xlink:href="#path-1"></use>
-        <g id="color-/-grey" mask="url(#mask-2)" fill="#8A8E91" fill-rule="nonzero">
-            <rect x="0" y="0" width="20" height="20"></rect>
-        </g>
     </g>
 </svg>
