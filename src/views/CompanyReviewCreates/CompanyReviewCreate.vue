@@ -135,8 +135,8 @@
 						let sumWeights = this.dataReview.members_attributes.map(data =>{
 							if(data.reviewers_attributes){
 								return data.reviewers_attributes.map(e =>{ 
-									if(e.is_weight){
-										return parseInt(e.is_weight);
+									if(e.weight){
+										return parseInt(e.weight);
 									} else {
 										return 0
 									}
