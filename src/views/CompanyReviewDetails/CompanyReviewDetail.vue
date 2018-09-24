@@ -21,7 +21,7 @@
       }
     },
 
-    created (){
+    mounted (){
       this.$emit(`update:layout`, MainLayouts);
       const checkToken = this.$cookie.get('AuthToken');
       const checkRefreshToken = this.$cookie.get('AuthRefresh');
@@ -36,16 +36,24 @@
 
         this.listId = this.$route.params.id;
 
+        this.apiReviewDetail();
+      }
+    },
+
+    methods: {
+      apiReviewDetail(){
         this.api.get('review/company-review/'+this.listId)
         .then(response => {
-          this.detailCompanyReview = this.$normalize.deserialize(response.data);
-          this.detailCompanyReviewMember = this.$normalize.deserialize(response.data).members.data;
-          console.log(this.detailCompanyReview);
-          // this.normalize = this.$normalize(response.data);
-          // this.normalizeData = Object.values(this.normalize.cycle);
-          // this.normalizeDataMember = Object.values(this.normalize.member);
-          // this.normalizeDataReviewer = Object.values(this.normalize.reviewer);
-          // this.normalizeDataUser = Object.values(this.normalize.user);
+          if(response.data.data.token){
+            this.token = response.data.data.token;
+            this.refresh = response.data.data.refreshToken;
+            this.$cookie.set('AuthToken', 'Bearer '+this.token);
+            this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh);
+            this.apiReviewDetail();
+          } else {
+            this.detailCompanyReview = this.$normalize.deserialize(response.data);
+            this.detailCompanyReviewMember = this.$normalize.deserialize(response.data).members.data;
+          }
         })
         .catch(e => {
           // this.errors.push(e);

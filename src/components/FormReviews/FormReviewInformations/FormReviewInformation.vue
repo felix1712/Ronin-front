@@ -32,6 +32,32 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 			}
 		},
 
+		components: {
+			Loader,
+			ButtonFooter,
+		},
+
+		mounted() {
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
+				this.api = axios.create({
+					baseURL: process.env.VUE_APP_API,
+					headers: {
+						Authorization: this.$cookie.get('AuthToken'),
+						Refresh: this.$cookie.get('AuthRefresh'),
+					},
+				});
+
+				this.apiOrganizations();
+
+				this.apiJobPositions();
+
+				this.apiMembers();
+				
+			}
+		},
+
 		methods: {
 			//global function
 			changeMemberSelectedType(e) {
@@ -59,6 +85,82 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 
 					this.form.members_attributes.push(addMembers);
 				}.bind(this));
+			},
+
+			// api function
+
+			apiOrganizations(){
+				this.api.get('review/organizations')
+				.then(response => {
+					if(response.data.data.token){
+						this.token = response.data.data.token;
+						this.refresh = response.data.data.refreshToken;
+						this.$cookie.set('AuthToken', 'Bearer '+this.token);
+						this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh);
+						this.apiOrganizations();
+					} else {
+						this.selectedOrganization = response.data.data.map(data => {
+							return{
+								id: data.attributes.id,
+								name: data.attributes.name
+							}
+						});
+						this.selectedOrganizationMember = response.data.data;
+						// console.log(this.selectedOrganization)
+					}
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+			},
+
+			apiJobPositions(){
+				this.api.get('review/job_positions')
+				.then(response => {
+					this.selectedJobTitle = response.data.data.map(data => {
+						return{
+							id: data.attributes.id,
+							name: data.attributes.title,
+						}
+					});
+
+					this.selectedJobTitleMember = response.data.data;
+					// console.log(response.data);
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+			},
+
+			apiMembers() {
+				this.api.get('review/members')
+				.then(response => {
+					this.employeeMember = response.data.data;
+					this.reviewedMember = response.data.data.map(member => {
+						return{
+							id: member.attributes.id,
+							name: member.attributes.name
+						}
+					})
+
+					this.allSelectedMembers = response.data.data.map(member => {
+						return member.attributes.id
+					})
+					this.selectedMembers = this.allSelectedMembers;
+					this.addMember();
+					this.isLoading=false;
+
+					this.moreReviewerSelect = response.data.data.map(member => {
+						return{
+							id: member.attributes.id,
+							name: member.attributes.name
+						}
+					})
+					// console.log(response.data);
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
 			},
 
 			//select organization function
@@ -236,85 +338,6 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 
 						this.$emit('informationSave', {title: this.form.title, description: this.form.description, members_attributes: this.form.members_attributes})
 					}
-				});
-			}
-		},
-
-		components: {
-			Loader,
-			ButtonFooter,
-		},
-
-		mounted() {
-			const checkToken = this.$cookie.get('AuthToken');
-			const checkRefreshToken = this.$cookie.get('AuthRefresh');
-			if(checkToken != null && checkRefreshToken != null){
-				this.api = axios.create({
-					baseURL: process.env.VUE_APP_API,
-					headers: {
-						Authorization: this.$cookie.get('AuthToken'),
-						Refresh: this.$cookie.get('AuthRefresh'),
-					},
-				});
-
-				this.api.get('review/organizations')
-				.then(response => {
-					this.selectedOrganization = response.data.data.map(data => {
-						return{
-							id: data.attributes.id,
-							name: data.attributes.name
-						}
-					});
-					this.selectedOrganizationMember = response.data.data;
-					// console.log(this.selectedOrganization)
-				})
-				.catch(e => {
-					// this.errors.push(e);
-				});
-
-				this.api.get('review/members')
-				.then(response => {
-					this.employeeMember = response.data.data;
-					this.reviewedMember = response.data.data.map(member => {
-						return{
-							id: member.attributes.id,
-							name: member.attributes.name
-						}
-					})
-
-					this.allSelectedMembers = response.data.data.map(member => {
-						return member.attributes.id
-					})
-					this.selectedMembers = this.allSelectedMembers;
-					this.addMember();
-					this.isLoading=false;
-
-					this.moreReviewerSelect = response.data.data.map(member => {
-						return{
-							id: member.attributes.id,
-							name: member.attributes.name
-						}
-					})
-					// console.log(response.data);
-				})
-				.catch(e => {
-					// this.errors.push(e);
-				});
-
-				this.api.get('review/job_positions')
-				.then(response => {
-					this.selectedJobTitle = response.data.data.map(data => {
-						return{
-							id: data.attributes.id,
-							name: data.attributes.title,
-						}
-					});
-
-					this.selectedJobTitleMember = response.data.data;
-					// console.log(response.data);
-				})
-				.catch(e => {
-					// this.errors.push(e);
 				});
 			}
 		},

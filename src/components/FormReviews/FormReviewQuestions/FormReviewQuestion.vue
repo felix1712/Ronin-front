@@ -21,7 +21,45 @@
 			}
 		},
 
+		mounted() {
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
+				this.api = axios.create({
+					baseURL: process.env.VUE_APP_API,
+					headers: {
+						Authorization: this.$cookie.get('AuthToken'),
+						Refresh: this.$cookie.get('AuthRefresh'),
+					},
+				});
+				this.apiTemplate();
+			}
+		},
+
 		methods: {
+			// api template
+			apiTemplate(){
+				this.api.get('review/template')
+				.then(response => {
+					if(response.data.data.token){
+						this.token = response.data.data.token;
+						this.refresh = response.data.data.refreshToken;
+						this.$cookie.set('AuthToken', 'Bearer '+this.token);
+						this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh);
+						this.apiTemplate();
+					} else {
+						this.templates = response.data.data;
+						this.selectedTemplate = this.templates[0].attributes.id;
+						this.getDetailTemplate(this.selectedTemplate);
+						this.isLoading=false;
+					}
+				})
+				.catch(e =>{
+					// console.log(e);
+				});
+			},
+
+			// fucntion template
 			getDetailTemplate(data) {
 				this.api.get('review/template/'+data )
 				.then(response => {
@@ -115,32 +153,6 @@
 					}
 				});
 			},
-		},
-
-		mounted() {
-			const checkToken = this.$cookie.get('AuthToken');
-			const checkRefreshToken = this.$cookie.get('AuthRefresh');
-			if(checkToken != null && checkRefreshToken != null){
-				this.api = axios.create({
-					baseURL: process.env.VUE_APP_API,
-					headers: {
-						Authorization: this.$cookie.get('AuthToken'),
-						Refresh: this.$cookie.get('AuthRefresh'),
-					},
-				});
-
-				this.api.get('review/template')
-				.then(response => {
-					this.templates = response.data.data;
-					this.selectedTemplate = this.templates[0].attributes.id;
-					this.getDetailTemplate(this.selectedTemplate);
-					this.isLoading=false;
-				})
-				.catch(e =>{
-					// console.log(e);
-				});
-
-			}
 		},
 
 		components: {

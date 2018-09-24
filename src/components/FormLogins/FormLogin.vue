@@ -1,4 +1,4 @@
-<template lang="pug" src="./index.pug"></template>
+AuthRefresh<template lang="pug" src="./index.pug"></template>
 
 <script>
 	import { loginService } from '@/api/main-service.js';
@@ -35,8 +35,8 @@
 							if(response.data.status == 200){
 								this.token = response.data.data.token;
 								this.refresh = response.data.data.refreshToken;
-								this.$cookie.set('AuthToken', 'Bearer '+this.token, { expires: '59m' });
-								this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh, { expires: '59m' });
+								this.$cookie.set('AuthToken', 'Bearer '+this.token);
+								this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh);
 								this.$parent.$emit('loadingStatus', {isLoading: false});
 								this.$router.push('/');
 							} else {

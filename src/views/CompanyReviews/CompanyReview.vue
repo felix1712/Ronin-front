@@ -23,7 +23,7 @@
     created (){
       this.$emit(`update:layout`, MainLayouts);
       this.$emit('loadingStatus', {isLoading: true});
-    },
+    },    
 
     mounted() {
       const checkToken = this.$cookie.get('AuthToken');
@@ -37,10 +37,24 @@
           },
         });
 
+        this.apiReviewList();
+      }
+    },
+
+    methods: {
+      apiReviewList(){
         this.api.get('review/company-review')
         .then(response => {
-          this.listCompanyReview = this.$normalize.deserialize(response.data).data;
-          this.$emit('loadingStatus', {isLoading: false});
+          if(response.data.data.token){
+            this.token = response.data.data.token;
+            this.refresh = response.data.data.refreshToken;
+            this.$cookie.set('AuthToken', 'Bearer '+this.token);
+            this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh);
+            this.apiReviewList();
+          } else {
+            this.listCompanyReview = this.$normalize.deserialize(response.data).data;
+            this.$emit('loadingStatus', {isLoading: false});
+          }
         })
         .catch(e => {
           this.$emit('loadingStatus', {isLoading: false});

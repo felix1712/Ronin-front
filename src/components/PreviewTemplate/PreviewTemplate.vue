@@ -31,25 +31,38 @@ import axios from 'axios';
 
 				this.templateId = this.$route.params.id;
 
-				this.api.get('review/template/'+this.templateId)
-				.then(response => {
-					this.template = this.$normalize.deserialize(response.data).category_templates.data;
-					console.log(this.template);
-					console.log(response)
-				})
-				.catch(e =>{
-					console.log(e);
-				});
+				this.apiPreviewTemplate();
 			}
 		},
 
 		methods: {
+			//global function
 			closeWindow(){
 				window.close();
 			},
 
 			accToggle(){
 				this.isAccActive = !this.isAccActive
+			},
+
+			//api function
+
+			apiPreviewTemplate(){
+				this.api.get('review/template/'+this.templateId)
+				.then(response => {
+					if(response.data.data.token){
+            this.token = response.data.data.token;
+            this.refresh = response.data.data.refreshToken;
+            this.$cookie.set('AuthToken', 'Bearer '+this.token);
+            this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh);
+            this.apiPreviewTemplate();
+          } else {
+						this.template = this.$normalize.deserialize(response.data).category_templates.data;
+					};
+				})
+				.catch(e =>{
+					console.log(e);
+				});
 			}
 		},
   };

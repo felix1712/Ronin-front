@@ -26,7 +26,63 @@
 			}
 		},
 
+		mounted() {
+			const checkToken = this.$cookie.get('AuthToken');
+			const checkRefreshToken = this.$cookie.get('AuthRefresh');
+			if(checkToken != null && checkRefreshToken != null){
+				this.api = axios.create({
+					baseURL: process.env.VUE_APP_API,
+					headers: {
+						Authorization: this.$cookie.get('AuthToken'),
+						Refresh: this.$cookie.get('AuthRefresh'),
+					},
+				});
+
+				this.apiReviewerMembers();
+			}
+		},
+
 		methods: {
+			// api get reviewer
+			apiReviewerMembers(){
+				this.api.get('review/members')
+				.then(response => {
+					if(response.data.data.token){
+						this.token = response.data.data.token;
+						this.refresh = response.data.data.refreshToken;
+						this.$cookie.set('AuthToken', 'Bearer '+this.token);
+						this.$cookie.set('AuthRefresh', 'Bearer '+this.refresh);
+						this.apiReviewerMembers();
+					} else {
+						this.employeeMember = response.data.data;
+						this.reviewedMember = response.data.data.map(member => {
+							return{
+								id: member.attributes.id,
+								name: member.attributes.name
+							}
+						})
+
+						this.allSelectedMembers = response.data.data.map(member => {
+							return member.attributes.id
+						})
+						this.selectedMembers = this.allSelectedMembers;
+
+						this.moreReviewerSelect = response.data.data.map(member => {
+							return{
+								id: member.attributes.id,
+								name: member.attributes.name
+							}
+						})
+						this.loadingHide();
+						// console.log(response.data);
+					}
+				})
+				.catch(e => {
+					// this.errors.push(e);
+				});
+			},
+
+			// function set reviewer
 			setReviewer(data, data2) {
 				if(data2.length > 0){
 					data.weightRemaining = 100;
@@ -160,47 +216,6 @@
 
 			loadingHide() {
 				this.isLoading = false;
-			}
-		},
-
-		mounted() {
-			const checkToken = this.$cookie.get('AuthToken');
-			const checkRefreshToken = this.$cookie.get('AuthRefresh');
-			if(checkToken != null && checkRefreshToken != null){
-				this.api = axios.create({
-					baseURL: process.env.VUE_APP_API,
-					headers: {
-						Authorization: this.$cookie.get('AuthToken'),
-						Refresh: this.$cookie.get('AuthRefresh'),
-					},
-				});
-				this.api.get('review/members')
-				.then(response => {
-					this.employeeMember = response.data.data;
-					this.reviewedMember = response.data.data.map(member => {
-						return{
-							id: member.attributes.id,
-							name: member.attributes.name
-						}
-					})
-
-					this.allSelectedMembers = response.data.data.map(member => {
-						return member.attributes.id
-					})
-					this.selectedMembers = this.allSelectedMembers;
-
-					this.moreReviewerSelect = response.data.data.map(member => {
-						return{
-							id: member.attributes.id,
-							name: member.attributes.name
-						}
-					})
-					this.loadingHide();
-					// console.log(response.data);
-				})
-				.catch(e => {
-					// this.errors.push(e);
-				});
 			}
 		},
 
