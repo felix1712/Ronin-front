@@ -16,6 +16,7 @@
 				reviewStep: 1,
 				editReview: 1,
 				api: null,
+				dataLoaded: false,
 				dataReview: {
 					titles: '',
 					description: '',
@@ -38,6 +39,7 @@
 				this.dataReview.titles = data.title;
 				this.dataReview.description = data.description;
 				this.dataReview.members_attributes = data.members_attributes;
+				this.dataLoaded = true;
 				if(this.reviewStep == 1){
 					this.reviewStep+=1;
 				}
@@ -70,6 +72,9 @@
 			},
 
 			editReviewStep(data) {
+				if(data == 1){
+					this.dataLoaded = false;
+				}
 				this.$validator.validateAll().then((result) => {
 					if (result) {
 						if(this.reviewStep == 1){

@@ -77,7 +77,7 @@
 			},
 
 			addReviewer(data, data2, data3) {
-				if(data2.length > 0 || data2.id){
+				if(data2.id){
 					const getDataReviewer = this.employeeMember.filter(item => {
 						return item.attributes.id == this.moreReviewerMember.id
 					}).map(item => {return item.attributes});
@@ -160,7 +160,6 @@
 						Refresh: this.$cookie.get('AuthRefresh'),
 					},
 				});
-
 				this.api.get('review/members')
 				.then(response => {
 					this.employeeMember = response.data.data;

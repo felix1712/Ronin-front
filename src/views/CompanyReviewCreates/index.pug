@@ -71,8 +71,9 @@
 							Span Edit
 				//- step 4 ( Reviewer form )
 				FormReviewReviewer(
-					v-if="reviewStep == 4"
+					v-if="reviewStep == 4 && dataLoaded"
 					:members_attributes="dataReview.members_attributes"
+					:dataLoaded="dataLoaded"
 					ref="FormReviewer"
 				)
 

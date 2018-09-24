@@ -7,6 +7,9 @@
 		props: {
 			members_attributes: {
 				type: Array,
+			},
+			dataLoaded: {
+				type: Boolean,
 			}
 		},
 
@@ -44,7 +47,9 @@
 		},
 
 		mounted(){
-			this.$refs.SelectReviewerChild.getReviewer();
+			if(this.dataLoaded){
+				this.$refs.SelectReviewerChild.getReviewer();
+			}
 		},
 
 		components: {
