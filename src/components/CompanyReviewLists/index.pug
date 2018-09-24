@@ -1,4 +1,11 @@
 div
+	.p-prfrm-content--blank(v-if="!listCompanyReview")
+		img(src="@/assets/images/pages/icon-cup.svg", alt='')
+		h2.c-str-26.u-my-18 Nothing has been reviews
+		p.c-reg-15
+			| There seems no review that you can view right now.
+			br
+			| If there's any review to be view then we will notify you immediately.
 	.c-list.c-list--review
 		.c-list__item.is-showonhover(v-for="list in listCompanyReview")
 			.c-list__detail.u-py-10

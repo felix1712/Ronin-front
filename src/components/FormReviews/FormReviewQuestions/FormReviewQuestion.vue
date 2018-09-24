@@ -56,7 +56,6 @@
 			},
 
 			setTemplate() {
-				console.log(this.templateDetails);
 				this.question_set.title = this.templateDetails.title;
 				this.templateDetails.category_templates.data.forEach((arr) => {
 					const detailCategories = {

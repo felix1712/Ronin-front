@@ -43,6 +43,13 @@
           this.$emit('loadingStatus', {isLoading: false});
         })
         .catch(e => {
+          this.$emit('loadingStatus', {isLoading: false});
+          this.$toast.open({
+            duration: 1500,
+            message: e.response.statusText,
+            position: 'is-top',
+            type: 'is-danger'
+          })
           // this.errors.push(e);
         });
       }
