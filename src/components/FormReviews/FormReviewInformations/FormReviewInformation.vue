@@ -47,6 +47,7 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 			},
 
 			addMember() {
+				this.form.members_attributes = [];
 				this.selectedMembers.forEach(function(value){
 					const addMembers = {
 						user_id: value,
@@ -56,19 +57,13 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 						weightRemaining: 100,
 					};
 
-					let checkDataArr = this.form.members_attributes.filter(item =>{
-						return item.user_id == value;
-					});
-
-					if (!checkDataArr.length) {
-						this.form.members_attributes.push(addMembers);
-					}
+					this.form.members_attributes.push(addMembers);
 				}.bind(this));
 			},
 
 			//select organization function
 			selectOrganizationChecked(data) {
-				if (data != null) {
+				if (data.length > 0) {
 					let getIdOrg = "";
 					getIdOrg = data.map(item =>{
 						return item.id
@@ -134,7 +129,7 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 
 			//select Job title function
 			selectJobTitleChecked(data) {
-				if(data != null){
+				if(data.length > 0){
 					let getIdJobTitle = "";
 					getIdJobTitle = data.map(item =>{
 						return item.id

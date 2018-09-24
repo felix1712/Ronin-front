@@ -49,6 +49,6 @@
 
 		components: {
 			SelectReviewer,
-		}
+		},
 	};
 </script>

@@ -77,28 +77,30 @@
 			},
 
 			addReviewer(data, data2, data3) {
-				const getDataReviewer = this.employeeMember.filter(item => {
-					return item.attributes.id == this.moreReviewerMember.id
-				}).map(item => {return item.attributes});
-				var found = false;
-				for (var i = 0, len = data.length; i < len; i++) {
-					for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) {
-						if (data[i].id === getDataReviewer[j].id) {
-							var found = true;
+				if(data2.length > 0 || data2.id){
+					const getDataReviewer = this.employeeMember.filter(item => {
+						return item.attributes.id == this.moreReviewerMember.id
+					}).map(item => {return item.attributes});
+					var found = false;
+					for (var i = 0, len = data.length; i < len; i++) {
+						for (var j = 0, len2 = getDataReviewer.length; j < len2; j++) {
+							if (data[i].id === getDataReviewer[j].id) {
+								var found = true;
+							}
 						}
 					}
-				}
 
-				if(!found){
-					if(data2 && data2.id){
-						getDataReviewer[0].is_weight = 0;
-						getDataReviewer[0].user_id = data2.id;
-						getDataReviewer[0].is_self_review = 0;
+					if(!found){
+						if(data2 && data2.id){
+							getDataReviewer[0].is_weight = 0;
+							getDataReviewer[0].user_id = data2.id;
+							getDataReviewer[0].is_self_review = 0;
+						};
+						// Array.prototype.push.apply(data,getDataReviewer);
+						data.push(getDataReviewer[0]);
 					};
-					// Array.prototype.push.apply(data,getDataReviewer);
-					data.push(getDataReviewer[0]);
-				};
-				this.moreReviewerMember = [];
+					this.moreReviewerMember = [];
+				}
 			},
 
 			removeReviewer(data, item){

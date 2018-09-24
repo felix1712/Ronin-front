@@ -73,12 +73,9 @@
 				this.$validator.validateAll().then((result) => {
 					if (result) {
 						if(this.reviewStep == 1){
-							this.$refs.FormInformation.addMember();
 							this.$refs.FormInformation.validateBeforeSubmit();
 						} else if(this.reviewStep == 4){
-							this.dataReview.members_attributes.forEach(data =>{
-								data.weightRemaining = 100;
-							})
+							
 						}
 						this.reviewStep = data;
 					}
@@ -127,7 +124,7 @@
 								message: 'Reviewer must be filled .',
 								position: 'is-top',
 								type: 'is-danger'
-							})
+							});
 						}
 
 						let sumWeights = this.dataReview.members_attributes.map(data =>{
@@ -169,15 +166,6 @@
 						}
 
 						if (result && !reviewerExist && checkWeight) {
-							// this.dataReview.members.map(data => {
-							// 	if(data.reviewers){
-							// 		const result = data.reviewers.map(item => item.id);
-							// 		data.reviewers = result;
-							// 		return data
-							// 	}
-							// });
-							console.log(this.dataReview);
-
 							this.api.post('/review/company-review', {
 								description: this.dataReview.description,
 								title: this.dataReview.titles,
@@ -207,7 +195,7 @@
 									})
 								}
 
-								this.$router.push('/');
+								this.$router.push({name:'CompanyReview'});
 							})
 							.catch(e => {
 								console.log(e);
