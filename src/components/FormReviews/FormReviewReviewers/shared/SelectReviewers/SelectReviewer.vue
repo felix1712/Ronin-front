@@ -54,6 +54,7 @@
 					.then(response => {
 						const dataReviewer = response.data.data;
 						this.setReviewer(data, dataReviewer);
+						this.loadingHide();
 					})
 					.catch(e => {
 						// this.errors.push(e);
@@ -152,6 +153,14 @@
 					data.weight = 0;
 				}
 			},
+
+			loadingShow() {
+				this.isLoading = true;
+			},
+
+			loadingHide() {
+				this.isLoading = false;
+			}
 		},
 
 		mounted() {
@@ -186,7 +195,7 @@
 							name: member.attributes.name
 						}
 					})
-					this.isLoading=false;
+					this.loadingHide();
 					// console.log(response.data);
 				})
 				.catch(e => {

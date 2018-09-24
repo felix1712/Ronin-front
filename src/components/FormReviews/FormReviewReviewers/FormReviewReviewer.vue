@@ -39,9 +39,8 @@
 					this.form.review_method = event.target.value;
 					this.review_method_get = 'threesixty';
 				}
-
 				this.$refs.SelectReviewerChild.$data.review_method_get = this.review_method_get;
-
+				this.$refs.SelectReviewerChild.loadingShow();
 				this.$refs.SelectReviewerChild.getReviewer();
 			},
 		},
