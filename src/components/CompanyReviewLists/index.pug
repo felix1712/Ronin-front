@@ -1,5 +1,5 @@
 div
-	.p-prfrm-content--blank(v-if="!listCompanyReview")
+	.p-prfrm-content--blank(v-show="listCompanyReview !== undefined")
 		img(src="@/assets/images/pages/icon-cup.svg", alt='')
 		h2.c-str-26.u-my-18 Nothing has been reviews
 		p.c-reg-15

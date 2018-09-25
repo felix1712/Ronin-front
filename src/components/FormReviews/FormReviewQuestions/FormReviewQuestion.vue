@@ -55,11 +55,17 @@
 					}
 				})
 				.catch(e =>{
-					// console.log(e);
+					this.$toast.open({
+						duration: 1500,
+						message: "Internal Server Error",
+						position: 'is-top',
+						type: 'is-danger'
+					})
+					this.isLoading=false;
 				});
 			},
 
-			// fucntion template
+			// function template
 			getDetailTemplate(data) {
 				this.api.get('review/template/'+data )
 				.then(response => {

@@ -135,6 +135,7 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 			apiMembers() {
 				this.api.get('review/members')
 				.then(response => {
+					console.log(response);
 					this.employeeMember = response.data.data;
 					this.reviewedMember = response.data.data.map(member => {
 						return{
@@ -159,7 +160,13 @@ import ButtonFooter from '@/views/CompanyReviewCreates/shared/button-footer/Butt
 					// console.log(response.data);
 				})
 				.catch(e => {
-					// this.errors.push(e);
+					this.$toast.open({
+						duration: 1500,
+						message: e.response.statusText,
+						position: 'is-top',
+						type: 'is-danger'
+					})
+					this.isLoading=false;
 				});
 			},
 
