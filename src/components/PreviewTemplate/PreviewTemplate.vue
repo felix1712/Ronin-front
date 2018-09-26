@@ -6,10 +6,15 @@ import axios from 'axios';
   
   export default{
 		name: 'PreviewTemplate',
+		props: {
+			id: {
+				type:String
+			}
+		},
+		
 		data(){
 			return {
 				api: null,
-				templateId: null,
 				template: "",
 				radioButton: "Yes",
 				isAccActive: true,
@@ -29,11 +34,10 @@ import axios from 'axios';
 				  },
 				});
 
-				this.templateId = this.$route.params.id;
-
 				this.apiPreviewTemplate();
 			}
 		},
+
 
 		methods: {
 			//global function
@@ -48,7 +52,7 @@ import axios from 'axios';
 			//api function
 
 			apiPreviewTemplate(){
-				this.api.get('review/template/'+this.templateId)
+				this.api.get('review/template/'+this.id)
 				.then(response => {
 					if(response.data.data.token){
             this.token = response.data.data.token;

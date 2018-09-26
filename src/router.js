@@ -103,6 +103,7 @@ export default new Router({
 			path: '/preview-template/:id',
 			name: 'PreviewTemplate',
 			component: PreviewTemplate,
+			props: true,
 		},
 		{
 			path: '/review-detail',
